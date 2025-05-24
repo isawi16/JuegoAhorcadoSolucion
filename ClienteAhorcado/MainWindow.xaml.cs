@@ -7,15 +7,23 @@ using ServidorAhorcadoService.DTO;
 using ServidorAhorcadoService;
 using PartidaEstadoDTO = ServidorAhorcadoService.DTO.PartidaEstadoDTO;
 
+using ClienteAhorcado.Vistas;
+
 
 
 
 namespace ClienteAhorcadoApp
 {
-    public partial class MainWindow : Window, IAhorcadoCallback
+    public partial class MainWindow : Window //, IAhorcadoCallback
     {
+        // MainWindow.xaml.cs
+        public MainWindow()
+        {
+            InitializeComponent();
+            MainContent.Content = new IniciarSesion(); 
+        }
 
-        IAhorcadoService proxy;
+        /*IAhorcadoService proxy;
         JugadorDTO usuarioActual;
         int idPartidaActual;
 

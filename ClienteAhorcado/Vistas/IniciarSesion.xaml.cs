@@ -1,6 +1,9 @@
-﻿using System;
+﻿using ServidorAhorcadoService;
+using ServidorAhorcadoService.DTO;
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.ServiceModel;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -17,17 +20,67 @@ namespace ClienteAhorcado.Vistas
     /// <summary>
     /// Lógica de interacción para IniciarSesion.xaml
     /// </summary>
-    public partial class IniciarSesion : Window
+    public partial class IniciarSesion : UserControl, IAhorcadoCallback
     {
+        IAhorcadoService proxy;
+        JugadorDTO usuarioActual;
+        
         public IniciarSesion()
         {
-            InitializeComponent();
+            try
+            {
+                InitializeComponent();
+                var contexto = new InstanceContext(this);
+                var factory = new DuplexChannelFactory<IAhorcadoService>(contexto, "AhorcadoEndpoint");
+                proxy = factory.CreateChannel();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error al conectar con el servicio: {ex.Message}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
         }
 
-        private void Click_IniciarSesion(object sender, RoutedEventArgs e)
+        private void btnIniciarSesion_Click(object sender, RoutedEventArgs e)
         {
-            // Lógica para manejar el evento de clic en el botón "IniciarSesion"
-            MessageBox.Show("Botón Iniciar Sesión presionado.");
+            var correo = tbCorreo.Text;
+            var pass = pbPassword.Password;
+
+            usuarioActual = proxy.IniciarSesion(correo, pass);
+            if (usuarioActual != null)
+            {
+                MessageBox.Show($"Bienvenido, {usuarioActual.Nombre}");
+                MostrarMenuPrincipal();
+            }
+            else
+            {
+                MessageBox.Show("Usuario o contraseña incorrectos.");
+            }
+        }
+
+        private void MostrarMenuPrincipal()
+        {
+            // Aquí puedes cambiar de ventana o habilitar controles
+        }
+
+        private void btnRegistrarse_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+
+        public void ActualizarEstadoPartida(PartidaEstadoDTO estadoActual)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void NotificarFinPartida(string resultado, string palabra)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void RecibirMensajeChat(string nombreJugador, string mensaje)
+        {
+            throw new NotImplementedException();
         }
     }
 }
