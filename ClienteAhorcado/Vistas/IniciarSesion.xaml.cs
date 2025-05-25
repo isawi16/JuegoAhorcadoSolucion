@@ -1,4 +1,5 @@
-﻿using ServidorAhorcadoService;
+﻿using ClienteAhorcadoApp;
+using ServidorAhorcadoService;
 using ServidorAhorcadoService.DTO;
 using System;
 using System.Collections.Generic;
@@ -22,14 +23,17 @@ namespace ClienteAhorcado.Vistas
     /// </summary>
     public partial class IniciarSesion : UserControl, IAhorcadoCallback
     {
+        private MainWindow _mainWindow;
+
         IAhorcadoService proxy;
         JugadorDTO usuarioActual;
         
-        public IniciarSesion()
+        public IniciarSesion(MainWindow mainWindow)
         {
             try
             {
                 InitializeComponent();
+                _mainWindow = mainWindow;
                 var contexto = new InstanceContext(this);
                 var factory = new DuplexChannelFactory<IAhorcadoService>(contexto, "AhorcadoEndpoint");
                 proxy = factory.CreateChannel();
@@ -64,7 +68,7 @@ namespace ClienteAhorcado.Vistas
 
         private void btnRegistrarse_Click(object sender, RoutedEventArgs e)
         {
-
+            _mainWindow.CambiarVista(new RegistrarJugador(_mainWindow)); 
         }
 
 

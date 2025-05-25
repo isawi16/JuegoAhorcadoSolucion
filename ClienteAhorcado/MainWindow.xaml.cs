@@ -16,11 +16,16 @@ namespace ClienteAhorcadoApp
 {
     public partial class MainWindow : Window //, IAhorcadoCallback
     {
-        // MainWindow.xaml.cs
+        
         public MainWindow()
         {
             InitializeComponent();
-            MainContent.Content = new IniciarSesion(); 
+            MainContent.Content = new IniciarSesion(this); 
+        }
+
+        public void CambiarVista(UserControl nuevaVista)
+        {
+            MainContent.Content = nuevaVista;
         }
 
         /*IAhorcadoService proxy;

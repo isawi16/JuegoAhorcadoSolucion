@@ -1,0 +1,54 @@
+﻿<UserControl x:Class="ClienteAhorcado.Vistas.RegistrarJugador"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ClienteAhorcado.Vistas"
+        mc:Ignorable="d" Width="728">
+    <Border Background="White" CornerRadius="12" Margin="10">
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+
+            <!-- Encabezado -->
+            <StackPanel Grid.Row="0" Grid.ColumnSpan="2" Margin="0,10,0,20" HorizontalAlignment="Center">
+                <TextBlock Text="Crea tu cuenta" FontSize="24" FontWeight="Bold" Foreground="#2C3E50" TextAlignment="Center"/>
+                <TextBlock Text="Ingresa los datos para crear tu cuenta" FontSize="16" Foreground="Gray" TextAlignment="Center"/>
+            </StackPanel>
+
+            <!-- Columna izquierda -->
+            <StackPanel Grid.Row="1" Grid.Column="0" Margin="10">
+                <TextBlock Text="Nombre" FontWeight="SemiBold" Margin="0,0,0,5" FontSize="18"/>
+                <TextBox x:Name="tbNombre" Padding="10,5,10,10" Tag="Nombre" Margin="0,0,0,25" />
+
+                <TextBlock Text="Correo" FontWeight="SemiBold" Margin="0,0,0,5" FontSize="18"/>
+                <TextBox x:Name="pbCorreo" Padding="10" Tag="Correo electronico" Margin="0,0,0,15"/>
+
+                <TextBlock Text="Fecha de nacimiento" FontWeight="SemiBold" Margin="0,0,0,5" FontSize="18"/>
+                <DatePicker x:Name="dpFechaNacimiento" FontWeight="SemiBold"/>
+            </StackPanel>
+
+            <!-- Columna derecha -->
+            <StackPanel Grid.Row="1" Grid.Column="1" Margin="10">
+                <TextBlock Text="Telefono" FontWeight="SemiBold" Margin="0,0,0,5" FontSize="18"/>
+                <TextBox x:Name="tbTelefono" Padding="10,5,10,10" Tag="Numero de telefono" Margin="0,0,0,25" />
+
+                <TextBlock Text="Contraseña" FontWeight="SemiBold" Margin="0,0,0,5" FontSize="18"/>
+                <PasswordBox x:Name="pbPsword" Padding="10" Tag="Contraseña" Margin="0,0,0,25"/>
+            </StackPanel>
+
+            <!-- Botones -->
+            <StackPanel Grid.Row="2" Grid.ColumnSpan="2" Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,20,0,10">
+                <Button Content="Registrarme" Width="151" Margin="10,0" Style="{StaticResource EstiloBotonPrincipalSinIcono}"/>
+                <Button Content="Cancelar" Width="151" Margin="10,0" Style="{StaticResource EstiloBotonSecundarioSinIcono}" Click="btnCancelar_Click"/>
+            </StackPanel>
+        </Grid>
+    </Border>
+</UserControl>

@@ -22,7 +22,7 @@
             <!-- Contenido -->
             <StackPanel Grid.Row="1" VerticalAlignment="Top" HorizontalAlignment="Center" Width="280">
                 <TextBlock Text="Correo electrónico" FontWeight="SemiBold" Margin="0,0,0,5"/>
-                <TextBox x:Name="tbCorreo" Height="35" Padding="10"  
+                <TextBox x:Name="tbCorreo" Height="35" Padding="10,5,10,10" 
                          Tag="Correo electrónico" Margin="0,0,0,15" />
 
                 <TextBlock Text="Contraseña" FontWeight="SemiBold" Margin="0,0,0,5"/>
