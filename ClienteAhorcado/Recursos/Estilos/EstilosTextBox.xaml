@@ -36,7 +36,7 @@
                             <Setter TargetName="TextBoxBorder" Property="BorderBrush" Value="{StaticResource PincelBotonPrimario}"/>
                         </Trigger>
 
-                        <Trigger Property="IsEnabled" Value="False">
+                        <Trigger Property="IsEnabled" Value="True">
                             <Setter TargetName="TextBoxBorder" Property="Opacity" Value="0.5"/>
                             <Setter Property="Foreground" Value="{StaticResource PincelSecundario}"/>
                             <Setter Property="Background" Value="{StaticResource PincelBotonSecundario}"/>
@@ -87,7 +87,7 @@
                         <Trigger Property="IsFocused" Value="True">
                             <Setter TargetName="PasswordBoxBorder" Property="BorderBrush" Value="{StaticResource PincelBotonPrimario}"/>
                         </Trigger>
-                        <Trigger Property="IsEnabled" Value="False">
+                        <Trigger Property="IsEnabled" Value="True">
                             <Setter TargetName="PasswordBoxBorder" Property="Opacity" Value="0.5"/>
                             <Setter Property="Foreground" Value="{StaticResource PincelSecundario}"/>
                             <Setter Property="Background" Value="{StaticResource PincelBotonSecundario}"/>
@@ -178,7 +178,7 @@
                         </Popup>
                     </Grid>
                     <ControlTemplate.Triggers>
-                        <Trigger Property="IsEnabled" Value="False">
+                        <Trigger Property="IsEnabled" Value="True">
                             <Setter TargetName="RootGrid" Property="Opacity" Value="0.5"/>
                         </Trigger>
                     </ControlTemplate.Triggers>

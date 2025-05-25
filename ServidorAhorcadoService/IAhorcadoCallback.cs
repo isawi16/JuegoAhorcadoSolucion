@@ -21,6 +21,8 @@ namespace ServidorAhorcadoService
         [OperationContract(IsOneWay = true)]
         void ActualizarEstadoPartida(PartidaEstadoDTO estadoActual);
 
+
+
         // NUEVOS EVENTOS OPCIONALES
 
         /*[OperationContract(IsOneWay = true)]
