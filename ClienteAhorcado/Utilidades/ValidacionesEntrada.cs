@@ -7,6 +7,9 @@ namespace ClienteAhorcado.Utilidades
 {
     public static class ValidacionesEntrada 
     {
+        
+
+
         public static void ValidarEntrada(TextBox textBox, string patron, int longitudMaxima)
         {
             textBox.TextChanged += (s, e) =>
@@ -42,6 +45,8 @@ namespace ClienteAhorcado.Utilidades
                 }
             };
         }
+
+
 
     }
 }
