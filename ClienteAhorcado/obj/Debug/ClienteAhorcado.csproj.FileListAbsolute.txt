@@ -58,3 +58,5 @@ C:\Users\isair\OneDrive\Documents\GitHub\JuegoAhorcadoSolucion\JuegoAhorcado\Cli
 C:\Users\isair\OneDrive\Documents\GitHub\JuegoAhorcadoSolucion\JuegoAhorcado\ClienteAhorcado\obj\Debug\ClienteAhorcado.pdb
 C:\Users\isair\OneDrive\Documents\GitHub\JuegoAhorcadoSolucion\JuegoAhorcado\ClienteAhorcado\obj\Debug\Vistas\RegistrarJugador.g.cs
 C:\Users\isair\OneDrive\Documents\GitHub\JuegoAhorcadoSolucion\JuegoAhorcado\ClienteAhorcado\obj\Debug\Vistas\RegistrarJugador.baml
+C:\Users\isair\OneDrive\Documents\GitHub\JuegoAhorcadoSolucion\JuegoAhorcado\ClienteAhorcado\obj\Debug\Vistas\MenuPrincipal.g.cs
+C:\Users\isair\OneDrive\Documents\GitHub\JuegoAhorcadoSolucion\JuegoAhorcado\ClienteAhorcado\obj\Debug\Vistas\MenuPrincipal.baml
