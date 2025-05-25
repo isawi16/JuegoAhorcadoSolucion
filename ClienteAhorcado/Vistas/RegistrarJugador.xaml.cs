@@ -1,7 +1,10 @@
 ﻿using ClienteAhorcadoApp;
+using ServidorAhorcadoService;
+using ServidorAhorcadoService.DTO;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.ServiceModel;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -18,16 +21,64 @@ namespace ClienteAhorcado.Vistas
     public partial class RegistrarJugador : UserControl
     {
         private MainWindow _mainWindow;
+        IAhorcadoService proxy;
+        JugadorDTO jugadorRegistro = new JugadorDTO();
 
         public RegistrarJugador(MainWindow mainWindow)
         {
-            InitializeComponent();
-            _mainWindow = mainWindow;
+            try
+            {
+                InitializeComponent();
+                _mainWindow = mainWindow;
+                var contexto = new InstanceContext(new DummyCallback());
+                var factory = new DuplexChannelFactory<IAhorcadoService>(contexto, "AhorcadoEndpoint");
+                proxy = factory.CreateChannel();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error al conectar con el servicio: {ex.Message}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+        }
+
+        public class DummyCallback : IAhorcadoCallback
+        {
+            public void ActualizarEstadoPartida(PartidaEstadoDTO estadoActual) { }
+            public void NotificarFinPartida(string resultado, string palabra) { }
+            public void RecibirMensajeChat(string nombreJugador, string mensaje) { }
         }
 
         private void btnCancelar_Click(object sender, RoutedEventArgs e)
         {
             _mainWindow.CambiarVista(new IniciarSesion(_mainWindow));
+        }
+
+        private void btnRegistrarme_Click(object sender, RoutedEventArgs e)
+        {
+            bool registroExitoso = false;
+
+            if (proxy == null)
+            {
+                MessageBox.Show("El servicio no está disponible. Inténtelo más tarde.");
+                return;
+            }
+
+            jugadorRegistro.Nombre = tbNombre.Text.Trim();
+            jugadorRegistro.FechaNacimiento = dpFechaNacimiento.SelectedDate.Value;
+            jugadorRegistro.Correo = tbCorreo.Text.Trim();
+            jugadorRegistro.Contraseña = tbPassword.Text.Trim();
+            jugadorRegistro.Telefono = tbTelefono.Text.Trim();
+            jugadorRegistro.PuntajeGlobal = 0;
+
+            registroExitoso = proxy.RegistrarJugador(jugadorRegistro);
+
+            if (registroExitoso)
+            {
+                MessageBox.Show("El registro fue exitoso");
+            }
+            else
+            {
+                MessageBox.Show("No se pudo registrar, intentelo mas tarde");
+            }
         }
     }
 }

@@ -18,9 +18,6 @@ using System.Windows.Shapes;
 
 namespace ClienteAhorcado.Vistas
 {
-    /// <summary>
-    /// Lógica de interacción para IniciarSesion.xaml
-    /// </summary>
     public partial class IniciarSesion : UserControl, IAhorcadoCallback
     {
         private MainWindow _mainWindow;
@@ -53,7 +50,7 @@ namespace ClienteAhorcado.Vistas
             if (usuarioActual != null)
             {
                 MessageBox.Show($"Bienvenido, {usuarioActual.Nombre}");
-                MostrarMenuPrincipal();
+                MostrarMenuPrincipal(usuarioActual);
             }
             else
             {
@@ -61,9 +58,9 @@ namespace ClienteAhorcado.Vistas
             }
         }
 
-        private void MostrarMenuPrincipal()
+        private void MostrarMenuPrincipal(JugadorDTO jugador)
         {
-            // Aquí puedes cambiar de ventana o habilitar controles
+            _mainWindow.CambiarVista(new MenuPrincipal(_mainWindow, jugador));
         }
 
         private void btnRegistrarse_Click(object sender, RoutedEventArgs e)
@@ -76,12 +73,10 @@ namespace ClienteAhorcado.Vistas
         {
             throw new NotImplementedException();
         }
-
         public void NotificarFinPartida(string resultado, string palabra)
         {
             throw new NotImplementedException();
         }
-
         public void RecibirMensajeChat(string nombreJugador, string mensaje)
         {
             throw new NotImplementedException();

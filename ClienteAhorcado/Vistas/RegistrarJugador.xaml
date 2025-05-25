@@ -4,7 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ClienteAhorcado.Vistas"
-        mc:Ignorable="d" Width="728">
+        mc:Ignorable="d" Width="870" Height="428">
     <Border Background="White" CornerRadius="12" Margin="10">
         <Grid>
             <Grid.ColumnDefinitions>
@@ -29,10 +29,10 @@
                 <TextBox x:Name="tbNombre" Padding="10,5,10,10" Tag="Nombre" Margin="0,0,0,25" />
 
                 <TextBlock Text="Correo" FontWeight="SemiBold" Margin="0,0,0,5" FontSize="18"/>
-                <TextBox x:Name="pbCorreo" Padding="10" Tag="Correo electronico" Margin="0,0,0,15"/>
+                <TextBox x:Name="tbCorreo" Padding="10" Tag="Correo electronico" Margin="0,0,0,15"/>
 
                 <TextBlock Text="Fecha de nacimiento" FontWeight="SemiBold" Margin="0,0,0,5" FontSize="18"/>
-                <DatePicker x:Name="dpFechaNacimiento" FontWeight="SemiBold"/>
+                <DatePicker x:Name="dpFechaNacimiento" FontWeight="SemiBold" />
             </StackPanel>
 
             <!-- Columna derecha -->
@@ -41,12 +41,12 @@
                 <TextBox x:Name="tbTelefono" Padding="10,5,10,10" Tag="Numero de telefono" Margin="0,0,0,25" />
 
                 <TextBlock Text="Contraseña" FontWeight="SemiBold" Margin="0,0,0,5" FontSize="18"/>
-                <PasswordBox x:Name="pbPsword" Padding="10" Tag="Contraseña" Margin="0,0,0,25"/>
+                <TextBox x:Name="tbPassword" Padding="10" Tag="Contraseña" Margin="0,0,0,25"/>
             </StackPanel>
 
             <!-- Botones -->
             <StackPanel Grid.Row="2" Grid.ColumnSpan="2" Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,20,0,10">
-                <Button Content="Registrarme" Width="151" Margin="10,0" Style="{StaticResource EstiloBotonPrincipalSinIcono}"/>
+                <Button Content="Registrarme" Width="151" Margin="10,0" Style="{StaticResource EstiloBotonPrincipalSinIcono}" Click="btnRegistrarme_Click"/>
                 <Button Content="Cancelar" Width="151" Margin="10,0" Style="{StaticResource EstiloBotonSecundarioSinIcono}" Click="btnCancelar_Click"/>
             </StackPanel>
         </Grid>
