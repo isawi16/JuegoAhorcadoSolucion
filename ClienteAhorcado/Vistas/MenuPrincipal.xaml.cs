@@ -58,5 +58,25 @@ namespace ClienteAhorcado.Vistas
             public void NotificarFinPartida(string resultado, string palabra) { }
             public void RecibirMensajeChat(string nombreJugador, string mensaje) { }
         }
+
+        private void BtnIniciarPartida_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void BtnUnirsePartida_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void BtnHistorialPartidas_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void BtnMarcadores_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }
