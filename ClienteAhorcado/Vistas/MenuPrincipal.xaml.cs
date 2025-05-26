@@ -77,7 +77,7 @@ namespace ClienteAhorcado.Vistas
 
         private void BtnMarcadores_Click(object sender, RoutedEventArgs e)
         {
-
+            _mainWindow.CambiarVista(new Marcadores(_mainWindow, jugadorSesion));
         }
     }
 }

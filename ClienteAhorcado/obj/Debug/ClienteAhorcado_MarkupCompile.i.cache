@@ -10,11 +10,11 @@ none
 false
 DEBUG;TRACE
 C:\Users\isair\OneDrive\Documents\GitHub\JuegoAhorcadoSolucion\JuegoAhorcado\ClienteAhorcado\App.xaml
-9759923280
+10-380894773
 
-14-131695383
+151815433142
 17-276816738
-MainWindow.xaml;Recursos\Estilos\Animaciones.xaml;Recursos\Estilos\ElementosUI.xaml;Recursos\Estilos\EstilosBotones.xaml;Recursos\Estilos\EstilosTextBox.xaml;Vistas\IniciarSesion.xaml;Vistas\MenuPrincipal.xaml;Vistas\PerfilJugador.xaml;Vistas\RegistrarJugador.xaml;
+MainWindow.xaml;Recursos\Estilos\Animaciones.xaml;Recursos\Estilos\ElementosUI.xaml;Recursos\Estilos\EstilosBotones.xaml;Recursos\Estilos\EstilosTextBox.xaml;Vistas\IniciarSesion.xaml;Vistas\Marcadores.xaml;Vistas\MenuPrincipal.xaml;Vistas\PerfilJugador.xaml;Vistas\RegistrarJugador.xaml;
 
 True
 

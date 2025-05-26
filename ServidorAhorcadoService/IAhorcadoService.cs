@@ -27,6 +27,9 @@ namespace ServidorAhorcadoService
         [OperationContract]
         List<PartidaDTO> ConsultarPartidasJugadas(int idJugador);
 
+        [OperationContract]
+        List<JugadorDTO> ObtenerJugadoresMarcadores();
+
         // --- PALABRAS Y CATEGORÍAS ---
         [OperationContract]
         List<CategoriaDTO> ObtenerCategoriasPorIdioma(string codigoIdioma);
