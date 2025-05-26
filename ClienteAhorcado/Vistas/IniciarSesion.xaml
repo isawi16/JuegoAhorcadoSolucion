@@ -4,7 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         mc:Ignorable="d"
-        Height="420" Width="380"
+        Height="461" Width="380"
         Background="#f0f2f5">
     <Border Background="White" CornerRadius="12" Margin="20" >
         <Grid Margin="20">
@@ -23,12 +23,20 @@
             <StackPanel Grid.Row="1" VerticalAlignment="Top" HorizontalAlignment="Center" Width="280">
                 <TextBlock Text="Correo electrónico" FontWeight="SemiBold" Margin="0,0,0,5"/>
                 <TextBox x:Name="tbCorreo" Height="35" Padding="10,5,10,10" 
-                         Tag="Correo electrónico" Margin="0,0,0,15" />
+                         Tag="Correo electrónico" Margin="0,0,0,5" />
+                <TextBlock x:Name="tblockErrorCorreo" Text="" Margin="0,0,0,5" Foreground="Red"/>
 
                 <TextBlock Text="Contraseña" FontWeight="SemiBold" Margin="0,0,0,5"/>
-                <PasswordBox x:Name="pbPassword" Height="35" Padding="10" 
-                             Tag="Contraseña" Margin="0,0,0,25"/>
+                <Grid>
+                    <PasswordBox x:Name="pbPassword" Height="35" Padding="10" 
+                             Tag="Contraseña" Margin="0,0,40,5" Visibility="Visible" PasswordChanged="pbPassword_PasswordChanged"/>
+                    <TextBox x:Name="tbPasswordVisible" Height="35" Margin="0,0,40,5" Padding="10,5,10,10"
+                             Tag="Contraseña" VerticalAlignment="Center" Visibility="Collapsed" TextChanged="tbPasswordVisible_TextChanged"/>
 
+                    <Button x:Name="btnVerPassword" Width="30" Height="30" HorizontalAlignment="Right" VerticalAlignment="Center" Click="btnVerPassword_Click" Content="👁"/>
+                </Grid>
+
+                <TextBlock x:Name="tblockErrorPassword" Text="" Margin="0,0,0,5" Foreground="Red" VerticalAlignment="Bottom"/>
                 <Button Content="Iniciar Sesión"
                         Click="btnIniciarSesion_Click"
                         Style="{StaticResource EstiloBotonPrincipalSinIcono}"

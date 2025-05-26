@@ -7,8 +7,16 @@
       "RelativeMoniker": "D:0:0:{156E841F-D495-44F9-922F-1A18DE83D694}|ClienteAhorcado\\ClienteAhorcado.csproj|solutionrelative:clienteahorcado\\vistas\\menuprincipal.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{156E841F-D495-44F9-922F-1A18DE83D694}|ClienteAhorcado\\ClienteAhorcado.csproj|C:\\Users\\isair\\OneDrive\\Documents\\GitHub\\JuegoAhorcadoSolucion\\JuegoAhorcado\\clienteahorcado\\vistas\\menuprincipal.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
-      "RelativeMoniker": "D:0:0:{156E841F-D495-44F9-922F-1A18DE83D694}|ClienteAhorcado\\ClienteAhorcado.csproj|solutionrelative:clienteahorcado\\vistas\\menuprincipal.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+      "AbsoluteMoniker": "D:0:0:{156E841F-D495-44F9-922F-1A18DE83D694}|ClienteAhorcado\\ClienteAhorcado.csproj|C:\\Users\\isair\\OneDrive\\Documents\\GitHub\\JuegoAhorcadoSolucion\\JuegoAhorcado\\clienteahorcado\\utilidades\\validacionesentrada.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{156E841F-D495-44F9-922F-1A18DE83D694}|ClienteAhorcado\\ClienteAhorcado.csproj|solutionrelative:clienteahorcado\\utilidades\\validacionesentrada.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{156E841F-D495-44F9-922F-1A18DE83D694}|ClienteAhorcado\\ClienteAhorcado.csproj|c:\\users\\isair\\onedrive\\documents\\github\\juegoahorcadosolucion\\juegoahorcado\\clienteahorcado\\vistas\\perfiljugador.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{156E841F-D495-44F9-922F-1A18DE83D694}|ClienteAhorcado\\ClienteAhorcado.csproj|solutionrelative:clienteahorcado\\vistas\\perfiljugador.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{156E841F-D495-44F9-922F-1A18DE83D694}|ClienteAhorcado\\ClienteAhorcado.csproj|C:\\Users\\isair\\OneDrive\\Documents\\GitHub\\JuegoAhorcadoSolucion\\JuegoAhorcado\\clienteahorcado\\vistas\\registrarjugador.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{156E841F-D495-44F9-922F-1A18DE83D694}|ClienteAhorcado\\ClienteAhorcado.csproj|solutionrelative:clienteahorcado\\vistas\\registrarjugador.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{156E841F-D495-44F9-922F-1A18DE83D694}|ClienteAhorcado\\ClienteAhorcado.csproj|C:\\Users\\isair\\OneDrive\\Documents\\GitHub\\JuegoAhorcadoSolucion\\JuegoAhorcado\\clienteahorcado\\vistas\\registrarjugador.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
@@ -19,32 +27,32 @@
       "RelativeMoniker": "D:0:0:{156E841F-D495-44F9-922F-1A18DE83D694}|ClienteAhorcado\\ClienteAhorcado.csproj|solutionrelative:clienteahorcado\\vistas\\iniciarsesion.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{156E841F-D495-44F9-922F-1A18DE83D694}|ClienteAhorcado\\ClienteAhorcado.csproj|C:\\Users\\isair\\OneDrive\\Documents\\GitHub\\JuegoAhorcadoSolucion\\JuegoAhorcado\\clienteahorcado\\vistas\\registrarjugador.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{156E841F-D495-44F9-922F-1A18DE83D694}|ClienteAhorcado\\ClienteAhorcado.csproj|solutionrelative:clienteahorcado\\vistas\\registrarjugador.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{9CB630A0-0828-472E-9E89-2EC1EAC39DD1}|ServidorAhorcadoService\\ServidorAhorcadoService.csproj|C:\\Users\\isair\\OneDrive\\Documents\\GitHub\\JuegoAhorcadoSolucion\\JuegoAhorcado\\servidorahorcadoservice\\dto\\jugadordto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{9CB630A0-0828-472E-9E89-2EC1EAC39DD1}|ServidorAhorcadoService\\ServidorAhorcadoService.csproj|solutionrelative:servidorahorcadoservice\\dto\\jugadordto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{9CB630A0-0828-472E-9E89-2EC1EAC39DD1}|ServidorAhorcadoService\\ServidorAhorcadoService.csproj|C:\\Users\\isair\\OneDrive\\Documents\\GitHub\\JuegoAhorcadoSolucion\\JuegoAhorcado\\servidorahorcadoservice\\ahorcadoservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{9CB630A0-0828-472E-9E89-2EC1EAC39DD1}|ServidorAhorcadoService\\ServidorAhorcadoService.csproj|solutionrelative:servidorahorcadoservice\\ahorcadoservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{156E841F-D495-44F9-922F-1A18DE83D694}|ClienteAhorcado\\ClienteAhorcado.csproj|C:\\Users\\isair\\OneDrive\\Documents\\GitHub\\JuegoAhorcadoSolucion\\JuegoAhorcado\\clienteahorcado\\mainwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{156E841F-D495-44F9-922F-1A18DE83D694}|ClienteAhorcado\\ClienteAhorcado.csproj|solutionrelative:clienteahorcado\\mainwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{156E841F-D495-44F9-922F-1A18DE83D694}|ClienteAhorcado\\ClienteAhorcado.csproj|c:\\users\\isair\\onedrive\\documents\\github\\juegoahorcadosolucion\\juegoahorcado\\clienteahorcado\\vistas\\perfiljugador.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{156E841F-D495-44F9-922F-1A18DE83D694}|ClienteAhorcado\\ClienteAhorcado.csproj|solutionrelative:clienteahorcado\\vistas\\perfiljugador.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{156E841F-D495-44F9-922F-1A18DE83D694}|ClienteAhorcado\\ClienteAhorcado.csproj|C:\\Users\\isair\\OneDrive\\Documents\\GitHub\\JuegoAhorcadoSolucion\\JuegoAhorcado\\clienteahorcado\\vistas\\iniciarsesion.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
       "RelativeMoniker": "D:0:0:{156E841F-D495-44F9-922F-1A18DE83D694}|ClienteAhorcado\\ClienteAhorcado.csproj|solutionrelative:clienteahorcado\\vistas\\iniciarsesion.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{156E841F-D495-44F9-922F-1A18DE83D694}|ClienteAhorcado\\ClienteAhorcado.csproj|C:\\Users\\isair\\OneDrive\\Documents\\GitHub\\JuegoAhorcadoSolucion\\JuegoAhorcado\\clienteahorcado\\mainwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
-      "RelativeMoniker": "D:0:0:{156E841F-D495-44F9-922F-1A18DE83D694}|ClienteAhorcado\\ClienteAhorcado.csproj|solutionrelative:clienteahorcado\\mainwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+      "AbsoluteMoniker": "D:0:0:{156E841F-D495-44F9-922F-1A18DE83D694}|ClienteAhorcado\\ClienteAhorcado.csproj|c:\\users\\isair\\onedrive\\documents\\github\\juegoahorcadosolucion\\juegoahorcado\\clienteahorcado\\utilidades\\animaciones.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{156E841F-D495-44F9-922F-1A18DE83D694}|ClienteAhorcado\\ClienteAhorcado.csproj|solutionrelative:clienteahorcado\\utilidades\\animaciones.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{156E841F-D495-44F9-922F-1A18DE83D694}|ClienteAhorcado\\ClienteAhorcado.csproj|C:\\Users\\isair\\OneDrive\\Documents\\GitHub\\JuegoAhorcadoSolucion\\JuegoAhorcado\\clienteahorcado\\utilidades\\validacionesentrada.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{156E841F-D495-44F9-922F-1A18DE83D694}|ClienteAhorcado\\ClienteAhorcado.csproj|solutionrelative:clienteahorcado\\utilidades\\validacionesentrada.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{9CB630A0-0828-472E-9E89-2EC1EAC39DD1}|ServidorAhorcadoService\\ServidorAhorcadoService.csproj|c:\\users\\isair\\onedrive\\documents\\github\\juegoahorcadosolucion\\juegoahorcado\\servidorahorcadoservice\\dto\\jugadordto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9CB630A0-0828-472E-9E89-2EC1EAC39DD1}|ServidorAhorcadoService\\ServidorAhorcadoService.csproj|solutionrelative:servidorahorcadoservice\\dto\\jugadordto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{156E841F-D495-44F9-922F-1A18DE83D694}|ClienteAhorcado\\ClienteAhorcado.csproj|C:\\Users\\isair\\OneDrive\\Documents\\GitHub\\JuegoAhorcadoSolucion\\JuegoAhorcado\\clienteahorcado\\vistas\\menuprincipal.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{156E841F-D495-44F9-922F-1A18DE83D694}|ClienteAhorcado\\ClienteAhorcado.csproj|solutionrelative:clienteahorcado\\vistas\\menuprincipal.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{156E841F-D495-44F9-922F-1A18DE83D694}|ClienteAhorcado\\ClienteAhorcado.csproj|C:\\Users\\isair\\OneDrive\\Documents\\GitHub\\JuegoAhorcadoSolucion\\JuegoAhorcado\\clienteahorcado\\mainwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{156E841F-D495-44F9-922F-1A18DE83D694}|ClienteAhorcado\\ClienteAhorcado.csproj|solutionrelative:clienteahorcado\\mainwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{156E841F-D495-44F9-922F-1A18DE83D694}|ClienteAhorcado\\ClienteAhorcado.csproj|C:\\Users\\isair\\OneDrive\\Documents\\GitHub\\JuegoAhorcadoSolucion\\JuegoAhorcado\\clienteahorcado\\mainwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{156E841F-D495-44F9-922F-1A18DE83D694}|ClienteAhorcado\\ClienteAhorcado.csproj|solutionrelative:clienteahorcado\\mainwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{9CB630A0-0828-472E-9E89-2EC1EAC39DD1}|ServidorAhorcadoService\\ServidorAhorcadoService.csproj|C:\\Users\\isair\\OneDrive\\Documents\\GitHub\\JuegoAhorcadoSolucion\\JuegoAhorcado\\servidorahorcadoservice\\model\\jugador.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -140,11 +148,138 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 1,
+          "SelectedChildIndex": 0,
           "Children": [
             {
               "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "MenuPrincipal.xaml.cs",
+              "DocumentMoniker": "C:\\Users\\isair\\OneDrive\\Documents\\GitHub\\JuegoAhorcadoSolucion\\JuegoAhorcado\\ClienteAhorcado\\Vistas\\MenuPrincipal.xaml.cs",
+              "RelativeDocumentMoniker": "ClienteAhorcado\\Vistas\\MenuPrincipal.xaml.cs",
+              "ToolTip": "C:\\Users\\isair\\OneDrive\\Documents\\GitHub\\JuegoAhorcadoSolucion\\JuegoAhorcado\\ClienteAhorcado\\Vistas\\MenuPrincipal.xaml.cs",
+              "RelativeToolTip": "ClienteAhorcado\\Vistas\\MenuPrincipal.xaml.cs",
+              "ViewState": "AgIAADoAAAAAAAAAAIA8wE8AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-25T05:48:45.941Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "PerfilJugador.xaml.cs",
+              "DocumentMoniker": "C:\\Users\\isair\\OneDrive\\Documents\\GitHub\\JuegoAhorcadoSolucion\\JuegoAhorcado\\ClienteAhorcado\\Vistas\\PerfilJugador.xaml.cs",
+              "RelativeDocumentMoniker": "ClienteAhorcado\\Vistas\\PerfilJugador.xaml.cs",
+              "ToolTip": "C:\\Users\\isair\\OneDrive\\Documents\\GitHub\\JuegoAhorcadoSolucion\\JuegoAhorcado\\ClienteAhorcado\\Vistas\\PerfilJugador.xaml.cs",
+              "RelativeToolTip": "ClienteAhorcado\\Vistas\\PerfilJugador.xaml.cs",
+              "ViewState": "AgIAAHcAAAAAAAAAAAAAwIQAAABGAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-25T19:05:01.348Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
               "DocumentIndex": 1,
+              "Title": "ValidacionesEntrada.cs",
+              "DocumentMoniker": "C:\\Users\\isair\\OneDrive\\Documents\\GitHub\\JuegoAhorcadoSolucion\\JuegoAhorcado\\ClienteAhorcado\\Utilidades\\ValidacionesEntrada.cs",
+              "RelativeDocumentMoniker": "ClienteAhorcado\\Utilidades\\ValidacionesEntrada.cs",
+              "ToolTip": "C:\\Users\\isair\\OneDrive\\Documents\\GitHub\\JuegoAhorcadoSolucion\\JuegoAhorcado\\ClienteAhorcado\\Utilidades\\ValidacionesEntrada.cs",
+              "RelativeToolTip": "ClienteAhorcado\\Utilidades\\ValidacionesEntrada.cs",
+              "ViewState": "AgIAAFEAAAAAAAAAAAAYwGkAAABAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-25T02:34:30.956Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "RegistrarJugador.xaml.cs",
+              "DocumentMoniker": "C:\\Users\\isair\\OneDrive\\Documents\\GitHub\\JuegoAhorcadoSolucion\\JuegoAhorcado\\ClienteAhorcado\\Vistas\\RegistrarJugador.xaml.cs",
+              "RelativeDocumentMoniker": "ClienteAhorcado\\Vistas\\RegistrarJugador.xaml.cs",
+              "ToolTip": "C:\\Users\\isair\\OneDrive\\Documents\\GitHub\\JuegoAhorcadoSolucion\\JuegoAhorcado\\ClienteAhorcado\\Vistas\\RegistrarJugador.xaml.cs",
+              "RelativeToolTip": "ClienteAhorcado\\Vistas\\RegistrarJugador.xaml.cs",
+              "ViewState": "AgIAABwAAAAAAAAAAAAQwF0AAAA9AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-25T00:29:46.739Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "RegistrarJugador.xaml",
+              "DocumentMoniker": "C:\\Users\\isair\\OneDrive\\Documents\\GitHub\\JuegoAhorcadoSolucion\\JuegoAhorcado\\ClienteAhorcado\\Vistas\\RegistrarJugador.xaml",
+              "RelativeDocumentMoniker": "ClienteAhorcado\\Vistas\\RegistrarJugador.xaml",
+              "ToolTip": "C:\\Users\\isair\\OneDrive\\Documents\\GitHub\\JuegoAhorcadoSolucion\\JuegoAhorcado\\ClienteAhorcado\\Vistas\\RegistrarJugador.xaml",
+              "RelativeToolTip": "ClienteAhorcado\\Vistas\\RegistrarJugador.xaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2025-05-24T23:35:33.43Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "PerfilJugador.xaml",
+              "DocumentMoniker": "C:\\Users\\isair\\OneDrive\\Documents\\GitHub\\JuegoAhorcadoSolucion\\JuegoAhorcado\\ClienteAhorcado\\Vistas\\PerfilJugador.xaml",
+              "RelativeDocumentMoniker": "ClienteAhorcado\\Vistas\\PerfilJugador.xaml",
+              "ToolTip": "C:\\Users\\isair\\OneDrive\\Documents\\GitHub\\JuegoAhorcadoSolucion\\JuegoAhorcado\\ClienteAhorcado\\Vistas\\PerfilJugador.xaml",
+              "RelativeToolTip": "ClienteAhorcado\\Vistas\\PerfilJugador.xaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2025-05-25T18:45:46.258Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "IniciarSesion.xaml.cs",
+              "DocumentMoniker": "C:\\Users\\isair\\OneDrive\\Documents\\GitHub\\JuegoAhorcadoSolucion\\JuegoAhorcado\\ClienteAhorcado\\Vistas\\IniciarSesion.xaml.cs",
+              "RelativeDocumentMoniker": "ClienteAhorcado\\Vistas\\IniciarSesion.xaml.cs",
+              "ToolTip": "C:\\Users\\isair\\OneDrive\\Documents\\GitHub\\JuegoAhorcadoSolucion\\JuegoAhorcado\\ClienteAhorcado\\Vistas\\IniciarSesion.xaml.cs",
+              "RelativeToolTip": "ClienteAhorcado\\Vistas\\IniciarSesion.xaml.cs",
+              "ViewState": "AgIAAEcAAAAAAAAAAIAywFgAAAA2AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-23T14:04:09.812Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "IniciarSesion.xaml",
+              "DocumentMoniker": "C:\\Users\\isair\\OneDrive\\Documents\\GitHub\\JuegoAhorcadoSolucion\\JuegoAhorcado\\ClienteAhorcado\\Vistas\\IniciarSesion.xaml",
+              "RelativeDocumentMoniker": "ClienteAhorcado\\Vistas\\IniciarSesion.xaml",
+              "ToolTip": "C:\\Users\\isair\\OneDrive\\Documents\\GitHub\\JuegoAhorcadoSolucion\\JuegoAhorcado\\ClienteAhorcado\\Vistas\\IniciarSesion.xaml",
+              "RelativeToolTip": "ClienteAhorcado\\Vistas\\IniciarSesion.xaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2025-05-23T14:23:59.157Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "Animaciones.cs",
+              "DocumentMoniker": "C:\\Users\\isair\\OneDrive\\Documents\\GitHub\\JuegoAhorcadoSolucion\\JuegoAhorcado\\ClienteAhorcado\\Utilidades\\Animaciones.cs",
+              "RelativeDocumentMoniker": "ClienteAhorcado\\Utilidades\\Animaciones.cs",
+              "ToolTip": "C:\\Users\\isair\\OneDrive\\Documents\\GitHub\\JuegoAhorcadoSolucion\\JuegoAhorcado\\ClienteAhorcado\\Utilidades\\Animaciones.cs",
+              "RelativeToolTip": "ClienteAhorcado\\Utilidades\\Animaciones.cs",
+              "ViewState": "AgIAAC4AAAAAAAAAAAAMwDwAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-25T23:10:23.376Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "JugadorDTO.cs",
+              "DocumentMoniker": "C:\\Users\\isair\\OneDrive\\Documents\\GitHub\\JuegoAhorcadoSolucion\\JuegoAhorcado\\ServidorAhorcadoService\\DTO\\JugadorDTO.cs",
+              "RelativeDocumentMoniker": "ServidorAhorcadoService\\DTO\\JugadorDTO.cs",
+              "ToolTip": "C:\\Users\\isair\\OneDrive\\Documents\\GitHub\\JuegoAhorcadoSolucion\\JuegoAhorcado\\ServidorAhorcadoService\\DTO\\JugadorDTO.cs",
+              "RelativeToolTip": "ServidorAhorcadoService\\DTO\\JugadorDTO.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-25T21:43:59.202Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
               "Title": "MenuPrincipal.xaml",
               "DocumentMoniker": "C:\\Users\\isair\\OneDrive\\Documents\\GitHub\\JuegoAhorcadoSolucion\\JuegoAhorcado\\ClienteAhorcado\\Vistas\\MenuPrincipal.xaml",
               "RelativeDocumentMoniker": "ClienteAhorcado\\Vistas\\MenuPrincipal.xaml",
@@ -156,79 +291,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "MenuPrincipal.xaml.cs",
-              "DocumentMoniker": "C:\\Users\\isair\\OneDrive\\Documents\\GitHub\\JuegoAhorcadoSolucion\\JuegoAhorcado\\ClienteAhorcado\\Vistas\\MenuPrincipal.xaml.cs",
-              "RelativeDocumentMoniker": "ClienteAhorcado\\Vistas\\MenuPrincipal.xaml.cs",
-              "ToolTip": "C:\\Users\\isair\\OneDrive\\Documents\\GitHub\\JuegoAhorcadoSolucion\\JuegoAhorcado\\ClienteAhorcado\\Vistas\\MenuPrincipal.xaml.cs",
-              "RelativeToolTip": "ClienteAhorcado\\Vistas\\MenuPrincipal.xaml.cs",
-              "ViewState": "AgIAACgAAAAAAAAAAAAEwEoAAAAJAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-25T05:48:45.941Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "RegistrarJugador.xaml.cs",
-              "DocumentMoniker": "C:\\Users\\isair\\OneDrive\\Documents\\GitHub\\JuegoAhorcadoSolucion\\JuegoAhorcado\\ClienteAhorcado\\Vistas\\RegistrarJugador.xaml.cs",
-              "RelativeDocumentMoniker": "ClienteAhorcado\\Vistas\\RegistrarJugador.xaml.cs",
-              "ToolTip": "C:\\Users\\isair\\OneDrive\\Documents\\GitHub\\JuegoAhorcadoSolucion\\JuegoAhorcado\\ClienteAhorcado\\Vistas\\RegistrarJugador.xaml.cs",
-              "RelativeToolTip": "ClienteAhorcado\\Vistas\\RegistrarJugador.xaml.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAC8AAAAJAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-25T00:29:46.739Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "IniciarSesion.xaml.cs",
-              "DocumentMoniker": "C:\\Users\\isair\\OneDrive\\Documents\\GitHub\\JuegoAhorcadoSolucion\\JuegoAhorcado\\ClienteAhorcado\\Vistas\\IniciarSesion.xaml.cs",
-              "RelativeDocumentMoniker": "ClienteAhorcado\\Vistas\\IniciarSesion.xaml.cs",
-              "ToolTip": "C:\\Users\\isair\\OneDrive\\Documents\\GitHub\\JuegoAhorcadoSolucion\\JuegoAhorcado\\ClienteAhorcado\\Vistas\\IniciarSesion.xaml.cs",
-              "RelativeToolTip": "ClienteAhorcado\\Vistas\\IniciarSesion.xaml.cs",
-              "ViewState": "AgIAABIAAAAAAAAAAAAAAD4AAABOAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-23T14:04:09.812Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "AhorcadoService.cs",
-              "DocumentMoniker": "C:\\Users\\isair\\OneDrive\\Documents\\GitHub\\JuegoAhorcadoSolucion\\JuegoAhorcado\\ServidorAhorcadoService\\AhorcadoService.cs",
-              "RelativeDocumentMoniker": "ServidorAhorcadoService\\AhorcadoService.cs",
-              "ToolTip": "C:\\Users\\isair\\OneDrive\\Documents\\GitHub\\JuegoAhorcadoSolucion\\JuegoAhorcado\\ServidorAhorcadoService\\AhorcadoService.cs",
-              "RelativeToolTip": "ServidorAhorcadoService\\AhorcadoService.cs",
-              "ViewState": "AgIAACIAAAAAAAAAAAAWwCYAAAA4AAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-20T21:09:20.704Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "RegistrarJugador.xaml",
-              "DocumentMoniker": "C:\\Users\\isair\\OneDrive\\Documents\\GitHub\\JuegoAhorcadoSolucion\\JuegoAhorcado\\ClienteAhorcado\\Vistas\\RegistrarJugador.xaml",
-              "RelativeDocumentMoniker": "ClienteAhorcado\\Vistas\\RegistrarJugador.xaml",
-              "ToolTip": "C:\\Users\\isair\\OneDrive\\Documents\\GitHub\\JuegoAhorcadoSolucion\\JuegoAhorcado\\ClienteAhorcado\\Vistas\\RegistrarJugador.xaml",
-              "RelativeToolTip": "ClienteAhorcado\\Vistas\\RegistrarJugador.xaml",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2025-05-24T23:35:33.43Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "JugadorDTO.cs",
-              "DocumentMoniker": "C:\\Users\\isair\\OneDrive\\Documents\\GitHub\\JuegoAhorcadoSolucion\\JuegoAhorcado\\ServidorAhorcadoService\\DTO\\JugadorDTO.cs",
-              "RelativeDocumentMoniker": "ServidorAhorcadoService\\DTO\\JugadorDTO.cs",
-              "ToolTip": "C:\\Users\\isair\\OneDrive\\Documents\\GitHub\\JuegoAhorcadoSolucion\\JuegoAhorcado\\ServidorAhorcadoService\\DTO\\JugadorDTO.cs",
-              "RelativeToolTip": "ServidorAhorcadoService\\DTO\\JugadorDTO.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-21T22:13:32.01Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 11,
               "Title": "MainWindow.xaml.cs",
               "DocumentMoniker": "C:\\Users\\isair\\OneDrive\\Documents\\GitHub\\JuegoAhorcadoSolucion\\JuegoAhorcado\\ClienteAhorcado\\MainWindow.xaml.cs",
               "RelativeDocumentMoniker": "ClienteAhorcado\\MainWindow.xaml.cs",
@@ -240,41 +303,19 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 8,
-              "Title": "IniciarSesion.xaml",
-              "DocumentMoniker": "C:\\Users\\isair\\OneDrive\\Documents\\GitHub\\JuegoAhorcadoSolucion\\JuegoAhorcado\\ClienteAhorcado\\Vistas\\IniciarSesion.xaml",
-              "RelativeDocumentMoniker": "ClienteAhorcado\\Vistas\\IniciarSesion.xaml",
-              "ToolTip": "C:\\Users\\isair\\OneDrive\\Documents\\GitHub\\JuegoAhorcadoSolucion\\JuegoAhorcado\\ClienteAhorcado\\Vistas\\IniciarSesion.xaml",
-              "RelativeToolTip": "ClienteAhorcado\\Vistas\\IniciarSesion.xaml",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2025-05-23T14:23:59.157Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 9,
+              "DocumentIndex": 12,
               "Title": "MainWindow.xaml",
               "DocumentMoniker": "C:\\Users\\isair\\OneDrive\\Documents\\GitHub\\JuegoAhorcadoSolucion\\JuegoAhorcado\\ClienteAhorcado\\MainWindow.xaml",
               "RelativeDocumentMoniker": "ClienteAhorcado\\MainWindow.xaml",
               "ToolTip": "C:\\Users\\isair\\OneDrive\\Documents\\GitHub\\JuegoAhorcadoSolucion\\JuegoAhorcado\\ClienteAhorcado\\MainWindow.xaml",
               "RelativeToolTip": "ClienteAhorcado\\MainWindow.xaml",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2025-05-25T00:39:35.422Z"
+              "WhenOpened": "2025-05-25T00:39:35.422Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 10,
-              "Title": "ValidacionesEntrada.cs",
-              "DocumentMoniker": "C:\\Users\\isair\\OneDrive\\Documents\\GitHub\\JuegoAhorcadoSolucion\\JuegoAhorcado\\ClienteAhorcado\\Utilidades\\ValidacionesEntrada.cs",
-              "RelativeDocumentMoniker": "ClienteAhorcado\\Utilidades\\ValidacionesEntrada.cs",
-              "ToolTip": "C:\\Users\\isair\\OneDrive\\Documents\\GitHub\\JuegoAhorcadoSolucion\\JuegoAhorcado\\ClienteAhorcado\\Utilidades\\ValidacionesEntrada.cs",
-              "RelativeToolTip": "ClienteAhorcado\\Utilidades\\ValidacionesEntrada.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAB8AAAAJAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-25T02:34:30.956Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 13,
+              "DocumentIndex": 15,
               "Title": "HistorialPuntajeDTO.cs",
               "DocumentMoniker": "C:\\Users\\isair\\OneDrive\\Documents\\GitHub\\JuegoAhorcadoSolucion\\JuegoAhorcado\\ServidorAhorcadoService\\DTO\\HistorialPuntajeDTO.cs",
               "RelativeDocumentMoniker": "ServidorAhorcadoService\\DTO\\HistorialPuntajeDTO.cs",
@@ -286,7 +327,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 14,
+              "DocumentIndex": 16,
               "Title": "IService1.cs",
               "DocumentMoniker": "C:\\Users\\isair\\OneDrive\\Documents\\GitHub\\JuegoAhorcadoSolucion\\JuegoAhorcado\\ServidorAhorcadoService\\IService1.cs",
               "RelativeDocumentMoniker": "ServidorAhorcadoService\\IService1.cs",
@@ -298,7 +339,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 11,
+              "DocumentIndex": 13,
               "Title": "Jugador.cs",
               "DocumentMoniker": "C:\\Users\\isair\\OneDrive\\Documents\\GitHub\\JuegoAhorcadoSolucion\\JuegoAhorcado\\ServidorAhorcadoService\\Model\\Jugador.cs",
               "RelativeDocumentMoniker": "ServidorAhorcadoService\\Model\\Jugador.cs",
@@ -310,7 +351,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 12,
+              "DocumentIndex": 14,
               "Title": "EstilosTextBox.xaml",
               "DocumentMoniker": "C:\\Users\\isair\\OneDrive\\Documents\\GitHub\\JuegoAhorcadoSolucion\\JuegoAhorcado\\ClienteAhorcado\\Recursos\\Estilos\\EstilosTextBox.xaml",
               "RelativeDocumentMoniker": "ClienteAhorcado\\Recursos\\Estilos\\EstilosTextBox.xaml",
@@ -322,7 +363,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 31,
+              "DocumentIndex": 33,
               "Title": "DescripcionCategoria.cs",
               "DocumentMoniker": "C:\\Users\\isair\\source\\repos\\JuegoAhorcadoSolucion\\ServidorAhorcadoService\\Model\\DescripcionCategoria.cs",
               "RelativeDocumentMoniker": "..\\..\\..\\..\\..\\source\\repos\\JuegoAhorcadoSolucion\\ServidorAhorcadoService\\Model\\DescripcionCategoria.cs",
@@ -333,7 +374,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 30,
+              "DocumentIndex": 32,
               "Title": "Usuario.cs",
               "DocumentMoniker": "C:\\Users\\isair\\source\\repos\\JuegoAhorcadoSolucion\\ServidorAhorcadoService\\Model\\Usuario.cs",
               "RelativeDocumentMoniker": "..\\..\\..\\..\\..\\source\\repos\\JuegoAhorcadoSolucion\\ServidorAhorcadoService\\Model\\Usuario.cs",
@@ -344,7 +385,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 28,
+              "DocumentIndex": 30,
               "Title": "UsuarioDTO.cs",
               "DocumentMoniker": "C:\\Users\\isair\\source\\repos\\JuegoAhorcadoSolucion\\ServidorAhorcadoService\\DTO\\UsuarioDTO.cs",
               "RelativeDocumentMoniker": "..\\..\\..\\..\\..\\source\\repos\\JuegoAhorcadoSolucion\\ServidorAhorcadoService\\DTO\\UsuarioDTO.cs",
@@ -355,7 +396,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 29,
+              "DocumentIndex": 31,
               "Title": "DescripcionCategoriaDTO.cs",
               "DocumentMoniker": "C:\\Users\\isair\\source\\repos\\JuegoAhorcadoSolucion\\ServidorAhorcadoService\\DTO\\DescripcionCategoriaDTO.cs",
               "RelativeDocumentMoniker": "..\\..\\..\\..\\..\\source\\repos\\JuegoAhorcadoSolucion\\ServidorAhorcadoService\\DTO\\DescripcionCategoriaDTO.cs",
@@ -366,7 +407,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 32,
+              "DocumentIndex": 34,
               "Title": "DescripcionPalabra.cs",
               "DocumentMoniker": "C:\\Users\\isair\\source\\repos\\JuegoAhorcadoSolucion\\ServidorAhorcadoService\\Model\\DescripcionPalabra.cs",
               "RelativeDocumentMoniker": "..\\..\\..\\..\\..\\source\\repos\\JuegoAhorcadoSolucion\\ServidorAhorcadoService\\Model\\DescripcionPalabra.cs",
@@ -377,7 +418,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 33,
+              "DocumentIndex": 35,
               "Title": "HistorialPuntaje.cs",
               "DocumentMoniker": "C:\\Users\\isair\\source\\repos\\JuegoAhorcadoSolucion\\ServidorAhorcadoService\\Model\\HistorialPuntaje.cs",
               "RelativeDocumentMoniker": "..\\..\\..\\..\\..\\source\\repos\\JuegoAhorcadoSolucion\\ServidorAhorcadoService\\Model\\HistorialPuntaje.cs",
@@ -388,7 +429,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 15,
+              "DocumentIndex": 17,
               "Title": "AhorcadoContext.cs",
               "DocumentMoniker": "C:\\Users\\isair\\OneDrive\\Documents\\GitHub\\JuegoAhorcadoSolucion\\JuegoAhorcado\\ServidorAhorcadoService\\Model\\AhorcadoContext.cs",
               "RelativeDocumentMoniker": "ServidorAhorcadoService\\Model\\AhorcadoContext.cs",
@@ -400,7 +441,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 16,
+              "DocumentIndex": 18,
               "Title": "App.config",
               "DocumentMoniker": "C:\\Users\\isair\\OneDrive\\Documents\\GitHub\\JuegoAhorcadoSolucion\\JuegoAhorcado\\ServidorAhorcadoService\\App.config",
               "RelativeDocumentMoniker": "ServidorAhorcadoService\\App.config",
@@ -412,7 +453,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 17,
+              "DocumentIndex": 19,
               "Title": "Service1.cs",
               "DocumentMoniker": "C:\\Users\\isair\\OneDrive\\Documents\\GitHub\\JuegoAhorcadoSolucion\\JuegoAhorcado\\ServidorAhorcadoService\\Service1.cs",
               "RelativeDocumentMoniker": "ServidorAhorcadoService\\Service1.cs",
@@ -424,7 +465,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 18,
+              "DocumentIndex": 20,
               "Title": "App.config",
               "DocumentMoniker": "C:\\Users\\isair\\OneDrive\\Documents\\GitHub\\JuegoAhorcadoSolucion\\JuegoAhorcado\\ClienteAhorcado\\App.config",
               "RelativeDocumentMoniker": "ClienteAhorcado\\App.config",
@@ -436,7 +477,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 19,
+              "DocumentIndex": 21,
               "Title": "PartidaDTO.cs",
               "DocumentMoniker": "C:\\Users\\isair\\OneDrive\\Documents\\GitHub\\JuegoAhorcadoSolucion\\JuegoAhorcado\\ServidorAhorcadoService\\DTO\\PartidaDTO.cs",
               "RelativeDocumentMoniker": "ServidorAhorcadoService\\DTO\\PartidaDTO.cs",
@@ -448,7 +489,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 20,
+              "DocumentIndex": 22,
               "Title": "Palabra.cs",
               "DocumentMoniker": "C:\\Users\\isair\\OneDrive\\Documents\\GitHub\\JuegoAhorcadoSolucion\\JuegoAhorcado\\ServidorAhorcadoService\\Model\\Palabra.cs",
               "RelativeDocumentMoniker": "ServidorAhorcadoService\\Model\\Palabra.cs",
@@ -460,7 +501,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 22,
+              "DocumentIndex": 24,
               "Title": "Estado.cs",
               "DocumentMoniker": "C:\\Users\\isair\\OneDrive\\Documents\\GitHub\\JuegoAhorcadoSolucion\\JuegoAhorcado\\ServidorAhorcadoService\\Model\\Estado.cs",
               "RelativeDocumentMoniker": "ServidorAhorcadoService\\Model\\Estado.cs",
@@ -472,7 +513,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 23,
+              "DocumentIndex": 25,
               "Title": "Categoria.cs",
               "DocumentMoniker": "C:\\Users\\isair\\OneDrive\\Documents\\GitHub\\JuegoAhorcadoSolucion\\JuegoAhorcado\\ServidorAhorcadoService\\Model\\Categoria.cs",
               "RelativeDocumentMoniker": "ServidorAhorcadoService\\Model\\Categoria.cs",
@@ -484,7 +525,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 24,
+              "DocumentIndex": 26,
               "Title": "PartidaEstadoDTO.cs",
               "DocumentMoniker": "C:\\Users\\isair\\OneDrive\\Documents\\GitHub\\JuegoAhorcadoSolucion\\JuegoAhorcado\\ServidorAhorcadoService\\DTO\\PartidaEstadoDTO.cs",
               "RelativeDocumentMoniker": "ServidorAhorcadoService\\DTO\\PartidaEstadoDTO.cs",
@@ -496,7 +537,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 25,
+              "DocumentIndex": 27,
               "Title": "PalabraDTO.cs",
               "DocumentMoniker": "C:\\Users\\isair\\OneDrive\\Documents\\GitHub\\JuegoAhorcadoSolucion\\JuegoAhorcado\\ServidorAhorcadoService\\DTO\\PalabraDTO.cs",
               "RelativeDocumentMoniker": "ServidorAhorcadoService\\DTO\\PalabraDTO.cs",
@@ -508,7 +549,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 21,
+              "DocumentIndex": 23,
               "Title": "Idioma.cs",
               "DocumentMoniker": "C:\\Users\\isair\\OneDrive\\Documents\\GitHub\\JuegoAhorcadoSolucion\\JuegoAhorcado\\ServidorAhorcadoService\\Model\\Idioma.cs",
               "RelativeDocumentMoniker": "ServidorAhorcadoService\\Model\\Idioma.cs",
@@ -520,7 +561,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 26,
+              "DocumentIndex": 28,
               "Title": "CategoriaDTO.cs",
               "DocumentMoniker": "C:\\Users\\isair\\OneDrive\\Documents\\GitHub\\JuegoAhorcadoSolucion\\JuegoAhorcado\\ServidorAhorcadoService\\DTO\\CategoriaDTO.cs",
               "RelativeDocumentMoniker": "ServidorAhorcadoService\\DTO\\CategoriaDTO.cs",
@@ -532,7 +573,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 27,
+              "DocumentIndex": 29,
               "Title": "packages.config",
               "DocumentMoniker": "C:\\Users\\isair\\OneDrive\\Documents\\GitHub\\JuegoAhorcadoSolucion\\JuegoAhorcado\\ServidorAhorcadoService\\packages.config",
               "RelativeDocumentMoniker": "ServidorAhorcadoService\\packages.config",

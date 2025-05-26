@@ -1,4 +1,5 @@
-﻿using ClienteAhorcadoApp;
+﻿using ClienteAhorcado.Utilidades;
+using ClienteAhorcadoApp;
 using ServidorAhorcadoService;
 using ServidorAhorcadoService.DTO;
 using System;
@@ -56,29 +57,54 @@ namespace ClienteAhorcado.Vistas
         {
             bool registroExitoso = false;
 
-            if (proxy == null)
-            {
-                MessageBox.Show("El servicio no está disponible. Inténtelo más tarde.");
-                return;
-            }
+            if (EntradasValidas()) { 
+                if (proxy == null)
+                {
+                    MessageBox.Show("El servicio no está disponible. Inténtelo más tarde.");
+                    return;
+                }
 
-            jugadorRegistro.Nombre = tbNombre.Text.Trim();
-            jugadorRegistro.FechaNacimiento = dpFechaNacimiento.SelectedDate.Value;
-            jugadorRegistro.Correo = tbCorreo.Text.Trim();
-            jugadorRegistro.Contraseña = tbPassword.Text.Trim();
-            jugadorRegistro.Telefono = tbTelefono.Text.Trim();
-            jugadorRegistro.PuntajeGlobal = 0;
+                jugadorRegistro.Nombre = tbNombre.Text.Trim();
+                jugadorRegistro.FechaNacimiento = dpFechaNacimiento.SelectedDate.Value;
+                jugadorRegistro.Correo = tbCorreo.Text.Trim();
+                jugadorRegistro.Contraseña = tbPassword.Text.Trim();
+                jugadorRegistro.Telefono = tbTelefono.Text.Trim();
+                jugadorRegistro.PuntajeGlobal = 0;
 
-            registroExitoso = proxy.RegistrarJugador(jugadorRegistro);
+                registroExitoso = proxy.RegistrarJugador(jugadorRegistro);
 
-            if (registroExitoso)
-            {
-                MessageBox.Show("El registro fue exitoso");
+                if (registroExitoso)
+                {
+                    MessageBox.Show("El registro fue exitoso");
+                }
+                else
+                {
+                    MessageBox.Show("No se pudo registrar, intentelo mas tarde");
+                }
             }
-            else
-            {
-                MessageBox.Show("No se pudo registrar, intentelo mas tarde");
-            }
+        }
+
+        private bool EntradasValidas()
+        {
+            bool valido = true;
+
+            string errorCorreo = ValidacionesEntrada.ValidarCorreo(tbCorreo);
+            string errorPass = ValidacionesEntrada.ValidarPasswordTextBox(tbPassword);
+            string errorNombre = ValidacionesEntrada.ValidarNombre(tbNombre);
+            string errorTelefono = ValidacionesEntrada.ValidarTelefono(tbTelefono);
+            string errorFechaNacimiento = ValidacionesEntrada.ValidarFechaNacimiento(dpFechaNacimiento);
+
+
+            tblockErrorCorreo.Text = errorCorreo ?? "";
+            tblockErrorPassword.Text = errorPass ?? "";
+            tblockErrorNombre.Text = errorNombre ?? "";
+            tblockErrorTelefono.Text = errorTelefono ?? "";
+            tblockErrorFecha.Text = errorFechaNacimiento ?? "";
+
+            if (errorCorreo != null || errorPass != null || errorNombre != null || errorTelefono != null || errorFechaNacimiento != null)
+                valido = false;
+
+            return valido;
         }
     }
 }

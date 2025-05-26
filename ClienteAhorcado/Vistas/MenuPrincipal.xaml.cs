@@ -1,6 +1,7 @@
 ﻿using ClienteAhorcadoApp;
 using ServidorAhorcadoService;
 using ServidorAhorcadoService.DTO;
+using ServidorAhorcadoService.Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -49,7 +50,7 @@ namespace ClienteAhorcado.Vistas
 
         private void btnPerfil_Click(object sender, RoutedEventArgs e)
         {
-
+            _mainWindow.CambiarVista(new PerfilJugador(_mainWindow, jugadorSesion));
         }
 
         public class DummyCallback : IAhorcadoCallback

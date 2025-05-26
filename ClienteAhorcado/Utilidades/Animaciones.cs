@@ -59,5 +59,14 @@ namespace ClienteAhorcado.Utilidades
             IniciarAnimacion(passwordBox, "ShakeAnimation");
         }
 
+        public static void SacudirDatePicker(DatePicker datePicker)
+        {
+            if (datePicker == null) return;
+
+            if (datePicker.RenderTransform == null || !(datePicker.RenderTransform is TranslateTransform))
+                datePicker.RenderTransform = new TranslateTransform();
+
+            IniciarAnimacion(datePicker, "ShakeAnimation");
+        }
     }
 }
