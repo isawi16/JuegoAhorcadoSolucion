@@ -123,6 +123,25 @@ namespace ServidorAhorcadoService
             }
         }
 
+        // Agrega este método en la clase AhorcadoService
+
+        public List<JugadorDTO> ObtenerJugadoresMarcadores()
+        {
+            using (var db = new AhorcadoContext())
+            {
+                return db.Jugadores
+                    .Select(j => new JugadorDTO
+                    {
+                        IDJugador = j.IDJugador,
+                        Nombre = j.Nombre,
+                        PuntajeGlobal = j.PuntajeGlobal
+                    })
+                    .OrderByDescending(j => j.PuntajeGlobal)
+                    .ToList();
+            }
+        }
+
+
         // --- PALABRAS Y CATEGORÍAS ---
 
         public List<CategoriaDTO> ObtenerCategoriasPorIdioma(string codigoIdioma)
