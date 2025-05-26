@@ -1,4 +1,5 @@
-﻿using ClienteAhorcadoApp;
+﻿using ClienteAhorcado.Utilidades;
+using ClienteAhorcadoApp;
 using ServidorAhorcadoService;
 using ServidorAhorcadoService.DTO;
 using System;
@@ -21,6 +22,7 @@ namespace ClienteAhorcado.Vistas
     public partial class IniciarSesion : UserControl, IAhorcadoCallback
     {
         private MainWindow _mainWindow;
+        private bool mostrandoPassword = false;
 
         IAhorcadoService proxy;
         JugadorDTO usuarioActual;
@@ -43,19 +45,43 @@ namespace ClienteAhorcado.Vistas
 
         private void btnIniciarSesion_Click(object sender, RoutedEventArgs e)
         {
-            var correo = tbCorreo.Text;
-            var pass = pbPassword.Password;
+            if (EntradasValidas())
+            {
+                var correo = tbCorreo.Text;
+                string pass;
 
-            usuarioActual = proxy.IniciarSesion(correo, pass);
-            if (usuarioActual != null)
-            {
-                MessageBox.Show($"Bienvenido, {usuarioActual.Nombre}");
-                MostrarMenuPrincipal(usuarioActual);
+                if (mostrandoPassword)
+                    pass = tbPasswordVisible.Text;
+                else
+                    pass = pbPassword.Password;
+
+                usuarioActual = proxy.IniciarSesion(correo, pass);
+
+                if (usuarioActual != null)
+                {
+                    MessageBox.Show($"Bienvenido, {usuarioActual.Nombre}");
+                    MostrarMenuPrincipal(usuarioActual);
+                }
+                else
+                {
+                    MessageBox.Show("Usuario o contraseña incorrectos.");
+                }
             }
-            else
-            {
-                MessageBox.Show("Usuario o contraseña incorrectos.");
-            }
+        }
+
+        private bool EntradasValidas()
+        {
+            bool valido = true;
+            string correo = ValidacionesEntrada.ValidarCorreo(tbCorreo);
+            string pass = ValidacionesEntrada.ValidarPassword(pbPassword);
+
+            tblockErrorCorreo.Text = correo ?? "";
+            tblockErrorPassword.Text = pass ?? "";
+
+            if (correo != null || pass != null)
+                valido = false;
+
+            return valido;
         }
 
         private void MostrarMenuPrincipal(JugadorDTO jugador)
@@ -66,6 +92,37 @@ namespace ClienteAhorcado.Vistas
         private void btnRegistrarse_Click(object sender, RoutedEventArgs e)
         {
             _mainWindow.CambiarVista(new RegistrarJugador(_mainWindow)); 
+        }
+
+        private void btnVerPassword_Click(object sender, RoutedEventArgs e)
+        {
+            mostrandoPassword = !mostrandoPassword;
+            if (mostrandoPassword)
+            {
+                tbPasswordVisible.Text = pbPassword.Password;
+                tbPasswordVisible.Visibility = Visibility.Visible;
+                pbPassword.Visibility = Visibility.Collapsed;
+                btnVerPassword.Content = "🙈"; 
+            }
+            else
+            {
+                pbPassword.Password = tbPasswordVisible.Text;
+                pbPassword.Visibility = Visibility.Visible;
+                tbPasswordVisible.Visibility = Visibility.Collapsed;
+                btnVerPassword.Content = "👁";
+            }
+        }
+
+        private void pbPassword_PasswordChanged(object sender, RoutedEventArgs e)
+        {
+            if (!mostrandoPassword)
+                tbPasswordVisible.Text = pbPassword.Password;
+        }
+
+        private void tbPasswordVisible_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            if (mostrandoPassword)
+                pbPassword.Password = tbPasswordVisible.Text;
         }
 
 

@@ -4,17 +4,17 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:ClienteAhorcado.Vistas"
-             mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
+             mc:Ignorable="d" Height="496" Width="871">
     <Border Background="White" CornerRadius="12" Margin="10">
         <Grid>
-            <Button Content="Perfil" HorizontalAlignment="Left" Margin="35,29,0,0" VerticalAlignment="Top" Height="60" Width="60" Click="btnPerfil_Click"/>
-            <Button Content="Iniciar Partida" HorizontalAlignment="Left" Margin="196,215,0,0" VerticalAlignment="Top" Height="50" Width="150"  Click="BtnIniciarPartida_Click"/>
-            <Button Content="Unirse a partida" HorizontalAlignment="Left" Margin="447,215,0,0" VerticalAlignment="Top" Height="50" Width="150" Click="BtnUnirsePartida_Click"/>
-            <Button Content="Marcadores" HorizontalAlignment="Center" Margin="0,339,0,0" VerticalAlignment="Top" Height="29" Width="130" Click="BtnMarcadores_Click"/>
-            <Button Content="Historial de partidas" HorizontalAlignment="Left" Margin="627,26,0,0" VerticalAlignment="Top" Height="33" Width="120" Click="BtnHistorialPartidas_Click"/>
+            <Button Content="Perfil" HorizontalAlignment="Left" Margin="35,29,0,0" VerticalAlignment="Top" Height="60" Width="60" Click="btnPerfil_Click" Style="{StaticResource EstiloBotonPrincipalSinIcono}"/>
+            <Button Content="Iniciar Partida" HorizontalAlignment="Left" Margin="190,226,0,0" VerticalAlignment="Top" Height="50" Width="150"  Click="BtnIniciarPartida_Click" Style="{StaticResource EstiloBotonPrincipalSinIcono}"/>
+            <Button Content="Unirse a partida" HorizontalAlignment="Left" Margin="527,226,0,0" VerticalAlignment="Top" Height="50" Width="150" Click="BtnUnirsePartida_Click" Style="{StaticResource EstiloBotonPrincipalSinIcono}"/>
+            <Button Content="Marcadores" HorizontalAlignment="Center" Margin="0,348,0,0" VerticalAlignment="Top" Height="29" Width="130" Click="BtnMarcadores_Click" Style="{StaticResource EstiloBotonSecundarioSinIcono}"/>
+            <Button Content="Historial de partidas" HorizontalAlignment="Left" Margin="663,38,0,0" VerticalAlignment="Top" Height="33" Width="140" Click="BtnHistorialPartidas_Click" Style="{StaticResource EstiloBotonSecundarioSinIcono}"/>
             <TextBlock x:Name="tblNombre" HorizontalAlignment="Left" Margin="116,31,0,0" TextWrapping="Wrap" Text="nombre" VerticalAlignment="Top" FontSize="18" />
             <TextBlock x:Name="tblCorreo" HorizontalAlignment="Left" Margin="116,65,0,0" TextWrapping="Wrap" Text="correo" VerticalAlignment="Top" FontSize="18"/>
+            <TextBlock HorizontalAlignment="Center" Margin="0,119,0,0" TextWrapping="Wrap" Text="Ahorcado" VerticalAlignment="Top" FontSize="50"/>
 
         </Grid>
     </Border>

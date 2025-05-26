@@ -1,0 +1,64 @@
+﻿<UserControl x:Class="ClienteAhorcado.Vistas.PerfilJugador"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:ClienteAhorcado.Vistas"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <Border Background="White" CornerRadius="12" Margin="10">
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+
+            <!-- Encabezado -->
+            <StackPanel Grid.Row="0" Grid.ColumnSpan="2" Margin="0,10,0,20" HorizontalAlignment="Center" Width="639" Orientation="Horizontal">
+                <TextBlock Text="Perfil de usuario" FontSize="24" FontWeight="Bold" Foreground="#2C3E50" TextAlignment="Center"/>
+                <Border HorizontalAlignment="Right">
+                    <Button x:Name="btnModificarPerfil" Content="Modificar Perfil" HorizontalAlignment="Left" Margin="276,0,0,0" VerticalAlignment="Center" Height="25" Width="120" Style="{StaticResource EstiloBotonPrincipalSinIcono}" Click="btnModificarPerfil_Click"/>
+                </Border>
+            </StackPanel>
+
+            <!-- Columna izquierda -->
+            <StackPanel Grid.Row="1" Grid.Column="0" Margin="10">
+                <TextBlock x:Name="tblockNombre" Text="Nombre" FontWeight="SemiBold" Margin="0,0,0,5" FontSize="18"/>
+                <TextBox x:Name="tbNombre" Padding="10,5,10,10" Tag="Nombre" />
+                <TextBlock x:Name="tblockErrorNombre" Text="" FontWeight="SemiBold" Margin="0,0,0,15" FontSize="12" Foreground="Red"/>
+
+
+                <TextBlock x:Name="tblockCorreo" Text="Correo" FontWeight="SemiBold" Margin="0,0,0,25" FontSize="18"/>
+
+                <TextBlock x:Name="tblockFechaNacimiento" Text="Fecha de nacimiento" FontWeight="SemiBold" FontSize="18"/>
+                <TextBlock x:Name="tblockErrorFecha" Text="" FontWeight="SemiBold" Margin="0,0,0,5" FontSize="12" Foreground="Red"/>
+                <DatePicker x:Name="dpFechaNacimiento" FontWeight="SemiBold" />
+                
+            </StackPanel>
+
+            <!-- Columna derecha -->
+            <StackPanel Grid.Row="1" Grid.Column="1" Margin="10">
+                <TextBlock x:Name="tblockTelefono" Text="Telefono" FontWeight="SemiBold" Margin="0,0,0,5" FontSize="18"/>
+                <TextBox x:Name="tbTelefono" Padding="10,5,10,10" Tag="Numero de telefono" />
+                <TextBlock x:Name="tblockErrorTelefono" Text="" FontWeight="SemiBold" Margin="0,0,0,15" FontSize="12" Foreground="Red"/>
+
+
+                <TextBlock x:Name="tblockPassword" Text="Contraseña" FontWeight="SemiBold" Margin="0,0,0,5" FontSize="18"/>
+                <TextBox x:Name="tbPassword" Padding="10" />
+                <TextBlock x:Name="tblockErrorPassword" Text="" FontWeight="SemiBold" Margin="0,0,0,10" FontSize="12" Foreground="Red"/>
+
+            </StackPanel>
+
+            <!-- Botones -->
+            <StackPanel Grid.Row="2" Grid.ColumnSpan="2" Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,20,0,10">
+                <Button x:Name="btnGuardar" Content="Guardar" Width="151" Margin="10,0" Style="{StaticResource EstiloBotonPrincipalSinIcono}" Click="btnGuardar_Click"/>
+                <Button Content="Regresar" Width="151" Margin="10,0" Style="{StaticResource EstiloBotonSecundarioSinIcono}" Click="btnRegresar_Click"/>
+            </StackPanel>
+        </Grid>
+    </Border>
+</UserControl>

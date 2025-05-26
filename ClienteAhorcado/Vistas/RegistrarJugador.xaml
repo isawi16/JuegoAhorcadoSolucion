@@ -4,7 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ClienteAhorcado.Vistas"
-        mc:Ignorable="d" Width="870" Height="428">
+        mc:Ignorable="d" Width="870" Height="476">
     <Border Background="White" CornerRadius="12" Margin="10">
         <Grid>
             <Grid.ColumnDefinitions>
@@ -24,24 +24,29 @@
             </StackPanel>
 
             <!-- Columna izquierda -->
-            <StackPanel Grid.Row="1" Grid.Column="0" Margin="10">
+            <StackPanel Grid.Row="1" Grid.Column="0" Margin="10,10,10,44" Grid.RowSpan="2">
                 <TextBlock Text="Nombre" FontWeight="SemiBold" Margin="0,0,0,5" FontSize="18"/>
-                <TextBox x:Name="tbNombre" Padding="10,5,10,10" Tag="Nombre" Margin="0,0,0,25" />
+                <TextBox x:Name="tbNombre" Padding="10,5,10,10" Tag="Nombre" />
+                <TextBlock x:Name="tblockErrorNombre" Text="" FontWeight="SemiBold" Margin="0,0,0,10" FontSize="12" Foreground="Red"/>
 
                 <TextBlock Text="Correo" FontWeight="SemiBold" Margin="0,0,0,5" FontSize="18"/>
-                <TextBox x:Name="tbCorreo" Padding="10" Tag="Correo electronico" Margin="0,0,0,15"/>
+                <TextBox x:Name="tbCorreo" Padding="10" Tag="Correo electronico" />
+                <TextBlock x:Name="tblockErrorCorreo" Text="" FontWeight="SemiBold" Margin="0,0,0,5" FontSize="12" Foreground="Red"/>
 
-                <TextBlock Text="Fecha de nacimiento" FontWeight="SemiBold" Margin="0,0,0,5" FontSize="18"/>
+                <TextBlock Text="Fecha de nacimiento" FontWeight="SemiBold" FontSize="18"/>
+                <TextBlock x:Name="tblockErrorFecha" Text="" FontWeight="SemiBold"  FontSize="12" Foreground="Red"/>
                 <DatePicker x:Name="dpFechaNacimiento" FontWeight="SemiBold" />
             </StackPanel>
 
             <!-- Columna derecha -->
             <StackPanel Grid.Row="1" Grid.Column="1" Margin="10">
                 <TextBlock Text="Telefono" FontWeight="SemiBold" Margin="0,0,0,5" FontSize="18"/>
-                <TextBox x:Name="tbTelefono" Padding="10,5,10,10" Tag="Numero de telefono" Margin="0,0,0,25" />
+                <TextBox x:Name="tbTelefono" Padding="10,5,10,10" Tag="Numero de telefono" />
+                <TextBlock x:Name="tblockErrorTelefono" Text="" FontWeight="SemiBold" Margin="0,0,0,10" FontSize="12" Foreground="Red"/>
 
                 <TextBlock Text="Contraseña" FontWeight="SemiBold" Margin="0,0,0,5" FontSize="18"/>
-                <TextBox x:Name="tbPassword" Padding="10" Tag="Contraseña" Margin="0,0,0,25"/>
+                <TextBox x:Name="tbPassword" Padding="10" Tag="Contraseña" />
+                <TextBlock x:Name="tblockErrorPassword" Text="" FontWeight="SemiBold" Margin="0,0,0,5" FontSize="12" Foreground="Red"/>
             </StackPanel>
 
             <!-- Botones -->

@@ -31,7 +31,8 @@ namespace ServidorAhorcadoService
                     Correo = jugador.Correo,
                     Telefono = jugador.Telefono,
                     FechaNacimiento = jugador.FechaNacimiento,
-                    PuntajeGlobal = jugador.PuntajeGlobal
+                    PuntajeGlobal = jugador.PuntajeGlobal,
+                    Contraseña = jugador.Contraseña
                 };
             }
         }
@@ -87,6 +88,7 @@ namespace ServidorAhorcadoService
                 jugador.Nombre = jugadorModificado.Nombre;
                 jugador.Telefono = jugadorModificado.Telefono;
                 jugador.FechaNacimiento = jugadorModificado.FechaNacimiento;
+                jugador.Contraseña = jugadorModificado.Contraseña;
 
                 db.SaveChanges();
                 return true;
