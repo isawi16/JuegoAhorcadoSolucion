@@ -65,8 +65,26 @@
     <Compile Include="Utilidades\Animaciones.cs" />
     <Compile Include="Utilidades\Constantes.cs" />
     <Compile Include="Utilidades\ValidacionesEntrada.cs" />
+    <Compile Include="Vistas\CargaUserControl.xaml.cs">
+      <DependentUpon>CargaUserControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Vistas\ChatUserControl.xaml.cs">
+      <DependentUpon>ChatUserControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Vistas\ConsultarHistorialPartidasUserControl.xaml.cs">
+      <DependentUpon>ConsultarHistorialPartidasUserControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Vistas\ConsultarPartidasDisponiblesUserControl.xaml.cs">
+      <DependentUpon>ConsultarPartidasDisponiblesUserControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Vistas\CrearPartida.xaml.cs">
+      <DependentUpon>CrearPartida.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Vistas\IniciarSesion.xaml.cs">
       <DependentUpon>IniciarSesion.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Vistas\JuegoAhorcadoUserControl.xaml.cs">
+      <DependentUpon>JuegoAhorcadoUserControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="Vistas\Marcadores.xaml.cs">
       <DependentUpon>Marcadores.xaml</DependentUpon>
@@ -79,6 +97,12 @@
     </Compile>
     <Compile Include="Vistas\RegistrarJugador.xaml.cs">
       <DependentUpon>RegistrarJugador.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Vistas\ResultadosUserControl.xaml.cs">
+      <DependentUpon>ResultadosUserControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Vistas\SeleccionCategoriaIdiomaUserControl.xaml.cs">
+      <DependentUpon>SeleccionCategoriaIdiomaUserControl.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -143,7 +167,31 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Vistas\CargaUserControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Vistas\ChatUserControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Vistas\ConsultarHistorialPartidasUserControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Vistas\ConsultarPartidasDisponiblesUserControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Vistas\CrearPartida.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Vistas\IniciarSesion.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Vistas\JuegoAhorcadoUserControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -163,6 +211,14 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Vistas\ResultadosUserControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Vistas\SeleccionCategoriaIdiomaUserControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Connected Services\" />
@@ -172,6 +228,15 @@
       <Project>{9cb630a0-0828-472e-9e89-2ec1eac39dd1}</Project>
       <Name>ServidorAhorcadoService</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\1.png" />
+    <Resource Include="Images\2.png" />
+    <Resource Include="Images\3.png" />
+    <Resource Include="Images\4.png" />
+    <Resource Include="Images\5.png" />
+    <Resource Include="Images\6.png" />
+    <Resource Include="Images\7.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
