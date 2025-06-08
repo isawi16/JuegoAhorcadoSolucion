@@ -20,7 +20,7 @@ namespace ClienteAhorcadoApp
         public MainWindow()
         {
             InitializeComponent();
-            MainContent.Content = new IniciarSesion(this); 
+            MainContent.Content = new IniciarSesionUserControl(this); 
         }
 
         public void CambiarVista(UserControl nuevaVista)

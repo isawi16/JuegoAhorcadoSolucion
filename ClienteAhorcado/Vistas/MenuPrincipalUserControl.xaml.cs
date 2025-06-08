@@ -17,18 +17,18 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using static ClienteAhorcado.Vistas.RegistrarJugador;
+using static ClienteAhorcado.Vistas.RegistrarJugadorUserControl;
 
 namespace ClienteAhorcado.Vistas
 {
   
-    public partial class MenuPrincipal : UserControl
+    public partial class MenuPrincipalUserControl : UserControl
     {
         private MainWindow _mainWindow;
         IAhorcadoService proxy;
         JugadorDTO jugadorSesion = new JugadorDTO();
 
-        public MenuPrincipal(MainWindow mainWindow, JugadorDTO jugador)
+        public MenuPrincipalUserControl(MainWindow mainWindow, JugadorDTO jugador)
         {
             try
             {
@@ -50,7 +50,7 @@ namespace ClienteAhorcado.Vistas
 
         private void btnPerfil_Click(object sender, RoutedEventArgs e)
         {
-            _mainWindow.CambiarVista(new PerfilJugador(_mainWindow, jugadorSesion));
+            _mainWindow.CambiarVista(new PerfilJugadorUserControl(_mainWindow, jugadorSesion));
         }
 
         public class DummyCallback : IAhorcadoCallback
@@ -77,7 +77,7 @@ namespace ClienteAhorcado.Vistas
 
         private void BtnMarcadores_Click(object sender, RoutedEventArgs e)
         {
-            _mainWindow.CambiarVista(new Marcadores(_mainWindow, jugadorSesion));
+            _mainWindow.CambiarVista(new MarcadoresUserControl(_mainWindow, jugadorSesion));
         }
     }
 }

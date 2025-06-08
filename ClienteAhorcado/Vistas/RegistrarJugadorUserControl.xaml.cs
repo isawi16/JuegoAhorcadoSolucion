@@ -19,13 +19,13 @@ using System.Windows.Shapes;
 
 namespace ClienteAhorcado.Vistas
 {
-    public partial class RegistrarJugador : UserControl
+    public partial class RegistrarJugadorUserControl : UserControl
     {
         private MainWindow _mainWindow;
         IAhorcadoService proxy;
         JugadorDTO jugadorRegistro = new JugadorDTO();
 
-        public RegistrarJugador(MainWindow mainWindow)
+        public RegistrarJugadorUserControl(MainWindow mainWindow)
         {
             try
             {
@@ -50,7 +50,7 @@ namespace ClienteAhorcado.Vistas
 
         private void btnCancelar_Click(object sender, RoutedEventArgs e)
         {
-            _mainWindow.CambiarVista(new IniciarSesion(_mainWindow));
+            _mainWindow.CambiarVista(new IniciarSesionUserControl(_mainWindow));
         }
 
         private void btnRegistrarme_Click(object sender, RoutedEventArgs e)

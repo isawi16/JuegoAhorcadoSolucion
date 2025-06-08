@@ -22,13 +22,13 @@ using System.Windows.Shapes;
 namespace ClienteAhorcado.Vistas
 {
     
-    public partial class PerfilJugador : UserControl
+    public partial class PerfilJugadorUserControl : UserControl
     {
         private MainWindow _mainWindow;
         IAhorcadoService proxy;
 
         JugadorDTO jugadorPerfil = new JugadorDTO();
-        public PerfilJugador(MainWindow mainWindow, JugadorDTO jugador)
+        public PerfilJugadorUserControl(MainWindow mainWindow, JugadorDTO jugador)
         {
             try
             {
@@ -69,7 +69,7 @@ namespace ClienteAhorcado.Vistas
 
         private void btnRegresar_Click(object sender, RoutedEventArgs e)
         {
-            _mainWindow.CambiarVista(new MenuPrincipal(_mainWindow, jugadorPerfil));
+            _mainWindow.CambiarVista(new MenuPrincipalUserControl(_mainWindow, jugadorPerfil));
         }
 
         private void btnModificarPerfil_Click(object sender, RoutedEventArgs e)
@@ -115,7 +115,7 @@ namespace ClienteAhorcado.Vistas
                 if (modificadoExitoso)
                 {
                     MessageBox.Show("Se modifico la informacion exitosamente");
-                    _mainWindow.CambiarVista(new MenuPrincipal(_mainWindow, jugadorModificado));
+                    _mainWindow.CambiarVista(new MenuPrincipalUserControl(_mainWindow, jugadorModificado));
                 }
                 else
                 {
