@@ -5,7 +5,6 @@ using System.ServiceModel;
 using ServidorAhorcadoService.DTO;
 using ServidorAhorcadoService.Model;
 using ServidorAhorcadoService;
-using ServidorAhorcadoService.DTO;
 
 
 namespace ServidorAhorcadoService
@@ -123,7 +122,7 @@ namespace ServidorAhorcadoService
             }
         }
 
-        // Agrega este método en la clase AhorcadoService
+       
 
         public List<JugadorDTO> ObtenerJugadoresMarcadores()
         {
@@ -160,6 +159,64 @@ namespace ServidorAhorcadoService
             }
         }
 
+
+        public List<IdiomaDTO> ObtenerIdiomas()
+        {
+            using (var db = new AhorcadoContext())
+            {
+                return db.Idiomas
+                         .Select(i => new IdiomaDTO
+                         {
+                             CodigoIdioma = i.CodigoIdioma,
+                             Nombre = i.Nombre
+                         }).ToList();
+            }
+        }
+
+        public List<PalabraDTO> ObtenerPalabrasPorIdiomaYCategoria(string idioma, int idCategoria)
+        {
+            using (var db = new AhorcadoContext())
+            {
+                // Obtener el Código de Idioma (CodigoIdioma) basado en el nombre del idioma
+                var idIdioma = db.Idiomas
+                                 .Where(i => i.Nombre == idioma)
+                                 .Select(i => i.CodigoIdioma)
+                                 .FirstOrDefault();
+
+                // Consultar las palabras asociadas al idioma y la categoría
+                return db.Palabras
+                    .Where(p => p.IDCategoria == idCategoria && p.Categoria.CodigoIdioma == idIdioma) // Relación con Categoria y CodigoIdioma
+                    .Select(p => new PalabraDTO
+                    {
+                        IDPalabra = p.IDPalabra,
+                        Texto = p.PalabraTexto,
+                        Definicion = p.Definicion,
+                        Dificultad = p.Dificultad,
+                        IDCategoria = p.Categoria.Nombre
+                    }).ToList();
+            }
+        }
+
+
+        /* public List<PalabraDTO> ObtenerPalabrasPorIdioma(string idioma)
+         {
+             using (var db = new AhorcadoContext())
+             {
+                 var idIdioma = db.Idiomas.Where(i => i.Nombre == idioma).Select(i => i.CodigoIdioma).FirstOrDefault();
+
+                 return db.Palabras
+                     .Where(p => p.CodigoIdioma == idIdioma)
+                     .Select(p => new PalabraDTO
+                     {
+                         IDPalabra = p.IDPalabra,
+                         Texto = p.PalabraTexto,
+                         Definicion = p.Definicion,
+                         Dificultad = p.Dificultad,
+                         IDCategoria = p.Categoria.Nombre
+                     }).ToList();
+             }
+         } */
+
         public PalabraDTO ObtenerPalabraConDescripcion(int idPalabra, string idioma)
         {
             using (var db = new AhorcadoContext())
@@ -192,6 +249,20 @@ namespace ServidorAhorcadoService
                         Dificultad = p.Dificultad,
                         IDCategoria = p.Categoria.Nombre
                     }).ToList();
+            }
+        }
+
+        public List<CategoriaDTO> ObtenerCategoriasPorIdioma(int idiomaId)
+        {
+            using (var db = new AhorcadoContext())
+            {
+                return db.Categorias
+                         .Where(c => c.CodigoIdioma == idiomaId)
+                         .Select(c => new CategoriaDTO
+                         {
+                             IDCategoria = c.IDCategoria,
+                             Nombre = c.Nombre
+                         }).ToList();
             }
         }
 
@@ -249,6 +320,7 @@ namespace ServidorAhorcadoService
             }
         }
 
+
         public bool AbandonarPartida(int idPartida, int idJugador)
         {
             using (var db = new AhorcadoContext())
@@ -262,6 +334,8 @@ namespace ServidorAhorcadoService
                 return true;
             }
         }
+
+
 
         public PartidaEstadoDTO ObtenerEstadoPartida(int idPartida)
         {

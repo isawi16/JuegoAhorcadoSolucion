@@ -4,17 +4,17 @@
 winexe
 C#
 .cs
-C:\Users\isair\OneDrive\Documents\GitHub\JuegoAhorcadoSolucion\JuegoAhorcado\ClienteAhorcado\obj\Debug\
+C:\Users\seren\Desktop\JuegoAhorcadoUO\Code\HangThemHigh\JuegoAhorcadoSolucion\ClienteAhorcado\obj\Debug\
 ClienteAhorcado
 none
 false
 DEBUG;TRACE
-C:\Users\isair\OneDrive\Documents\GitHub\JuegoAhorcadoSolucion\JuegoAhorcado\ClienteAhorcado\App.xaml
-10-380894773
+C:\Users\seren\Desktop\JuegoAhorcadoUO\Code\HangThemHigh\JuegoAhorcadoSolucion\ClienteAhorcado\App.xaml
+18-1283324734
 
-14-397445536
-17-276816738
-MainWindow.xaml;Recursos\Estilos\Animaciones.xaml;Recursos\Estilos\ElementosUI.xaml;Recursos\Estilos\EstilosBotones.xaml;Recursos\Estilos\EstilosTextBox.xaml;Vistas\IniciarSesion.xaml;Vistas\Marcadores.xaml;Vistas\MenuPrincipal.xaml;Vistas\PerfilJugador.xaml;Vistas\RegistrarJugador.xaml;
+22-1704718747
+17171290391
+MainWindow.xaml;Recursos\Estilos\Animaciones.xaml;Recursos\Estilos\ElementosUI.xaml;Recursos\Estilos\EstilosBotones.xaml;Recursos\Estilos\EstilosTextBox.xaml;Vistas\CargaUserControl.xaml;Vistas\ChatUserControl.xaml;Vistas\ConsultarHistorialPartidasUserControl.xaml;Vistas\ConsultarPartidasDisponiblesUserControl.xaml;Vistas\CrearPartida.xaml;Vistas\IniciarSesion.xaml;Vistas\JuegoAhorcadoUserControl.xaml;Vistas\Marcadores.xaml;Vistas\MenuPrincipal.xaml;Vistas\PerfilJugador.xaml;Vistas\RegistrarJugador.xaml;Vistas\ResultadosUserControl.xaml;Vistas\SeleccionCategoriaIdiomaUserControl.xaml;
 
 False
 

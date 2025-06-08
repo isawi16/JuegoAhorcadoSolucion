@@ -58,6 +58,7 @@
     <Compile Include="DTO\CategoriaDTO.cs" />
     <Compile Include="DTO\EstadoDTO.cs" />
     <Compile Include="DTO\HistorialPuntajeDTO.cs" />
+    <Compile Include="DTO\IdiomaDTO.cs" />
     <Compile Include="DTO\JugadorDTO.cs" />
     <Compile Include="DTO\PalabraDTO.cs" />
     <Compile Include="DTO\PartidaDTO.cs" />
