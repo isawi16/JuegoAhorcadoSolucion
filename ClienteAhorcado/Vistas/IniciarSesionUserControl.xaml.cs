@@ -19,7 +19,7 @@ using System.Windows.Shapes;
 
 namespace ClienteAhorcado.Vistas
 {
-    public partial class IniciarSesion : UserControl, IAhorcadoCallback
+    public partial class IniciarSesionUserControl : UserControl, IAhorcadoCallback
     {
         private MainWindow _mainWindow;
         private bool mostrandoPassword = false;
@@ -27,7 +27,7 @@ namespace ClienteAhorcado.Vistas
         IAhorcadoService proxy;
         JugadorDTO usuarioActual;
         
-        public IniciarSesion(MainWindow mainWindow)
+        public IniciarSesionUserControl(MainWindow mainWindow)
         {
             try
             {
@@ -86,12 +86,12 @@ namespace ClienteAhorcado.Vistas
 
         private void MostrarMenuPrincipal(JugadorDTO jugador)
         {
-            _mainWindow.CambiarVista(new MenuPrincipal(_mainWindow, jugador));
+            _mainWindow.CambiarVista(new MenuPrincipalUserControl(_mainWindow, jugador));
         }
 
         private void btnRegistrarse_Click(object sender, RoutedEventArgs e)
         {
-            _mainWindow.CambiarVista(new RegistrarJugador(_mainWindow)); 
+            _mainWindow.CambiarVista(new RegistrarJugadorUserControl(_mainWindow)); 
         }
 
         private void btnVerPassword_Click(object sender, RoutedEventArgs e)

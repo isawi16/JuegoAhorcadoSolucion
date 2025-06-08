@@ -30,7 +30,7 @@ namespace ClienteAhorcado.Vistas
         public event PropertyChangedEventHandler PropertyChanged;
     }
 
-    public partial class Marcadores : UserControl
+    public partial class MarcadoresUserControl : UserControl
     {
         private MainWindow _mainWindow;
         IAhorcadoService proxy;
@@ -38,7 +38,7 @@ namespace ClienteAhorcado.Vistas
         JugadorDTO jugadorSesion = new JugadorDTO();
         List<JugadorDTO> jugadoresMarcadores = new List<JugadorDTO>();
 
-        public Marcadores(MainWindow mainWindow, JugadorDTO jugador)
+        public MarcadoresUserControl(MainWindow mainWindow, JugadorDTO jugador)
         {
             try
             {
@@ -93,7 +93,7 @@ namespace ClienteAhorcado.Vistas
 
         private void btnRegresar_Click(object sender, RoutedEventArgs e)
         {
-            _mainWindow.CambiarVista(new MenuPrincipal(_mainWindow, jugadorSesion));
+            _mainWindow.CambiarVista(new MenuPrincipalUserControl(_mainWindow, jugadorSesion));
         }
     }
 }

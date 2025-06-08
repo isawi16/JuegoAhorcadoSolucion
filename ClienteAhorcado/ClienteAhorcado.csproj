@@ -80,23 +80,23 @@
     <Compile Include="Vistas\CrearPartida.xaml.cs">
       <DependentUpon>CrearPartida.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Vistas\IniciarSesion.xaml.cs">
-      <DependentUpon>IniciarSesion.xaml</DependentUpon>
+    <Compile Include="Vistas\IniciarSesionUserControl.xaml.cs">
+      <DependentUpon>IniciarSesionUserControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="Vistas\JuegoAhorcadoUserControl.xaml.cs">
       <DependentUpon>JuegoAhorcadoUserControl.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Vistas\Marcadores.xaml.cs">
-      <DependentUpon>Marcadores.xaml</DependentUpon>
+    <Compile Include="Vistas\MarcadoresUserControl.xaml.cs">
+      <DependentUpon>MarcadoresUserControl.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Vistas\MenuPrincipal.xaml.cs">
-      <DependentUpon>MenuPrincipal.xaml</DependentUpon>
+    <Compile Include="Vistas\MenuPrincipalUserControl.xaml.cs">
+      <DependentUpon>MenuPrincipalUserControl.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Vistas\PerfilJugador.xaml.cs">
-      <DependentUpon>PerfilJugador.xaml</DependentUpon>
+    <Compile Include="Vistas\PerfilJugadorUserControl.xaml.cs">
+      <DependentUpon>PerfilJugadorUserControl.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Vistas\RegistrarJugador.xaml.cs">
-      <DependentUpon>RegistrarJugador.xaml</DependentUpon>
+    <Compile Include="Vistas\RegistrarJugadorUserControl.xaml.cs">
+      <DependentUpon>RegistrarJugadorUserControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="Vistas\ResultadosUserControl.xaml.cs">
       <DependentUpon>ResultadosUserControl.xaml</DependentUpon>
@@ -187,7 +187,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Vistas\IniciarSesion.xaml">
+    <Page Include="Vistas\IniciarSesionUserControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -195,19 +195,19 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Vistas\Marcadores.xaml">
+    <Page Include="Vistas\MarcadoresUserControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Vistas\MenuPrincipal.xaml">
+    <Page Include="Vistas\MenuPrincipalUserControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Vistas\PerfilJugador.xaml">
+    <Page Include="Vistas\PerfilJugadorUserControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Vistas\RegistrarJugador.xaml">
+    <Page Include="Vistas\RegistrarJugadorUserControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
