@@ -10,11 +10,11 @@ none
 false
 DEBUG;TRACE
 C:\Users\isair\OneDrive\Documents\GitHub\JuegoAhorcadoSolucion\JuegoAhorcado\ClienteAhorcado\App.xaml
-18-1283324734
+18-1410982328
 
-23508159931
-17-276816738
-MainWindow.xaml;Recursos\Estilos\Animaciones.xaml;Recursos\Estilos\ElementosUI.xaml;Recursos\Estilos\EstilosBotones.xaml;Recursos\Estilos\EstilosTextBox.xaml;Vistas\CargaUserControl.xaml;Vistas\ChatUserControl.xaml;Vistas\ConsultarHistorialPartidasUserControl.xaml;Vistas\ConsultarPartidasDisponiblesUserControl.xaml;Vistas\CrearPartida.xaml;Vistas\IniciarSesion.xaml;Vistas\JuegoAhorcadoUserControl.xaml;Vistas\Marcadores.xaml;Vistas\MenuPrincipal.xaml;Vistas\PerfilJugador.xaml;Vistas\RegistrarJugador.xaml;Vistas\ResultadosUserControl.xaml;Vistas\SeleccionCategoriaIdiomaUserControl.xaml;
+24-175839870
+22-945843852
+MainWindow.xaml;Recursos\Estilos\Animaciones.xaml;Recursos\Estilos\ElementosUI.xaml;Recursos\Estilos\EstilosBotones.xaml;Recursos\Estilos\EstilosTextBox.xaml;Vistas\CargaUserControl.xaml;Vistas\ChatUserControl.xaml;Vistas\ConsultarHistorialPartidasUserControl.xaml;Vistas\ConsultarPartidasDisponiblesUserControl.xaml;Vistas\CrearPartida.xaml;Vistas\IniciarSesionUserControl.xaml;Vistas\JuegoAhorcadoUserControl.xaml;Vistas\MarcadoresUserControl.xaml;Vistas\MenuPrincipalUserControl.xaml;Vistas\PerfilJugadorUserControl.xaml;Vistas\RegistrarJugadorUserControl.xaml;Vistas\ResultadosUserControl.xaml;Vistas\SeleccionCategoriaIdiomaUserControl.xaml;
 
 True
 

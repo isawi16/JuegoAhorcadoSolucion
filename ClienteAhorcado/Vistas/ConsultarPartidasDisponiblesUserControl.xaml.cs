@@ -43,7 +43,7 @@ namespace ClienteAhorcado.Vistas
                 var factory = new DuplexChannelFactory<IAhorcadoService>(contexto, "AhorcadoEndpoint");
                 proxy = factory.CreateChannel();
 
-                llenarTablaPartidas();
+                LlenarTablaPartidas();
 
             }
             catch (Exception ex)
@@ -53,7 +53,7 @@ namespace ClienteAhorcado.Vistas
         }
 
 
-        public void llenarTablaPartidas()
+        public void LlenarTablaPartidas()
         {
             dgPartidas.ItemsSource = null; // Limpiar la fuente de datos antes de cargar nuevos datos
             partidasDisponibles = proxy.ObtenerPartidasDisponibles();
@@ -87,7 +87,7 @@ namespace ClienteAhorcado.Vistas
 
         private void ActualizarLista_Click(object sender, RoutedEventArgs e)
         {
-            llenarTablaPartidas();
+            LlenarTablaPartidas();
         }
 
         private void CerrarButton_Click(object sender, RoutedEventArgs e)

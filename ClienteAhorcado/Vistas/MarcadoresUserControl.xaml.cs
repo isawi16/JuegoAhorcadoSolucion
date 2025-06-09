@@ -50,7 +50,7 @@ namespace ClienteAhorcado.Vistas
                 var factory = new DuplexChannelFactory<IAhorcadoService>(contexto, "AhorcadoEndpoint");
                 proxy = factory.CreateChannel();
 
-                llenarTablaMarcadores();
+                LlenarTablaMarcadores();
 
             }
             catch (Exception ex)
@@ -59,7 +59,7 @@ namespace ClienteAhorcado.Vistas
             }
         }
 
-        public void llenarTablaMarcadores()
+        public void LlenarTablaMarcadores()
         {
             dgMarcadores.ItemsSource = null; // Limpiar la fuente de datos antes de cargar nuevos datos
             jugadoresMarcadores = proxy.ObtenerJugadoresMarcadores();
@@ -90,7 +90,7 @@ namespace ClienteAhorcado.Vistas
             public void RecibirMensajeChat(string nombreJugador, string mensaje) { }
         }
 
-        private void btnRegresar_Click(object sender, RoutedEventArgs e)
+        private void BtnRegresar_Click(object sender, RoutedEventArgs e)
         {
             _mainWindow.CambiarVista(new MenuPrincipalUserControl(_mainWindow, jugadorSesion));
         }

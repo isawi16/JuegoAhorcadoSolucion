@@ -29,21 +29,21 @@
                 <TextBlock Text="Contraseña" FontWeight="SemiBold" Margin="0,0,0,5"/>
                 <Grid>
                     <PasswordBox x:Name="pbPassword" Height="35" Padding="10" 
-                             Tag="Contraseña" Margin="0,0,40,5" Visibility="Visible" PasswordChanged="pbPassword_PasswordChanged"/>
+                             Tag="Contraseña" Margin="0,0,40,5" Visibility="Visible" PasswordChanged="PbPassword_PasswordChanged"/>
                     <TextBox x:Name="tbPasswordVisible" Height="35" Margin="0,0,40,5" Padding="10,5,10,10"
-                             Tag="Contraseña" VerticalAlignment="Center" Visibility="Collapsed" TextChanged="tbPasswordVisible_TextChanged"/>
+                             Tag="Contraseña" VerticalAlignment="Center" Visibility="Collapsed" TextChanged="TbPasswordVisible_TextChanged"/>
 
-                    <Button x:Name="btnVerPassword" Width="30" Height="30" HorizontalAlignment="Right" VerticalAlignment="Center" Click="btnVerPassword_Click" Content="👁"/>
+                    <Button x:Name="btnVerPassword" Width="30" Height="30" HorizontalAlignment="Right" VerticalAlignment="Center" Click="BtnVerPassword_Click" Content="👁"/>
                 </Grid>
 
                 <TextBlock x:Name="tblockErrorPassword" Text="" Margin="0,0,0,5" Foreground="Red" VerticalAlignment="Bottom"/>
                 <Button Content="Iniciar Sesión"
-                        Click="btnIniciarSesion_Click"
+                        Click="BtnIniciarSesion_Click"
                         Style="{StaticResource EstiloBotonPrincipalSinIcono}"
                         Height="40" Margin="0,0,0,10"/>
 
                 <Button Content="¿No tienes cuenta? Regístrate"
-                        Click="btnRegistrarse_Click"
+                        Click="BtnRegistrarse_Click"
                         Style="{StaticResource EstiloBotonSecundarioSinIcono}"
                         Height="40" Background="Transparent" BorderBrush="#3498db" Foreground="#3498db"/>
             </StackPanel>

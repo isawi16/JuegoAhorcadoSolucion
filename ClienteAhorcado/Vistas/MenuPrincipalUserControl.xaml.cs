@@ -48,7 +48,7 @@ namespace ClienteAhorcado.Vistas
             }
         }
 
-        private void btnPerfil_Click(object sender, RoutedEventArgs e)
+        private void BtnPerfil_Click(object sender, RoutedEventArgs e)
         {
             _mainWindow.CambiarVista(new PerfilJugadorUserControl(_mainWindow, jugadorSesion));
         }
