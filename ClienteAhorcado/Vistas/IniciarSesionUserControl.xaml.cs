@@ -43,7 +43,7 @@ namespace ClienteAhorcado.Vistas
             }
         }
 
-        private void btnIniciarSesion_Click(object sender, RoutedEventArgs e)
+        private void BtnIniciarSesion_Click(object sender, RoutedEventArgs e)
         {
             if (EntradasValidas())
             {
@@ -89,12 +89,12 @@ namespace ClienteAhorcado.Vistas
             _mainWindow.CambiarVista(new MenuPrincipalUserControl(_mainWindow, jugador));
         }
 
-        private void btnRegistrarse_Click(object sender, RoutedEventArgs e)
+        private void BtnRegistrarse_Click(object sender, RoutedEventArgs e)
         {
             _mainWindow.CambiarVista(new RegistrarJugadorUserControl(_mainWindow)); 
         }
 
-        private void btnVerPassword_Click(object sender, RoutedEventArgs e)
+        private void BtnVerPassword_Click(object sender, RoutedEventArgs e)
         {
             mostrandoPassword = !mostrandoPassword;
             if (mostrandoPassword)
@@ -113,13 +113,13 @@ namespace ClienteAhorcado.Vistas
             }
         }
 
-        private void pbPassword_PasswordChanged(object sender, RoutedEventArgs e)
+        private void PbPassword_PasswordChanged(object sender, RoutedEventArgs e)
         {
             if (!mostrandoPassword)
                 tbPasswordVisible.Text = pbPassword.Password;
         }
 
-        private void tbPasswordVisible_TextChanged(object sender, TextChangedEventArgs e)
+        private void TbPasswordVisible_TextChanged(object sender, TextChangedEventArgs e)
         {
             if (mostrandoPassword)
                 pbPassword.Password = tbPasswordVisible.Text;

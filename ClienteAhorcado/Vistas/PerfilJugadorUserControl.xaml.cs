@@ -67,12 +67,12 @@ namespace ClienteAhorcado.Vistas
             public void RecibirMensajeChat(string nombreJugador, string mensaje) { }
         }
 
-        private void btnRegresar_Click(object sender, RoutedEventArgs e)
+        private void BtnRegresar_Click(object sender, RoutedEventArgs e)
         {
             _mainWindow.CambiarVista(new MenuPrincipalUserControl(_mainWindow, jugadorPerfil));
         }
 
-        private void btnModificarPerfil_Click(object sender, RoutedEventArgs e)
+        private void BtnModificarPerfil_Click(object sender, RoutedEventArgs e)
         {
             tbNombre.Visibility = Visibility.Visible;
             tbTelefono.Visibility = Visibility.Visible;
@@ -88,7 +88,7 @@ namespace ClienteAhorcado.Vistas
 
         }
 
-        private void btnGuardar_Click(object sender, RoutedEventArgs e)
+        private void BtnGuardar_Click(object sender, RoutedEventArgs e)
         {
             JugadorDTO jugadorModificado = new JugadorDTO();
             bool modificadoExitoso = false;
