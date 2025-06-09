@@ -28,6 +28,10 @@ namespace ClienteAhorcadoApp
             MainContent.Content = nuevaVista;
         }
 
+      
+  
+
+
         /*IAhorcadoService proxy;
         JugadorDTO usuarioActual;
         int idPartidaActual;
