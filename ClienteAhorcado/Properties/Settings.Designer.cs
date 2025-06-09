@@ -26,11 +26,22 @@ namespace ClienteAhorcado.Properties {
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
-        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=HONEYBUNNY\\SQLEXPRESS04;Initial Catalog=JuegoAhorcado;Integrated Secu" +
-            "rity=True;TrustServerCertificate=True")]
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=JOSUEISAI\\SQLEXPRESS;Initial Catalog=JuegoAhorcado;Integrated Securit" +
+            "y=True;TrustServerCertificate=True")]
         public string JuegoAhorcadoConnectionString {
             get {
                 return ((string)(this["JuegoAhorcadoConnectionString"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=HONEYBUNNY\\SQLEXPRESS04;Initial Catalog=JuegoAhorcado;Integrated Secu" +
+            "rity=True;TrustServerCertificate=True")]
+        public string JuegoAhorcadoConnectionString1 {
+            get {
+                return ((string)(this["JuegoAhorcadoConnectionString1"]));
             }
         }
     }

@@ -7,7 +7,7 @@
     <Grid>
 
         <ContentControl x:Name="MainContent" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
-        
+
         <!--<StackPanel>
             
             <TextBlock Text="Correo:" />
