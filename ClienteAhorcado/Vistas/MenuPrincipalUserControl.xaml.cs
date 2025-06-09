@@ -67,7 +67,7 @@ namespace ClienteAhorcado.Vistas
 
         private void BtnUnirsePartida_Click(object sender, RoutedEventArgs e)
         {
-
+            _mainWindow.CambiarVista(new ConsultarPartidasDisponiblesUserControl(_mainWindow, jugadorSesion));
         }
 
         private void BtnHistorialPartidas_Click(object sender, RoutedEventArgs e)
