@@ -73,6 +73,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="AhorcadoCallbackCliente.cs" />
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
@@ -103,8 +104,8 @@
     <Compile Include="Vistas\IniciarSesionUserControl.xaml.cs">
       <DependentUpon>IniciarSesionUserControl.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Vistas\JuegoAhorcadoUserControl.xaml.cs">
-      <DependentUpon>JuegoAhorcadoUserControl.xaml</DependentUpon>
+    <Compile Include="Vistas\JuegoAhorcadoUserControl1.xaml.cs">
+      <DependentUpon>JuegoAhorcadoUserControl1.xaml</DependentUpon>
     </Compile>
     <Compile Include="Vistas\MarcadoresUserControl.xaml.cs">
       <DependentUpon>MarcadoresUserControl.xaml</DependentUpon>
@@ -223,7 +224,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Vistas\JuegoAhorcadoUserControl.xaml">
+    <Page Include="Vistas\JuegoAhorcadoUserControl1.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

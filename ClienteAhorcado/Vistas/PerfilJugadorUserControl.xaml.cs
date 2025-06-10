@@ -1,5 +1,5 @@
 ﻿using ClienteAhorcado.Utilidades;
-using ClienteAhorcadoApp;
+using ClienteAhorcado;
 using ServidorAhorcadoService;
 using ServidorAhorcadoService.DTO;
 using ServidorAhorcadoService.Model;

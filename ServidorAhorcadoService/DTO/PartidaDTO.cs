@@ -19,9 +19,13 @@ namespace ServidorAhorcadoService.DTO
         public string PalabraTexto { get; set; }
         public int Puntaje { get; set; }
         public int? IDCancelador { get; set; }
-        public string LetrasUsadas { get; set; }
+        public List<char> LetrasUsadas { get; set; }
 
         public int IntentosRestantes { get; set; }
+
+        public string PalabraConGuiones { get; set; }
+
+
 
         public string CreadorNombre { get; set; }
         public string RetadorNombre { get; set; }
