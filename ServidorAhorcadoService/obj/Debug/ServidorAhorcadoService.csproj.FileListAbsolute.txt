@@ -1,5 +1,5 @@
-C:\Users\seren\Desktop\JuegoAhorcadoUO\Code\HangThemHigh\JuegoAhorcadoSolucion\ServidorAhorcadoService\bin\Debug\ServidorAhorcadoService.dll.config
-C:\Users\seren\Desktop\JuegoAhorcadoUO\Code\HangThemHigh\JuegoAhorcadoSolucion\ServidorAhorcadoService\bin\Debug\ServidorAhorcadoService.dll
+C:\Users\seren\Desktop\JuegoAhorcadoUO\Code\HangThemHigh\JuegoAhorcadoSolucion\ServidorAhorcadoService\bin\Debug\ServidorAhorcadoService.exe.config
+C:\Users\seren\Desktop\JuegoAhorcadoUO\Code\HangThemHigh\JuegoAhorcadoSolucion\ServidorAhorcadoService\bin\Debug\ServidorAhorcadoService.exe
 C:\Users\seren\Desktop\JuegoAhorcadoUO\Code\HangThemHigh\JuegoAhorcadoSolucion\ServidorAhorcadoService\bin\Debug\ServidorAhorcadoService.pdb
 C:\Users\seren\Desktop\JuegoAhorcadoUO\Code\HangThemHigh\JuegoAhorcadoSolucion\ServidorAhorcadoService\bin\Debug\EntityFramework.dll
 C:\Users\seren\Desktop\JuegoAhorcadoUO\Code\HangThemHigh\JuegoAhorcadoSolucion\ServidorAhorcadoService\bin\Debug\EntityFramework.SqlServer.dll
@@ -26,5 +26,5 @@ C:\Users\seren\Desktop\JuegoAhorcadoUO\Code\HangThemHigh\JuegoAhorcadoSolucion\S
 C:\Users\seren\Desktop\JuegoAhorcadoUO\Code\HangThemHigh\JuegoAhorcadoSolucion\ServidorAhorcadoService\obj\Debug\ServidorAhorcadoService.csproj.AssemblyReference.cache
 C:\Users\seren\Desktop\JuegoAhorcadoUO\Code\HangThemHigh\JuegoAhorcadoSolucion\ServidorAhorcadoService\obj\Debug\ServidorAhorcadoService.csproj.CoreCompileInputs.cache
 C:\Users\seren\Desktop\JuegoAhorcadoUO\Code\HangThemHigh\JuegoAhorcadoSolucion\ServidorAhorcadoService\obj\Debug\ServidorAhorcadoService.csproj.CopyComplete
-C:\Users\seren\Desktop\JuegoAhorcadoUO\Code\HangThemHigh\JuegoAhorcadoSolucion\ServidorAhorcadoService\obj\Debug\ServidorAhorcadoService.dll
+C:\Users\seren\Desktop\JuegoAhorcadoUO\Code\HangThemHigh\JuegoAhorcadoSolucion\ServidorAhorcadoService\obj\Debug\ServidorAhorcadoService.exe
 C:\Users\seren\Desktop\JuegoAhorcadoUO\Code\HangThemHigh\JuegoAhorcadoSolucion\ServidorAhorcadoService\obj\Debug\ServidorAhorcadoService.pdb

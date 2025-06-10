@@ -1,48 +1,9 @@
-
-<Window x:Class="ClienteAhorcadoApp.MainWindow"
+<Window x:Class="ClienteAhorcado.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="Cliente Ahorcado" Height="500" Width="600"
+        Title="Cliente Ahorcado" Height="500" Width="800"
         SizeToContent="WidthAndHeight">
     <Grid>
-
         <ContentControl x:Name="MainContent" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
-
-        <!--<StackPanel>
-            
-            <TextBlock Text="Correo:" />
-            <TextBox x:Name="txtEmail" />
-            <TextBlock Text="Contraseña:" Margin="0,5,0,0"/>
-            <PasswordBox x:Name="txtPassword" />
-            <Button x:Name="btnLogin" Content="Iniciar sesión" Margin="0,10,0,0" Click="btnLogin_Click"/>
-
-            
-            <StackPanel Orientation="Horizontal" Margin="0,20,0,0">
-                <Button x:Name="btnViewGames" Content="Ver partidas" IsEnabled="False" Width="100" Click="btnViewGames_Click"/>
-                <Button x:Name="btnCreateGame" Content="Crear partida" IsEnabled="False" Width="100" Margin="10,0,0,0" Click="btnCreateGame_Click"/>
-            </StackPanel>
-
-            
-            <TextBlock Text="Partidas disponibles:" Margin="0,10,0,0"/>
-            <ListBox x:Name="lstPartidas" Height="100"/>
-            <Button x:Name="btnJoinGame" Content="Unirse a partida" Width="120" Margin="0,5,0,0" Click="btnJoinGame_Click"/>
-
-            
-            <Label x:Name="lblEstado" Content="Estado del juego..." Margin="0,20,0,0" FontSize="16" />
-            <Label x:Name="lblIntentos" Content="Intentos restantes: -" />
-            <TextBlock Text="Letras usadas:" />
-            <ListBox x:Name="lstLetrasUsadas" Height="50"/>
-
-            
-            <StackPanel Orientation="Horizontal" Margin="0,10,0,0">
-                <TextBlock Text="Letra:" VerticalAlignment="Center"/>
-                <TextBox x:Name="txtLetra" Width="40" Margin="5,0,0,0"/>
-                <Button x:Name="btnSendLetter" Content="Enviar letra" Width="100" Click="btnSendLetter_Click"/>
-            </StackPanel>
-
-            
-            <TextBlock Text="Chat:" Margin="0,20,0,0"/>
-            <ListBox x:Name="lstChat" Height="80"/>
-        </StackPanel> -->
     </Grid>
 </Window>

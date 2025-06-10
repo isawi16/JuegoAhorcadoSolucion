@@ -18,9 +18,19 @@ namespace ServidorAhorcadoService
 
         public JugadorDTO IniciarSesion(string correo, string password)
         {
+
             using (var db = new AhorcadoContext())
             {
+
+                
                 var jugador = db.Jugadores.FirstOrDefault(j => j.Correo == correo && j.Contraseña == password);
+                // Registrar al jugador en clientes conectados
+                var callback = OperationContext.Current.GetCallbackChannel<IAhorcadoCallback>();
+                if (!clientesConectados.ContainsKey(jugador.IDJugador))
+                {
+                    clientesConectados.Add(jugador.IDJugador, callback);
+                }
+
                 if (jugador == null) return null;
 
                 return new JugadorDTO
@@ -33,6 +43,7 @@ namespace ServidorAhorcadoService
                     PuntajeGlobal = jugador.PuntajeGlobal,
                     Contraseña = jugador.Contraseña
                 };
+
             }
         }
 
@@ -362,6 +373,19 @@ namespace ServidorAhorcadoService
             var letrasPalabra = palabra.ToLower().Distinct().Where(c => Char.IsLetter(c)).Select(c => c.ToString());
             return letrasPalabra.All(l => letrasUsadas.Contains(l));
         }
+        private string ObtenerPalabraConGuiones(string palabra, List<string> letrasUsadas)
+        {
+            return string.Join(" ", palabra.Select(c => letrasUsadas.Contains(c.ToString().ToLower()) ? c : '_'));
+        }
+
+
+        private string GenerarPalabraConGuiones(string palabra, List<string> letrasUsadas)
+        {
+            return string.Join("", palabra.Select(c =>
+                letrasUsadas.Contains(c.ToString().ToLower()) ? c.ToString() : "_"));
+        }
+
+
 
         public bool EnviarLetra(int idPartida, int idJugador, char letra)
         {
@@ -378,9 +402,12 @@ namespace ServidorAhorcadoService
                 if (partida.LetrasUsadas == null)
                     partida.LetrasUsadas = "";
 
-                var letrasUsadas = partida.LetrasUsadas.Split(',').Where(s => !string.IsNullOrWhiteSpace(s)).ToList();
+                var letrasUsadas = partida.LetrasUsadas.Split(',')
+                    .Where(s => !string.IsNullOrWhiteSpace(s))
+                    .ToList();
+
                 if (letrasUsadas.Contains(letraStr))
-                    return false; // Ya usada
+                    return false;
 
                 letrasUsadas.Add(letraStr);
                 partida.LetrasUsadas = string.Join(",", letrasUsadas);
@@ -390,13 +417,32 @@ namespace ServidorAhorcadoService
 
                 if (partida.IntentosRestantes <= 0)
                 {
-                    partida.IDEstado = 4; // Perdida
+                    partida.IDEstado = 4;
                     partida.Ganador = partida.IDJugadorCreador == idJugador ? partida.IDJugadorRetador : partida.IDJugadorCreador;
                 }
                 else if (TodasLetrasAdivinadas(palabra.PalabraTexto, letrasUsadas))
                 {
-                    partida.IDEstado = 5; // Ganada
+                    partida.IDEstado = 5;
                     partida.Ganador = idJugador;
+                }
+
+                var estadoDTO = new PartidaEstadoDTO
+                {
+                    PalabraConGuiones = GenerarPalabraConGuiones(palabra.PalabraTexto, letrasUsadas),
+                    IntentosRestantes = partida.IntentosRestantes,
+                    LetrasUsadas = letrasUsadas.Select(s => s[0]).ToList(),
+                    TurnoActual = db.Jugadores.Find(partida.IDJugadorRetador)?.Nombre
+                };
+
+                if (clientesConectados.TryGetValue(partida.IDJugadorCreador, out var callbackCreador))
+                {
+                    callbackCreador.ActualizarEstadoPartida(estadoDTO);
+                }
+
+                if (partida.IDJugadorRetador != null &&
+                    clientesConectados.TryGetValue(partida.IDJugadorRetador.Value, out var callbackRetador))
+                {
+                    callbackRetador.ActualizarEstadoPartida(estadoDTO);
                 }
 
                 db.SaveChanges();
@@ -404,7 +450,6 @@ namespace ServidorAhorcadoService
             }
         }
 
-        //testing
 
         // --- CHAT ---
 
