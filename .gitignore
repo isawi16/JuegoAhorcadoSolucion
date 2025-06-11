@@ -416,3 +416,24 @@ MigrationBackup/
 
 # Fody - auto-generated XML schema
 FodyWeavers.xsd
+ClienteAhorcado/obj/Debug/.NETFramework,Version=v4.7.2.AssemblyAttributes.cs
+ClienteAhorcado/obj/Debug/App.g.i.cs
+ClienteAhorcado/obj/Debug/ClienteAhorcado.csproj.FileListAbsolute.txt
+ClienteAhorcado/obj/Debug/ClienteAhorcado_MarkupCompile.i.cache
+ClienteAhorcado/obj/Debug/DesignTimeResolveAssemblyReferences.cache
+ClienteAhorcado/obj/Debug/DesignTimeResolveAssemblyReferencesInput.cache
+ClienteAhorcado/obj/Debug/MainWindow.g.i.cs
+ClienteAhorcado/obj/Debug/TempPE/JuegoAhorcadoDataSet.Designer.cs.dll
+ClienteAhorcado/obj/Debug/TempPE/JuegoAhorcadoDataSet1.Designer.cs.dll
+ClienteAhorcado/obj/Debug/TempPE/Properties.Resources.Designer.cs.dll
+ClienteAhorcado/obj/Debug/Vistas/CargaUserControl.g.i.cs
+ClienteAhorcado/obj/Debug/Vistas/ChatUserControl.g.i.cs
+ClienteAhorcado/obj/Debug/Vistas/ConsultarHistorialPartidasUserControl.g.i.cs
+ClienteAhorcado/obj/Debug/Vistas/ConsultarPartidasDisponiblesUserControl.g.i.cs
+/ClienteAhorcado/obj
+/ClienteAhorcado/obj
+/ClienteAhorcado/obj
+/ClienteAhorcado/obj
+/ClienteAhorcado/obj
+/.vs
+/.vs
