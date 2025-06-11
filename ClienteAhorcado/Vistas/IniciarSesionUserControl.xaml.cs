@@ -55,6 +55,8 @@ namespace ClienteAhorcado.Vistas
                 else
                     pass = pbPassword.Password;
 
+                pass = RegistrarJugadorUserControl.EncriptarContraseña(pass.Trim());
+
                 usuarioActual = proxy.IniciarSesion(correo, pass);
 
                 if (usuarioActual != null)
