@@ -31,7 +31,6 @@ namespace ClienteAhorcado.Vistas
         private IAhorcadoService proxy;
 
 
-
         public JuegoAhorcadoUserControl1(string palabra, string jugador, int partidaID)
         {
             InitializeComponent();
@@ -47,8 +46,8 @@ namespace ClienteAhorcado.Vistas
             ActualizarEstado();
             ConectarChat();
             ConfigurarRol();
-
         }
+
         public JuegoAhorcadoUserControl1(JugadorDTO jugador, PartidaDTO partida, bool esCreador)
         {
             InitializeComponent();
@@ -57,13 +56,11 @@ namespace ClienteAhorcado.Vistas
             this.esCreador = esCreador;
             this.palabraSecreta = partida.PalabraTexto.ToUpper();
 
-
             InicializarPalabra();
             GenerarBotonesLetras();
             ActualizarEstado();
             ConectarChat();
             ConfigurarRol();
-
         }
 
         private void ConfigurarRol()
@@ -80,7 +77,6 @@ namespace ClienteAhorcado.Vistas
                 this.Background = new SolidColorBrush(Colors.DarkSlateGray);
             }
         }
-
 
         private void InicializarPalabra()
         {
@@ -132,7 +128,6 @@ namespace ClienteAhorcado.Vistas
             }
         }
 
-
         private void MostrarLetrasCorrectas()
         {
             for (int i = 0; i < palabraSecreta.Length; i++)
@@ -182,7 +177,7 @@ namespace ClienteAhorcado.Vistas
                 string mensaje = Encoding.UTF8.GetString(buffer, 0, bytesRead);
                 Dispatcher.Invoke(() =>
                 {
-                    txtChat.Text += mensaje + "\n";
+                    MostrarMensajeChat(mensaje);
                 });
             }
         }
@@ -192,16 +187,27 @@ namespace ClienteAhorcado.Vistas
             string mensaje = txtMensaje.Text.Trim();
             if (!string.IsNullOrEmpty(mensaje))
             {
+                // Enviar el mensaje al servidor
+                proxy.EnviarMensajeChat(idPartida, nombreJugador, mensaje);
+
+                // Mostrar el mensaje en el chat local del cliente
                 string mensajeCompleto = $"{nombreJugador}: {mensaje}";
-                byte[] datos = Encoding.UTF8.GetBytes(mensajeCompleto);
-                stream.Write(datos, 0, datos.Length);
+                MostrarMensajeChat(mensajeCompleto);
+
+                // Limpiar el campo de texto después de enviar el mensaje
                 txtMensaje.Clear();
             }
         }
 
+        public void MostrarMensajeChat(string mensaje)
+        {
+            // Agregar el mensaje al TextBox de chat y desplazar hacia abajo
+            txtChat.Text += $"{mensaje}\n";
+            txtChat.ScrollToEnd(); // Esto asegura que el último mensaje siempre sea visible
+        }
+
         public void ActualizarEstadoDesdeCallback(PartidaEstadoDTO estado)
         {
-
             txtIntentosRestantes.Text = estado.IntentosRestantes.ToString();
             txtLetrasUsadas.Text = string.Join(", ", estado.LetrasUsadas);
 
@@ -218,12 +224,6 @@ namespace ClienteAhorcado.Vistas
             // Cambia la imagen del ahorcado según los intentos restantes
             imgAhorcado.Source = new BitmapImage(new Uri($"/Images/ahorcado{estado.IntentosRestantes}.png", UriKind.Relative));
         }
-
-
-        public void MostrarMensajeChat(string nombre, string mensaje)
-        {
-            txtChat.Text += $"[{nombre}] {mensaje}\n";
-        }
     }
-        
 }
+
