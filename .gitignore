@@ -46,6 +46,17 @@ bld/
 [Oo]bj/
 [Ll]og/
 
+plaintext
+bin/
+obj/
+*.user
+*.suo
+*.cache
+*.g.cs
+*.g.i.cs
+*.log
+
+
 # === Paquetes de NuGet ===
 *.nupkg
 packages/
