@@ -1,4 +1,4 @@
-﻿using ClienteAhorcadoApp;
+﻿using ClienteAhorcado;
 using ServidorAhorcadoService;
 using ServidorAhorcadoService.DTO;
 using System;
