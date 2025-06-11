@@ -19,12 +19,12 @@ namespace ClienteAhorcado
         public MainWindow()
         {
             InitializeComponent();
-<<<<<<< HEAD
+
             MainContent.Content = new IniciarSesionUserControl(this); 
-=======
+
 
             // Cargar la vista de login como primera pantalla
-            MainContent.Content = new IniciarSesion(this);
+            MainContent.Content = new IniciarSesionUserControl(this);
         }
 
 
@@ -47,9 +47,7 @@ namespace ClienteAhorcado
             partidaActual = partida;
             esCreador = creador;
 
-            CargarPantallaJuego();
->>>>>>> Lilly
-        }
+            CargarPantallaJuego();        }
 
         public void CambiarVista(UserControl nuevaVista)
         {
@@ -81,7 +79,7 @@ namespace ClienteAhorcado
             {
                 if (MainContent.Content is JuegoAhorcadoUserControl1 juegoControl)
                 {
-                    juegoControl.MostrarMensajeChat(nombreJugador, mensaje);
+                    juegoControl.MostrarMensajeChat(mensaje);
                 }
             });
         }
@@ -100,7 +98,7 @@ namespace ClienteAhorcado
             {
                 if (MainContent.Content is JuegoAhorcadoUserControl1 juegoControl)
                 {
-                    juegoControl.MostrarMensajeChat(nombreJugador, mensaje);
+                    juegoControl.MostrarMensajeChat(mensaje);
                 }
             });
         }
