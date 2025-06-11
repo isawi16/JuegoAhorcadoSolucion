@@ -47,7 +47,8 @@
                 <StackPanel>
                     <TextBlock x:Name="Chat" Text="Chat privado" FontWeight="Bold" Margin="0,0,0,5" Foreground="#FFFBF5F5"/>
                     <ScrollViewer Height="200">
-                        <TextBlock x:Name="txtChat" TextWrapping="Wrap" />
+                        <!-- Cambié TextBlock por TextBox para poder usar ScrollToEnd -->
+                        <TextBox x:Name="txtChat" TextWrapping="Wrap" IsReadOnly="True" VerticalScrollBarVisibility="Auto"/>
                     </ScrollViewer>
                     <DockPanel Margin="0,5,0,0">
                         <TextBox x:Name="txtMensaje" Width="150" Height="25" DockPanel.Dock="Left"/>

@@ -5,6 +5,8 @@ using System.ServiceModel;
 using ServidorAhorcadoService.DTO;
 using ServidorAhorcadoService.Model;
 using ServidorAhorcadoService;
+using System.Security.Cryptography;
+using System.Text;
 
 
 namespace ServidorAhorcadoService
@@ -24,6 +26,7 @@ namespace ServidorAhorcadoService
 
                 
                 var jugador = db.Jugadores.FirstOrDefault(j => j.Correo == correo && j.Contraseña == password);
+                if (jugador == null) return null;
                 // Registrar al jugador en clientes conectados
                 var callback = OperationContext.Current.GetCallbackChannel<IAhorcadoCallback>();
                 if (!clientesConectados.ContainsKey(jugador.IDJugador))
@@ -31,7 +34,7 @@ namespace ServidorAhorcadoService
                     clientesConectados.Add(jugador.IDJugador, callback);
                 }
 
-                if (jugador == null) return null;
+               
 
                 return new JugadorDTO
                 {
@@ -51,23 +54,46 @@ namespace ServidorAhorcadoService
         {
             using (var db = new AhorcadoContext())
             {
-                if (db.Jugadores.Any(j => j.Correo == jugador.Correo))
-                    return false;
-
-                db.Jugadores.Add(new Jugador
+                try
                 {
-                    Nombre = jugador.Nombre,
-                    Correo = jugador.Correo,
-                    Contraseña = jugador.Contraseña,
-                    FechaNacimiento = jugador.FechaNacimiento,
-                    Telefono = jugador.Telefono,
-                    PuntajeGlobal = 0
-                });
+                    if (db.Jugadores.Any(j => j.Correo == jugador.Correo))
+                        return false;
 
-                db.SaveChanges();
-                return true;
+                    db.Jugadores.Add(new Jugador
+                    {
+                        Nombre = jugador.Nombre,
+                        Correo = jugador.Correo,
+                        Contraseña = EncriptarContraseña(jugador.Contraseña),
+                        FechaNacimiento = jugador.FechaNacimiento,
+                        Telefono = jugador.Telefono,
+                        PuntajeGlobal = 0
+                    });
+
+                    db.SaveChanges();
+                    return true;
+                }
+                catch (Exception ex)
+                {
+                    // Manejo de excepciones, logueo, etc.
+                    Console.WriteLine($"Error al registrar jugador: {ex.Message}");
+                    return false;
+                }
             }
         }
+        public static string EncriptarContraseña(string contraseña)
+        {
+            using (SHA256 sha256Hash = SHA256.Create())
+            {
+                byte[] bytes = sha256Hash.ComputeHash(Encoding.UTF8.GetBytes(contraseña));
+                StringBuilder builder = new StringBuilder();
+                foreach (var byteValue in bytes)
+                {
+                    builder.Append(byteValue.ToString("x2"));
+                }
+                return builder.ToString();
+            }
+        }
+
 
         public JugadorDTO ConsultarPerfil(int idJugador)
         {
@@ -109,10 +135,12 @@ namespace ServidorAhorcadoService
         {
             using (var db = new AhorcadoContext())
             {
-                var jugador = db.Jugadores.FirstOrDefault(j => j.IDJugador == idJugador);
+                var jugador = db.Jugadores.Find(idJugador); // Más eficiente si es por clave primaria
                 return jugador?.PuntajeGlobal ?? 0;
             }
         }
+
+
 
         public List<PartidaDTO> ConsultarPartidasJugadas(int idJugador)
         {
@@ -460,5 +488,17 @@ namespace ServidorAhorcadoService
                 callback.RecibirMensajeChat(nombreJugador, mensaje);
             }
         }
+
+
+
+        // -- ESTADO PARTIDA --
+        /*public enum EstadoPartida
+        {
+            Esperando = 1,
+            EnJuego = 2,
+            Terminada = 3,
+            Abandonada = 4
+        }*/
+        // para aplicarla hay que corregir todos los sitios en los que se mande un int como estado partida, dejarlo al final si hay tiempo
     }
 }

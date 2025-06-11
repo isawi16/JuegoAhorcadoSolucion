@@ -16,6 +16,8 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using System.Text.RegularExpressions;
+using System.Security.Cryptography;
 
 namespace ClienteAhorcado.Vistas
 {
@@ -41,6 +43,21 @@ namespace ClienteAhorcado.Vistas
             }
         }
 
+        public static string EncriptarContraseña(string contraseña)
+        {
+            using (SHA256 sha256Hash = SHA256.Create())
+            {
+                byte[] bytes = sha256Hash.ComputeHash(Encoding.UTF8.GetBytes(contraseña));
+                StringBuilder builder = new StringBuilder();
+                foreach (var byteValue in bytes)
+                {
+                    builder.Append(byteValue.ToString("x2"));
+                }
+                return builder.ToString();
+            }
+        }
+
+
         public class DummyCallback : IAhorcadoCallback
         {
             public void ActualizarEstadoPartida(PartidaEstadoDTO estadoActual) { }
@@ -56,8 +73,10 @@ namespace ClienteAhorcado.Vistas
         private void btnRegistrarme_Click(object sender, RoutedEventArgs e)
         {
             bool registroExitoso = false;
+            jugadorRegistro.Contraseña = EncriptarContraseña(tbPassword.Text.Trim());
 
-            if (EntradasValidas()) { 
+            if (EntradasValidas())
+            {
                 if (proxy == null)
                 {
                     MessageBox.Show("El servicio no está disponible. Inténtelo más tarde.");
@@ -106,5 +125,48 @@ namespace ClienteAhorcado.Vistas
 
             return valido;
         }
+
+        public static string ValidarPasswordTextBox(TextBox passwordBox)
+        {
+            var password = passwordBox.Text.Trim();
+            if (password.Length < 8)
+            {
+                return "La contraseña debe tener al menos 8 caracteres.";
+            }
+            if (!password.Any(char.IsLetter) || !password.Any(char.IsDigit))
+            {
+                return "La contraseña debe contener al menos una letra y un número.";
+            }
+            return null; // No error
+        }
+
+        public static string ValidarTelefono(TextBox telefonoBox)
+        {
+            var telefono = telefonoBox.Text.Trim();
+            string pattern = @"^(?:\+52)?(?:\(\d{3}\)\s?|\d{3}-)\d{3}-\d{4}$";
+            if (!Regex.IsMatch(telefono, pattern))
+            {
+                return "Número de teléfono no válido.";
+            }
+            return null;
+        }
+
+        public static string ValidarFechaNacimiento(DatePicker datePicker)
+        {
+            var fechaNacimiento = datePicker.SelectedDate;
+            if (fechaNacimiento == null)
+            {
+                return "La fecha de nacimiento es obligatoria.";
+            }
+            if (fechaNacimiento.Value > DateTime.Now)
+            {
+                return "La fecha de nacimiento no puede ser en el futuro.";
+            }
+            return null;
+        }
+
+
+
+
     }
 }
