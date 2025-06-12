@@ -29,6 +29,8 @@ namespace ServidorAhorcadoService.DTO
 
         public string CreadorNombre { get; set; }
         public string RetadorNombre { get; set; }
+        public string GanadorNombre { get; set; }
+        public string RivalNombre { get; set; }
     }
 
 }
