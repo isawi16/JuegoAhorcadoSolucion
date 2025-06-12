@@ -124,7 +124,7 @@ namespace ServidorAhorcadoService
                 jugador.Nombre = jugadorModificado.Nombre;
                 jugador.Telefono = jugadorModificado.Telefono;
                 jugador.FechaNacimiento = jugadorModificado.FechaNacimiento;
-                jugador.Contraseña = jugadorModificado.Contraseña;
+                
 
                 db.SaveChanges();
                 return true;
@@ -149,14 +149,31 @@ namespace ServidorAhorcadoService
                 return db.Partidas
                     .Where(p => p.IDJugadorCreador == idJugador || p.IDJugadorRetador == idJugador)
                     .OrderByDescending(p => p.Fecha)
-                    .Select(p => new PartidaDTO
+                    .Select(p => new 
                     {
                         IDPartida = p.IDPartida,
+                        IDJugadorCreador = p.IDJugadorCreador,
+                        IDJugadorRetador = p.IDJugadorRetador ?? 0,
                         CreadorNombre = p.Creador.Nombre,
                         RetadorNombre = p.Retador != null ? p.Retador.Nombre : null,
                         Estado = p.Estado.Nombre,
+                        Fecha = p.Fecha,
+                        PalabraTexto = p.Palabra.PalabraTexto,
+                        GanadorNombre = p.GanadorJugador != null ? p.GanadorJugador.Nombre : null,
+                        Puntaje = p.Puntaje,
+                    })
+                    .AsEnumerable()
+                    .Select(p => new PartidaDTO
+                    {
+                        IDPartida = p.IDPartida,
+                        CreadorNombre = p.CreadorNombre,
+                        RetadorNombre = p.RetadorNombre,
+                        Estado = p.Estado,
                         Fecha = p.Fecha.ToString("yyyy-MM-dd HH:mm:ss"),
-                        PalabraTexto = p.Palabra.PalabraTexto
+                        PalabraTexto = p.PalabraTexto,
+                        GanadorNombre = p.GanadorNombre,
+                        Puntaje = p.Puntaje,
+                        RivalNombre = (p.IDJugadorCreador == idJugador) ? p.RetadorNombre : p.CreadorNombre
                     }).ToList();
             }
         }
@@ -332,16 +349,26 @@ namespace ServidorAhorcadoService
             {
                 return db.Partidas
                     .Where(p => p.IDEstado == 1)
-                    .AsEnumerable() // Cambia a LINQ-to-Objects
-                    .Select(p => new PartidaDTO
+                    .Select(p => new
                     {
-                        IDPartida = p.IDPartida,
+                        p.IDPartida,
                         CreadorNombre = p.Creador.Nombre,
                         RetadorNombre = p.Retador != null ? p.Retador.Nombre : null,
                         Estado = p.Estado.Nombre,
-                        Fecha = p.Fecha.ToString("yyyy-MM-dd HH:mm:ss"),
+                        Fecha = p.Fecha,
                         PalabraTexto = p.Palabra.PalabraTexto
-                    }).ToList();
+                    })
+                    .AsEnumerable()
+                    .Select(p => new PartidaDTO
+                    {
+                        IDPartida = p.IDPartida,
+                        CreadorNombre = p.CreadorNombre,
+                        RetadorNombre = p.RetadorNombre,
+                        Estado = p.Estado,
+                        Fecha = p.Fecha.ToString("yyyy-MM-dd HH:mm:ss"),
+                        PalabraTexto = p.PalabraTexto
+                    })
+                    .ToList();
             }
         }
 

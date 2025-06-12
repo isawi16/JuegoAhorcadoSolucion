@@ -46,10 +46,6 @@
                 <TextBlock x:Name="tblockTelefono" Text="Telefono" FontWeight="SemiBold" Margin="0,0,0,5" FontSize="18"/>
                 <TextBox x:Name="tbTelefono" Padding="10,5,10,10" Tag="Numero de telefono" />
                 <TextBlock x:Name="tblockErrorTelefono" Text="" FontWeight="SemiBold" Margin="0,0,0,15" FontSize="12" Foreground="Red"/>
-
-
-                <TextBlock x:Name="tblockPassword" Text="Contraseña" FontWeight="SemiBold" Margin="0,0,0,5" FontSize="18"/>
-                <TextBox x:Name="tbPassword" Padding="10" />
                 <TextBlock x:Name="tblockErrorPassword" Text="" FontWeight="SemiBold" Margin="0,0,0,10" FontSize="12" Foreground="Red"/>
 
             </StackPanel>

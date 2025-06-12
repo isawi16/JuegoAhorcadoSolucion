@@ -6,8 +6,8 @@
         <StackPanel Margin="10">
             <DataGrid Name="dgPartidas" Width="550" Margin="5" Height="251">
                 <DataGrid.Columns>
-                    <DataGridTextColumn Header="Creador" Binding="{Binding Creador}" Width="*" /> <!-- el creador contiene nombre y correo -->
-                    <DataGridTextColumn Header="Fecha de Creación" Binding="{Binding FechaCreacion}" Width="*"/>
+                    <DataGridTextColumn Header="Creador" Binding="{Binding CreadorNombre}" Width="*" /> 
+                    <DataGridTextColumn Header="Fecha de Creación" Binding="{Binding Fecha}" Width="*"/>
                 </DataGrid.Columns>
             </DataGrid>
             <Button Content="Unirse a Partida" Width="250" Margin="5" Click="UnirsePartida_Click"/>

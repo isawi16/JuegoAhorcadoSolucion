@@ -45,11 +45,11 @@ namespace ClienteAhorcado.Vistas
                 tblockCorreo.Text = $"Correo: {jugador.Correo}";
                 tblockTelefono.Text = $"Teléfono: {jugador.Telefono}";
                 tblockFechaNacimiento.Text = $"Fecha de Nacimiento: {jugador.FechaNacimiento.ToShortDateString()}";
-                tblockPassword.Text = $"Contraseña: {jugador.Contraseña}";
+                
 
                 tbNombre.Visibility = Visibility.Collapsed;
                 tbTelefono.Visibility = Visibility.Collapsed;
-                tbPassword.Visibility = Visibility.Collapsed;
+                
                 dpFechaNacimiento.Visibility = Visibility.Collapsed;
                 btnGuardar.Visibility = Visibility.Collapsed;
 
@@ -76,15 +76,15 @@ namespace ClienteAhorcado.Vistas
         {
             tbNombre.Visibility = Visibility.Visible;
             tbTelefono.Visibility = Visibility.Visible;
-            tbPassword.Visibility = Visibility.Visible;
+            
             dpFechaNacimiento.Visibility = Visibility.Visible;
             btnGuardar.Visibility = Visibility.Visible;
 
             tbNombre.Text = jugadorPerfil.Nombre;
             tbTelefono.Text = jugadorPerfil.Telefono;
-            tbPassword.Text = jugadorPerfil.Contraseña;
+            
             dpFechaNacimiento.SelectedDate = jugadorPerfil.FechaNacimiento;
-            tbPassword.Text = jugadorPerfil.Contraseña;
+           
 
         }
 
@@ -107,7 +107,7 @@ namespace ClienteAhorcado.Vistas
 
                 jugadorModificado.Nombre = tbNombre.Text.Trim();
                 jugadorModificado.FechaNacimiento = dpFechaNacimiento.SelectedDate.Value;
-                jugadorModificado.Contraseña = tbPassword.Text.Trim();
+                
                 jugadorModificado.Telefono = tbTelefono.Text.Trim();
 
                 modificadoExitoso = proxy.ModificarPerfil(jugadorModificado);
@@ -128,17 +128,17 @@ namespace ClienteAhorcado.Vistas
         {
             bool valido = true;
 
-            string errorPass = ValidacionesEntrada.ValidarPasswordTextBox(tbPassword);
+            
             string errorNombre = ValidacionesEntrada.ValidarNombre(tbNombre);
             string errorTelefono = ValidacionesEntrada.ValidarTelefono(tbTelefono);
             string errorFechaNacimiento = ValidacionesEntrada.ValidarFechaNacimiento(dpFechaNacimiento);
 
-            tblockErrorPassword.Text = errorPass ?? "";
+            
             tblockErrorNombre.Text = errorNombre ?? "";
             tblockErrorTelefono.Text = errorTelefono ?? "";
             tblockErrorFecha.Text = errorFechaNacimiento ?? "";
 
-            if (errorPass != null || errorNombre != null || errorTelefono != null || errorFechaNacimiento != null)
+            if ( errorNombre != null || errorTelefono != null || errorFechaNacimiento != null)
                 valido = false;
 
             return valido;

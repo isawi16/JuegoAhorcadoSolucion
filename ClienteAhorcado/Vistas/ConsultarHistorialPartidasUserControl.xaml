@@ -4,16 +4,16 @@
              Width="600" Height="400">
     <Border Background="White" CornerRadius="12" Margin="10">
         <StackPanel Margin="20">
-            <DataGrid Name="dgHistorial" Width="500" Margin="5">
+            <DataGrid Name="dgHistorial" Width="500" Margin="5" Height="271">
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="Fecha" Binding="{Binding Fecha}" Width="*" />
-                    <DataGridTextColumn Header="Palabra Jugada" Binding="{Binding Palabra}"  Width="*" />
-                    <DataGridTextColumn Header="Resultado" Binding="{Binding Resultado}"  Width="*" />
+                    <DataGridTextColumn Header="Palabra Jugada" Binding="{Binding PalabraTexto}"  Width="*" />
+                    <DataGridTextColumn Header="Ganador" Binding="{Binding GanadorNombre}"  Width="*" />
                     <DataGridTextColumn Header="Rival" Binding="{Binding Rival}"  Width="*" />
                     <DataGridTextColumn Header="Puntaje" Binding="{Binding Puntaje}"  Width="*" />
                 </DataGrid.Columns>
             </DataGrid>
-            <Button Content="Volver" Width="250" Margin="5"/>
+            <Button Content="Volver" Width="100" Margin="15" HorizontalAlignment="Right" Click="BtnVolver_Click"/>
         </StackPanel>
     </Border>
 </UserControl>
