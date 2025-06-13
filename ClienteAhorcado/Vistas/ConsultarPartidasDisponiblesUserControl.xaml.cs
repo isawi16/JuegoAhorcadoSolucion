@@ -5,23 +5,11 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.ServiceModel;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace ClienteAhorcado.Vistas
 {
-    /// <summary>
-    /// Interaction logic for ConsultarPartidasDisponibles.xaml
-    /// </summary>
     public partial class ConsultarPartidasDisponiblesUserControl : UserControl
     {
         private MainWindow _mainWindow;
@@ -44,7 +32,6 @@ namespace ClienteAhorcado.Vistas
                 proxy = factory.CreateChannel();
 
                 LlenarTablaPartidas();
-
             }
             catch (Exception ex)
             {
@@ -52,10 +39,9 @@ namespace ClienteAhorcado.Vistas
             }
         }
 
-
         public void LlenarTablaPartidas()
         {
-            dgPartidas.ItemsSource = null; // Limpiar la fuente de datos antes de cargar nuevos datos
+            dgPartidas.ItemsSource = null;
             partidasDisponibles = proxy.ObtenerPartidasDisponibles();
 
             if (partidasDisponibles != null && partidasDisponibles.Count > 0)
@@ -68,10 +54,9 @@ namespace ClienteAhorcado.Vistas
             }
             else
             {
-                MessageBox.Show("No se encontraron partidas disponible, intentelo de nuevo mas tarde.", "Información", MessageBoxButton.OK, MessageBoxImage.Information);
+                MessageBox.Show("No se encontraron partidas disponibles, intente de nuevo más tarde.", "Información", MessageBoxButton.OK, MessageBoxImage.Information);
             }
         }
-
 
         public class DummyCallback : IAhorcadoCallback
         {
@@ -82,7 +67,40 @@ namespace ClienteAhorcado.Vistas
 
         private void UnirsePartida_Click(object sender, RoutedEventArgs e)
         {
+            if (dgPartidas.SelectedItem is PartidaDTO partidaSeleccionada)
+            {
+                // 1. Intentar unirse a la partida
+                bool unido = proxy.UnirseAPartida(partidaSeleccionada.IDPartida, jugadorSesion.IDJugador);
+                if (!unido)
+                {
+                    MessageBox.Show("No se pudo unir a la partida (puede que otro jugador se haya unido antes o la partida ya haya iniciado).", "Error", MessageBoxButton.OK, MessageBoxImage.Warning);
+                    LlenarTablaPartidas();
+                    return;
+                }
 
+                // 2. Obtener el nombre del idioma usando el IDIdioma (o CodigoIdioma)
+                string nombreIdioma = ObtenerNombreIdioma(partidaSeleccionada.IDIdioma); // Si en tu DTO es CodigoIdioma, cámbialo aquí
+
+                // 3. Obtener la palabra secreta para la partida
+                var palabra = proxy.ObtenerPalabraConDescripcion(partidaSeleccionada.IDPalabra, nombreIdioma);
+                if (palabra == null)
+                {
+                    MessageBox.Show("No se pudo obtener la palabra para la partida.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                    return;
+                }
+
+                // 4. Abrir la pantalla de juego como retador (esCreador = false)
+                _mainWindow.CargarPantallaJuego(jugadorSesion, palabra, partidaSeleccionada.IDPartida, false);
+            }
+            else
+            {
+                MessageBox.Show("Selecciona una partida para unirte.", "Información", MessageBoxButton.OK, MessageBoxImage.Information);
+            }
+        }
+
+        private string ObtenerNombreIdioma(int codigoIdioma)
+        {
+            return codigoIdioma == 1 ? "Español" : "English";
         }
 
         private void ActualizarLista_Click(object sender, RoutedEventArgs e)

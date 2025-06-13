@@ -291,6 +291,12 @@ namespace ServidorAhorcadoService
             }
         }
 
+        private string ObtenerNombreIdioma(int codigoIdioma)
+        {
+            return codigoIdioma == 1 ? "Español" : "English";
+        }
+
+
         public List<PalabraDTO> ObtenerPalabrasPorCategoria(int idCategoria, string idioma)
         {
             using (var db = new AhorcadoContext())
@@ -324,7 +330,7 @@ namespace ServidorAhorcadoService
 
         // --- PARTIDAS Y JUEGO ---
 
-        public bool CrearPartida(int idCreador, int idPalabra)
+        public int CrearPartida(int idCreador, int idPalabra)
         {
             using (var db = new AhorcadoContext())
             {
@@ -332,16 +338,18 @@ namespace ServidorAhorcadoService
                 {
                     IDJugadorCreador = idCreador,
                     IDPalabra = idPalabra,
-                    IDEstado = 1,
+                    IDEstado = 1, 
                     Fecha = DateTime.Now,
-                    Puntaje = 0
+                    Puntaje = 0,
+                    IntentosRestantes = 6 
                 };
 
                 db.Partidas.Add(nueva);
                 db.SaveChanges();
-                return true;
+                return nueva.IDPartida; 
             }
         }
+
 
         public List<PartidaDTO> ObtenerPartidasDisponibles()
         {
@@ -352,6 +360,7 @@ namespace ServidorAhorcadoService
                     .Select(p => new
                     {
                         p.IDPartida,
+                        IDIdioma = p.Palabra.Categoria.CodigoIdioma,
                         CreadorNombre = p.Creador.Nombre,
                         RetadorNombre = p.Retador != null ? p.Retador.Nombre : null,
                         Estado = p.Estado.Nombre,
@@ -362,6 +371,7 @@ namespace ServidorAhorcadoService
                     .Select(p => new PartidaDTO
                     {
                         IDPartida = p.IDPartida,
+                        IDIdioma = p.IDIdioma,
                         CreadorNombre = p.CreadorNombre,
                         RetadorNombre = p.RetadorNombre,
                         Estado = p.Estado,

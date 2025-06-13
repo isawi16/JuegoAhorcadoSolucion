@@ -29,9 +29,10 @@ namespace ClienteAhorcado.Vistas
         private PartidaDTO partida;
         private bool esCreador;
         private IAhorcadoService proxy;
+        private int idPalabra; // Nuevo: para almacenar el ID de la palabra si es necesario
 
 
-        public JuegoAhorcadoUserControl1(string palabra, string jugador, int partidaID)
+      /*  public JuegoAhorcadoUserControl1(string palabra, string jugador, int partidaID)
         {
             InitializeComponent();
             palabraSecreta = palabra.ToUpper();
@@ -47,14 +48,20 @@ namespace ClienteAhorcado.Vistas
             ConectarChat();
             ConfigurarRol();
         }
-
-        public JuegoAhorcadoUserControl1(JugadorDTO jugador, PartidaDTO partida, bool esCreador)
+      */
+        public JuegoAhorcadoUserControl1(JugadorDTO jugador, PalabraDTO palabra, int idPartida, bool esCreador)
         {
             InitializeComponent();
+
             this.jugador = jugador;
-            this.partida = partida;
+            this.palabraSecreta = palabra.Texto.ToUpper();
             this.esCreador = esCreador;
-            this.palabraSecreta = partida.PalabraTexto.ToUpper();
+            this.intentosRestantes = 6; // o el valor que corresponda al iniciar
+            this.idPartida = idPartida;
+            this.idPalabra = palabra.IDPalabra; // <-- Nuevo: guarda el idPalabra si lo requieres
+
+            letrasCorrectas = new HashSet<char>();
+            letrasUsadas = new HashSet<char>();
 
             InicializarPalabra();
             GenerarBotonesLetras();
@@ -63,20 +70,31 @@ namespace ClienteAhorcado.Vistas
             ConfigurarRol();
         }
 
+
         private void ConfigurarRol()
         {
             if (esCreador)
             {
+                // El creador solo observa, no juega:
                 wrapLetras.IsEnabled = false;
                 foreach (Button btn in wrapLetras.Children)
-                {
                     btn.IsEnabled = false;
-                }
 
-                // También podrías resaltar visualmente el rol de observador
+                // Visualiza distinto (opcional)
                 this.Background = new SolidColorBrush(Colors.DarkSlateGray);
             }
+            else
+            {
+                // El retador puede jugar (teclado activo)
+                wrapLetras.IsEnabled = true;
+                foreach (Button btn in wrapLetras.Children)
+                    btn.IsEnabled = true;
+
+                // Visual estándar
+                this.Background = new SolidColorBrush(Colors.White);
+            }
         }
+
 
         private void InicializarPalabra()
         {
@@ -120,7 +138,7 @@ namespace ClienteAhorcado.Vistas
 
             try
             {
-                proxy.EnviarLetra(partida.IDPartida, jugador.IDJugador, letra);
+                proxy.EnviarLetra(idPartida, jugador.IDJugador, letra);
             }
             catch (Exception ex)
             {
@@ -224,6 +242,25 @@ namespace ClienteAhorcado.Vistas
             // Cambia la imagen del ahorcado según los intentos restantes
             imgAhorcado.Source = new BitmapImage(new Uri($"/Images/ahorcado{estado.IntentosRestantes}.png", UriKind.Relative));
         }
+
+        private void BtnCancelarPartida_Click(object sender, RoutedEventArgs e)
+        {
+            // Solo el retador puede cancelar la partida (o ambos, si lo deseas)
+            if (!esCreador)
+            {
+                proxy.AbandonarPartida(idPartida, jugador.IDJugador);
+                MessageBox.Show("Has cancelado la partida.");
+                // Puedes regresar a la pantalla principal, por ejemplo:
+                var mainWindow = Window.GetWindow(this) as MainWindow;
+                if (mainWindow != null)
+                    mainWindow.CambiarVista(new MenuPrincipalUserControl(mainWindow, jugador));
+            }
+            else
+            {
+                MessageBox.Show("El creador no puede cancelar la partida en esta fase.");
+            }
+        }
+
     }
 }
 

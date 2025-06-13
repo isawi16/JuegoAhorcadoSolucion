@@ -16,6 +16,7 @@ namespace ServidorAhorcadoService.DTO
         public string Fecha { get; set; }
         public int? Ganador { get; set; }
         public int IDPalabra { get; set; }
+        public int IDIdioma { get; set; }
         public string PalabraTexto { get; set; }
         public int Puntaje { get; set; }
         public int? IDCancelador { get; set; }

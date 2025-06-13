@@ -98,9 +98,6 @@
     <Compile Include="Vistas\ConsultarPartidasDisponiblesUserControl.xaml.cs">
       <DependentUpon>ConsultarPartidasDisponiblesUserControl.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Vistas\CrearPartida.xaml.cs">
-      <DependentUpon>CrearPartida.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Vistas\IniciarSesionUserControl.xaml.cs">
       <DependentUpon>IniciarSesionUserControl.xaml</DependentUpon>
     </Compile>
@@ -213,10 +210,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Vistas\ConsultarPartidasDisponiblesUserControl.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Vistas\CrearPartida.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

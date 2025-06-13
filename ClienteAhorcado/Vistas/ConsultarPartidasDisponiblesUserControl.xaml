@@ -8,6 +8,7 @@
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="Creador" Binding="{Binding CreadorNombre}" Width="*" /> 
                     <DataGridTextColumn Header="Fecha de Creación" Binding="{Binding Fecha}" Width="*"/>
+                    <DataGridTextColumn Header="Idioma" Binding="{Binding CodigoIdioma}" Width="*"/>
                 </DataGrid.Columns>
             </DataGrid>
             <Button Content="Unirse a Partida" Width="250" Margin="5" Click="UnirsePartida_Click"/>

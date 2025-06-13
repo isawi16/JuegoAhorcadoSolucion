@@ -1,11 +1,12 @@
-using System;
-using System.Windows;
-using System.Windows.Controls;
-using ServidorAhorcadoService.DTO;
+using ClienteAhorcado;
 using ClienteAhorcado.Vistas;
 using ServidorAhorcadoService;
-using ClienteAhorcado;
+using ServidorAhorcadoService.DTO;
+using ServidorAhorcadoService.Model;
+using System;
 using System.ServiceModel;
+using System.Windows;
+using System.Windows.Controls;
 
 namespace ClienteAhorcado
 {
@@ -14,6 +15,8 @@ namespace ClienteAhorcado
         public IAhorcadoService proxy;
         private JugadorDTO jugadorActual;
         private PartidaDTO partidaActual;
+        private PalabraDTO palabraSeleccionada;
+        private int idPartida;
         private bool esCreador;
 
         public MainWindow()
@@ -47,18 +50,19 @@ namespace ClienteAhorcado
             partidaActual = partida;
             esCreador = creador;
 
-            CargarPantallaJuego();        }
+            CargarPantallaJuego(jugadorActual, palabraSeleccionada, idPartida, esCreador);        }
 
         public void CambiarVista(UserControl nuevaVista)
         {
             MainContent.Content = nuevaVista;
         }
 
-        private void CargarPantallaJuego()
+        public void CargarPantallaJuego(JugadorDTO jugador, PalabraDTO palabra, int idPartida, bool esCreador)
         {
-            var controlJuego = new JuegoAhorcadoUserControl1(jugadorActual, partidaActual, esCreador);
+            var controlJuego = new JuegoAhorcadoUserControl1(jugador, palabra, idPartida, esCreador);
             MainContent.Content = controlJuego;
         }
+
 
         public void ActualizarEstadoPartida(PartidaEstadoDTO estadoActual)
         {

@@ -34,6 +34,18 @@ namespace ServidorAhorcadoService
         [OperationContract]
         List<CategoriaDTO> ObtenerCategoriasPorIdioma(string codigoIdioma);
 
+        // SOBRE-CARGA FALTANTE (por int)
+        [OperationContract]
+        List<CategoriaDTO> ObtenerCategoriasPorIdioma(int idiomaId);
+
+        // MÉTODO FALTANTE (para Combo Idiomas)
+        [OperationContract]
+        List<IdiomaDTO> ObtenerIdiomas();
+
+        // MÉTODO FALTANTE (para traer palabras por idioma y categoría)
+        [OperationContract]
+        List<PalabraDTO> ObtenerPalabrasPorIdiomaYCategoria(string idioma, int idCategoria);
+
         [OperationContract]
         PalabraDTO ObtenerPalabraConDescripcion(int idPalabra, string idioma);
 
@@ -42,7 +54,7 @@ namespace ServidorAhorcadoService
 
         // --- PARTIDAS Y JUEGO ---
         [OperationContract]
-        bool CrearPartida(int idCreador, int idPalabra);
+        int CrearPartida(int idCreador, int idPalabra);
 
         [OperationContract]
         List<PartidaDTO> ObtenerPartidasDisponibles();

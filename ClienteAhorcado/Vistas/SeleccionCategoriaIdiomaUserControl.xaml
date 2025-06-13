@@ -1,17 +1,33 @@
 ﻿<UserControl x:Class="ClienteAhorcado.Vistas.SeleccionCategoriaIdiomaUserControl"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             Width="300" Height="400">
+             Width="320" Height="500">
     <StackPanel Margin="20">
-        <ComboBox Name="cbIdioma" Width="250" Margin="5">
-            <ComboBoxItem Content="Español"/>
-            <ComboBoxItem Content="Inglés"/>
+        <StackPanel.Background>
+            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                <GradientStop Color="Black"/>
+                <GradientStop Color="#FF1D5108" Offset="1"/>
+                <GradientStop Color="#FF0D2503" Offset="0.462"/>
+                <GradientStop Color="#FF0F2D03" Offset="0.561"/>
+                <GradientStop Color="#FF338F0D" Offset="0.641"/>
+            </LinearGradientBrush>
+        </StackPanel.Background>
+        <!-- Combo Idiomas -->
+        <ComboBox Name="cbIdioma" Width="250" Margin="5" SelectionChanged="cbIdioma_SelectionChanged">
+            <ComboBoxItem Content="Selecciona un idioma..." IsSelected="True" IsEnabled="False"/>
         </ComboBox>
-        <ListBox Name="lstCategorias" Width="250" Margin="5">
-            <ListBoxItem Content="Animales"/>
-            <ListBoxItem Content="Frutas"/>
-        </ListBox>
-        <Button Content="Crear Partida" Width="250" Margin="5"/>
+
+        <!-- Lista de Categorías -->
+        <ListBox Name="lstCategorias" Width="250" Margin="5" SelectionChanged="lstCategorias_SelectionChanged"/>
+        <!-- Stack para dificultad, inicialmente oculto -->
+        <StackPanel Name="spDificultad" Orientation="Horizontal" Margin="5" Visibility="Collapsed">
+            <RadioButton Name="rbFacil" Content="Fácil" Margin="5,0" Checked="rbDificultad_Checked"/>
+            <RadioButton Name="rbMedia" Content="Media" Margin="5,0" Checked="rbDificultad_Checked"/>
+            <RadioButton Name="rbDificil" Content="Difícil" Margin="5,0" Checked="rbDificultad_Checked"/>
+        </StackPanel>
+        <!-- Lista de palabras -->
+        <ListBox Name="lstPalabras" Width="250" Margin="5" SelectionChanged="lstPalabras_SelectionChanged" Visibility="Collapsed"/>
+        <!-- Botón para crear partida -->
+        <Button Name="btnCrearPartida" Content="Crear Partida" Width="250" Margin="5" IsEnabled="False" Click="btnCrearPartida_Click"/>
     </StackPanel>
 </UserControl>
-

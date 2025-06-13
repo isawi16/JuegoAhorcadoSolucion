@@ -57,7 +57,7 @@
                 </StackPanel>
             </Border>
         </Grid>
-
+        <Button Name="btnCancelarPartida" Content="Cancelar Partida" Click="BtnCancelarPartida_Click" Margin="40,168,619,27" Grid.Row="3" Background="#FFD81111"/>
         <!-- Estado del juego -->
         <StackPanel Grid.Row="4" Orientation="Horizontal" HorizontalAlignment="Center" Margin="10">
             <TextBlock x:Name="lblIntentosRestantes" Text="Intentos restantes: " FontWeight="Bold" Foreground="#FFF9F7F7"/>
