@@ -28,3 +28,4 @@ C:\docs\proyectos\GitHub\JuegoAhorcadoSolucion\JuegoAhorcado\ServidorAhorcadoSer
 C:\docs\proyectos\GitHub\JuegoAhorcadoSolucion\JuegoAhorcado\ServidorAhorcadoService\obj\Debug\Servidor.64F85338.Up2Date
 C:\docs\proyectos\GitHub\JuegoAhorcadoSolucion\JuegoAhorcado\ServidorAhorcadoService\obj\Debug\ServidorAhorcadoService.exe
 C:\docs\proyectos\GitHub\JuegoAhorcadoSolucion\JuegoAhorcado\ServidorAhorcadoService\obj\Debug\ServidorAhorcadoService.pdb
+C:\docs\proyectos\GitHub\JuegoAhorcadoSolucion\JuegoAhorcado\ServidorAhorcadoService\obj\Debug\ServidorAhorcadoService.exe.config

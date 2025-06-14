@@ -128,6 +128,7 @@ namespace ServidorAhorcadoService
                 jugador.Telefono = jugadorModificado.Telefono;
                 jugador.FechaNacimiento = jugadorModificado.FechaNacimiento;
                 jugador.FotoPerfil = jugadorModificado.FotoPerfil; 
+                jugador.Contraseña = jugadorModificado.Contraseña; 
 
                 db.SaveChanges();
                 return true;

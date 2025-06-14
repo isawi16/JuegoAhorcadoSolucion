@@ -45,10 +45,17 @@
             <StackPanel Grid.Row="1" Grid.Column="1" Margin="10">
                 <TextBlock x:Name="tblockTelefono" Text="Telefono" FontWeight="SemiBold" Margin="0,0,0,5" FontSize="18"/>
                 <TextBox x:Name="tbTelefono" Padding="10,5,10,10" Tag="Numero de telefono" />
-                <TextBlock x:Name="tblockErrorTelefono" Text="" FontWeight="SemiBold" Margin="0,0,0,15" FontSize="12" Foreground="Red"/>
-                <TextBlock x:Name="tblockErrorPassword" Text="" FontWeight="SemiBold" Margin="0,0,0,10" FontSize="12" Foreground="Red"/>
+                <TextBlock x:Name="tblockErrorTelefono" Text="" FontWeight="SemiBold" Margin="0,0,0,0" FontSize="12" Foreground="Red"/>
+                <TextBlock x:Name="tblockPassword" Text="Contraseña" FontWeight="SemiBold" Margin="0,0,0,5" FontSize="18"/>
+                <Grid>
+                    <PasswordBox x:Name="pbPassword" Height="35" Padding="10" Margin="0,0,40,5" Visibility="Visible"
+                        PasswordChanged="PbPassword_PasswordChanged"/>
+                    <TextBox x:Name="tbPassword" Height="35" Padding="10" Margin="0,0,40,5" Visibility="Collapsed" TextChanged="TbPasswordVisible_TextChanged"/>
+                    <Button x:Name="btnVerPassword" Content="👁" Width="35" Height="35" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,0,0,5" Click="BtnVerPassword_Click"/>
+                </Grid>
+                <TextBlock x:Name="tblockErrorPassword" Text="" FontWeight="SemiBold" FontSize="12" Foreground="Red"/>
                 <Image x:Name="imgPerfil" Width="80" Height="80"/>
-                <Button x:Name="btnSeleccionarFoto" Content="SeleccionarFoto" Width="151" Margin="10,10" Style="{StaticResource EstiloBotonPrincipalSinIcono}" Click="BtnSeleccionarFoto_Click"/>
+                <Button x:Name="btnSeleccionarFoto" Content="SeleccionarFoto" Width="151" Margin="0,5" Style="{StaticResource EstiloBotonPrincipalSinIcono}" Click="BtnSeleccionarFoto_Click"/>
             </StackPanel>
 
             <!-- Botones -->
