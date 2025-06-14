@@ -7,6 +7,7 @@ using ServidorAhorcadoService.Model;
 using ServidorAhorcadoService;
 using System.Security.Cryptography;
 using System.Text;
+using System.IO;
 
 
 namespace ServidorAhorcadoService
@@ -44,7 +45,8 @@ namespace ServidorAhorcadoService
                     Telefono = jugador.Telefono,
                     FechaNacimiento = jugador.FechaNacimiento,
                     PuntajeGlobal = jugador.PuntajeGlobal,
-                    Contraseña = jugador.Contraseña
+                    Contraseña = jugador.Contraseña,
+                    FotoPerfil = jugador.FotoPerfil
                 };
 
             }
@@ -63,9 +65,10 @@ namespace ServidorAhorcadoService
                     {
                         Nombre = jugador.Nombre,
                         Correo = jugador.Correo,
-                        Contraseña = EncriptarContraseña(jugador.Contraseña),
+                        Contraseña = jugador.Contraseña,
                         FechaNacimiento = jugador.FechaNacimiento,
                         Telefono = jugador.Telefono,
+                        FotoPerfil = jugador.FotoPerfil ?? File.ReadAllBytes("Imagenes/iconoDefault.png"), // Ruta del icono por defecto
                         PuntajeGlobal = 0
                     });
 
@@ -124,7 +127,8 @@ namespace ServidorAhorcadoService
                 jugador.Nombre = jugadorModificado.Nombre;
                 jugador.Telefono = jugadorModificado.Telefono;
                 jugador.FechaNacimiento = jugadorModificado.FechaNacimiento;
-                
+                jugador.FotoPerfil = jugadorModificado.FotoPerfil; 
+                jugador.Contraseña = jugadorModificado.Contraseña; 
 
                 db.SaveChanges();
                 return true;
@@ -314,7 +318,7 @@ namespace ServidorAhorcadoService
             }
         }
 
-        public List<CategoriaDTO> ObtenerCategoriasPorIdioma(int idiomaId)
+        /*public List<CategoriaDTO> ObtenerCategoriasPorIdioma(int idiomaId)
         {
             using (var db = new AhorcadoContext())
             {
@@ -326,7 +330,7 @@ namespace ServidorAhorcadoService
                              Nombre = c.Nombre
                          }).ToList();
             }
-        }
+        }*/
 
         // --- PARTIDAS Y JUEGO ---
 

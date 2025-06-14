@@ -19,6 +19,7 @@ namespace ServidorAhorcadoService.Model
         public DateTime FechaNacimiento { get; set; }
         public string Telefono { get; set; }
         public int PuntajeGlobal { get; set; }
+        public byte[] FotoPerfil { get; set; } 
 
         public virtual ICollection<Partida> PartidasCreadas { get; set; }
         public virtual ICollection<Partida> PartidasRetadas { get; set; }

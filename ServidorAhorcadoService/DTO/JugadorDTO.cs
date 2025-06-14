@@ -15,6 +15,8 @@ namespace ServidorAhorcadoService.DTO
         public System.DateTime FechaNacimiento { get; set; }
         public string Telefono { get; set; }
         public int PuntajeGlobal { get; set; }
+
+        public byte[] FotoPerfil { get; set; }
     }
 }
 

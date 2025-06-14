@@ -18,6 +18,8 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using System.Text.RegularExpressions;
 using System.Security.Cryptography;
+using Microsoft.Win32;
+using System.IO;
 
 namespace ClienteAhorcado.Vistas
 {
@@ -36,6 +38,9 @@ namespace ClienteAhorcado.Vistas
                 var contexto = new InstanceContext(new DummyCallback());
                 var factory = new DuplexChannelFactory<IAhorcadoService>(contexto, "AhorcadoEndpoint");
                 proxy = factory.CreateChannel();
+
+                imgPerfil.Source = new BitmapImage(new Uri("pack://application:,,,/Images/iconoDefault.png"));
+
             }
             catch (Exception ex)
             {
@@ -65,15 +70,14 @@ namespace ClienteAhorcado.Vistas
             public void RecibirMensajeChat(string nombreJugador, string mensaje) { }
         }
 
-        private void btnCancelar_Click(object sender, RoutedEventArgs e)
+        private void BtnCancelar_Click(object sender, RoutedEventArgs e)
         {
             _mainWindow.CambiarVista(new IniciarSesionUserControl(_mainWindow));
         }
 
-        private void btnRegistrarme_Click(object sender, RoutedEventArgs e)
+        private void BtnRegistrarme_Click(object sender, RoutedEventArgs e)
         {
             bool registroExitoso = false;
-            jugadorRegistro.Contraseña = EncriptarContraseña(tbPassword.Text.Trim());
 
             if (EntradasValidas())
             {
@@ -86,9 +90,36 @@ namespace ClienteAhorcado.Vistas
                 jugadorRegistro.Nombre = tbNombre.Text.Trim();
                 jugadorRegistro.FechaNacimiento = dpFechaNacimiento.SelectedDate.Value;
                 jugadorRegistro.Correo = tbCorreo.Text.Trim();
-                jugadorRegistro.Contraseña = tbPassword.Text.Trim();
+                jugadorRegistro.Contraseña = EncriptarContraseña(tbPassword.Text.Trim());
                 jugadorRegistro.Telefono = tbTelefono.Text.Trim();
                 jugadorRegistro.PuntajeGlobal = 0;
+
+                if (imgPerfil.Source != null)
+                {
+                    var bitmapSource = imgPerfil.Source as BitmapSource;
+                    if (bitmapSource != null)
+                    {
+                        JpegBitmapEncoder encoder = new JpegBitmapEncoder();
+                        encoder.Frames.Add(BitmapFrame.Create(bitmapSource));
+                        using (MemoryStream ms = new MemoryStream())
+                        {
+                            encoder.Save(ms);
+                            jugadorRegistro.FotoPerfil = ms.ToArray();
+                        }
+                    }
+                }
+                else
+                {
+                    string rutaIcono = "Images\\iconoDefault.png";
+                    if (File.Exists(rutaIcono))
+                    {
+                        jugadorRegistro.FotoPerfil = File.ReadAllBytes(rutaIcono);
+                    }
+                    else
+                    {
+                        jugadorRegistro.FotoPerfil = null;
+                    }
+                }
 
                 registroExitoso = proxy.RegistrarJugador(jugadorRegistro);
 
@@ -165,8 +196,28 @@ namespace ClienteAhorcado.Vistas
             return null;
         }
 
+        private void BtnElegirFoto_Click(object sender, RoutedEventArgs e)
+        {
+            var openFileDialog = new OpenFileDialog
+            {
+                Title = "Selecciona tu foto de perfil",
+                Filter = "Archivos de imagen|*.jpg;*.jpeg;*.png;*.bmp"
+            };
 
+            if (openFileDialog.ShowDialog() == true)
+            {
+                // Mostrar la imagen en el control Image
+                BitmapImage bitmap = new BitmapImage();
+                bitmap.BeginInit();
+                bitmap.UriSource = new Uri(openFileDialog.FileName);
+                bitmap.CacheOption = BitmapCacheOption.OnLoad;
+                bitmap.EndInit();
+                imgPerfil.Source = bitmap;
 
-
+                
+                byte[] imagenBytes = File.ReadAllBytes(openFileDialog.FileName);
+                // Guarda imagenBytes en tu DTO o donde lo necesites
+            }
+        }
     }
 }
