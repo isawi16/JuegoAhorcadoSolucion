@@ -1,10 +1,12 @@
-﻿using ClienteAhorcado.Utilidades;
-using ClienteAhorcado;
+﻿using ClienteAhorcado;
+using ClienteAhorcado.Utilidades;
+using Microsoft.Win32;
 using ServidorAhorcadoService;
 using ServidorAhorcadoService.DTO;
 using ServidorAhorcadoService.Model;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.ServiceModel;
 using System.Text;
@@ -52,6 +54,20 @@ namespace ClienteAhorcado.Vistas
                 
                 dpFechaNacimiento.Visibility = Visibility.Collapsed;
                 btnGuardar.Visibility = Visibility.Collapsed;
+                btnSeleccionarFoto.Visibility = Visibility.Collapsed;
+
+                if (jugador.FotoPerfil != null && jugador.FotoPerfil.Length > 0)
+                {
+                    var bitmap = new BitmapImage();
+                    using (var ms = new System.IO.MemoryStream(jugador.FotoPerfil))
+                    {
+                        bitmap.BeginInit();
+                        bitmap.CacheOption = BitmapCacheOption.OnLoad;
+                        bitmap.StreamSource = ms;
+                        bitmap.EndInit();
+                    }
+                    imgPerfil.Source = bitmap;
+                }
 
             }
             catch (Exception ex)
@@ -85,7 +101,7 @@ namespace ClienteAhorcado.Vistas
             
             dpFechaNacimiento.SelectedDate = jugadorPerfil.FechaNacimiento;
            
-
+            btnSeleccionarFoto.Visibility = Visibility.Visible;
         }
 
         private void BtnGuardar_Click(object sender, RoutedEventArgs e)
@@ -109,6 +125,18 @@ namespace ClienteAhorcado.Vistas
                 jugadorModificado.FechaNacimiento = dpFechaNacimiento.SelectedDate.Value;
                 
                 jugadorModificado.Telefono = tbTelefono.Text.Trim();
+
+                var bitmapSource = imgPerfil.Source as BitmapSource;
+                if (bitmapSource != null)
+                {
+                    JpegBitmapEncoder encoder = new JpegBitmapEncoder();
+                    encoder.Frames.Add(BitmapFrame.Create(bitmapSource));
+                    using (MemoryStream ms = new MemoryStream())
+                    {
+                        encoder.Save(ms);
+                        jugadorModificado.FotoPerfil = ms.ToArray();
+                    }
+                }
 
                 modificadoExitoso = proxy.ModificarPerfil(jugadorModificado);
 
@@ -144,5 +172,28 @@ namespace ClienteAhorcado.Vistas
             return valido;
         }
 
+        private void BtnSeleccionarFoto_Click(object sender, RoutedEventArgs e)
+        {
+            var openFileDialog = new OpenFileDialog
+            {
+                Title = "Selecciona tu foto de perfil",
+                Filter = "Archivos de imagen|*.jpg;*.jpeg;*.png;*.bmp"
+            };
+
+            if (openFileDialog.ShowDialog() == true)
+            {
+                // Mostrar la imagen en el control Image
+                BitmapImage bitmap = new BitmapImage();
+                bitmap.BeginInit();
+                bitmap.UriSource = new Uri(openFileDialog.FileName);
+                bitmap.CacheOption = BitmapCacheOption.OnLoad;
+                bitmap.EndInit();
+                imgPerfil.Source = bitmap;
+
+
+                byte[] imagenBytes = File.ReadAllBytes(openFileDialog.FileName);
+                // Guarda imagenBytes en tu DTO o donde lo necesites
+            }
+        }
     }
 }

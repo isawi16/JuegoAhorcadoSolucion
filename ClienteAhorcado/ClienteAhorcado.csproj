@@ -35,7 +35,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="System" />
+    <Reference Include="System">
+      <HintPath>..\..\..\..\..\..\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.7.2\System.dll</HintPath>
+    </Reference>
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.ServiceModel" />
@@ -78,10 +80,10 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="JuegoAhorcadoDataSet1.Designer.cs">
+    <Compile Include="JuegoAhorcadoDataSet2.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>JuegoAhorcadoDataSet1.xsd</DependentUpon>
+      <DependentUpon>JuegoAhorcadoDataSet2.xsd</DependentUpon>
     </Compile>
     <Compile Include="Utilidades\Animaciones.cs" />
     <Compile Include="Utilidades\Constantes.cs" />
@@ -124,11 +126,6 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="JuegoAhorcadoDataSet.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>JuegoAhorcadoDataSet.xsd</DependentUpon>
-    </Compile>
     <Compile Include="MainWindow.xaml.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
@@ -148,27 +145,16 @@
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <None Include="App.config" />
-    <None Include="JuegoAhorcadoDataSet.xsc">
-      <DependentUpon>JuegoAhorcadoDataSet.xsd</DependentUpon>
+    <None Include="JuegoAhorcadoDataSet2.xsc">
+      <DependentUpon>JuegoAhorcadoDataSet2.xsd</DependentUpon>
     </None>
-    <None Include="JuegoAhorcadoDataSet.xsd">
+    <None Include="JuegoAhorcadoDataSet2.xsd">
       <Generator>MSDataSetGenerator</Generator>
-      <LastGenOutput>JuegoAhorcadoDataSet.Designer.cs</LastGenOutput>
+      <LastGenOutput>JuegoAhorcadoDataSet2.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
     </None>
-    <None Include="JuegoAhorcadoDataSet.xss">
-      <DependentUpon>JuegoAhorcadoDataSet.xsd</DependentUpon>
-    </None>
-    <None Include="JuegoAhorcadoDataSet1.xsc">
-      <DependentUpon>JuegoAhorcadoDataSet1.xsd</DependentUpon>
-    </None>
-    <None Include="JuegoAhorcadoDataSet1.xsd">
-      <Generator>MSDataSetGenerator</Generator>
-      <LastGenOutput>JuegoAhorcadoDataSet1.Designer.cs</LastGenOutput>
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="JuegoAhorcadoDataSet1.xss">
-      <DependentUpon>JuegoAhorcadoDataSet1.xsd</DependentUpon>
+    <None Include="JuegoAhorcadoDataSet2.xss">
+      <DependentUpon>JuegoAhorcadoDataSet2.xsd</DependentUpon>
     </None>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
@@ -250,12 +236,6 @@
     <WCFMetadata Include="Connected Services\" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\ServidorAhorcadoService\ServidorAhorcadoService.csproj">
-      <Project>{9cb630a0-0828-472e-9e89-2ec1eac39dd1}</Project>
-      <Name>ServidorAhorcadoService</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
     <Resource Include="Images\6.png" />
     <Resource Include="Images\5.png" />
     <Resource Include="Images\4.png" />
@@ -265,7 +245,18 @@
     <Resource Include="Images\0.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Images\iconoDefault.png" />
+    <Resource Include="Images\iconoDefault.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ServidorAhorcadoService\ServidorAhorcadoService.csproj">
+      <Project>{9cb630a0-0828-472e-9e89-2ec1eac39dd1}</Project>
+      <Name>ServidorAhorcadoService</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\cerrarSesion.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

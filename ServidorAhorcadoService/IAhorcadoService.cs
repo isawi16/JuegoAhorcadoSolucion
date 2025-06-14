@@ -35,8 +35,8 @@ namespace ServidorAhorcadoService
         List<CategoriaDTO> ObtenerCategoriasPorIdioma(string codigoIdioma);
 
         // SOBRE-CARGA FALTANTE (por int)
-        [OperationContract]
-        List<CategoriaDTO> ObtenerCategoriasPorIdioma(int idiomaId);
+        /*[OperationContract]
+        List<CategoriaDTO> ObtenerCategoriasPorIdioma(int idiomaId);*/
 
         // MÉTODO FALTANTE (para Combo Idiomas)
         [OperationContract]

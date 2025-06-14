@@ -41,6 +41,19 @@ namespace ClienteAhorcado.Vistas
 
                 tblNombre.Text = $"Nombre: {jugador.Nombre}";
                 tblCorreo.Text = $"Correo: {jugador.Correo}";
+
+                if (jugador.FotoPerfil != null && jugador.FotoPerfil.Length > 0)
+                {
+                    var bitmap = new BitmapImage();
+                    using (var ms = new System.IO.MemoryStream(jugador.FotoPerfil))
+                    {
+                        bitmap.BeginInit();
+                        bitmap.CacheOption = BitmapCacheOption.OnLoad;
+                        bitmap.StreamSource = ms;
+                        bitmap.EndInit();
+                    }
+                    imagenPerfil.Source = bitmap;
+                }
             }
             catch (Exception ex)
             {
@@ -78,6 +91,11 @@ namespace ClienteAhorcado.Vistas
         private void BtnMarcadores_Click(object sender, RoutedEventArgs e)
         {
             _mainWindow.CambiarVista(new MarcadoresUserControl(_mainWindow, jugadorSesion));
+        }
+
+        private void BtnCerrarSesion_Click(object sender, RoutedEventArgs e)
+        {
+            _mainWindow.CambiarVista(new IniciarSesionUserControl(_mainWindow));
         }
     }
 }
