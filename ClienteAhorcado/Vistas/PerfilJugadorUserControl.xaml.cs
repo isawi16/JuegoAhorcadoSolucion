@@ -30,6 +30,8 @@ namespace ClienteAhorcado.Vistas
         IAhorcadoService proxy;
 
         JugadorDTO jugadorPerfil = new JugadorDTO();
+
+        private bool mostrandoPassword = false;
         public PerfilJugadorUserControl(MainWindow mainWindow, JugadorDTO jugador)
         {
             try
@@ -47,7 +49,7 @@ namespace ClienteAhorcado.Vistas
                 tblockCorreo.Text = $"Correo: {jugador.Correo}";
                 tblockTelefono.Text = $"Teléfono: {jugador.Telefono}";
                 tblockFechaNacimiento.Text = $"Fecha de Nacimiento: {jugador.FechaNacimiento.ToShortDateString()}";
-                
+                tblockPassword.Visibility = Visibility.Collapsed;
 
                 tbNombre.Visibility = Visibility.Collapsed;
                 tbTelefono.Visibility = Visibility.Collapsed;
@@ -55,6 +57,10 @@ namespace ClienteAhorcado.Vistas
                 dpFechaNacimiento.Visibility = Visibility.Collapsed;
                 btnGuardar.Visibility = Visibility.Collapsed;
                 btnSeleccionarFoto.Visibility = Visibility.Collapsed;
+
+                btnVerPassword.Visibility = Visibility.Collapsed;
+                tbPassword.Visibility = Visibility.Collapsed;
+                pbPassword.Visibility = Visibility.Collapsed;
 
                 if (jugador.FotoPerfil != null && jugador.FotoPerfil.Length > 0)
                 {
@@ -102,6 +108,11 @@ namespace ClienteAhorcado.Vistas
             dpFechaNacimiento.SelectedDate = jugadorPerfil.FechaNacimiento;
            
             btnSeleccionarFoto.Visibility = Visibility.Visible;
+
+            tblockPassword.Visibility = Visibility.Visible;
+            btnVerPassword.Visibility = Visibility.Visible;
+            tbPassword.Visibility = Visibility.Collapsed;
+            pbPassword.Visibility = Visibility.Visible;
         }
 
         private void BtnGuardar_Click(object sender, RoutedEventArgs e)
@@ -136,6 +147,17 @@ namespace ClienteAhorcado.Vistas
                         encoder.Save(ms);
                         jugadorModificado.FotoPerfil = ms.ToArray();
                     }
+                }
+
+                string nuevaContrasena = mostrandoPassword ? tbPassword.Text : pbPassword.Password;
+
+                if (!string.IsNullOrWhiteSpace(nuevaContrasena))
+                {
+                    jugadorModificado.Contraseña = RegistrarJugadorUserControl.EncriptarContraseña(nuevaContrasena.Trim());
+                }
+                else
+                {
+                    jugadorModificado.Contraseña = jugadorPerfil.Contraseña;
                 }
 
                 modificadoExitoso = proxy.ModificarPerfil(jugadorModificado);
@@ -194,6 +216,37 @@ namespace ClienteAhorcado.Vistas
                 byte[] imagenBytes = File.ReadAllBytes(openFileDialog.FileName);
                 // Guarda imagenBytes en tu DTO o donde lo necesites
             }
+        }
+
+        private void BtnVerPassword_Click(object sender, RoutedEventArgs e)
+        {
+            mostrandoPassword = !mostrandoPassword;
+            if (mostrandoPassword)
+            {
+                tbPassword.Text = pbPassword.Password;
+                tbPassword.Visibility = Visibility.Visible;
+                pbPassword.Visibility = Visibility.Collapsed;
+                btnVerPassword.Content = "🙈";
+            }
+            else
+            {
+                pbPassword.Password = tbPassword.Text;
+                pbPassword.Visibility = Visibility.Visible;
+                tbPassword.Visibility = Visibility.Collapsed;
+                btnVerPassword.Content = "👁";
+            }
+        }
+
+        private void PbPassword_PasswordChanged(object sender, RoutedEventArgs e)
+        {
+            if (!mostrandoPassword)
+                tbPassword.Text = pbPassword.Password;
+        }
+
+        private void TbPasswordVisible_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            if (mostrandoPassword)
+                pbPassword.Password = tbPassword.Text;
         }
     }
 }
