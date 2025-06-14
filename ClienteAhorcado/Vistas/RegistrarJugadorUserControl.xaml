@@ -53,7 +53,7 @@
 
             <!-- Botones -->
             <StackPanel Grid.Row="2" Grid.ColumnSpan="2" Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,20,0,10">
-                <Button Content="Registrarme" Width="151" Margin="10,0" Style="{StaticResource EstiloBotonPrincipalSinIcono}" Click="btnRegistrarme_Click"/>
+                <Button Content="Registrarme" Width="151" Margin="10,0" Style="{StaticResource EstiloBotonPrincipalSinIcono}" Click="BtnRegistrarme_Click"/>
                 <Button Content="Cancelar" Width="151" Margin="10,0" Style="{StaticResource EstiloBotonSecundarioSinIcono}" Click="BtnCancelar_Click"/>
             </StackPanel>
         </Grid>

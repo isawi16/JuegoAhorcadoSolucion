@@ -38,6 +38,9 @@ namespace ClienteAhorcado.Vistas
                 var contexto = new InstanceContext(new DummyCallback());
                 var factory = new DuplexChannelFactory<IAhorcadoService>(contexto, "AhorcadoEndpoint");
                 proxy = factory.CreateChannel();
+
+                imgPerfil.Source = new BitmapImage(new Uri("pack://application:,,,/Images/iconoDefault.png"));
+
             }
             catch (Exception ex)
             {
@@ -75,7 +78,6 @@ namespace ClienteAhorcado.Vistas
         private void BtnRegistrarme_Click(object sender, RoutedEventArgs e)
         {
             bool registroExitoso = false;
-            jugadorRegistro.Contraseña = EncriptarContraseña(tbPassword.Text.Trim());
 
             if (EntradasValidas())
             {
@@ -88,7 +90,7 @@ namespace ClienteAhorcado.Vistas
                 jugadorRegistro.Nombre = tbNombre.Text.Trim();
                 jugadorRegistro.FechaNacimiento = dpFechaNacimiento.SelectedDate.Value;
                 jugadorRegistro.Correo = tbCorreo.Text.Trim();
-                jugadorRegistro.Contraseña = tbPassword.Text.Trim();
+                jugadorRegistro.Contraseña = EncriptarContraseña(tbPassword.Text.Trim());
                 jugadorRegistro.Telefono = tbTelefono.Text.Trim();
                 jugadorRegistro.PuntajeGlobal = 0;
 
@@ -104,6 +106,18 @@ namespace ClienteAhorcado.Vistas
                             encoder.Save(ms);
                             jugadorRegistro.FotoPerfil = ms.ToArray();
                         }
+                    }
+                }
+                else
+                {
+                    string rutaIcono = "Images\\iconoDefault.png";
+                    if (File.Exists(rutaIcono))
+                    {
+                        jugadorRegistro.FotoPerfil = File.ReadAllBytes(rutaIcono);
+                    }
+                    else
+                    {
+                        jugadorRegistro.FotoPerfil = null;
                     }
                 }
 
