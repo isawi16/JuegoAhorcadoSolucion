@@ -10,60 +10,100 @@ namespace ClienteAhorcado.Vistas
 {
     public partial class SeleccionCategoriaIdiomaUserControl : UserControl
     {
-        // Debes recibir estos del contexto principal o pasarlos al crear el control
-        private IAhorcadoService proxy;
-        private JugadorDTO jugadorCreador;
+        private readonly IAhorcadoService proxy;
+        private readonly JugadorDTO jugadorCreador;
+        private readonly MainWindow _mainwindow;
 
-        // Para llevar el seguimiento de selecciones
         private string idiomaSeleccionado = "";
         private CategoriaDTO categoriaSeleccionada;
         private string dificultadSeleccionada = "";
         private PalabraDTO palabraSeleccionada;
 
-        public SeleccionCategoriaIdiomaUserControl(IAhorcadoService proxy, JugadorDTO jugadorCreador)
+        public SeleccionCategoriaIdiomaUserControl(MainWindow mainWindow,
+                                                   IAhorcadoService proxy,
+                                                   JugadorDTO jugadorCreador)
         {
             InitializeComponent();
+            this._mainwindow = mainWindow;
             this.proxy = proxy;
             this.jugadorCreador = jugadorCreador;
+
+            ConfigurarEstadoInicial();
             CargarIdiomas();
+        }
+
+        #region Inicialización y helpers
+
+        private void ConfigurarEstadoInicial()
+        {
+            // Nada seleccionado al inicio
+            cbIdioma.SelectedIndex = -1;
+            lstCategorias.IsEnabled = false;
+            spDificultad.Visibility = Visibility.Collapsed;
+            lstPalabras.Visibility = Visibility.Collapsed;
+            btnCrearPartida.IsEnabled = false;
         }
 
         private void CargarIdiomas()
         {
-            var idiomas = proxy.ObtenerIdiomas(); // Devuelve List<IdiomaDTO>
             cbIdioma.Items.Clear();
-            foreach (var idioma in idiomas)
+            foreach (var idioma in proxy.ObtenerIdiomas())
             {
-                var item = new ComboBoxItem { Content = idioma.Nombre, Tag = idioma.CodigoIdioma };
-                cbIdioma.Items.Add(item);
+                cbIdioma.Items.Add(new ComboBoxItem
+                {
+                    Content = idioma.Nombre,
+                    Tag = idioma.CodigoIdioma
+                });
             }
-            cbIdioma.SelectedIndex = 0; // Selecciona el primero por default
         }
+
+        #endregion
+
+        #region Eventos de selección
 
         private void cbIdioma_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             if (cbIdioma.SelectedItem is ComboBoxItem item)
             {
-                idiomaSeleccionado = item.Content.ToString();
-                categoriaSeleccionada = null;
-                dificultadSeleccionada = "";
-                palabraSeleccionada = null;
-                btnCrearPartida.IsEnabled = false;
-                spDificultad.Visibility = Visibility.Collapsed;
-                lstPalabras.Visibility = Visibility.Collapsed;
-                lstCategorias.Items.Clear();
+                idiomaSeleccionado = item.Tag.ToString();   // Usa el código, no el nombre
+                ReiniciarCategorias();
                 CargarCategoriasPorIdioma(idiomaSeleccionado);
+            }
+            else
+            {
+                idiomaSeleccionado = "";
+                ReiniciarCategorias();
             }
         }
 
-        private void CargarCategoriasPorIdioma(string idioma)
+        private void ReiniciarCategorias()
         {
-            var categorias = proxy.ObtenerCategoriasPorIdioma(idioma);
             lstCategorias.Items.Clear();
-            foreach (var categoria in categorias)
+            lstCategorias.IsEnabled = true;
+            categoriaSeleccionada = null;
+
+            spDificultad.Visibility = Visibility.Collapsed;
+            rbFacil.IsChecked = false;
+            rbMedia.IsChecked = false;
+            rbDificil.IsChecked = false;
+            dificultadSeleccionada = "";
+
+            lstPalabras.Items.Clear();
+            lstPalabras.Visibility = Visibility.Collapsed;
+            palabraSeleccionada = null;
+
+            btnCrearPartida.IsEnabled = false;
+        }
+
+        private void CargarCategoriasPorIdioma(string codigoIdioma)
+        {
+            foreach (var categoria in proxy.ObtenerCategoriasPorIdioma(codigoIdioma))
             {
-                var item = new ListBoxItem { Content = categoria.Nombre, Tag = categoria.IDCategoria };
-                lstCategorias.Items.Add(item);
+                lstCategorias.Items.Add(new ListBoxItem
+                {
+                    Content = categoria.Nombre,
+                    Tag = categoria.IDCategoria
+                });
             }
         }
 
@@ -76,16 +116,16 @@ namespace ClienteAhorcado.Vistas
                     IDCategoria = (int)item.Tag,
                     Nombre = item.Content.ToString()
                 };
-                // Mostrar opciones de dificultad
+
+                // Muestra panel de dificultad
                 spDificultad.Visibility = Visibility.Visible;
+
+                // Reinicia selección de dificultad/palabra
+                rbFacil.IsChecked = rbMedia.IsChecked = rbDificil.IsChecked = false;
                 lstPalabras.Items.Clear();
                 lstPalabras.Visibility = Visibility.Collapsed;
                 palabraSeleccionada = null;
                 btnCrearPartida.IsEnabled = false;
-                // Desmarcar radios
-                rbFacil.IsChecked = false;
-                rbMedia.IsChecked = false;
-                rbDificil.IsChecked = false;
             }
         }
 
@@ -98,26 +138,31 @@ namespace ClienteAhorcado.Vistas
             else if (rbDificil.IsChecked == true) dificultadSeleccionada = "Dificil";
             else dificultadSeleccionada = "";
 
-            if (!string.IsNullOrEmpty(dificultadSeleccionada))
+            if (dificultadSeleccionada != "")
             {
-                CargarPalabras(categoriaSeleccionada.IDCategoria, idiomaSeleccionado, dificultadSeleccionada);
+                CargarPalabras(categoriaSeleccionada.IDCategoria,
+                               idiomaSeleccionado,
+                               dificultadSeleccionada);
             }
         }
 
         private void CargarPalabras(int idCategoria, string idioma, string dificultad)
         {
             var palabras = proxy.ObtenerPalabrasPorIdiomaYCategoria(idioma, idCategoria)
-                .Where(p => p.Dificultad.Equals(dificultad, StringComparison.OrdinalIgnoreCase))
-                .ToList();
+                                .Where(p => p.Dificultad.Equals(dificultad, StringComparison.OrdinalIgnoreCase))
+                                .ToList();
 
             lstPalabras.Items.Clear();
             foreach (var palabra in palabras)
             {
-                var item = new ListBoxItem { Content = palabra.Texto, Tag = palabra.IDPalabra };
-                lstPalabras.Items.Add(item);
+                lstPalabras.Items.Add(new ListBoxItem
+                {
+                    Content = palabra.Texto,
+                    Tag = palabra.IDPalabra
+                });
             }
 
-            lstPalabras.Visibility = palabras.Count > 0 ? Visibility.Visible : Visibility.Collapsed;
+            lstPalabras.Visibility = palabras.Any() ? Visibility.Visible : Visibility.Collapsed;
             palabraSeleccionada = null;
             btnCrearPartida.IsEnabled = false;
         }
@@ -127,7 +172,6 @@ namespace ClienteAhorcado.Vistas
             if (lstPalabras.SelectedItem is ListBoxItem item)
             {
                 int idPalabra = (int)item.Tag;
-                // Puedes obtener más info si quieres
                 palabraSeleccionada = proxy.ObtenerPalabraConDescripcion(idPalabra, idiomaSeleccionado);
                 btnCrearPartida.IsEnabled = palabraSeleccionada != null;
             }
@@ -138,21 +182,24 @@ namespace ClienteAhorcado.Vistas
             }
         }
 
-        // Fix for CS1061: Replace 'Content.Content' with 'this.Content'
+        #endregion
+
+        #region Crear partida
+
         private void btnCrearPartida_Click(object sender, RoutedEventArgs e)
         {
-            if (palabraSeleccionada == null || jugadorCreador == null) return;
+            if (palabraSeleccionada == null) return;
 
-            // Ahora recibes el ID de la partida creada
-            int idPartida = proxy.CrearPartida(jugadorCreador.IDJugador, palabraSeleccionada.IDPalabra);
+            int idPartida = proxy.CrearPartida(jugadorCreador.IDJugador,
+                                               palabraSeleccionada.IDPalabra);
 
             if (idPartida > 0)
             {
-                var parentWindow = Window.GetWindow(this) as MainWindow;
-                if (parentWindow != null)
-                {
-                    parentWindow.MainContent.Content = new JuegoAhorcadoUserControl1(jugadorCreador, palabraSeleccionada, idPartida, true /* esCreador */);
-                }
+                _mainwindow.CambiarVista(
+                    new JuegoAhorcadoUserControl1(jugadorCreador,
+                                                  palabraSeleccionada,
+                                                  idPartida,
+                                                  true /* esCreador */));
             }
             else
             {
@@ -160,7 +207,6 @@ namespace ClienteAhorcado.Vistas
             }
         }
 
-
-
+        #endregion
     }
 }
