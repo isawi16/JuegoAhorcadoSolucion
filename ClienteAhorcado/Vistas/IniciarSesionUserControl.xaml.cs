@@ -21,6 +21,8 @@ namespace ClienteAhorcado.Vistas
 {
     public partial class IniciarSesionUserControl : UserControl, IAhorcadoCallback
     {
+        //si jalo 
+
         private MainWindow _mainWindow;
         private bool mostrandoPassword = false;
 
