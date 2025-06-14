@@ -168,7 +168,7 @@ namespace ClienteAhorcado.Vistas
             {
                 return "La contraseña debe contener al menos una letra y un número.";
             }
-            return null; // No error
+            return null; 
         }
 
         public static string ValidarTelefono(TextBox telefonoBox)
@@ -216,7 +216,6 @@ namespace ClienteAhorcado.Vistas
 
                 
                 byte[] imagenBytes = File.ReadAllBytes(openFileDialog.FileName);
-                // Guarda imagenBytes en tu DTO o donde lo necesites
             }
         }
     }

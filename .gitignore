@@ -446,3 +446,5 @@ ClienteAhorcado/obj/Debug/Vistas/ConsultarPartidasDisponiblesUserControl.g.i.cs
 /ClienteAhorcado/obj
 /ClienteAhorcado/obj
 /JuegoAhorcadoSolucion/obj
+/.vs
+/ServidorAhorcadoService/obj

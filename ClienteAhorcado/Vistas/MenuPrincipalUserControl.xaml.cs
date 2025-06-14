@@ -75,7 +75,7 @@ namespace ClienteAhorcado.Vistas
 
         private void BtnIniciarPartida_Click(object sender, RoutedEventArgs e)
         {
-
+            _mainWindow.CambiarVista(new SeleccionCategoriaIdiomaUserControl(_mainWindow, proxy, jugadorSesion));
         }
 
         private void BtnUnirsePartida_Click(object sender, RoutedEventArgs e)
