@@ -32,7 +32,7 @@ namespace ServidorAhorcadoService
 
         // --- PALABRAS Y CATEGORÍAS ---
         [OperationContract]
-        List<CategoriaDTO> ObtenerCategoriasPorIdioma(string codigoIdioma);
+        List<CategoriaDTO> ObtenerCategoriasPorIdioma(int codigoIdioma);
 
         // SOBRE-CARGA FALTANTE (por int)
         /*[OperationContract]
@@ -44,10 +44,9 @@ namespace ServidorAhorcadoService
 
         // MÉTODO FALTANTE (para traer palabras por idioma y categoría)
         [OperationContract]
-        List<PalabraDTO> ObtenerPalabrasPorIdiomaYCategoria(string idioma, int idCategoria);
-
+        List<PalabraDTO> ObtenerPalabrasPorIdiomaYCategoria(int codigoIdioma, int idCategoria);
         [OperationContract]
-        PalabraDTO ObtenerPalabraConDescripcion(int idPalabra, string idioma);
+        PalabraDTO ObtenerPalabraConDescripcion(int idPalabra, int codigoIdioma);
 
         [OperationContract]
         List<PalabraDTO> ObtenerPalabrasPorCategoria(int idCategoria, string idioma);

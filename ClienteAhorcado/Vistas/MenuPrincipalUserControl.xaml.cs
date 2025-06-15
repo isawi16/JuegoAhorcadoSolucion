@@ -18,6 +18,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using static ClienteAhorcado.Vistas.RegistrarJugadorUserControl;
+using ClienteAhorcado.Utilidades;
 
 namespace ClienteAhorcado.Vistas
 {
@@ -73,9 +74,16 @@ namespace ClienteAhorcado.Vistas
             public void RecibirMensajeChat(string nombreJugador, string mensaje) { }
         }
 
-        private void BtnIniciarPartida_Click(object sender, RoutedEventArgs e)
+        private void BtnCrearPartida_Click(object sender, RoutedEventArgs e)
         {
-            _mainWindow.CambiarVista(new SeleccionCategoriaIdiomaUserControl(_mainWindow, proxy, jugadorSesion));
+            int? idiomaDefault = IdiomaHelper.ObtenerIDIdiomaDesdeSistema(proxy.ObtenerIdiomas());
+
+            _mainWindow.CambiarVista(
+            new SeleccionCategoriaIdiomaUserControl(
+             _mainWindow,
+             jugadorSesion,
+             idiomaDefault)
+ );
         }
 
         private void BtnUnirsePartida_Click(object sender, RoutedEventArgs e)

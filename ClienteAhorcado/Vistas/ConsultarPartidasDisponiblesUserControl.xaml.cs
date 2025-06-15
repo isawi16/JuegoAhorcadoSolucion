@@ -78,18 +78,15 @@ namespace ClienteAhorcado.Vistas
                     return;
                 }
 
-                // 2. Obtener el nombre del idioma usando el IDIdioma (o CodigoIdioma)
-                string nombreIdioma = ObtenerNombreIdioma(partidaSeleccionada.IDIdioma); // Si en tu DTO es CodigoIdioma, cámbialo aquí
-
-                // 3. Obtener la palabra secreta para la partida
-                var palabra = proxy.ObtenerPalabraConDescripcion(partidaSeleccionada.IDPalabra, nombreIdioma);
+                // 2. Obtener la palabra secreta para la partida
+                var palabra = proxy.ObtenerPalabraConDescripcion(partidaSeleccionada.IDPalabra, partidaSeleccionada.IDIdioma);
                 if (palabra == null)
                 {
                     MessageBox.Show("No se pudo obtener la palabra para la partida.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                     return;
                 }
 
-                // 4. Abrir la pantalla de juego como retador (esCreador = false)
+                // 3. Abrir la pantalla de juego como retador (esCreador = false)
                 _mainWindow.CargarPantallaJuego(jugadorSesion, palabra, partidaSeleccionada.IDPartida, false);
             }
             else

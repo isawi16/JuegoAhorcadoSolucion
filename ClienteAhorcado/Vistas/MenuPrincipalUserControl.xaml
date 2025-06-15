@@ -10,7 +10,7 @@
             <Button HorizontalAlignment="Left" Margin="35,29,0,0" VerticalAlignment="Top" Height="60" Width="60" Click="BtnPerfil_Click">
                 <Image x:Name="imagenPerfil" Stretch="Uniform" />
             </Button>
-            <Button Content="Iniciar Partida" HorizontalAlignment="Left" Margin="190,226,0,0" VerticalAlignment="Top" Height="50" Width="150"  Click="BtnIniciarPartida_Click" Style="{StaticResource EstiloBotonPrincipalSinIcono}"/>
+            <Button Content="Iniciar Partida" HorizontalAlignment="Left" Margin="190,226,0,0" VerticalAlignment="Top" Height="50" Width="150"  Click="BtnCrearPartida_Click" Style="{StaticResource EstiloBotonPrincipalSinIcono}"/>
             <Button Content="Unirse a partida" HorizontalAlignment="Left" Margin="527,226,0,0" VerticalAlignment="Top" Height="50" Width="150" Click="BtnUnirsePartida_Click" Style="{StaticResource EstiloBotonPrincipalSinIcono}"/>
             <Button Content="Marcadores" HorizontalAlignment="Center" Margin="0,348,0,0" VerticalAlignment="Top" Height="29" Width="130" Click="BtnMarcadores_Click" Style="{StaticResource EstiloBotonSecundarioSinIcono}"/>
             <Button Content="Historial de partidas" HorizontalAlignment="Left" Margin="663,38,0,0" VerticalAlignment="Top" Height="33" Width="140" Click="BtnHistorialPartidas_Click" Style="{StaticResource EstiloBotonSecundarioSinIcono}"/>

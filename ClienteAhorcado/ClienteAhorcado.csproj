@@ -87,6 +87,7 @@
     </Compile>
     <Compile Include="Utilidades\Animaciones.cs" />
     <Compile Include="Utilidades\Constantes.cs" />
+    <Compile Include="Utilidades\IdiomaHelper.cs" />
     <Compile Include="Utilidades\ValidacionesEntrada.cs" />
     <Compile Include="Vistas\CargaUserControl.xaml.cs">
       <DependentUpon>CargaUserControl.xaml</DependentUpon>

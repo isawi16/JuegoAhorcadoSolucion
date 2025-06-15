@@ -5,8 +5,10 @@ using ServidorAhorcadoService.DTO;
 using ServidorAhorcadoService.Model;
 using System;
 using System.ServiceModel;
+using System.Threading;
 using System.Windows;
 using System.Windows.Controls;
+using ClienteAhorcado.Utilidades;
 
 namespace ClienteAhorcado
 {
@@ -18,6 +20,7 @@ namespace ClienteAhorcado
         private PalabraDTO palabraSeleccionada;
         private int idPartida;
         private bool esCreador;
+        private int codigoIdioma;
 
         public MainWindow()
         {
@@ -56,6 +59,8 @@ namespace ClienteAhorcado
         {
             MainContent.Content = nuevaVista;
         }
+
+       
 
         public void CargarPantallaJuego(JugadorDTO jugador, PalabraDTO palabra, int idPartida, bool esCreador)
         {
