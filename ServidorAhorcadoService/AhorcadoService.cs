@@ -202,28 +202,77 @@ namespace ServidorAhorcadoService
             }
         }
 
-        public List<PalabraDTO> ObtenerPalabrasPorIdiomaYCategoria(int idIdioma, int idCategoria)
+        public List<PalabraDTO> ObtenerPalabrasPorIdiomaYCategoria(int codigoIdioma, int idCategoria)
         {
-            using (var db = new AhorcadoContext())
+            using (var contexto = new AhorcadoContext())
             {
-                return db.Palabras
-                    .Where(p => p.IDCategoria == idCategoria && p.Categoria.CodigoIdioma == idIdioma)
+                var palabras = contexto.Palabras
+                    .Where(p => p.IDCategoria == idCategoria &&
+                                p.Categoria.CodigoIdioma == codigoIdioma)
                     .Select(p => new PalabraDTO
                     {
                         IDPalabra = p.IDPalabra,
                         Texto = p.PalabraTexto,
-                        Definicion = p.Definicion,
                         Dificultad = p.Dificultad,
-                        IDCategoria = p.Categoria.Nombre
-                    }).ToList();
+                        IDCategoria = p.IDCategoria,
+                        CodigoIdioma = p.Categoria.CodigoIdioma
+                    })
+                    .ToList();
+
+                return palabras;
             }
+        }
+
+        public List<PalabraDTO> ObtenerPalabrasPorIdiomaCategoriaDificultad(int codigoIdioma, int idCategoria, string dificultad)
+        {
+            using (var contexto = new AhorcadoContext())
+            {
+                var dificultadNormalizada = QuitarAcentos(dificultad).ToLower();
+
+                var palabrasTodas = contexto.Palabras
+                    .Where(p => p.IDCategoria == idCategoria &&
+                                p.Categoria.CodigoIdioma == codigoIdioma)
+                    .ToList();
+
+                var palabrasFiltradas = palabrasTodas
+                    .Where(p => QuitarAcentos(p.Dificultad).ToLower() == dificultadNormalizada)
+                    .ToList();
+
+                // Map the filtered list of Palabra to a list of PalabraDTO
+                var palabrasDTO = palabrasFiltradas.Select(p => new PalabraDTO
+                {
+                    IDPalabra = p.IDPalabra,
+                    Texto = p.PalabraTexto,
+                    Dificultad = p.Dificultad,
+                    IDCategoria = p.IDCategoria,
+                    CodigoIdioma = p.Categoria.CodigoIdioma
+                }).ToList();
+
+                return palabrasDTO;
+            }
+        }
+
+
+
+        private string QuitarAcentos(string texto)
+        {
+            var normalized = texto.Normalize(System.Text.NormalizationForm.FormD);
+            var sb = new System.Text.StringBuilder();
+            foreach (var c in normalized)
+                if (System.Globalization.CharUnicodeInfo.GetUnicodeCategory(c) !=
+                    System.Globalization.UnicodeCategory.NonSpacingMark)
+                    sb.Append(c);
+            return sb.ToString();
         }
 
         public PalabraDTO ObtenerPalabraConDescripcion(int idPalabra, int idIdioma)
         {
             using (var db = new AhorcadoContext())
             {
-                var palabra = db.Palabras.FirstOrDefault(p => p.IDPalabra == idPalabra && p.Categoria.CodigoIdioma == idIdioma);
+                var palabra = db.Palabras
+                    .Include("Categoria")  // Para traer la categoría asociada
+                    .FirstOrDefault(p => p.IDPalabra == idPalabra && p.Categoria.CodigoIdioma == idIdioma);
+
                 if (palabra == null) return null;
 
                 return new PalabraDTO
@@ -232,27 +281,37 @@ namespace ServidorAhorcadoService
                     Texto = palabra.PalabraTexto,
                     Definicion = palabra.Definicion,
                     Dificultad = palabra.Dificultad,
-                    IDCategoria = palabra.Categoria.Nombre
+                    IDCategoria = palabra.IDCategoria,
+                    CodigoIdioma = palabra.Categoria.CodigoIdioma,
+                    Categoria = new Categoria
+                    {
+                        IDCategoria = palabra.Categoria.IDCategoria,
+                        CodigoIdioma = palabra.Categoria.CodigoIdioma,
+                        Nombre = palabra.Categoria.Nombre
+                    }
                 };
             }
         }
+
 
         public List<PalabraDTO> ObtenerPalabrasPorCategoria(int idCategoria, string idioma)
         {
             using (var db = new AhorcadoContext())
             {
                 return db.Palabras
-                    .Where(p => p.IDCategoria == idCategoria)
+                    .Where(p => p.IDCategoria == idCategoria && p.Categoria.Idioma.Nombre == idioma)
                     .Select(p => new PalabraDTO
                     {
                         IDPalabra = p.IDPalabra,
                         Texto = p.PalabraTexto,
                         Definicion = p.Definicion,
                         Dificultad = p.Dificultad,
-                        IDCategoria = p.Categoria.Nombre
+                        IDCategoria = p.IDCategoria,
+                        CodigoIdioma = p.Categoria.CodigoIdioma
                     }).ToList();
             }
         }
+
 
         // --- PARTIDAS Y JUEGO ---
 
