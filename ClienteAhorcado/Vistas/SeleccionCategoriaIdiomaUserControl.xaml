@@ -14,7 +14,7 @@
         </StackPanel.Background>
         <!-- Combo Idiomas -->
         <ComboBox Name="cbIdioma" Width="250" Margin="5" SelectionChanged="cbIdioma_SelectionChanged">
-            <ComboBoxItem Content="Selecciona un idioma..." IsSelected="True" IsEnabled="False"/>
+            <ComboBoxItem Content="Selecciona un idioma..." IsEnabled="False"/>
         </ComboBox>
 
         <!-- Lista de Categorías -->

@@ -19,7 +19,7 @@ namespace ClienteAhorcado.Vistas
         private string dificultadSeleccionada = "";
         private PalabraDTO palabraSeleccionada;
         private string idiomaSeleccionadoCodigo = "";
-
+        private int? _indexPorDefecto = null;
 
         public SeleccionCategoriaIdiomaUserControl(MainWindow mainWindow,
                                            JugadorDTO jugadorCreador,
@@ -34,37 +34,15 @@ namespace ClienteAhorcado.Vistas
             var factory = new DuplexChannelFactory<IAhorcadoService>(contexto, "AhorcadoEndpoint");
             proxy = factory.CreateChannel();
 
-            CargarIdiomas(idiomaPorDefecto);
+            Loaded += (s, e) => CargarIdiomas(idiomaPorDefecto); // solo inicia cuando el control ya se cargó
         }
+
 
         #region Carga inicial
 
-        private void CargarIdiomas(int? idiomaPorDefecto)
-        {
-            cbIdioma.Items.Clear();
-            int indexPorDefecto = -1;
-            int i = 0;
 
-            foreach (var idioma in proxy.ObtenerIdiomas()) // List<IdiomaDTO>
-            {
-                cbIdioma.Items.Add(new ComboBoxItem
-                {
-                    Content = idioma.Nombre,       // "Español"
-                    Tag = idioma.CodigoIdioma  // 1, 2 …
-                });
 
-                if (idiomaPorDefecto != null && idioma.CodigoIdioma == idiomaPorDefecto)
-                    indexPorDefecto = i;
-
-                i++;
-            }
-
-            ConfigurarEstadoInicial();
-
-            if (indexPorDefecto >= 0)
-                cbIdioma.SelectedIndex = indexPorDefecto; // dispara SelectionChanged
-        }
-
+       
         private void ConfigurarEstadoInicial()
         {
             cbIdioma.SelectedIndex = -1;
@@ -108,16 +86,28 @@ namespace ClienteAhorcado.Vistas
             public void RecibirMensajeChat(string nombreJugador, string mensaje) { }
         }
 
+        private void CargarIdiomas(int? idiomaPorDefecto)
+        {
+            cbIdioma.Items.Clear();
+            int i = 0;
+
+            foreach (var idioma in proxy.ObtenerIdiomas())
+            {
+                cbIdioma.Items.Add(new ComboBoxItem
+                {
+                    Content = idioma.Nombre,
+                    Tag = idioma.CodigoIdioma
+                });
+
+                if (idiomaPorDefecto != null && idioma.CodigoIdioma == idiomaPorDefecto)
+                    _indexPorDefecto = i;
+
+                i++;
+            }
+        }
+
         private void ReiniciarCategorias()
         {
-            if (lstCategorias == null) throw new NullReferenceException("lstCategorias es null");
-            if (spDificultad == null) throw new NullReferenceException("spDificultad es null");
-            if (rbFacil == null) throw new NullReferenceException("rbFacil es null");
-            if (rbMedia == null) throw new NullReferenceException("rbMedia es null");
-            if (rbDificil == null) throw new NullReferenceException("rbDificil es null");
-            if (lstPalabras == null) throw new NullReferenceException("lstPalabras es null");
-            if (btnCrearPartida == null) throw new NullReferenceException("btnCrearPartida es null");
-
             lstCategorias.Items.Clear();
             lstCategorias.IsEnabled = false;
             categoriaSeleccionada = null;
@@ -132,6 +122,7 @@ namespace ClienteAhorcado.Vistas
 
             btnCrearPartida.IsEnabled = false;
         }
+
 
         private void CargarCategoriasPorIdioma(int codigoIdioma)
         {
