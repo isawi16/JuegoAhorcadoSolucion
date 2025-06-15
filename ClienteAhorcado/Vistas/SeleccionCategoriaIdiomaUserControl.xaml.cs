@@ -41,8 +41,8 @@ namespace ClienteAhorcado.Vistas
 
         private void ReiniciarInterfaz()
         {
-            cbIdioma.SelectedIndex = -1;
-            lstCategorias.Items.Clear();
+            //cbIdioma.SelectedIndex = -1;
+            lstCategorias.ItemsSource = null;
             lstCategorias.IsEnabled = false;
             categoriaSeleccionada = null;
 
@@ -59,12 +59,12 @@ namespace ClienteAhorcado.Vistas
 
         private void cbIdioma_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            if (cbIdioma.SelectedItem is ComboBoxItem item && item.Tag is int codigo)
+            if (cbIdioma.SelectedItem is IdiomaDTO idioma)
             {
-                idiomaSeleccionadoId = codigo;
-                idiomaSeleccionadoCodigo = codigo == 1 ? "es" : "en";
+                idiomaSeleccionadoId = idioma.CodigoIdioma; 
+                idiomaSeleccionadoCodigo = idioma.CodigoIdioma == 1 ? "es" : "en";
                 ReiniciarInterfaz();
-                CargarCategoriasPorIdioma(codigo);
+                CargarCategoriasPorIdioma(idioma.CodigoIdioma);
                 lstCategorias.IsEnabled = true;
             }
             else
@@ -84,59 +84,42 @@ namespace ClienteAhorcado.Vistas
 
         private void CargarIdiomas(int? idiomaPorDefecto)
         {
-            cbIdioma.Items.Clear();
-            int i = 0;
+            var idiomas = proxy.ObtenerIdiomas();
+            cbIdioma.ItemsSource = idiomas;
+            cbIdioma.DisplayMemberPath = "Nombre";
 
-            foreach (var idioma in proxy.ObtenerIdiomas())
+            if (idiomaPorDefecto.HasValue)
             {
-                cbIdioma.Items.Add(new ComboBoxItem
-                {
-                    Content = idioma.Nombre,
-                    Tag = idioma.CodigoIdioma
-                });
-
-                if (idiomaPorDefecto != null && idioma.CodigoIdioma == idiomaPorDefecto)
-                    _indexPorDefecto = i;
-
-                i++;
+                var idioma = idiomas.FirstOrDefault(i => i.CodigoIdioma == idiomaPorDefecto.Value);
+                if (idioma != null)
+                    cbIdioma.SelectedItem = idioma;
             }
 
-            if (_indexPorDefecto.HasValue)
-                cbIdioma.SelectedIndex = _indexPorDefecto.Value;
         }
 
         private void CargarCategoriasPorIdioma(int codigoIdioma)
         {
-            foreach (var categoria in proxy.ObtenerCategoriasPorIdioma(codigoIdioma))
-            {
-                lstCategorias.Items.Add(new ListBoxItem
-                {
-                    Content = categoria.Nombre,
-                    Tag = categoria.IDCategoria
-                });
-            }
+            var categorias = proxy.ObtenerCategoriasPorIdioma(codigoIdioma);
+            lstCategorias.ItemsSource = categorias;
         }
 
         private void lstCategorias_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            if (lstCategorias.SelectedItem is ListBoxItem item)
+            if (lstCategorias.SelectedItem is CategoriaDTO categoria)
             {
-                categoriaSeleccionada = new CategoriaDTO
-                {
-                    IDCategoria = (int)item.Tag,
-                    Nombre = item.Content.ToString()
-                };
-
+                categoriaSeleccionada = categoria;
                 palabraSeleccionada = null;
                 btnCrearPartida.IsEnabled = false;
-
                 CargarPalabras(categoriaSeleccionada.IDCategoria, idiomaSeleccionadoId);
             }
         }
 
         private void CargarPalabras(int idCategoria, int codigoIdioma)
         {
+            System.Diagnostics.Debug.WriteLine($"Buscando palabras para categoria={idCategoria}, idioma={codigoIdioma}");
+
             var palabras = proxy.ObtenerPalabrasPorIdiomaYCategoria(codigoIdioma, idCategoria);
+
             System.Diagnostics.Debug.WriteLine($"Palabras recibidas: {palabras.Count}");
 
             lstPalabras.ItemsSource = palabras;

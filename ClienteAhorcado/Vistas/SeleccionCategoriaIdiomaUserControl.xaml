@@ -15,12 +15,13 @@
         <!-- Idiomas -->
         <ComboBox x:Name="cbIdioma" Width="250" Margin="5"
                   SelectionChanged="cbIdioma_SelectionChanged"
+                  DisplayMemberPath="Nombre"
                   Grid.Row="0">
-            <ComboBoxItem Content="Selecciona un idioma..." IsEnabled="False"/>
         </ComboBox>
 
         <!-- Categorías -->
         <ListBox x:Name="lstCategorias" Width="250" Margin="5"
+                 DisplayMemberPath="Nombre"
                  SelectionChanged="lstCategorias_SelectionChanged"
                  Grid.Row="1"/>
 
