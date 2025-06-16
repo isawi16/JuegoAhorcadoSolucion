@@ -85,6 +85,11 @@
     <Compile Include="IAhorcadoCallback.cs" />
     <Compile Include="IAhorcadoService.cs" />
     <Compile Include="IService1.cs" />
+    <Compile Include="JuegoAhorcadoDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>JuegoAhorcadoDataSet.xsd</DependentUpon>
+    </Compile>
     <Compile Include="Model\AhorcadoContext.cs" />
     <Compile Include="Model\Categoria.cs" />
     <Compile Include="Model\Estado.cs" />
@@ -102,6 +107,17 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+    <None Include="JuegoAhorcadoDataSet.xsc">
+      <DependentUpon>JuegoAhorcadoDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="JuegoAhorcadoDataSet.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>JuegoAhorcadoDataSet.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="JuegoAhorcadoDataSet.xss">
+      <DependentUpon>JuegoAhorcadoDataSet.xsd</DependentUpon>
+    </None>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

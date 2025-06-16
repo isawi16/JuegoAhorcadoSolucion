@@ -46,7 +46,7 @@ namespace ServidorAhorcadoService
         [OperationContract]
         List<PalabraDTO> ObtenerPalabrasPorIdiomaYCategoria(int codigoIdioma, int idCategoria);
         [OperationContract]
-        PalabraDTO ObtenerPalabraConDescripcion(int idPalabra, int codigoIdioma);
+        PalabraDTO ObtenerPalabraConDescripcion(int idPalabra);
 
         [OperationContract]
         List<PalabraDTO> ObtenerPalabrasPorCategoria(int idCategoria, string idioma);

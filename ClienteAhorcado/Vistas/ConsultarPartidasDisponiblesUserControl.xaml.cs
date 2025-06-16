@@ -79,7 +79,7 @@ namespace ClienteAhorcado.Vistas
                 }
 
                 // 2. Obtener la palabra secreta para la partida
-                var palabra = proxy.ObtenerPalabraConDescripcion(partidaSeleccionada.IDPalabra, partidaSeleccionada.IDIdioma);
+                var palabra = proxy.ObtenerPalabraConDescripcion(partidaSeleccionada.IDPalabra);
                 if (palabra == null)
                 {
                     MessageBox.Show("No se pudo obtener la palabra para la partida.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);

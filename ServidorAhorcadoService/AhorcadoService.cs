@@ -151,7 +151,7 @@ namespace ServidorAhorcadoService
                         Fecha = p.Fecha.ToString("yyyy-MM-dd HH:mm:ss"),
                         PalabraTexto = p.PalabraTexto,
                         GanadorNombre = p.GanadorNombre,
-                        Puntaje = p.Puntaje,
+                        Puntaje = p.Puntaje?? 0,
                         RivalNombre = (p.IDJugadorCreador == idJugador) ? p.RetadorNombre : p.CreadorNombre
                     }).ToList();
             }
@@ -265,31 +265,21 @@ namespace ServidorAhorcadoService
             return sb.ToString();
         }
 
-        public PalabraDTO ObtenerPalabraConDescripcion(int idPalabra, int idIdioma)
+        public PalabraDTO ObtenerPalabraConDescripcion(int idPalabra)
         {
             using (var db = new AhorcadoContext())
             {
                 var palabra = db.Palabras
-                    .Include("Categoria")  // Para traer la categoría asociada
-                    .FirstOrDefault(p => p.IDPalabra == idPalabra && p.Categoria.CodigoIdioma == idIdioma);
-
-                if (palabra == null) return null;
-
-                return new PalabraDTO
-                {
-                    IDPalabra = palabra.IDPalabra,
-                    Texto = palabra.PalabraTexto,
-                    Definicion = palabra.Definicion,
-                    Dificultad = palabra.Dificultad,
-                    IDCategoria = palabra.IDCategoria,
-                    CodigoIdioma = palabra.Categoria.CodigoIdioma,
-                    Categoria = new Categoria
+                    .Where(p => p.IDPalabra == idPalabra)
+                    .Select(p => new PalabraDTO
                     {
-                        IDCategoria = palabra.Categoria.IDCategoria,
-                        CodigoIdioma = palabra.Categoria.CodigoIdioma,
-                        Nombre = palabra.Categoria.Nombre
-                    }
-                };
+                        IDPalabra = p.IDPalabra,
+                        Texto = p.PalabraTexto,
+                        Definicion = p.Definicion
+                    })
+                    .FirstOrDefault();
+
+                return palabra;
             }
         }
 

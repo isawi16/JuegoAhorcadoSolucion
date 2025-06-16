@@ -132,7 +132,7 @@ namespace ClienteAhorcado.Vistas
         {
             if (lstPalabras.SelectedItem is PalabraDTO palabra)
             {
-                palabraSeleccionada = proxy.ObtenerPalabraConDescripcion(palabra.IDPalabra, idiomaSeleccionadoId);
+                palabraSeleccionada = proxy.ObtenerPalabraConDescripcion(palabra.IDPalabra);
                 btnCrearPartida.IsEnabled = palabraSeleccionada != null;
             }
             else
