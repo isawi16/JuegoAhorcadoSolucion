@@ -154,12 +154,8 @@ namespace ClienteAhorcado.Vistas
 
             if (idPartida > 0)
             {
-                _mainwindow.CambiarVista(
-                    new SeleccionCategoriaIdiomaUserControl(
-                        _mainwindow,
-                        jugadorCreador,
-                        idiomaSeleccionadoId)
-                );
+                // Cambia a la pantalla de juego como creador
+                _mainwindow.CargarPantallaJuego(jugadorCreador, palabraSeleccionada, idPartida, true);
             }
             else
             {

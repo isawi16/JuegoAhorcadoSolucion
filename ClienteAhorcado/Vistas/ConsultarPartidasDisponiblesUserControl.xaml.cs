@@ -42,7 +42,10 @@ namespace ClienteAhorcado.Vistas
         public void LlenarTablaPartidas()
         {
             dgPartidas.ItemsSource = null;
+
+            Console.WriteLine("Antes de llamar a ObtenerPartidasDisponibles");
             partidasDisponibles = proxy.ObtenerPartidasDisponibles();
+            Console.WriteLine("Después de llamar a ObtenerPartidasDisponibles");
 
             if (partidasDisponibles != null && partidasDisponibles.Count > 0)
             {
