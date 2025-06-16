@@ -44,22 +44,33 @@ namespace ClienteAhorcado.Vistas
             dgPartidas.ItemsSource = null;
 
             Console.WriteLine("Antes de llamar a ObtenerPartidasDisponibles");
-            partidasDisponibles = proxy.ObtenerPartidasDisponibles();
+            var partidasDisponibles = proxy.ObtenerPartidasDisponibles();
             Console.WriteLine("Después de llamar a ObtenerPartidasDisponibles");
 
             if (partidasDisponibles != null && partidasDisponibles.Count > 0)
             {
-                var lista = partidasDisponibles
-                        .OrderBy(p => p.Fecha)
-                        .ToList();
+                // Puedes ordenar si lo necesitas, por ejemplo por IDPartida
+                var lista = partidasDisponibles.OrderBy(p => p.IDPartida).ToList();
 
                 dgPartidas.ItemsSource = lista;
+
+                Console.WriteLine("Partidas cargadas en la tabla:");
+                foreach (var partida in lista)
+                {
+                    Console.WriteLine($"IDPartida: {partida.IDPartida}, Categoría: {partida.CategoriaNombre}");
+                }
             }
             else
             {
-                MessageBox.Show("No se encontraron partidas disponibles, intente de nuevo más tarde.", "Información", MessageBoxButton.OK, MessageBoxImage.Information);
+                MessageBox.Show(
+                    "No se encontraron partidas disponibles, intente de nuevo más tarde.",
+                    "Información",
+                    MessageBoxButton.OK,
+                    MessageBoxImage.Information
+                );
             }
         }
+
 
         public class DummyCallback : IAhorcadoCallback
         {

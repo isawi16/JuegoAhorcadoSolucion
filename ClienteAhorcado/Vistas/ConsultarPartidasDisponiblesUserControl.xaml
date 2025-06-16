@@ -4,13 +4,14 @@
              Width="650" Height="400">
     <Border Background="White" CornerRadius="12" Margin="10">
         <StackPanel Margin="10">
-            <DataGrid Name="dgPartidas" Width="550" Margin="5" Height="251">
+            <DataGrid Name="dgPartidas" Width="550" Margin="5" Height="251"
+          AutoGenerateColumns="False" IsReadOnly="True">
                 <DataGrid.Columns>
-                    <DataGridTextColumn Header="Creador" Binding="{Binding CreadorNombre}" Width="*" /> 
-                    <DataGridTextColumn Header="Fecha de Creación" Binding="{Binding Fecha}" Width="*"/>
-                    <DataGridTextColumn Header="Idioma" Binding="{Binding CodigoIdioma}" Width="*"/>
+                    <DataGridTextColumn Header="ID Partida" Binding="{Binding IDPartida}" Width="100"/>
+                    <DataGridTextColumn Header="Categoría" Binding="{Binding CategoriaNombre}" Width="*"/>
                 </DataGrid.Columns>
             </DataGrid>
+
             <Button Content="Unirse a Partida" Width="250" Margin="5" Click="UnirsePartida_Click"/>
             <Button Content="Actualizar lista" Width="250" Margin="5" Click="ActualizarLista_Click"/>
             <Button Content="Cerrar" Width="100" Margin="5" HorizontalAlignment="Right" VerticalAlignment="Bottom" Click="CerrarButton_Click"/>

@@ -9,9 +9,7 @@ namespace ServidorAhorcadoService
     {
         static void Main(string[] args)
         {
-            Uri baseAddress = new Uri("http://localhost:8080/AhorcadoService/");
-
-            using (ServiceHost host = new ServiceHost(typeof(AhorcadoService), baseAddress))
+            using (ServiceHost host = new ServiceHost(typeof(AhorcadoService)))
             {
                 // Crear el binding con sesión confiable
                 var binding = new WSDualHttpBinding
@@ -24,11 +22,10 @@ namespace ServidorAhorcadoService
                 };
 
                 // Configurar sesión confiable explícitamente
-               // binding.ReliableSession.Enabled = true;
                 binding.ReliableSession.InactivityTimeout = TimeSpan.FromMinutes(10);
 
                 // Agregar endpoint
-                host.AddServiceEndpoint(typeof(IAhorcadoService), binding, "");
+              //  host.AddServiceEndpoint(typeof(IAhorcadoService), binding, "");
 
                 // Habilitar metadata
                 if (!host.Description.Behaviors.Any(b => b is ServiceMetadataBehavior))
@@ -39,14 +36,16 @@ namespace ServidorAhorcadoService
                 try
                 {
                     host.Open();
-                    Console.WriteLine("✅ Servicio Ahorcado corriendo en: " + baseAddress);
+                    Console.WriteLine("✅ Servicio Ahorcado corriendo.");
                     Console.WriteLine("Presiona Enter para cerrar...");
-                    Console.ReadLine();
+                    Console.ReadLine(); // Esto mantiene la consola abierta
                     host.Close();
                 }
                 catch (Exception ex)
                 {
                     Console.WriteLine("❌ Error al iniciar el servicio: " + ex.Message);
+                    Console.WriteLine("Presiona Enter para salir...");
+                    Console.ReadLine(); // Permite ver el error antes de cerrar
                     host.Abort();
                 }
             }

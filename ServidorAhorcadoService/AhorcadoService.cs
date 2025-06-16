@@ -151,7 +151,7 @@ namespace ServidorAhorcadoService
                         Fecha = p.Fecha.ToString("yyyy-MM-dd HH:mm:ss"),
                         PalabraTexto = p.PalabraTexto,
                         GanadorNombre = p.GanadorNombre,
-                        Puntaje = p.Puntaje?? 0,
+                        Puntaje = p.Puntaje ?? 0,
                         RivalNombre = (p.IDJugadorCreador == idJugador) ? p.RetadorNombre : p.CreadorNombre
                     }).ToList();
             }
@@ -325,36 +325,107 @@ namespace ServidorAhorcadoService
             }
         }
 
-        public List<PartidaDTO> ObtenerPartidasDisponibles()
+        public List<PartidaCategoriaDTO> ObtenerPartidasDisponibles()
         {
             using (var db = new AhorcadoContext())
             {
-                return db.Partidas
+                // Filtra solo partidas disponibles
+                var partidas = db.Partidas
                     .Where(p => p.IDEstado == 1)
-                    .Select(p => new
-                    {
-                        p.IDPartida,
-                        IDIdioma = p.Palabra.Categoria.CodigoIdioma,
-                        CreadorNombre = p.Creador.Nombre,
-                        RetadorNombre = p.Retador != null ? p.Retador.Nombre : null,
-                        Estado = p.Estado.Nombre,
-                        Fecha = p.Fecha,
-                        PalabraTexto = p.Palabra.PalabraTexto
-                    })
-                    .AsEnumerable()
-                    .Select(p => new PartidaDTO
+                    .Select(p => new PartidaCategoriaDTO
                     {
                         IDPartida = p.IDPartida,
-                        IDIdioma = p.IDIdioma,
-                        CreadorNombre = p.CreadorNombre,
-                        RetadorNombre = p.RetadorNombre,
-                        Estado = p.Estado,
-                        Fecha = p.Fecha.ToString("yyyy-MM-dd HH:mm:ss"),
-                        PalabraTexto = p.PalabraTexto
+                        CategoriaNombre = p.Palabra.Categoria.Nombre
                     })
                     .ToList();
+
+                // Imprime cuántas partidas encontró
+                Console.WriteLine($">> [ObtenerPartidasDisponibles] Partidas encontradas: {partidas.Count}");
+
+                // Imprime la lista resultante
+                foreach (var partida in partidas)
+                {
+                    Console.WriteLine($"IDPartida: {partida.IDPartida}, Categoria: {partida.CategoriaNombre}");
+                }
+
+                return partidas;
             }
         }
+
+
+
+
+        /* public List<PartidaDTO> ObtenerPartidasDisponibles()
+           {
+               Console.WriteLine(">> [ObtenerPartidasDisponibles] Iniciando consulta de partidas disponibles...");
+
+               using (var db = new AhorcadoContext())
+               {
+                   var partidasQuery = db.Partidas.Where(p => p.IDEstado == 1);
+                   int partidasConEstado1 = partidasQuery.Count();
+                   Console.WriteLine($">> [ObtenerPartidasDisponibles] Partidas con IDEstado == 1: {partidasConEstado1}");
+
+                   var partidasList = partidasQuery
+                       .Select(p => new
+                       {
+                           p.IDPartida,
+                           p.IDJugadorCreador,
+                           p.IDJugadorRetador,
+                           p.IDEstado,
+                           Estado = p.Estado.Nombre,
+                           p.Fecha,
+                           p.Ganador,
+                           p.IDPalabra,
+                           IDIdioma = p.Palabra.Categoria.CodigoIdioma,
+                           PalabraTexto = p.Palabra.PalabraTexto,
+                           p.Puntaje,
+                           p.IDCancelador,
+                           // LetrasUsadas y PalabraConGuiones probablemente no están en la tabla, así que pon null o default
+                           // Puedes ajustar si tu modelo tiene campos para estos datos
+                           CreadorNombre = p.Creador.Nombre,
+                           RetadorNombre = p.Retador != null ? p.Retador.Nombre : null,
+                           // GanadorNombre y RivalNombre puedes poner null o mapearlos si tienes relación
+                           GanadorNombre = "", // ajustar según tu modelo
+                           RivalNombre = "",   // ajustar según tu modelo
+                                               // Si tienes el campo en base de datos, aquí lo agregas
+                                               // IntentosRestantes = p.IntentosRestantes
+                       })
+                       .AsEnumerable()
+                       .Select(p => new PartidaDTO
+                       {
+                           IDPartida = p.IDPartida,
+                           IDJugadorCreador = 0,
+                           IDJugadorRetador = 0,
+                           IDEstado = p.IDEstado,
+                           Estado = p.Estado,
+                           Fecha = p.Fecha.ToString("yyyy-MM-dd HH:mm:ss"),
+                           Ganador = p.Ganador,
+                           IDPalabra = p.IDPalabra,
+                           IDIdioma = p.IDIdioma,
+                           PalabraTexto = p.PalabraTexto,
+                           Puntaje = 0,
+                           IDCancelador = p.IDCancelador,
+                           LetrasUsadas = null, // ajustar si tienes los datos
+                           IntentosRestantes = 0, // ajustar si tienes los datos
+                           PalabraConGuiones = null, // ajustar si tienes los datos
+                           CreadorNombre = p.CreadorNombre,
+                           RetadorNombre = p.RetadorNombre,
+                           GanadorNombre = p.GanadorNombre,
+                           RivalNombre = p.RivalNombre
+                       })
+                       .ToList();
+
+                   Console.WriteLine($">> [ObtenerPartidasDisponibles] Total partidas devueltas: {partidasList.Count}");
+                   Console.WriteLine(">> [ObtenerPartidasDisponibles] Consulta finalizada.");
+
+                   return partidasList;
+               }
+           }*/
+
+
+
+
+
 
         public bool UnirseAPartida(int idPartida, int idJugador)
         {
@@ -364,7 +435,7 @@ namespace ServidorAhorcadoService
                 if (partida == null) return false;
 
                 partida.IDJugadorRetador = idJugador;
-                partida.IDEstado = 2;
+                partida.IDEstado = 3; // Cambiar a "En curso"
                 db.SaveChanges();
                 return true;
             }

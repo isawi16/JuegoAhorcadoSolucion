@@ -80,6 +80,7 @@
     <Compile Include="DTO\IdiomaDTO.cs" />
     <Compile Include="DTO\JugadorDTO.cs" />
     <Compile Include="DTO\PalabraDTO.cs" />
+    <Compile Include="DTO\PartidaCategoriaDTO.cs" />
     <Compile Include="DTO\PartidaDTO.cs" />
     <Compile Include="DTO\PartidaEstadoDTO.cs" />
     <Compile Include="IAhorcadoCallback.cs" />

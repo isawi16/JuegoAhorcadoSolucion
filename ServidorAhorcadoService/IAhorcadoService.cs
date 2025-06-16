@@ -56,7 +56,8 @@ namespace ServidorAhorcadoService
         int CrearPartida(int idCreador, int idPalabra);
 
         [OperationContract]
-        List<PartidaDTO> ObtenerPartidasDisponibles();
+        List<PartidaCategoriaDTO> ObtenerPartidasDisponibles();
+
 
         [OperationContract]
         bool UnirseAPartida(int idPartida, int idJugador);
