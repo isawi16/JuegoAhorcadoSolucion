@@ -10,5 +10,7 @@ namespace ServidorAhorcadoService.DTO
     {
         public int IDPartida { get; set; }
         public string CategoriaNombre { get; set; }
+
+        public int IDPalabra { get; set; }
     }
 }

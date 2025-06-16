@@ -81,7 +81,7 @@ namespace ClienteAhorcado.Vistas
 
         private void UnirsePartida_Click(object sender, RoutedEventArgs e)
         {
-            if (dgPartidas.SelectedItem is PartidaDTO partidaSeleccionada)
+            if (dgPartidas.SelectedItem is PartidaCategoriaDTO partidaSeleccionada)
             {
                 // 1. Intentar unirse a la partida
                 bool unido = proxy.UnirseAPartida(partidaSeleccionada.IDPartida, jugadorSesion.IDJugador);

@@ -335,7 +335,8 @@ namespace ServidorAhorcadoService
                     .Select(p => new PartidaCategoriaDTO
                     {
                         IDPartida = p.IDPartida,
-                        CategoriaNombre = p.Palabra.Categoria.Nombre
+                        CategoriaNombre = p.Palabra.Categoria.Nombre,
+                        IDPalabra= p.IDPalabra,
                     })
                     .ToList();
 
