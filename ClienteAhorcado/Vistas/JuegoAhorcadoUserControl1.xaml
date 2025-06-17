@@ -18,6 +18,17 @@
             <!-- Estado del juego -->
         </Grid.RowDefinitions>
 
+        <Button x:Name="btnVolverMenu"
+        Content="Volver al Menú"
+        Width="180"
+        Height="40"
+        Visibility="Collapsed"
+        HorizontalAlignment="Left"
+        VerticalAlignment="Bottom"
+        Margin="290,0,0,42"
+        
+        Click="BtnVolverMenu_Click" Grid.Row="3"/>
+
         <!-- Título -->
         <TextBlock Grid.Row="0" Text="Juego del Ahorcado" 
                    FontSize="48" FontWeight="Bold" HorizontalAlignment="Center" Margin="0,10" FontFamily="Showcard Gothic" Foreground="White"/>

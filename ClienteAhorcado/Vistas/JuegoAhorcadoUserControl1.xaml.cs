@@ -1,6 +1,7 @@
 ﻿using ClienteAhorcado;
 using ServidorAhorcadoService;
 using ServidorAhorcadoService.DTO;
+using ServidorAhorcadoService.Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,13 +17,20 @@ namespace ClienteAhorcado.Vistas
         private int intentosRestantes;
         private List<char> letrasUsadas = new List<char>();
         private bool esCreador;
+        private MainWindow mainWindow;
+        private JugadorDTO jugador;
 
         public JuegoAhorcadoUserControl1(JugadorDTO jugador, PalabraDTO palabra, int idPartida, bool esCreador)
         {
             InitializeComponent();
+            this.jugador = jugador;
             this.palabraSecreta = palabra.Texto.ToUpper();
             this.intentosRestantes = 6;
             this.esCreador = esCreador;
+
+            this.mainWindow = Application.Current.Windows.OfType<MainWindow>().FirstOrDefault();
+
+
 
             InicializarPalabra();
             GenerarBotonesLetras();
@@ -38,6 +46,8 @@ namespace ClienteAhorcado.Vistas
                 foreach (Button btn in wrapLetras.Children)
                     btn.IsEnabled = false;
                 this.Background = new System.Windows.Media.SolidColorBrush(System.Windows.Media.Colors.DarkSlateGray);
+                btnVolverMenu.Visibility = Visibility.Visible;
+
             }
             else
             {
@@ -123,8 +133,7 @@ namespace ClienteAhorcado.Vistas
 
         private void ActualizarImagenAhorcado()
         {
-            // Ajusta el nombre de las imágenes según tu carpeta y convención
-            imgAhorcado.Source = new BitmapImage(new Uri($"/Images/ahorcado{6 - intentosRestantes}.png", UriKind.Relative));
+            imgAhorcado.Source = new BitmapImage(new Uri($"/Images/{intentosRestantes}.png", UriKind.Relative));
         }
 
         private bool VerificarVictoria()
@@ -137,6 +146,14 @@ namespace ClienteAhorcado.Vistas
             return true;
         }
 
+        private void BtnVolverMenu_Click(object sender, RoutedEventArgs e)
+        {
+            
+            
+                mainWindow.CambiarVista(new MenuPrincipalUserControl(mainWindow, jugador));
+            
+        }
+
         private void FinDeJuego(bool gano)
         {
             foreach (Button btn in wrapLetras.Children)
@@ -144,6 +161,9 @@ namespace ClienteAhorcado.Vistas
 
             string msg = gano ? "¡Felicidades, ganaste!" : $"Perdiste, la palabra era: {palabraSecreta}";
             MessageBox.Show(msg, "Juego terminado");
+
+            btnVolverMenu.Visibility = Visibility.Visible;
+           
         }
 
         // Método para el botón "Enviar" del chat (aunque no haga nada)
