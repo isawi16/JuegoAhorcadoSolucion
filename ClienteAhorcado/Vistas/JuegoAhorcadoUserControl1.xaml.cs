@@ -8,6 +8,8 @@ using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media.Imaging;
+using System.ServiceModel;
+
 
 namespace ClienteAhorcado.Vistas
 {
@@ -19,17 +21,21 @@ namespace ClienteAhorcado.Vistas
         private bool esCreador;
         private MainWindow mainWindow;
         private JugadorDTO jugador;
+        private IAhorcadoService proxy;
+        private int idPartida; // Declara si no lo tienes
+        private PalabraDTO palabra;
 
-        public JuegoAhorcadoUserControl1(JugadorDTO jugador, PalabraDTO palabra, int idPartida, bool esCreador)
+        public JuegoAhorcadoUserControl1(JugadorDTO jugador, PalabraDTO palabra, int idPartida, bool esCreador, IAhorcadoService proxy)
         {
             InitializeComponent();
+            this.proxy = proxy; // Obtiene el proxy del MainWindow
             this.jugador = jugador;
             this.palabraSecreta = palabra.Texto.ToUpper();
             this.intentosRestantes = 6;
             this.esCreador = esCreador;
 
             this.mainWindow = Application.Current.Windows.OfType<MainWindow>().FirstOrDefault();
-
+       
 
 
             InicializarPalabra();
@@ -37,6 +43,7 @@ namespace ClienteAhorcado.Vistas
             ActualizarEstado();
             ConfigurarRol();
         }
+
 
         private void ConfigurarRol()
         {
@@ -98,6 +105,16 @@ namespace ClienteAhorcado.Vistas
             btn.IsEnabled = false;
 
             char letra = btn.Content.ToString()[0];
+            try
+            {
+                proxy.EnviarLetra(idPartida, jugador.IDJugador, letra);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al llamar EnviarLetra: " + ex.Message);
+            }
+
+
             letrasUsadas.Add(letra);
 
             bool acierto = false;
@@ -150,9 +167,63 @@ namespace ClienteAhorcado.Vistas
         {
             
             
-                mainWindow.CambiarVista(new MenuPrincipalUserControl(mainWindow, jugador));
+                mainWindow.CambiarVista(new MenuPrincipalUserControl(mainWindow, jugador, proxy));
             
         }
+
+        public void ActualizarDesdeCallback(PartidaEstadoDTO estado)
+        {
+            // Actualiza los datos internos
+            this.intentosRestantes = estado.IntentosRestantes;
+            this.letrasUsadas = estado.LetrasUsadas ?? new List<char>();
+
+            // Refresca letras usadas e intentos restantes
+            txtLetrasUsadas.Text = string.Join(", ", letrasUsadas);
+            txtIntentosRestantes.Text = intentosRestantes.ToString();
+
+            // Refresca la palabra parcial
+            for (int i = 0; i < estado.PalabraConGuiones.Length && i < stackPalabra.Children.Count; i++)
+            {
+                if (stackPalabra.Children[i] is TextBlock tb)
+                {
+                    tb.Text = estado.PalabraConGuiones[i].ToString();
+                }
+            }
+
+            MessageBox.Show($"Callback recibido. Intentos: {estado.IntentosRestantes}, Palabra: {estado.PalabraConGuiones}");
+
+
+            // Refresca la imagen
+            ActualizarImagenAhorcado();
+
+            // Si eres creador: siempre deshabilita los botones
+            if (esCreador)
+            {
+                wrapLetras.IsEnabled = false;
+                foreach (Button btn in wrapLetras.Children)
+                    btn.IsEnabled = false;
+
+            }
+            else
+            {
+                // Si eres retador: solo bloquea las letras ya usadas
+                wrapLetras.IsEnabled = true;
+                foreach (Button btn in wrapLetras.Children)
+                {
+                    if (btn.Content is string letra && letrasUsadas.Contains(letra[0]))
+                        btn.IsEnabled = false;
+                }
+            }
+
+            // Detecta fin de partida y muestra botón de volver
+            if (intentosRestantes <= 0 || !estado.PalabraConGuiones.Contains('_'))
+            {
+                foreach (Button btn in wrapLetras.Children)
+                    btn.IsEnabled = false;
+                btnVolverMenu.Visibility = Visibility.Visible;
+            }
+        }
+
 
         private void FinDeJuego(bool gano)
         {

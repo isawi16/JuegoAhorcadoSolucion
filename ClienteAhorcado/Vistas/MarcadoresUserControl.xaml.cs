@@ -37,7 +37,7 @@ namespace ClienteAhorcado.Vistas
         JugadorDTO jugadorSesion = new JugadorDTO();
         List<JugadorDTO> jugadoresMarcadores = new List<JugadorDTO>();
 
-        public MarcadoresUserControl(MainWindow mainWindow, JugadorDTO jugador)
+        public MarcadoresUserControl(MainWindow mainWindow, JugadorDTO jugador, IAhorcadoService proxy)
         {
             try
             {
@@ -45,10 +45,8 @@ namespace ClienteAhorcado.Vistas
 
                 _mainWindow = mainWindow;
                 jugadorSesion = jugador;
+                this.proxy = proxy;
 
-                var contexto = new InstanceContext(new DummyCallback());
-                var factory = new DuplexChannelFactory<IAhorcadoService>(contexto, "AhorcadoEndpoint");
-                proxy = factory.CreateChannel();
 
                 LlenarTablaMarcadores();
 
@@ -83,16 +81,11 @@ namespace ClienteAhorcado.Vistas
                 MessageBox.Show("No se encontraron jugadores en los marcadores.", "Información", MessageBoxButton.OK, MessageBoxImage.Information);
             }
         }
-        public class DummyCallback : IAhorcadoCallback
-        {
-            public void ActualizarEstadoPartida(PartidaEstadoDTO estadoActual) { }
-            public void NotificarFinPartida(string resultado, string palabra) { }
-            public void RecibirMensajeChat(string nombreJugador, string mensaje) { }
-        }
+       
 
         private void BtnRegresar_Click(object sender, RoutedEventArgs e)
         {
-            _mainWindow.CambiarVista(new MenuPrincipalUserControl(_mainWindow, jugadorSesion));
+            _mainWindow.CambiarVista(new MenuPrincipalUserControl(_mainWindow, jugadorSesion, proxy));
         }
     }
 }

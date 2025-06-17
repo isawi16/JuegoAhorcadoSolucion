@@ -21,11 +21,11 @@ namespace ClienteAhorcado.Vistas
         private IAhorcadoService _ahorcadoService;
         private int _idPartida; // ID de la partida actual
 
-        public ChatUserControl(int idPartida)
+        public ChatUserControl(int idPartida, IAhorcadoService proxy)
         {
             InitializeComponent();
             _idPartida = idPartida;
-            _ahorcadoService = new AhorcadoService(); // O usa la instancia correspondiente del servicio
+            _ahorcadoService = proxy; // Asigna el proxy del servicio Ahorcado
             CargarMensajes();
         }
 

@@ -74,5 +74,9 @@ namespace ServidorAhorcadoService
         // --- CHAT Y COMUNICACIÓN ---
         [OperationContract]
         void EnviarMensajeChat(int idPartida, string nombreJugador, string mensaje);
+
+        // --- CALLBACK MANAGEMENT ---
+        [OperationContract]
+        void ActualizarCallback(int idJugador);
     }
 }

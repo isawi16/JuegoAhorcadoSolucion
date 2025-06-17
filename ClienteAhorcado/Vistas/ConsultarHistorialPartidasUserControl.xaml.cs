@@ -28,21 +28,17 @@ namespace ClienteAhorcado.Vistas
 
         private MainWindow _mainWindow;
         IAhorcadoService proxy;
-        JugadorDTO jugadorSesion = new JugadorDTO();
+        private JugadorDTO jugadorSesion;
 
-        List<PartidaDTO> historialPartidas = new List<PartidaDTO>();
-        public ConsultarHistorialPartidasUserControl(MainWindow mainWindow, JugadorDTO jugador)
+        private List<PartidaDTO> historialPartidas = new List<PartidaDTO>();
+        public ConsultarHistorialPartidasUserControl(MainWindow mainWindow, JugadorDTO jugador, IAhorcadoService proxy)
         {
             try
             {
                 InitializeComponent();
                 _mainWindow = mainWindow;
-
-                jugadorSesion = jugador;
-
-                var contexto = new InstanceContext(new DummyCallback());
-                var factory = new DuplexChannelFactory<IAhorcadoService>(contexto, "AhorcadoEndpoint");
-                proxy = factory.CreateChannel();
+                jugadorSesion = jugador;     
+                this.proxy = proxy;
 
                 LlenarTablaHistorialPartidas();
 
@@ -70,14 +66,9 @@ namespace ClienteAhorcado.Vistas
 
         private void BtnVolver_Click(object sender, RoutedEventArgs e)
         {
-            _mainWindow.CambiarVista(new MenuPrincipalUserControl(_mainWindow, jugadorSesion));
+            _mainWindow.CambiarVista(new MenuPrincipalUserControl(_mainWindow, jugadorSesion, proxy));
         }
 
-        public class DummyCallback : IAhorcadoCallback
-        {
-            public void ActualizarEstadoPartida(PartidaEstadoDTO estadoActual) { }
-            public void NotificarFinPartida(string resultado, string palabra) { }
-            public void RecibirMensajeChat(string nombreJugador, string mensaje) { }
-        }
+        
     }
 }

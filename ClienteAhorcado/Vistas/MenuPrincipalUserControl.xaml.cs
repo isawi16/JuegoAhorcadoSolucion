@@ -3,42 +3,27 @@ using ServidorAhorcadoService;
 using ServidorAhorcadoService.DTO;
 using ServidorAhorcadoService.Model;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.ServiceModel;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
-using static ClienteAhorcado.Vistas.RegistrarJugadorUserControl;
 using ClienteAhorcado.Utilidades;
 
 namespace ClienteAhorcado.Vistas
 {
-  
     public partial class MenuPrincipalUserControl : UserControl
     {
         private MainWindow _mainWindow;
-        IAhorcadoService proxy;
-        JugadorDTO jugadorSesion = new JugadorDTO();
+        private IAhorcadoService proxy;
+        private JugadorDTO jugadorSesion;
 
-        public MenuPrincipalUserControl(MainWindow mainWindow, JugadorDTO jugador)
+        public MenuPrincipalUserControl(MainWindow mainWindow, JugadorDTO jugador, IAhorcadoService proxy)
         {
             try
             {
                 InitializeComponent();
                 _mainWindow = mainWindow;
                 jugadorSesion = jugador;
-                var contexto = new InstanceContext(new DummyCallback());
-                var factory = new DuplexChannelFactory<IAhorcadoService>(contexto, "AhorcadoEndpoint");
-                proxy = factory.CreateChannel();
+                this.proxy = proxy;
 
                 tblNombre.Text = $"Nombre: {jugador.Nombre}";
                 tblCorreo.Text = $"Correo: {jugador.Correo}";
@@ -64,46 +49,40 @@ namespace ClienteAhorcado.Vistas
 
         private void BtnPerfil_Click(object sender, RoutedEventArgs e)
         {
-            _mainWindow.CambiarVista(new PerfilJugadorUserControl(_mainWindow, jugadorSesion));
-        }
-
-        public class DummyCallback : IAhorcadoCallback
-        {
-            public void ActualizarEstadoPartida(PartidaEstadoDTO estadoActual) { }
-            public void NotificarFinPartida(string resultado, string palabra) { }
-            public void RecibirMensajeChat(string nombreJugador, string mensaje) { }
+            _mainWindow.CambiarVista(new PerfilJugadorUserControl(_mainWindow, jugadorSesion, proxy));
         }
 
         private void BtnCrearPartida_Click(object sender, RoutedEventArgs e)
         {
             int? idiomaDefault = IdiomaHelper.ObtenerIDIdiomaDesdeSistema(proxy.ObtenerIdiomas());
-
             _mainWindow.CambiarVista(
-            new SeleccionCategoriaIdiomaUserControl(
-             _mainWindow,
-             jugadorSesion,
-             idiomaDefault)
- );
+                new SeleccionCategoriaIdiomaUserControl(
+                    _mainWindow,
+                    jugadorSesion,
+                    proxy,
+                    idiomaDefault
+                )
+            );
         }
 
         private void BtnUnirsePartida_Click(object sender, RoutedEventArgs e)
         {
-            _mainWindow.CambiarVista(new ConsultarPartidasDisponiblesUserControl(_mainWindow, jugadorSesion));
+            _mainWindow.CambiarVista(new ConsultarPartidasDisponiblesUserControl(_mainWindow, jugadorSesion, proxy));
         }
 
         private void BtnHistorialPartidas_Click(object sender, RoutedEventArgs e)
         {
-            _mainWindow.CambiarVista(new ConsultarHistorialPartidasUserControl(_mainWindow, jugadorSesion));
+            _mainWindow.CambiarVista(new ConsultarHistorialPartidasUserControl(_mainWindow, jugadorSesion, proxy));
         }
 
         private void BtnMarcadores_Click(object sender, RoutedEventArgs e)
         {
-            _mainWindow.CambiarVista(new MarcadoresUserControl(_mainWindow, jugadorSesion));
+            _mainWindow.CambiarVista(new MarcadoresUserControl(_mainWindow, jugadorSesion, proxy));
         }
 
         private void BtnCerrarSesion_Click(object sender, RoutedEventArgs e)
         {
-            _mainWindow.CambiarVista(new IniciarSesionUserControl(_mainWindow));
+            _mainWindow.CambiarVista(new IniciarSesionUserControl(_mainWindow, proxy));
         }
     }
 }

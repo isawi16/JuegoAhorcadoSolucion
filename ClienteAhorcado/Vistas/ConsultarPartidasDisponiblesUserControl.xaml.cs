@@ -15,21 +15,19 @@ namespace ClienteAhorcado.Vistas
         private MainWindow _mainWindow;
         IAhorcadoService proxy;
         JugadorDTO jugadorSesion = new JugadorDTO();
+       
 
         List<PartidaDTO> partidasDisponibles = new List<PartidaDTO>();
 
-        public ConsultarPartidasDisponiblesUserControl(MainWindow mainWindow, JugadorDTO jugador)
+        public ConsultarPartidasDisponiblesUserControl(MainWindow mainWindow, JugadorDTO jugador, IAhorcadoService proxy)
         {
             try
             {
                 InitializeComponent();
                 _mainWindow = mainWindow;
-
                 jugadorSesion = jugador;
+                this.proxy = proxy;
 
-                var contexto = new InstanceContext(new DummyCallback());
-                var factory = new DuplexChannelFactory<IAhorcadoService>(contexto, "AhorcadoEndpoint");
-                proxy = factory.CreateChannel();
 
                 LlenarTablaPartidas();
             }
@@ -37,6 +35,8 @@ namespace ClienteAhorcado.Vistas
             {
                 MessageBox.Show($"Error al conectar con el servicio: {ex.Message}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
+
+            
         }
 
         public void LlenarTablaPartidas()
@@ -72,13 +72,7 @@ namespace ClienteAhorcado.Vistas
         }
 
 
-        public class DummyCallback : IAhorcadoCallback
-        {
-            public void ActualizarEstadoPartida(PartidaEstadoDTO estadoActual) { }
-            public void NotificarFinPartida(string resultado, string palabra) { }
-            public void RecibirMensajeChat(string nombreJugador, string mensaje) { }
-        }
-
+       
         private void UnirsePartida_Click(object sender, RoutedEventArgs e)
         {
             if (dgPartidas.SelectedItem is PartidaCategoriaDTO partidaSeleccionada)
@@ -121,7 +115,7 @@ namespace ClienteAhorcado.Vistas
 
         private void CerrarButton_Click(object sender, RoutedEventArgs e)
         {
-            _mainWindow.CambiarVista(new MenuPrincipalUserControl(_mainWindow, jugadorSesion));
+            _mainWindow.CambiarVista(new MenuPrincipalUserControl(_mainWindow, jugadorSesion, proxy));
         }
     }
 }

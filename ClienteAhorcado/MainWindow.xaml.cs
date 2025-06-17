@@ -25,26 +25,13 @@ namespace ClienteAhorcado
         public MainWindow()
         {
             InitializeComponent();
-
-            MainContent.Content = new IniciarSesionUserControl(this); 
-
-
-            // Cargar la vista de login como primera pantalla
-            MainContent.Content = new IniciarSesionUserControl(this);
-        }
-
-
-
-
-        /*public MainWindow()
-        {
-            InitializeComponent();
-            var callbackInstance = new InstanceContext(new AhorcadoCallbackCliente(this));
+            var callbackInstance = new InstanceContext(new AhorcadoCallbackCliente (this));
             var factory = new DuplexChannelFactory<IAhorcadoService>(callbackInstance, "AhorcadoEndpoint");
             proxy = factory.CreateChannel();
+            MainContent.Content = new IniciarSesionUserControl(this, proxy); 
 
+        }
 
-        }*/
 
         public MainWindow(JugadorDTO jugador, PartidaDTO partida, bool creador)
         {
@@ -64,7 +51,7 @@ namespace ClienteAhorcado
 
         public void CargarPantallaJuego(JugadorDTO jugador, PalabraDTO palabra, int idPartida, bool esCreador)
         {
-            var controlJuego = new JuegoAhorcadoUserControl1(jugador, palabra, idPartida, esCreador);
+            var controlJuego = new JuegoAhorcadoUserControl1(jugador, palabra, idPartida, esCreador, proxy);
             MainContent.Content = controlJuego;
         }
 
@@ -75,7 +62,7 @@ namespace ClienteAhorcado
             {
                 if (MainContent.Content is JuegoAhorcadoUserControl1 juegoControl)
                 {
-                  //juegoControl.ActualizarEstadoPartida(estadoActual); 
+                  juegoControl.ActualizarDesdeCallback(estadoActual); 
                 }
             });
         }
@@ -115,25 +102,7 @@ namespace ClienteAhorcado
 }
 
 
-/*IAhorcadoService proxy;
-JugadorDTO usuarioActual;
-int idPartidaActual;
-
-public MainWindow()
-{
-    try
-    {
-        InitializeComponent();
-        var contexto = new InstanceContext(this);
-        var factory = new DuplexChannelFactory<IAhorcadoService>(contexto, "AhorcadoEndpoint");
-        proxy = factory.CreateChannel();
-    }
-    catch (Exception ex)
-    {
-        MessageBox.Show($"Error al conectar con el servicio: {ex.Message}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
-    }
-
-}
+/*
 
 private void btnLogin_Click(object sender, RoutedEventArgs e)
 {

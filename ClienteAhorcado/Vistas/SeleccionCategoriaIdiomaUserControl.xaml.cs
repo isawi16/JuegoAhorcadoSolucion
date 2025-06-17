@@ -20,23 +20,32 @@ namespace ClienteAhorcado.Vistas
         private PalabraDTO palabraSeleccionada;
         private string idiomaSeleccionadoCodigo = "";
         private int? _indexPorDefecto = null;
+        private JugadorDTO jugadorSesion;
+        private int? idiomaDefault;
 
         public SeleccionCategoriaIdiomaUserControl(MainWindow mainWindow,
                                            JugadorDTO jugadorCreador,
+                                           IAhorcadoService proxy,
                                            int? idiomaPorDefecto = null)
         {
             InitializeComponent();
 
             _mainwindow = mainWindow;
             this.jugadorCreador = jugadorCreador;
-
-            var contexto = new InstanceContext(new DummyCallback());
-            var factory = new DuplexChannelFactory<IAhorcadoService>(contexto, "AhorcadoEndpoint");
-            proxy = factory.CreateChannel();
+            this.proxy = proxy;
+            this.idiomaDefault = idiomaPorDefecto;
 
             Loaded += (s, e) => CargarIdiomas(idiomaPorDefecto);
         }
 
+       /* public SeleccionCategoriaIdiomaUserControl(MainWindow mainWindow, JugadorDTO jugadorSesion, int? idiomaDefault, IAhorcadoService proxy)
+        {
+            _mainwindow = mainWindow;
+            this.jugadorSesion = jugadorSesion;
+            this.idiomaDefault = idiomaDefault;
+            this.proxy = proxy;
+        }
+       */
         #region Carga inicial
 
         private void ReiniciarInterfaz()
@@ -75,13 +84,7 @@ namespace ClienteAhorcado.Vistas
             }
         }
 
-        public class DummyCallback : IAhorcadoCallback
-        {
-            public void ActualizarEstadoPartida(PartidaEstadoDTO estadoActual) { }
-            public void NotificarFinPartida(string resultado, string palabra) { }
-            public void RecibirMensajeChat(string nombreJugador, string mensaje) { }
-        }
-
+        
         private void CargarIdiomas(int? idiomaPorDefecto)
         {
             var idiomas = proxy.ObtenerIdiomas();
