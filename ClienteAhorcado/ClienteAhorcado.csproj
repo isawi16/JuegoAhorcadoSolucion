@@ -259,5 +259,14 @@
   <ItemGroup>
     <Resource Include="Images\cerrarSesion.png" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\pinzarron.jpeg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\logo ahorcado.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\salon.jpg" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
