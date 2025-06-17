@@ -75,11 +75,10 @@ namespace ClienteAhorcado
             {
                 if (MainContent.Content is JuegoAhorcadoUserControl1 juegoControl)
                 {
-                    juegoControl.ActualizarEstadoDesdeCallback(estadoActual);
+                  //juegoControl.ActualizarEstadoPartida(estadoActual); 
                 }
             });
         }
-    
 
 
         public void RecibirMensajeChat(string nombreJugador, string mensaje)
@@ -88,7 +87,7 @@ namespace ClienteAhorcado
             {
                 if (MainContent.Content is JuegoAhorcadoUserControl1 juegoControl)
                 {
-                    juegoControl.MostrarMensajeChat(mensaje);
+             //     juegoControl.MostrarMensajeChat(mensaje);
                 }
             });
         }
@@ -107,7 +106,7 @@ namespace ClienteAhorcado
             {
                 if (MainContent.Content is JuegoAhorcadoUserControl1 juegoControl)
                 {
-                    juegoControl.MostrarMensajeChat(mensaje);
+               //   juegoControl.MostrarMensajeChat(mensaje);
                 }
             });
         }
