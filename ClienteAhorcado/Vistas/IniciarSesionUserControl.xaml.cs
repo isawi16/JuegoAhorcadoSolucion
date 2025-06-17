@@ -1,12 +1,11 @@
 ﻿using ClienteAhorcado.Utilidades;
-using ClienteAhorcado;
-using ServidorAhorcadoService;
-using ServidorAhorcadoService.DTO;
+using BibliotecaClasesNetFramework.DTO;
 using System;
 using System.Linq;
 using System.ServiceModel;
 using System.Windows;
 using System.Windows.Controls;
+using BibliotecaClasesNetFramework.Contratos;
 
 namespace ClienteAhorcado.Vistas
 {
@@ -46,21 +45,8 @@ namespace ClienteAhorcado.Vistas
 
                 pass = RegistrarJugadorUserControl.EncriptarContraseña(pass.Trim());
 
-                usuarioActual = proxy.IniciarSesion(correo, pass);
-
-                if (usuarioActual != null)
+                try
                 {
-                    usuarioActual = proxy.IniciarSesion(correo, pass);
-
-                    if (usuarioActual != null)
-                    {
-                        MessageBox.Show($"Bienvenido, {usuarioActual.Nombre}");
-                        MostrarMenuPrincipal(usuarioActual);
-                    }
-                    else
-                    {
-                        MessageBox.Show("Usuario o contraseña incorrectos.");
-                    }
                     usuarioActual = proxy.IniciarSesion(correo, pass);
 
                     if (usuarioActual != null)
@@ -73,9 +59,9 @@ namespace ClienteAhorcado.Vistas
                         MessageBox.Show("Usuario o contraseña incorrectos.");
                     }
                 }
-                else
+                catch (Exception ex)
                 {
-                    MessageBox.Show("Usuario o contraseña incorrectos.");
+                    MessageBox.Show($"Error al iniciar sesión: {ex.Message}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                 }
             }
         }
@@ -137,18 +123,5 @@ namespace ClienteAhorcado.Vistas
                 pbPassword.Password = tbPasswordVisible.Text;
         }
 
-        // Métodos de callback WCF
-        public void ActualizarEstadoPartida(PartidaEstadoDTO estadoActual)
-        {
-            MessageBox.Show("Entrando a callback ActualizarEstadoPartida");
-        }
-        public void NotificarFinPartida(string resultado, string palabra)
-        {
-            MessageBox.Show("Entrando a callback NotificarFinPartida");
-        }
-        public void RecibirMensajeChat(string nombreJugador, string mensaje)
-        {
-            MessageBox.Show("Entrando a callback RecibirMensajeChat");
-        }
     }
 }

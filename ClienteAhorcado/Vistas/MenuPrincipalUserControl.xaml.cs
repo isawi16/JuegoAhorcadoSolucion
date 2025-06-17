@@ -1,12 +1,10 @@
-﻿using ClienteAhorcado;
-using ServidorAhorcadoService;
-using ServidorAhorcadoService.DTO;
-using ServidorAhorcadoService.Model;
+﻿using BibliotecaClasesNetFramework.DTO;
 using System;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media.Imaging;
 using ClienteAhorcado.Utilidades;
+using BibliotecaClasesNetFramework.Contratos;
 
 namespace ClienteAhorcado.Vistas
 {

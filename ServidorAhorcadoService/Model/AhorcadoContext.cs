@@ -1,4 +1,5 @@
-﻿using ServidorAhorcadoService.DTO;
+﻿using BibliotecaClasesNetFramework.Contratos;
+using BibliotecaClasesNetFramework.DTO;
 using ServidorAhorcadoService.Model;
 using System.Collections.Generic;
 using System.Data.Entity;

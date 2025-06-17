@@ -1,6 +1,6 @@
 ﻿using ClienteAhorcado;
-using ServidorAhorcadoService;
-using ServidorAhorcadoService.DTO;
+using BibliotecaClasesNetFramework.Contratos;
+using BibliotecaClasesNetFramework.DTO;
 using System;
 using System.Collections.Generic;
 using System.Linq;

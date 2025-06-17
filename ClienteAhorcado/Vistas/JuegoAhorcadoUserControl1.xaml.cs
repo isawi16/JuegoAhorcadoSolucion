@@ -1,15 +1,11 @@
-﻿using ClienteAhorcado;
-using ServidorAhorcadoService;
-using ServidorAhorcadoService.DTO;
-using ServidorAhorcadoService.Model;
+﻿using BibliotecaClasesNetFramework.Contratos;
+using BibliotecaClasesNetFramework.DTO;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media.Imaging;
-using System.ServiceModel;
-
 
 namespace ClienteAhorcado.Vistas
 {
@@ -22,21 +18,20 @@ namespace ClienteAhorcado.Vistas
         private MainWindow mainWindow;
         private JugadorDTO jugador;
         private IAhorcadoService proxy;
-        private int idPartida; // Declara si no lo tienes
+        private int idPartida;
         private PalabraDTO palabra;
 
         public JuegoAhorcadoUserControl1(JugadorDTO jugador, PalabraDTO palabra, int idPartida, bool esCreador, IAhorcadoService proxy)
         {
             InitializeComponent();
-            this.proxy = proxy; // Obtiene el proxy del MainWindow
+            this.proxy = proxy;
             this.jugador = jugador;
             this.palabraSecreta = palabra.Texto.ToUpper();
             this.intentosRestantes = 6;
             this.esCreador = esCreador;
-
+            this.palabra = palabra;
+            this.idPartida = idPartida;
             this.mainWindow = Application.Current.Windows.OfType<MainWindow>().FirstOrDefault();
-       
-
 
             InicializarPalabra();
             GenerarBotonesLetras();
@@ -181,7 +176,7 @@ namespace ClienteAhorcado.Vistas
             txtLetrasUsadas.Text = string.Join(", ", letrasUsadas);
             txtIntentosRestantes.Text = intentosRestantes.ToString();
 
-            // Refresca la palabra parcial
+            // Refresca la palabra parcial (con guiones)
             for (int i = 0; i < estado.PalabraConGuiones.Length && i < stackPalabra.Children.Count; i++)
             {
                 if (stackPalabra.Children[i] is TextBlock tb)
@@ -190,28 +185,24 @@ namespace ClienteAhorcado.Vistas
                 }
             }
 
-            MessageBox.Show($"Callback recibido. Intentos: {estado.IntentosRestantes}, Palabra: {estado.PalabraConGuiones}");
-
-
-            // Refresca la imagen
+            // Actualiza imagen ahorcado
             ActualizarImagenAhorcado();
 
-            // Si eres creador: siempre deshabilita los botones
+            // Deshabilita controles si eres creador
             if (esCreador)
             {
-                wrapLetras.IsEnabled = false;
                 foreach (Button btn in wrapLetras.Children)
                     btn.IsEnabled = false;
-
             }
             else
             {
-                // Si eres retador: solo bloquea las letras ya usadas
-                wrapLetras.IsEnabled = true;
+                // Solo habilita letras no usadas y si la partida sigue
                 foreach (Button btn in wrapLetras.Children)
                 {
                     if (btn.Content is string letra && letrasUsadas.Contains(letra[0]))
                         btn.IsEnabled = false;
+                    else
+                        btn.IsEnabled = intentosRestantes > 0 && estado.PalabraConGuiones.Contains('_');
                 }
             }
 

@@ -74,17 +74,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AhorcadoService.cs" />
-    <Compile Include="DTO\CategoriaDTO.cs" />
-    <Compile Include="DTO\EstadoDTO.cs" />
-    <Compile Include="DTO\HistorialPuntajeDTO.cs" />
-    <Compile Include="DTO\IdiomaDTO.cs" />
-    <Compile Include="DTO\JugadorDTO.cs" />
-    <Compile Include="DTO\PalabraDTO.cs" />
-    <Compile Include="DTO\PartidaCategoriaDTO.cs" />
-    <Compile Include="DTO\PartidaDTO.cs" />
-    <Compile Include="DTO\PartidaEstadoDTO.cs" />
-    <Compile Include="IAhorcadoCallback.cs" />
-    <Compile Include="IAhorcadoService.cs" />
     <Compile Include="IService1.cs" />
     <Compile Include="JuegoAhorcadoDataSet.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -124,6 +113,12 @@
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\LibreríadeClasesServicios\BibliotecaClasesNetFramework\BibliotecaClasesNetFramework\BibliotecaClasesNetFramework.csproj">
+      <Project>{74c67d35-d803-4880-8569-e2fb3ff80372}</Project>
+      <Name>BibliotecaClasesNetFramework</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>

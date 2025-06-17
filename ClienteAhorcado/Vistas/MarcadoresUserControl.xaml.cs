@@ -1,7 +1,6 @@
 ﻿using ClienteAhorcado;
-using ServidorAhorcadoService;
-using ServidorAhorcadoService.DTO;
-using ServidorAhorcadoService.Model;
+using BibliotecaClasesNetFramework.Contratos;
+using BibliotecaClasesNetFramework.DTO;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;

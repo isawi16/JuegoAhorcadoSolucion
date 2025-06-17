@@ -1,20 +1,20 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.Concurrent;
 using System.Linq;
 using System.ServiceModel;
-using ServidorAhorcadoService.DTO;
+using BibliotecaClasesNetFramework.Contratos;
+using BibliotecaClasesNetFramework.DTO;
 using ServidorAhorcadoService.Model;
-using System.Security.Cryptography;
-using System.Text;
 using System.IO;
-using System.Linq.Expressions;
+
 
 namespace ServidorAhorcadoService
 {
     [ServiceBehavior(InstanceContextMode = InstanceContextMode.Single)]
     public class AhorcadoService : IAhorcadoService
     {
-        private readonly Dictionary<int, IAhorcadoCallback> clientesConectados = new Dictionary<int, IAhorcadoCallback>();
+        private static readonly ConcurrentDictionary<int, IAhorcadoCallback> clientesConectados = new ConcurrentDictionary<int, IAhorcadoCallback>();
 
         // --- AUTENTICACIÓN Y USUARIO ---
 
@@ -46,7 +46,8 @@ namespace ServidorAhorcadoService
             catch (Exception ex)
             {
                 Console.WriteLine($"Error al iniciar sesión: {ex.Message}");
-                return null;
+                //return null;
+                throw;
             }
             
         }
@@ -202,13 +203,15 @@ namespace ServidorAhorcadoService
             using (var db = new AhorcadoContext())
             {
                 return db.Idiomas
-                         .Select(i => new IdiomaDTO
-                         {
-                             CodigoIdioma = i.CodigoIdioma,
-                             Nombre = i.Nombre
-                         }).ToList();
+                    .Select(i => new IdiomaDTO
+                    {
+                        CodigoIdioma = i.CodigoIdioma,
+                        Nombre = i.Nombre
+                    })
+                    .ToList();
             }
         }
+
 
         public List<PalabraDTO> ObtenerPalabrasPorIdiomaYCategoria(int codigoIdioma, int idCategoria)
         {
@@ -344,7 +347,7 @@ namespace ServidorAhorcadoService
 
         public bool EnviarLetra(int idPartida, int idJugador, char letra)
         {
-            Console.WriteLine($"HOLA");
+            Console.WriteLine($"Entrando al método EnviarLetra");
 
             using (var db = new AhorcadoContext())
             {
@@ -372,20 +375,7 @@ namespace ServidorAhorcadoService
                 if (!palabra.PalabraTexto.ToLower().Contains(letraStr))
                     partida.IntentosRestantes--;
 
-                Console.WriteLine($"Actualizando estado para: Creador={partida.IDJugadorCreador}, Retador={partida.IDJugadorRetador}");
-                Console.WriteLine($"Callbacks registrados: {string.Join(", ", clientesConectados.Keys)}");
-
-                if (partida.IntentosRestantes <= 0)
-                {
-                    partida.IDEstado = 4;
-                    partida.Ganador = partida.IDJugadorCreador == idJugador ? partida.IDJugadorRetador : partida.IDJugadorCreador;
-                }
-                else if (TodasLetrasAdivinadas(palabra.PalabraTexto, letrasUsadas))
-                {
-                    partida.IDEstado = 5;
-                    partida.Ganador = idJugador;
-                }
-
+                // <--- AQUI VA TU NUEVO BLOQUE
                 var estadoDTO = new PartidaEstadoDTO
                 {
                     PalabraConGuiones = GenerarPalabraConGuiones(palabra.PalabraTexto, letrasUsadas),
@@ -393,24 +383,31 @@ namespace ServidorAhorcadoService
                     LetrasUsadas = letrasUsadas.Select(s => s[0]).ToList(),
                     TurnoActual = db.Jugadores.Find(partida.IDJugadorRetador)?.Nombre
                 };
+                // <--- FIN DEL BLOQUE
 
-                if (clientesConectados.TryGetValue(partida.IDJugadorCreador, out var callbackCreador))
-                {
-                    Console.WriteLine("Llamando callback de creador...");
-                    callbackCreador.ActualizarEstadoPartida(estadoDTO);
-                }
-
-                if (partida.IDJugadorRetador != null &&
-                    clientesConectados.TryGetValue(partida.IDJugadorRetador.Value, out var callbackRetador))
-                {
-                    Console.WriteLine("Llamando callback de creador...");
-                    callbackRetador.ActualizarEstadoPartida(estadoDTO);
-                }
+                NotificarEstadoPartida(partida.IDJugadorCreador, partida.IDJugadorRetador, estadoDTO);
 
                 Console.WriteLine($"Actualizando estado para: Creador={partida.IDJugadorCreador}, Retador={partida.IDJugadorRetador}");
                 Console.WriteLine($"Callbacks registrados: {string.Join(", ", clientesConectados.Keys)}");
 
-                db.SaveChanges();
+                if (partida.IntentosRestantes <= 0)
+                {
+                    partida.IDEstado = 4;
+                    partida.Ganador = partida.IDJugadorCreador == idJugador ? partida.IDJugadorRetador : partida.IDJugadorCreador;
+                    db.SaveChanges();
+                    NotificarFinPartida(partida.IDJugadorCreador, partida.IDJugadorRetador, "¡Juego terminado!", palabra.PalabraTexto);
+                }
+                else if (TodasLetrasAdivinadas(palabra.PalabraTexto, letrasUsadas))
+                {
+                    partida.IDEstado = 5;
+                    partida.Ganador = idJugador;
+                    db.SaveChanges();
+                    NotificarFinPartida(partida.IDJugadorCreador, partida.IDJugadorRetador, "¡Juego terminado!", palabra.PalabraTexto);
+                }
+                else
+                {
+                    db.SaveChanges();
+                }
                 return true;
             }
         }
@@ -432,13 +429,63 @@ namespace ServidorAhorcadoService
             }
         }
 
-        public void EnviarMensajeChat(int idPartida, string nombreJugador, string mensaje)
+        private void NotificarEstadoPartida(int idCreador, int? idRetador, PartidaEstadoDTO estado)
+        {
+            if (clientesConectados.TryGetValue(idCreador, out var callbackCreador))
+            {
+                try { 
+                    callbackCreador.ActualizarEstadoPartida(estado); 
+                } 
+                catch {
+                    clientesConectados.TryRemove(idCreador, out _);
+                }
+            }
+
+            if (idRetador != null && clientesConectados.TryGetValue(idRetador.Value, out var callbackRetador))
+            {
+                try
+                {
+                    callbackRetador.ActualizarEstadoPartida(estado);
+                }
+                catch
+                {
+                    clientesConectados.TryRemove(idRetador.Value, out _);
+                }
+            }
+        }
+
+        private void NotificarFinPartida(int idCreador, int? idRetador, string resultado, string palabra)
+        {
+            if (clientesConectados.TryGetValue(idCreador, out var callbackCreador))
+            {
+                try { 
+                    callbackCreador.NotificarFinPartida(resultado, palabra); 
+                } 
+                catch {
+                    clientesConectados.TryRemove(idCreador, out _);
+                }
+            }
+
+            if (idRetador != null && clientesConectados.TryGetValue(idRetador.Value, out var callbackRetador))
+            {
+                try { 
+                    callbackRetador.NotificarFinPartida(resultado, palabra); 
+                } 
+                catch {
+                    clientesConectados.TryRemove(idRetador.Value, out _);
+                }
+            }
+        }
+
+
+
+      /*  public void EnviarMensajeChat(int idPartida, string nombreJugador, string mensaje)
         {
             foreach (var callback in clientesConectados.Values)
             {
                 callback.RecibirMensajeChat(nombreJugador, mensaje);
             }
-        }
+        }*/
 
         private bool TodasLetrasAdivinadas(string palabra, List<string> letrasUsadas)
         {
@@ -463,5 +510,7 @@ namespace ServidorAhorcadoService
                 Console.WriteLine($"No callback found for player with ID: {idJugador}");
             }
         }
+
+        public string Ping() => "pong";
     }
 }

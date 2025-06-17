@@ -1,5 +1,5 @@
-﻿using ServidorAhorcadoService;
-using ServidorAhorcadoService.DTO;
+﻿using BibliotecaClasesNetFramework.Contratos;
+using BibliotecaClasesNetFramework.DTO;
 using System.ServiceModel;
 using System.Windows;
 using System.Windows.Controls;
