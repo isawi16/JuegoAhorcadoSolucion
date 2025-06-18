@@ -3,6 +3,7 @@ using BibliotecaClasesNetFramework.DTO;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media.Imaging;
@@ -94,7 +95,7 @@ namespace ClienteAhorcado.Vistas
             }
         }
 
-        private void BtnLetra_Click(object sender, RoutedEventArgs e)
+        private async void BtnLetra_Click(object sender, RoutedEventArgs e)
         {
             if (!(sender is Button btn)) return;
             btn.IsEnabled = false;
@@ -102,14 +103,13 @@ namespace ClienteAhorcado.Vistas
             char letra = btn.Content.ToString()[0];
             try
             {
-                proxy.EnviarLetra(idPartida, jugador.IDJugador, letra);
-                // ¡NO actualices aquí letrasUsadas, palabra, intentos, ni verifiques victoria!
+                await Task.Run(() => proxy.EnviarLetra(idPartida, jugador.IDJugador, letra));
+                // Espera el callback para actualizar la UI.
             }
             catch (Exception ex)
             {
                 MessageBox.Show("Error al llamar EnviarLetra: " + ex.Message);
             }
-            // Nada más. Espera el callback para actualizar la UI.
         }
 
 
