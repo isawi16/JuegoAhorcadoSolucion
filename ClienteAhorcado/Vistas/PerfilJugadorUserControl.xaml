@@ -20,7 +20,7 @@
 
             <!-- Encabezado -->
             <StackPanel Grid.Row="0" Grid.ColumnSpan="2" Margin="0,10,0,20" HorizontalAlignment="Center" Width="639" Orientation="Horizontal">
-                <TextBlock Text="Perfil de usuario" FontSize="24" FontWeight="Bold" Foreground="#2C3E50" TextAlignment="Center"/>
+                <TextBlock x:Name="tblockTitulo" Text="Perfil de usuario" FontSize="24" FontWeight="Bold" Foreground="#2C3E50" TextAlignment="Center"/>
                 <Border HorizontalAlignment="Right">
                     <Button x:Name="btnModificarPerfil" Content="Modificar Perfil" HorizontalAlignment="Left" Margin="276,0,0,0" VerticalAlignment="Center" Height="25" Width="120" Style="{StaticResource EstiloBotonPrincipalSinIcono}" Click="BtnModificarPerfil_Click"/>
                 </Border>
@@ -61,7 +61,7 @@
             <!-- Botones -->
             <StackPanel Grid.Row="2" Grid.ColumnSpan="2" Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,20,0,10">
                 <Button x:Name="btnGuardar" Content="Guardar" Width="151" Margin="10,0" Style="{StaticResource EstiloBotonPrincipalSinIcono}" Click="BtnGuardar_Click"/>
-                <Button Content="Regresar" Width="151" Margin="10,0" Style="{StaticResource EstiloBotonSecundarioSinIcono}" Click="BtnRegresar_Click"/>
+                <Button x:Name="btnRegresar" Content="Regresar" Width="151" Margin="10,0" Style="{StaticResource EstiloBotonSecundarioSinIcono}" Click="BtnRegresar_Click"/>
             </StackPanel>
         </Grid>
     </Border>
