@@ -103,39 +103,15 @@ namespace ClienteAhorcado.Vistas
             try
             {
                 proxy.EnviarLetra(idPartida, jugador.IDJugador, letra);
+                // ¡NO actualices aquí letrasUsadas, palabra, intentos, ni verifiques victoria!
             }
             catch (Exception ex)
             {
                 MessageBox.Show("Error al llamar EnviarLetra: " + ex.Message);
             }
-
-
-            letrasUsadas.Add(letra);
-
-            bool acierto = false;
-            for (int i = 0; i < palabraSecreta.Length; i++)
-            {
-                if (palabraSecreta[i] == letra)
-                {
-                    acierto = true;
-                    if (stackPalabra.Children[i] is TextBlock tb)
-                        tb.Text = letra.ToString();
-                }
-            }
-
-            if (!acierto)
-            {
-                intentosRestantes--;
-                ActualizarImagenAhorcado();
-            }
-
-            ActualizarEstado();
-
-            if (VerificarVictoria())
-                FinDeJuego(true);
-            else if (intentosRestantes <= 0)
-                FinDeJuego(false);
+            // Nada más. Espera el callback para actualizar la UI.
         }
+
 
         private void ActualizarEstado()
         {

@@ -39,10 +39,7 @@ namespace ClienteAhorcado
 
         private void InicializarProxy()
         {
-            // Puedes usar MainWindow como callback, o tu propia clase, como prefieras:
-            // var callbackInstance = new InstanceContext(this);
             var callbackInstance = new InstanceContext(new AhorcadoCallbackCliente(this)); // Si usas tu propia clase de callback
-
             factory = new DuplexChannelFactory<IAhorcadoService>(callbackInstance, "AhorcadoServiceEndpoint");
             proxy = factory.CreateChannel();
         }
@@ -102,7 +99,6 @@ namespace ClienteAhorcado
         // Si tienes métodos opcionales del callback, puedes implementarlos aquí...
         // public void JugadorSeUnio(string nombreJugador) { }
         // public void JugadorAbandono(string nombreJugador) { }
-        // public void CambiarTurno(string nombreJugadorActual) { }
         // public void ActualizarCantidadJugadores(int cantidadConectados) { }
 
         // --- Puedes agregar métodos extra y lógica aquí según lo que necesites ---

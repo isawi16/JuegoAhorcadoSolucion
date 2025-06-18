@@ -338,7 +338,7 @@ namespace ServidorAhorcadoService
                 var partida = db.Partidas.Find(idPartida);
                 if (partida == null) return false;
 
-                partida.IDEstado = 3;
+                partida.IDEstado = 4;
                 partida.IDCancelador = idJugador;
                 db.SaveChanges();
                 return true;
@@ -352,7 +352,7 @@ namespace ServidorAhorcadoService
             using (var db = new AhorcadoContext())
             {
                 var partida = db.Partidas.FirstOrDefault(p => p.IDPartida == idPartida);
-                if (partida == null || partida.IDEstado != 2)
+                if (partida == null || partida.IDEstado != 3)
                     return false;
 
                 string letraStr = letra.ToString().ToLower();
@@ -375,32 +375,34 @@ namespace ServidorAhorcadoService
                 if (!palabra.PalabraTexto.ToLower().Contains(letraStr))
                     partida.IntentosRestantes--;
 
-                // <--- AQUI VA TU NUEVO BLOQUE
+               
                 var estadoDTO = new PartidaEstadoDTO
                 {
                     PalabraConGuiones = GenerarPalabraConGuiones(palabra.PalabraTexto, letrasUsadas),
                     IntentosRestantes = partida.IntentosRestantes,
                     LetrasUsadas = letrasUsadas.Select(s => s[0]).ToList(),
-                    TurnoActual = db.Jugadores.Find(partida.IDJugadorRetador)?.Nombre
+                    
                 };
-                // <--- FIN DEL BLOQUE
 
+                Console.WriteLine("Antes de NotificarEstadoPartida");
                 NotificarEstadoPartida(partida.IDJugadorCreador, partida.IDJugadorRetador, estadoDTO);
 
+                Console.WriteLine("después de NotificarEstadoPartida");
                 Console.WriteLine($"Actualizando estado para: Creador={partida.IDJugadorCreador}, Retador={partida.IDJugadorRetador}");
                 Console.WriteLine($"Callbacks registrados: {string.Join(", ", clientesConectados.Keys)}");
 
-                if (partida.IntentosRestantes <= 0)
+                if (TodasLetrasAdivinadas(palabra.PalabraTexto, letrasUsadas))
                 {
+                    Console.WriteLine("Fin del método");
                     partida.IDEstado = 4;
-                    partida.Ganador = partida.IDJugadorCreador == idJugador ? partida.IDJugadorRetador : partida.IDJugadorCreador;
+                    partida.Ganador = idJugador;
                     db.SaveChanges();
                     NotificarFinPartida(partida.IDJugadorCreador, partida.IDJugadorRetador, "¡Juego terminado!", palabra.PalabraTexto);
-                }
-                else if (TodasLetrasAdivinadas(palabra.PalabraTexto, letrasUsadas))
+                } else if (partida.IntentosRestantes <= 0)
                 {
-                    partida.IDEstado = 5;
-                    partida.Ganador = idJugador;
+                    Console.WriteLine("Fin del método");
+                    partida.IDEstado = 4;
+                    partida.Ganador = partida.IDJugadorCreador == idJugador ? partida.IDJugadorRetador : partida.IDJugadorCreador;
                     db.SaveChanges();
                     NotificarFinPartida(partida.IDJugadorCreador, partida.IDJugadorRetador, "¡Juego terminado!", palabra.PalabraTexto);
                 }
@@ -419,12 +421,18 @@ namespace ServidorAhorcadoService
                 var partida = db.Partidas.FirstOrDefault(p => p.IDPartida == idPartida);
                 if (partida == null) return null;
 
+                var palabra = db.Palabras.FirstOrDefault(p => p.IDPalabra == partida.IDPalabra);
+                var letrasUsadas = (partida.LetrasUsadas ?? "")
+                    .Split(',')
+                    .Where(s => !string.IsNullOrWhiteSpace(s))
+                    .ToList();
+
                 return new PartidaEstadoDTO
                 {
-                    PalabraConGuiones = "____",
-                    IntentosRestantes = 6,
-                    LetrasUsadas = new List<char>(),
-                    TurnoActual = partida.IDJugadorRetador != null ? db.Jugadores.Find(partida.IDJugadorRetador)?.Nombre : "Esperando"
+                    PalabraConGuiones = GenerarPalabraConGuiones(palabra.PalabraTexto, letrasUsadas),
+                    IntentosRestantes = partida.IntentosRestantes,
+                    LetrasUsadas = letrasUsadas.Select(s => s[0]).ToList(),
+                    
                 };
             }
         }
@@ -436,7 +444,8 @@ namespace ServidorAhorcadoService
                 try { 
                     callbackCreador.ActualizarEstadoPartida(estado); 
                 } 
-                catch {
+                catch (Exception ex) {
+                    Console.WriteLine($"Error al notificar estado a creador {idCreador}: {ex.Message}");
                     clientesConectados.TryRemove(idCreador, out _);
                 }
             }
@@ -447,8 +456,9 @@ namespace ServidorAhorcadoService
                 {
                     callbackRetador.ActualizarEstadoPartida(estado);
                 }
-                catch
+                catch (Exception ex)
                 {
+                    Console.WriteLine($"Error al notificar estado a retador {idRetador}: {ex.Message}");
                     clientesConectados.TryRemove(idRetador.Value, out _);
                 }
             }

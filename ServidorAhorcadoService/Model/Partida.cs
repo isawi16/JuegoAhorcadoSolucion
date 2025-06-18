@@ -29,7 +29,6 @@ namespace ServidorAhorcadoService.Model
         [StringLength(200)]
         public string LetrasUsadas { get; set; }
 
-        [NotMapped]
         public int IntentosRestantes { get; set; }
 
         // Navigation properties
