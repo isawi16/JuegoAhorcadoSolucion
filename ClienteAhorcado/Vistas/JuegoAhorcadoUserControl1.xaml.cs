@@ -175,10 +175,13 @@ namespace ClienteAhorcado.Vistas
                 // Solo habilita letras no usadas y si la partida sigue
                 foreach (Button btn in wrapLetras.Children)
                 {
-                    if (btn.Content is string letra && letrasUsadas.Contains(letra[0]))
-                        btn.IsEnabled = false;
-                    else
-                        btn.IsEnabled = intentosRestantes > 0 && estado.PalabraConGuiones.Contains('_');
+                    if (btn.Content is string letra)
+                    {
+                        // Comparación case-insensitive
+                        char letraBtn = letra.ToUpper()[0];
+                        bool usada = letrasUsadas.Any(l => char.ToUpper(l) == letraBtn);
+                        btn.IsEnabled = !usada && intentosRestantes > 0 && estado.PalabraConGuiones.Contains('_');
+                    }
                 }
             }
 
