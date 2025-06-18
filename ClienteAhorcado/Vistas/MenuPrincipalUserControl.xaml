@@ -14,16 +14,16 @@
             <Button HorizontalAlignment="Left" Margin="35,29,0,0" VerticalAlignment="Top" Height="60" Width="60" Click="BtnPerfil_Click">
                 <Image x:Name="imagenPerfil" Stretch="Uniform" />
             </Button>
-            <Button Content="Iniciar Partida" HorizontalAlignment="Left" Margin="190,226,0,0" VerticalAlignment="Top" Height="50" Width="150"  Click="BtnCrearPartida_Click" Style="{StaticResource EstiloBotonPrincipalSinIcono}"/>
-            <Button Content="Unirse a partida" HorizontalAlignment="Left" Margin="527,226,0,0" VerticalAlignment="Top" Height="50" Width="150" Click="BtnUnirsePartida_Click" Style="{StaticResource EstiloBotonPrincipalSinIcono}"/>
-            <Button Content="Marcadores" HorizontalAlignment="Center" Margin="0,348,0,0" VerticalAlignment="Top" Height="29" Width="130" Click="BtnMarcadores_Click" Style="{StaticResource EstiloBotonSecundarioSinIcono}"/>
-            <Button Content="Historial de partidas" HorizontalAlignment="Left" Margin="663,38,0,0" VerticalAlignment="Top" Height="33" Width="140" Click="BtnHistorialPartidas_Click" Style="{StaticResource EstiloBotonSecundarioSinIcono}"/>
+            <Button x:Name="btnCrearPartida" Content="Crear Partida" HorizontalAlignment="Left" Margin="190,226,0,0" VerticalAlignment="Top" Height="50" Width="150"  Click="BtnCrearPartida_Click" Style="{StaticResource EstiloBotonPrincipalSinIcono}"/>
+            <Button x:Name="btnUnirsePartida" Content="Unirse a partida" HorizontalAlignment="Left" Margin="527,226,0,0" VerticalAlignment="Top" Height="50" Width="150" Click="BtnUnirsePartida_Click" Style="{StaticResource EstiloBotonPrincipalSinIcono}"/>
+            <Button x:Name="btnMarcadores" Content="Marcadores" HorizontalAlignment="Center" Margin="0,348,0,0" VerticalAlignment="Top" Height="29" Width="130" Click="BtnMarcadores_Click" Style="{StaticResource EstiloBotonSecundarioSinIcono}"/>
+            <Button x:Name="btnHistorialPartidas" Content="Historial de partidas" HorizontalAlignment="Left" Margin="663,38,0,0" VerticalAlignment="Top" Height="33" Width="140" Click="BtnHistorialPartidas_Click" Style="{StaticResource EstiloBotonSecundarioSinIcono}"/>
             <TextBlock x:Name="tblNombre" HorizontalAlignment="Left" Margin="116,31,0,0" TextWrapping="Wrap" Text="nombre" VerticalAlignment="Top" FontSize="18" />
             <TextBlock x:Name="tblCorreo" HorizontalAlignment="Left" Margin="116,65,0,0" TextWrapping="Wrap" Text="correo" VerticalAlignment="Top" FontSize="18"/>
-            <TextBlock HorizontalAlignment="Center" Margin="0,109,0,0" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="55" Height="79" Width="252" FontWeight="Bold" Foreground="White"><Run Language="es-mx" Text="Ahorcado"/></TextBlock>
-            <TextBlock HorizontalAlignment="Left" Margin="190,77,0,0" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="30" Width="235"><Run Language="es-mx" Text="¡Vamos a jugar!" Foreground="White"/></TextBlock>
+            <TextBlock x:Name="tblockTituloParte2" HorizontalAlignment="Center" Margin="0,109,0,0" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="55" Height="79" Width="252" FontWeight="Bold" Foreground="White"><Run Language="es-mx" Text="Ahorcado"/></TextBlock>
+            <TextBlock x:Name="tblockTituloParte1" HorizontalAlignment="Left" Margin="190,77,0,0" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="30" Width="235"><Run Language="es-mx" Text="¡Vamos a jugar!" Foreground="White"/></TextBlock>
             <Image Source="/Images/logo ahorcado.png" Stretch="UniformToFill" Margin="375,193,375,182"/>
-            <TextBlock HorizontalAlignment="Left" Margin="507,168,0,0" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="30"><Run Language="es-mx" Text="¿Adivinas?" Foreground="White" /></TextBlock>
+            <TextBlock x:Name="tblockTituloParte3" HorizontalAlignment="Left" Margin="507,168,0,0" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="30"><Run Language="es-mx" Text="¿Adivinas?" Foreground="White" /></TextBlock>
             <Button HorizontalAlignment="Left" Margin="35,386,0,0" VerticalAlignment="Top" Height="50" Width="50" Click="BtnCerrarSesion_Click" Background="Transparent" BorderThickness="0">
                 <Image x:Name="cerrarSesion" Stretch="Uniform" Source="/Images/cerrarSesion.png"/>
             </Button>
