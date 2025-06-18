@@ -22,42 +22,42 @@
 
             <!-- Encabezado -->
             <StackPanel Grid.Row="0" Grid.ColumnSpan="2" Margin="0,10,0,20" HorizontalAlignment="Center">
-                <TextBlock Foreground="White" Text="Crea tu cuenta" FontSize="24" FontWeight="Bold"  TextAlignment="Center"/>
-                <TextBlock Text="Ingresa los datos para crear tu cuenta" FontSize="16" Foreground="Salmon" TextAlignment="Center"/>
+                <TextBlock x:Name="tblockTitulo" Foreground="White" Text="Crea tu cuenta" FontSize="24" FontWeight="Bold"  TextAlignment="Center"/>
+                <TextBlock x:Name="tblockSubtitulo" Text="Ingresa los datos para crear tu cuenta" FontSize="16" Foreground="Salmon" TextAlignment="Center"/>
             </StackPanel>
 
             <!-- Columna izquierda -->
             <StackPanel Grid.Row="1" Grid.Column="0" Margin="10,10,10,44" Grid.RowSpan="2">
-                <TextBlock Text="Nombre" FontWeight="SemiBold" Margin="0,0,0,5" FontSize="18"/>
+                <TextBlock x:Name="tblockNombre" Text="Nombre" FontWeight="SemiBold" Margin="0,0,0,5" FontSize="18"/>
                 <TextBox x:Name="tbNombre" Padding="10,5,10,10" Tag="Nombre" />
                 <TextBlock x:Name="tblockErrorNombre" Text="" FontWeight="SemiBold" Margin="0,0,0,10" FontSize="12" Foreground="Red"/>
 
-                <TextBlock Text="Correo" FontWeight="SemiBold" Margin="0,0,0,5" FontSize="18"/>
+                <TextBlock x:Name="tblockCorreo" Text="Correo" FontWeight="SemiBold" Margin="0,0,0,5" FontSize="18"/>
                 <TextBox x:Name="tbCorreo" Padding="10" Tag="Correo electronico" />
                 <TextBlock x:Name="tblockErrorCorreo" Text="" FontWeight="SemiBold" Margin="0,0,0,5" FontSize="12" Foreground="Red"/>
 
-                <TextBlock Text="Fecha de nacimiento" FontWeight="SemiBold" FontSize="18"/>
+                <TextBlock x:Name="tblockFechaNacimiento" Text="Fecha de nacimiento" FontWeight="SemiBold" FontSize="18"/>
                 <TextBlock x:Name="tblockErrorFecha" Text="" FontWeight="SemiBold"  FontSize="12" Foreground="Red"/>
                 <DatePicker x:Name="dpFechaNacimiento" FontWeight="SemiBold" />
             </StackPanel>
 
             <!-- Columna derecha -->
             <StackPanel Grid.Row="1" Grid.Column="1" Margin="10">
-                <TextBlock Text="Telefono" FontWeight="SemiBold" Margin="0,0,0,5" FontSize="18"/>
+                <TextBlock x:Name="tblockTelefono" Text="Telefono" FontWeight="SemiBold" Margin="0,0,0,5" FontSize="18"/>
                 <TextBox x:Name="tbTelefono" Padding="10,5,10,10" Tag="Numero de telefono" />
                 <TextBlock x:Name="tblockErrorTelefono" Text="" FontWeight="SemiBold" Margin="0,0,0,10" FontSize="12" Foreground="Red"/>
 
-                <TextBlock Text="Contraseña" FontWeight="SemiBold" FontSize="18"/>
+                <TextBlock x:Name="tblockContraseña" Text="Contraseña" FontWeight="SemiBold" FontSize="18"/>
                 <TextBox x:Name="tbPassword" Padding="10" Tag="Contraseña" />
                 <TextBlock x:Name="tblockErrorPassword" Text="" FontWeight="SemiBold" FontSize="12" Foreground="Red"/>
                 <Image x:Name="imgPerfil" Width="80" Height="80"/>
-                <Button Content="Elegir Foto" Width="150" Margin="0,5,0,0" Style="{StaticResource EstiloBotonPrincipalSinIcono}" Click="BtnElegirFoto_Click"/> 
+                <Button x:Name="btnElegirFoto" Content="Elegir Foto" Width="150" Margin="0,5,0,0" Style="{StaticResource EstiloBotonPrincipalSinIcono}" Click="BtnElegirFoto_Click"/> 
             </StackPanel>
 
             <!-- Botones -->
             <StackPanel Grid.Row="2" Grid.ColumnSpan="2" Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,20,0,10">
-                <Button Content="Registrarme" Width="151" Margin="10,0" Style="{StaticResource EstiloBotonPrincipalSinIcono}" Click="BtnRegistrarme_Click"/>
-                <Button Content="Cancelar" Width="151" Margin="10,0" Style="{StaticResource EstiloBotonSecundarioSinIcono}" Click="BtnCancelar_Click"/>
+                <Button x:Name="btnRegistrarme" Content="Registrarme" Width="151" Margin="10,0" Style="{StaticResource EstiloBotonPrincipalSinIcono}" Click="BtnRegistrarme_Click"/>
+                <Button x:Name="btnCancelar" Content="Cancelar" Width="151" Margin="10,0" Style="{StaticResource EstiloBotonSecundarioSinIcono}" Click="BtnCancelar_Click"/>
             </StackPanel>
         </Grid>
     </Border>
