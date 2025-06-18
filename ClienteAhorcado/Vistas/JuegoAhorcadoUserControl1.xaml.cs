@@ -3,6 +3,7 @@ using BibliotecaClasesNetFramework.DTO;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media.Imaging;
@@ -94,7 +95,7 @@ namespace ClienteAhorcado.Vistas
             }
         }
 
-        private void BtnLetra_Click(object sender, RoutedEventArgs e)
+        private async void BtnLetra_Click(object sender, RoutedEventArgs e)
         {
             if (!(sender is Button btn)) return;
             btn.IsEnabled = false;
@@ -102,40 +103,15 @@ namespace ClienteAhorcado.Vistas
             char letra = btn.Content.ToString()[0];
             try
             {
-                proxy.EnviarLetra(idPartida, jugador.IDJugador, letra);
+                await Task.Run(() => proxy.EnviarLetra(idPartida, jugador.IDJugador, letra));
+                // Espera el callback para actualizar la UI.
             }
             catch (Exception ex)
             {
                 MessageBox.Show("Error al llamar EnviarLetra: " + ex.Message);
             }
-
-
-            letrasUsadas.Add(letra);
-
-            bool acierto = false;
-            for (int i = 0; i < palabraSecreta.Length; i++)
-            {
-                if (palabraSecreta[i] == letra)
-                {
-                    acierto = true;
-                    if (stackPalabra.Children[i] is TextBlock tb)
-                        tb.Text = letra.ToString();
-                }
-            }
-
-            if (!acierto)
-            {
-                intentosRestantes--;
-                ActualizarImagenAhorcado();
-            }
-
-            ActualizarEstado();
-
-            if (VerificarVictoria())
-                FinDeJuego(true);
-            else if (intentosRestantes <= 0)
-                FinDeJuego(false);
         }
+
 
         private void ActualizarEstado()
         {
@@ -146,16 +122,6 @@ namespace ClienteAhorcado.Vistas
         private void ActualizarImagenAhorcado()
         {
             imgAhorcado.Source = new BitmapImage(new Uri($"/Images/{intentosRestantes}.png", UriKind.Relative));
-        }
-
-        private bool VerificarVictoria()
-        {
-            for (int i = 0; i < palabraSecreta.Length; i++)
-            {
-                if (palabraSecreta[i] != ' ' && (stackPalabra.Children[i] as TextBlock)?.Text == "_")
-                    return false;
-            }
-            return true;
         }
 
         private void BtnVolverMenu_Click(object sender, RoutedEventArgs e)
@@ -199,10 +165,13 @@ namespace ClienteAhorcado.Vistas
                 // Solo habilita letras no usadas y si la partida sigue
                 foreach (Button btn in wrapLetras.Children)
                 {
-                    if (btn.Content is string letra && letrasUsadas.Contains(letra[0]))
-                        btn.IsEnabled = false;
-                    else
-                        btn.IsEnabled = intentosRestantes > 0 && estado.PalabraConGuiones.Contains('_');
+                    if (btn.Content is string letra)
+                    {
+                        // Comparación case-insensitive
+                        char letraBtn = letra.ToUpper()[0];
+                        bool usada = letrasUsadas.Any(l => char.ToUpper(l) == letraBtn);
+                        btn.IsEnabled = !usada && intentosRestantes > 0 && estado.PalabraConGuiones.Contains('_');
+                    }
                 }
             }
 
@@ -216,17 +185,6 @@ namespace ClienteAhorcado.Vistas
         }
 
 
-        private void FinDeJuego(bool gano)
-        {
-            foreach (Button btn in wrapLetras.Children)
-                btn.IsEnabled = false;
-
-            string msg = gano ? "¡Felicidades, ganaste!" : $"Perdiste, la palabra era: {palabraSecreta}";
-            MessageBox.Show(msg, "Juego terminado");
-
-            btnVolverMenu.Visibility = Visibility.Visible;
-           
-        }
 
         // Método para el botón "Enviar" del chat (aunque no haga nada)
         private void BtnEnviar_Click(object sender, RoutedEventArgs e)
@@ -237,7 +195,24 @@ namespace ClienteAhorcado.Vistas
         // Método para el botón "Cancelar Partida" (aunque no haga nada)
         private void BtnCancelarPartida_Click(object sender, RoutedEventArgs e)
         {
-            // No hace nada por ahora
+            // Deshabilita los botones de letras inmediatamente
+            foreach (Button btn in wrapLetras.Children)
+                btn.IsEnabled = false;
+
+            try
+            {
+                // Llama al servidor para cancelar la partida
+                proxy.AbandonarPartida(idPartida, jugador.IDJugador);
+                // Espera el callback NotificarFinPartida para mostrar el mensaje y regresar al menú
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al cancelar la partida: " + ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                // Habilita los botones de letras de nuevo si lo deseas
+                foreach (Button btn in wrapLetras.Children)
+                    btn.IsEnabled = !esCreador;
+            }
         }
+
     }
 }
