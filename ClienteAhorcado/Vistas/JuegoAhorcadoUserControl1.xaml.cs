@@ -1,16 +1,10 @@
-﻿using ClienteAhorcado;
-using ServidorAhorcadoService;
-using ServidorAhorcadoService.DTO;
+﻿using BibliotecaClasesNetFramework.Contratos;
+using BibliotecaClasesNetFramework.DTO;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Net.Sockets;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Input;
-using System.Windows.Media;
 using System.Windows.Media.Imaging;
 
 namespace ClienteAhorcado.Vistas
@@ -18,55 +12,30 @@ namespace ClienteAhorcado.Vistas
     public partial class JuegoAhorcadoUserControl1 : UserControl
     {
         private string palabraSecreta;
-        private HashSet<char> letrasCorrectas;
-        private HashSet<char> letrasUsadas;
         private int intentosRestantes;
-        private TcpClient clienteSocket;
-        private NetworkStream stream;
-        private string nombreJugador;
-        private int idPartida;
-        private JugadorDTO jugador;
-        private PartidaDTO partida;
+        private List<char> letrasUsadas = new List<char>();
         private bool esCreador;
+        private MainWindow mainWindow;
+        private JugadorDTO jugador;
         private IAhorcadoService proxy;
-        private int idPalabra; // Nuevo: para almacenar el ID de la palabra si es necesario
+        private int idPartida;
+        private PalabraDTO palabra;
 
-
-      /*  public JuegoAhorcadoUserControl1(string palabra, string jugador, int partidaID)
+        public JuegoAhorcadoUserControl1(JugadorDTO jugador, PalabraDTO palabra, int idPartida, bool esCreador, IAhorcadoService proxy)
         {
             InitializeComponent();
-            palabraSecreta = palabra.ToUpper();
-            nombreJugador = jugador;
-            idPartida = partidaID;
-            letrasCorrectas = new HashSet<char>();
-            letrasUsadas = new HashSet<char>();
-            intentosRestantes = 6;
-
-            InicializarPalabra();
-            GenerarBotonesLetras();
-            ActualizarEstado();
-            ConectarChat();
-            ConfigurarRol();
-        }
-      */
-        public JuegoAhorcadoUserControl1(JugadorDTO jugador, PalabraDTO palabra, int idPartida, bool esCreador)
-        {
-            InitializeComponent();
-
+            this.proxy = proxy;
             this.jugador = jugador;
             this.palabraSecreta = palabra.Texto.ToUpper();
+            this.intentosRestantes = 6;
             this.esCreador = esCreador;
-            this.intentosRestantes = 6; // o el valor que corresponda al iniciar
+            this.palabra = palabra;
             this.idPartida = idPartida;
-            this.idPalabra = palabra.IDPalabra; // <-- Nuevo: guarda el idPalabra si lo requieres
-
-            letrasCorrectas = new HashSet<char>();
-            letrasUsadas = new HashSet<char>();
+            this.mainWindow = Application.Current.Windows.OfType<MainWindow>().FirstOrDefault();
 
             InicializarPalabra();
             GenerarBotonesLetras();
             ActualizarEstado();
-            ConectarChat();
             ConfigurarRol();
         }
 
@@ -75,35 +44,32 @@ namespace ClienteAhorcado.Vistas
         {
             if (esCreador)
             {
-                // El creador solo observa, no juega:
                 wrapLetras.IsEnabled = false;
                 foreach (Button btn in wrapLetras.Children)
                     btn.IsEnabled = false;
+                this.Background = new System.Windows.Media.SolidColorBrush(System.Windows.Media.Colors.DarkSlateGray);
+                btnVolverMenu.Visibility = Visibility.Visible;
 
-                // Visualiza distinto (opcional)
-                this.Background = new SolidColorBrush(Colors.DarkSlateGray);
             }
             else
             {
-                // El retador puede jugar (teclado activo)
                 wrapLetras.IsEnabled = true;
                 foreach (Button btn in wrapLetras.Children)
                     btn.IsEnabled = true;
-
-                // Visual estándar
-                this.Background = new SolidColorBrush(Colors.White);
+                this.Background = new System.Windows.Media.SolidColorBrush(System.Windows.Media.Colors.White);
             }
         }
-
 
         private void InicializarPalabra()
         {
             stackPalabra.Children.Clear();
+
             foreach (char c in palabraSecreta)
             {
+                string mostrar = c == ' ' ? " " : "_";
                 TextBlock letra = new TextBlock
                 {
-                    Text = "_",
+                    Text = mostrar,
                     FontSize = 24,
                     Margin = new Thickness(5)
                 };
@@ -130,38 +96,45 @@ namespace ClienteAhorcado.Vistas
 
         private void BtnLetra_Click(object sender, RoutedEventArgs e)
         {
-            if (esCreador) return; // El creador no juega
-
-            Button btn = sender as Button;
+            if (!(sender is Button btn)) return;
             btn.IsEnabled = false;
-            char letra = btn.Content.ToString()[0];
 
+            char letra = btn.Content.ToString()[0];
             try
             {
                 proxy.EnviarLetra(idPartida, jugador.IDJugador, letra);
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error al enviar la letra: " + ex.Message);
+                MessageBox.Show("Error al llamar EnviarLetra: " + ex.Message);
             }
-        }
 
-        private void MostrarLetrasCorrectas()
-        {
+
+            letrasUsadas.Add(letra);
+
+            bool acierto = false;
             for (int i = 0; i < palabraSecreta.Length; i++)
             {
-                char c = palabraSecreta[i];
-                TextBlock tb = (TextBlock)stackPalabra.Children[i];
-                if (letrasCorrectas.Contains(c))
+                if (palabraSecreta[i] == letra)
                 {
-                    tb.Text = c.ToString();
+                    acierto = true;
+                    if (stackPalabra.Children[i] is TextBlock tb)
+                        tb.Text = letra.ToString();
                 }
             }
-        }
 
-        private void ActualizarImagen()
-        {
-            imgAhorcado.Source = new BitmapImage(new Uri($"/Images/ahorcado{intentosRestantes}.png", UriKind.Relative));
+            if (!acierto)
+            {
+                intentosRestantes--;
+                ActualizarImagenAhorcado();
+            }
+
+            ActualizarEstado();
+
+            if (VerificarVictoria())
+                FinDeJuego(true);
+            else if (intentosRestantes <= 0)
+                FinDeJuego(false);
         }
 
         private void ActualizarEstado()
@@ -170,97 +143,101 @@ namespace ClienteAhorcado.Vistas
             txtLetrasUsadas.Text = string.Join(", ", letrasUsadas);
         }
 
-        private void ConectarChat()
+        private void ActualizarImagenAhorcado()
         {
-            try
-            {
-                clienteSocket = new TcpClient("127.0.0.1", 5000); // Puerto del servidor de chat
-                stream = clienteSocket.GetStream();
-
-                Task.Run(() => LeerMensajes());
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("No se pudo conectar al chat: " + ex.Message);
-            }
+            imgAhorcado.Source = new BitmapImage(new Uri($"/Images/{intentosRestantes}.png", UriKind.Relative));
         }
 
-        private void LeerMensajes()
+        private bool VerificarVictoria()
         {
-            byte[] buffer = new byte[1024];
-            int bytesRead;
-
-            while ((bytesRead = stream.Read(buffer, 0, buffer.Length)) > 0)
+            for (int i = 0; i < palabraSecreta.Length; i++)
             {
-                string mensaje = Encoding.UTF8.GetString(buffer, 0, bytesRead);
-                Dispatcher.Invoke(() =>
+                if (palabraSecreta[i] != ' ' && (stackPalabra.Children[i] as TextBlock)?.Text == "_")
+                    return false;
+            }
+            return true;
+        }
+
+        private void BtnVolverMenu_Click(object sender, RoutedEventArgs e)
+        {
+            
+            
+                mainWindow.CambiarVista(new MenuPrincipalUserControl(mainWindow, jugador, proxy));
+            
+        }
+
+        public void ActualizarDesdeCallback(PartidaEstadoDTO estado)
+        {
+            // Actualiza los datos internos
+            this.intentosRestantes = estado.IntentosRestantes;
+            this.letrasUsadas = estado.LetrasUsadas ?? new List<char>();
+
+            // Refresca letras usadas e intentos restantes
+            txtLetrasUsadas.Text = string.Join(", ", letrasUsadas);
+            txtIntentosRestantes.Text = intentosRestantes.ToString();
+
+            // Refresca la palabra parcial (con guiones)
+            for (int i = 0; i < estado.PalabraConGuiones.Length && i < stackPalabra.Children.Count; i++)
+            {
+                if (stackPalabra.Children[i] is TextBlock tb)
                 {
-                    MostrarMensajeChat(mensaje);
-                });
-            }
-        }
-
-        private void BtnEnviar_Click(object sender, RoutedEventArgs e)
-        {
-            string mensaje = txtMensaje.Text.Trim();
-            if (!string.IsNullOrEmpty(mensaje))
-            {
-                // Enviar el mensaje al servidor
-                proxy.EnviarMensajeChat(idPartida, nombreJugador, mensaje);
-
-                // Mostrar el mensaje en el chat local del cliente
-                string mensajeCompleto = $"{nombreJugador}: {mensaje}";
-                MostrarMensajeChat(mensajeCompleto);
-
-                // Limpiar el campo de texto después de enviar el mensaje
-                txtMensaje.Clear();
-            }
-        }
-
-        public void MostrarMensajeChat(string mensaje)
-        {
-            // Agregar el mensaje al TextBox de chat y desplazar hacia abajo
-            txtChat.Text += $"{mensaje}\n";
-            txtChat.ScrollToEnd(); // Esto asegura que el último mensaje siempre sea visible
-        }
-
-        public void ActualizarEstadoDesdeCallback(PartidaEstadoDTO estado)
-        {
-            txtIntentosRestantes.Text = estado.IntentosRestantes.ToString();
-            txtLetrasUsadas.Text = string.Join(", ", estado.LetrasUsadas);
-
-            // Actualiza la palabra en pantalla con las letras descubiertas
-            for (int i = 0; i < estado.PalabraConGuiones.Length; i++)
-            {
-                var letra = estado.PalabraConGuiones[i].ToString();
-                if (i < stackPalabra.Children.Count && stackPalabra.Children[i] is TextBlock tb)
-                {
-                    tb.Text = letra == "_" ? "_" : letra;
+                    tb.Text = estado.PalabraConGuiones[i].ToString();
                 }
             }
 
-            // Cambia la imagen del ahorcado según los intentos restantes
-            imgAhorcado.Source = new BitmapImage(new Uri($"/Images/ahorcado{estado.IntentosRestantes}.png", UriKind.Relative));
-        }
+            // Actualiza imagen ahorcado
+            ActualizarImagenAhorcado();
 
-        private void BtnCancelarPartida_Click(object sender, RoutedEventArgs e)
-        {
-            // Solo el retador puede cancelar la partida (o ambos, si lo deseas)
-            if (!esCreador)
+            // Deshabilita controles si eres creador
+            if (esCreador)
             {
-                proxy.AbandonarPartida(idPartida, jugador.IDJugador);
-                MessageBox.Show("Has cancelado la partida.");
-                // Puedes regresar a la pantalla principal, por ejemplo:
-                var mainWindow = Window.GetWindow(this) as MainWindow;
-                if (mainWindow != null)
-                    mainWindow.CambiarVista(new MenuPrincipalUserControl(mainWindow, jugador));
+                foreach (Button btn in wrapLetras.Children)
+                    btn.IsEnabled = false;
             }
             else
             {
-                MessageBox.Show("El creador no puede cancelar la partida en esta fase.");
+                // Solo habilita letras no usadas y si la partida sigue
+                foreach (Button btn in wrapLetras.Children)
+                {
+                    if (btn.Content is string letra && letrasUsadas.Contains(letra[0]))
+                        btn.IsEnabled = false;
+                    else
+                        btn.IsEnabled = intentosRestantes > 0 && estado.PalabraConGuiones.Contains('_');
+                }
+            }
+
+            // Detecta fin de partida y muestra botón de volver
+            if (intentosRestantes <= 0 || !estado.PalabraConGuiones.Contains('_'))
+            {
+                foreach (Button btn in wrapLetras.Children)
+                    btn.IsEnabled = false;
+                btnVolverMenu.Visibility = Visibility.Visible;
             }
         }
 
+
+        private void FinDeJuego(bool gano)
+        {
+            foreach (Button btn in wrapLetras.Children)
+                btn.IsEnabled = false;
+
+            string msg = gano ? "¡Felicidades, ganaste!" : $"Perdiste, la palabra era: {palabraSecreta}";
+            MessageBox.Show(msg, "Juego terminado");
+
+            btnVolverMenu.Visibility = Visibility.Visible;
+           
+        }
+
+        // Método para el botón "Enviar" del chat (aunque no haga nada)
+        private void BtnEnviar_Click(object sender, RoutedEventArgs e)
+        {
+            // No hace nada por ahora
+        }
+
+        // Método para el botón "Cancelar Partida" (aunque no haga nada)
+        private void BtnCancelarPartida_Click(object sender, RoutedEventArgs e)
+        {
+            // No hace nada por ahora
+        }
     }
 }
-

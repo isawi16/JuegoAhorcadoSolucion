@@ -1,9 +1,8 @@
 ﻿using ClienteAhorcado;
 using ClienteAhorcado.Utilidades;
 using Microsoft.Win32;
-using ServidorAhorcadoService;
-using ServidorAhorcadoService.DTO;
-using ServidorAhorcadoService.Model;
+using BibliotecaClasesNetFramework.Contratos;
+using BibliotecaClasesNetFramework.DTO;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -27,23 +26,19 @@ namespace ClienteAhorcado.Vistas
     public partial class PerfilJugadorUserControl : UserControl
     {
         private MainWindow _mainWindow;
-        IAhorcadoService proxy;
-
-        JugadorDTO jugadorPerfil = new JugadorDTO();
-
+        private IAhorcadoService proxy;
+        private JugadorDTO jugadorPerfil;
         private bool mostrandoPassword = false;
-        public PerfilJugadorUserControl(MainWindow mainWindow, JugadorDTO jugador)
+
+
+        public PerfilJugadorUserControl(MainWindow mainWindow, JugadorDTO jugador, IAhorcadoService proxy)
         {
             try
             {
                 InitializeComponent();
                 _mainWindow = mainWindow;
-
-                jugadorPerfil = jugador;
-
-                var contexto = new InstanceContext(new DummyCallback());
-                var factory = new DuplexChannelFactory<IAhorcadoService>(contexto, "AhorcadoEndpoint");
-                proxy = factory.CreateChannel();
+                jugadorPerfil = jugador;   
+                this.proxy = proxy;
 
                 tblockNombre.Text = $"Nombre: {jugador.Nombre}";
                 tblockCorreo.Text = $"Correo: {jugador.Correo}";
@@ -52,12 +47,10 @@ namespace ClienteAhorcado.Vistas
                 tblockPassword.Visibility = Visibility.Collapsed;
 
                 tbNombre.Visibility = Visibility.Collapsed;
-                tbTelefono.Visibility = Visibility.Collapsed;
-                
+                tbTelefono.Visibility = Visibility.Collapsed;                
                 dpFechaNacimiento.Visibility = Visibility.Collapsed;
                 btnGuardar.Visibility = Visibility.Collapsed;
                 btnSeleccionarFoto.Visibility = Visibility.Collapsed;
-
                 btnVerPassword.Visibility = Visibility.Collapsed;
                 tbPassword.Visibility = Visibility.Collapsed;
                 pbPassword.Visibility = Visibility.Collapsed;
@@ -82,16 +75,10 @@ namespace ClienteAhorcado.Vistas
             }
         }
 
-        public class DummyCallback : IAhorcadoCallback
-        {
-            public void ActualizarEstadoPartida(PartidaEstadoDTO estadoActual) { }
-            public void NotificarFinPartida(string resultado, string palabra) { }
-            public void RecibirMensajeChat(string nombreJugador, string mensaje) { }
-        }
-
+       
         private void BtnRegresar_Click(object sender, RoutedEventArgs e)
         {
-            _mainWindow.CambiarVista(new MenuPrincipalUserControl(_mainWindow, jugadorPerfil));
+            _mainWindow.CambiarVista(new MenuPrincipalUserControl(_mainWindow, jugadorPerfil, proxy));
         }
 
         private void BtnModificarPerfil_Click(object sender, RoutedEventArgs e)
@@ -165,7 +152,7 @@ namespace ClienteAhorcado.Vistas
                 if (modificadoExitoso)
                 {
                     MessageBox.Show("Se modifico la informacion exitosamente");
-                    _mainWindow.CambiarVista(new MenuPrincipalUserControl(_mainWindow, jugadorModificado));
+                    _mainWindow.CambiarVista(new MenuPrincipalUserControl(_mainWindow, jugadorModificado, proxy));
                 }
                 else
                 {

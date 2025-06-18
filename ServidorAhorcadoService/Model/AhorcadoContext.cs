@@ -1,9 +1,9 @@
-﻿using ServidorAhorcadoService.DTO;
+﻿using BibliotecaClasesNetFramework.Contratos;
+using BibliotecaClasesNetFramework.DTO;
 using ServidorAhorcadoService.Model;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Runtime.Remoting.Contexts;
-
 
 namespace ServidorAhorcadoService.Model
 {
@@ -44,25 +44,27 @@ namespace ServidorAhorcadoService.Model
 
             modelBuilder.Entity<Palabra>().ToTable("Palabra");
             modelBuilder.Entity<Palabra>().HasKey(p => p.IDPalabra);
-            modelBuilder.Entity<Palabra>().HasRequired(p => p.Categoria)
-                                          .WithMany()
-                                          .HasForeignKey(p => p.IDCategoria);
+            // Refuerza el mapeo de la clave foránea IDCategoria
+            modelBuilder.Entity<Palabra>()
+                .HasRequired(p => p.Categoria)
+                .WithMany(c => c.Palabras)
+                .HasForeignKey(p => p.IDCategoria)
+                .WillCascadeOnDelete(false);
 
             modelBuilder.Entity<Partida>().ToTable("Partida");
             modelBuilder.Entity<Partida>().HasKey(p => p.IDPartida);
             modelBuilder.Entity<Partida>().Property(p => p.LetrasUsadas).HasMaxLength(200);
 
-
             // Relaciones múltiples con Jugador
             modelBuilder.Entity<Partida>()
                 .HasRequired(p => p.Creador)
-                .WithMany()
+                .WithMany(j => j.PartidasCreadas)
                 .HasForeignKey(p => p.IDJugadorCreador)
                 .WillCascadeOnDelete(false);
 
             modelBuilder.Entity<Partida>()
                 .HasRequired(p => p.Retador)
-                .WithMany()
+                .WithMany(j => j.PartidasRetadas)
                 .HasForeignKey(p => p.IDJugadorRetador)
                 .WillCascadeOnDelete(false);
 
@@ -79,14 +81,14 @@ namespace ServidorAhorcadoService.Model
                 .WillCascadeOnDelete(false);
 
             modelBuilder.Entity<Partida>()
-                .HasRequired(p => p.Estado)
-                .WithMany()
-                .HasForeignKey(p => p.IDEstado);
+                .Property(p => p.IDEstado)
+                .HasColumnName("IDEstado");
 
             modelBuilder.Entity<Partida>()
-                .HasRequired(p => p.Palabra)
-                .WithMany()
-                .HasForeignKey(p => p.IDPalabra);
+                .Property(p => p.IDPalabra)
+                .HasColumnName("IDPalabra");
+
+
         }
     }
 }

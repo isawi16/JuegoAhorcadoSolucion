@@ -1,7 +1,7 @@
 ﻿using ClienteAhorcado.Utilidades;
 using ClienteAhorcado;
-using ServidorAhorcadoService;
-using ServidorAhorcadoService.DTO;
+using BibliotecaClasesNetFramework.Contratos;
+using BibliotecaClasesNetFramework.DTO;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -29,15 +29,14 @@ namespace ClienteAhorcado.Vistas
         IAhorcadoService proxy;
         JugadorDTO jugadorRegistro = new JugadorDTO();
 
-        public RegistrarJugadorUserControl(MainWindow mainWindow)
+        public RegistrarJugadorUserControl(MainWindow mainWindow, IAhorcadoService proxy)
         {
             try
             {
                 InitializeComponent();
                 _mainWindow = mainWindow;
-                var contexto = new InstanceContext(new DummyCallback());
-                var factory = new DuplexChannelFactory<IAhorcadoService>(contexto, "AhorcadoEndpoint");
-                proxy = factory.CreateChannel();
+                this.proxy = proxy;
+
 
                 imgPerfil.Source = new BitmapImage(new Uri("pack://application:,,,/Images/iconoDefault.png"));
 
@@ -63,16 +62,11 @@ namespace ClienteAhorcado.Vistas
         }
 
 
-        public class DummyCallback : IAhorcadoCallback
-        {
-            public void ActualizarEstadoPartida(PartidaEstadoDTO estadoActual) { }
-            public void NotificarFinPartida(string resultado, string palabra) { }
-            public void RecibirMensajeChat(string nombreJugador, string mensaje) { }
-        }
+        
 
         private void BtnCancelar_Click(object sender, RoutedEventArgs e)
         {
-            _mainWindow.CambiarVista(new IniciarSesionUserControl(_mainWindow));
+            _mainWindow.CambiarVista(new IniciarSesionUserControl(_mainWindow, proxy));
         }
 
         private void BtnRegistrarme_Click(object sender, RoutedEventArgs e)
@@ -168,7 +162,7 @@ namespace ClienteAhorcado.Vistas
             {
                 return "La contraseña debe contener al menos una letra y un número.";
             }
-            return null; // No error
+            return null; 
         }
 
         public static string ValidarTelefono(TextBox telefonoBox)
@@ -216,7 +210,6 @@ namespace ClienteAhorcado.Vistas
 
                 
                 byte[] imagenBytes = File.ReadAllBytes(openFileDialog.FileName);
-                // Guarda imagenBytes en tu DTO o donde lo necesites
             }
         }
     }

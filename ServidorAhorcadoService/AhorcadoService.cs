@@ -1,12 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.Concurrent;
 using System.Linq;
 using System.ServiceModel;
-using ServidorAhorcadoService.DTO;
+using BibliotecaClasesNetFramework.Contratos;
+using BibliotecaClasesNetFramework.DTO;
 using ServidorAhorcadoService.Model;
-using ServidorAhorcadoService;
-using System.Security.Cryptography;
-using System.Text;
 using System.IO;
 
 
@@ -15,41 +14,42 @@ namespace ServidorAhorcadoService
     [ServiceBehavior(InstanceContextMode = InstanceContextMode.Single)]
     public class AhorcadoService : IAhorcadoService
     {
-        private readonly Dictionary<int, IAhorcadoCallback> clientesConectados = new Dictionary<int, IAhorcadoCallback>();
+        private static readonly ConcurrentDictionary<int, IAhorcadoCallback> clientesConectados = new ConcurrentDictionary<int, IAhorcadoCallback>();
 
         // --- AUTENTICACIÓN Y USUARIO ---
 
         public JugadorDTO IniciarSesion(string correo, string password)
         {
-
-            using (var db = new AhorcadoContext())
+            try
             {
-
-                
-                var jugador = db.Jugadores.FirstOrDefault(j => j.Correo == correo && j.Contraseña == password);
-                if (jugador == null) return null;
-                // Registrar al jugador en clientes conectados
-                var callback = OperationContext.Current.GetCallbackChannel<IAhorcadoCallback>();
-                if (!clientesConectados.ContainsKey(jugador.IDJugador))
+                using (var db = new AhorcadoContext())
                 {
-                    clientesConectados.Add(jugador.IDJugador, callback);
+                    var jugador = db.Jugadores.FirstOrDefault(j => j.Correo == correo && j.Contraseña == password);
+                    if (jugador == null) return null;
+
+                    var callback = OperationContext.Current.GetCallbackChannel<IAhorcadoCallback>();
+                    clientesConectados[jugador.IDJugador] = callback;
+
+                    return new JugadorDTO
+                    {
+                        IDJugador = jugador.IDJugador,
+                        Nombre = jugador.Nombre,
+                        Correo = jugador.Correo,
+                        Telefono = jugador.Telefono,
+                        FechaNacimiento = jugador.FechaNacimiento,
+                        PuntajeGlobal = jugador.PuntajeGlobal,
+                        Contraseña = jugador.Contraseña,
+                        FotoPerfil = jugador.FotoPerfil
+                    };
                 }
-
-               
-
-                return new JugadorDTO
-                {
-                    IDJugador = jugador.IDJugador,
-                    Nombre = jugador.Nombre,
-                    Correo = jugador.Correo,
-                    Telefono = jugador.Telefono,
-                    FechaNacimiento = jugador.FechaNacimiento,
-                    PuntajeGlobal = jugador.PuntajeGlobal,
-                    Contraseña = jugador.Contraseña,
-                    FotoPerfil = jugador.FotoPerfil
-                };
-
             }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error al iniciar sesión: {ex.Message}");
+                //return null;
+                throw;
+            }
+            
         }
 
         public bool RegistrarJugador(JugadorDTO jugador)
@@ -68,7 +68,7 @@ namespace ServidorAhorcadoService
                         Contraseña = jugador.Contraseña,
                         FechaNacimiento = jugador.FechaNacimiento,
                         Telefono = jugador.Telefono,
-                        FotoPerfil = jugador.FotoPerfil ?? File.ReadAllBytes("Imagenes/iconoDefault.png"), // Ruta del icono por defecto
+                        FotoPerfil = jugador.FotoPerfil ?? File.ReadAllBytes("Imagenes/iconoDefault.png"),
                         PuntajeGlobal = 0
                     });
 
@@ -77,26 +77,11 @@ namespace ServidorAhorcadoService
                 }
                 catch (Exception ex)
                 {
-                    // Manejo de excepciones, logueo, etc.
                     Console.WriteLine($"Error al registrar jugador: {ex.Message}");
                     return false;
                 }
             }
         }
-        public static string EncriptarContraseña(string contraseña)
-        {
-            using (SHA256 sha256Hash = SHA256.Create())
-            {
-                byte[] bytes = sha256Hash.ComputeHash(Encoding.UTF8.GetBytes(contraseña));
-                StringBuilder builder = new StringBuilder();
-                foreach (var byteValue in bytes)
-                {
-                    builder.Append(byteValue.ToString("x2"));
-                }
-                return builder.ToString();
-            }
-        }
-
 
         public JugadorDTO ConsultarPerfil(int idJugador)
         {
@@ -112,7 +97,8 @@ namespace ServidorAhorcadoService
                     Correo = jugador.Correo,
                     Telefono = jugador.Telefono,
                     FechaNacimiento = jugador.FechaNacimiento,
-                    PuntajeGlobal = jugador.PuntajeGlobal
+                    PuntajeGlobal = jugador.PuntajeGlobal,
+                    FotoPerfil = jugador.FotoPerfil
                 };
             }
         }
@@ -127,8 +113,8 @@ namespace ServidorAhorcadoService
                 jugador.Nombre = jugadorModificado.Nombre;
                 jugador.Telefono = jugadorModificado.Telefono;
                 jugador.FechaNacimiento = jugadorModificado.FechaNacimiento;
-                jugador.FotoPerfil = jugadorModificado.FotoPerfil; 
-                jugador.Contraseña = jugadorModificado.Contraseña; 
+                jugador.FotoPerfil = jugadorModificado.FotoPerfil;
+                jugador.Contraseña = jugadorModificado.Contraseña;
 
                 db.SaveChanges();
                 return true;
@@ -139,12 +125,10 @@ namespace ServidorAhorcadoService
         {
             using (var db = new AhorcadoContext())
             {
-                var jugador = db.Jugadores.Find(idJugador); // Más eficiente si es por clave primaria
+                var jugador = db.Jugadores.Find(idJugador);
                 return jugador?.PuntajeGlobal ?? 0;
             }
         }
-
-
 
         public List<PartidaDTO> ConsultarPartidasJugadas(int idJugador)
         {
@@ -153,7 +137,7 @@ namespace ServidorAhorcadoService
                 return db.Partidas
                     .Where(p => p.IDJugadorCreador == idJugador || p.IDJugadorRetador == idJugador)
                     .OrderByDescending(p => p.Fecha)
-                    .Select(p => new 
+                    .Select(p => new
                     {
                         IDPartida = p.IDPartida,
                         IDJugadorCreador = p.IDJugadorCreador,
@@ -176,13 +160,11 @@ namespace ServidorAhorcadoService
                         Fecha = p.Fecha.ToString("yyyy-MM-dd HH:mm:ss"),
                         PalabraTexto = p.PalabraTexto,
                         GanadorNombre = p.GanadorNombre,
-                        Puntaje = p.Puntaje,
+                        Puntaje = p.Puntaje ?? 0,
                         RivalNombre = (p.IDJugadorCreador == idJugador) ? p.RetadorNombre : p.CreadorNombre
                     }).ToList();
             }
         }
-
-       
 
         public List<JugadorDTO> ObtenerJugadoresMarcadores()
         {
@@ -200,17 +182,14 @@ namespace ServidorAhorcadoService
             }
         }
 
-
         // --- PALABRAS Y CATEGORÍAS ---
 
-        public List<CategoriaDTO> ObtenerCategoriasPorIdioma(string codigoIdioma)
+        public List<CategoriaDTO> ObtenerCategoriasPorIdioma(int idiomaId)
         {
             using (var db = new AhorcadoContext())
             {
-                var idIdioma = db.Idiomas.Where(i => i.Nombre == codigoIdioma).Select(i => i.CodigoIdioma).FirstOrDefault();
-
                 return db.Categorias
-                    .Where(c => c.CodigoIdioma == idIdioma)
+                    .Where(c => c.CodigoIdioma == idiomaId)
                     .Select(c => new CategoriaDTO
                     {
                         IDCategoria = c.IDCategoria,
@@ -219,118 +198,77 @@ namespace ServidorAhorcadoService
             }
         }
 
-
         public List<IdiomaDTO> ObtenerIdiomas()
         {
             using (var db = new AhorcadoContext())
             {
                 return db.Idiomas
-                         .Select(i => new IdiomaDTO
-                         {
-                             CodigoIdioma = i.CodigoIdioma,
-                             Nombre = i.Nombre
-                         }).ToList();
+                    .Select(i => new IdiomaDTO
+                    {
+                        CodigoIdioma = i.CodigoIdioma,
+                        Nombre = i.Nombre
+                    })
+                    .ToList();
             }
         }
 
-        public List<PalabraDTO> ObtenerPalabrasPorIdiomaYCategoria(string idioma, int idCategoria)
-        {
-            using (var db = new AhorcadoContext())
-            {
-                // Obtener el Código de Idioma (CodigoIdioma) basado en el nombre del idioma
-                var idIdioma = db.Idiomas
-                                 .Where(i => i.Nombre == idioma)
-                                 .Select(i => i.CodigoIdioma)
-                                 .FirstOrDefault();
 
-                // Consultar las palabras asociadas al idioma y la categoría
-                return db.Palabras
-                    .Where(p => p.IDCategoria == idCategoria && p.Categoria.CodigoIdioma == idIdioma) // Relación con Categoria y CodigoIdioma
+        public List<PalabraDTO> ObtenerPalabrasPorIdiomaYCategoria(int codigoIdioma, int idCategoria)
+        {
+            using (var contexto = new AhorcadoContext())
+            {
+                var palabras = contexto.Palabras
+                    .Where(p => p.IDCategoria == idCategoria &&
+                                p.Categoria.CodigoIdioma == codigoIdioma)
                     .Select(p => new PalabraDTO
                     {
                         IDPalabra = p.IDPalabra,
                         Texto = p.PalabraTexto,
-                        Definicion = p.Definicion,
                         Dificultad = p.Dificultad,
-                        IDCategoria = p.Categoria.Nombre
-                    }).ToList();
+                        IDCategoria = p.IDCategoria,
+                        CodigoIdioma = p.Categoria.CodigoIdioma
+                    })
+                    .ToList();
+
+                return palabras;
             }
         }
 
-
-        /* public List<PalabraDTO> ObtenerPalabrasPorIdioma(string idioma)
-         {
-             using (var db = new AhorcadoContext())
-             {
-                 var idIdioma = db.Idiomas.Where(i => i.Nombre == idioma).Select(i => i.CodigoIdioma).FirstOrDefault();
-
-                 return db.Palabras
-                     .Where(p => p.CodigoIdioma == idIdioma)
-                     .Select(p => new PalabraDTO
-                     {
-                         IDPalabra = p.IDPalabra,
-                         Texto = p.PalabraTexto,
-                         Definicion = p.Definicion,
-                         Dificultad = p.Dificultad,
-                         IDCategoria = p.Categoria.Nombre
-                     }).ToList();
-             }
-         } */
-
-        public PalabraDTO ObtenerPalabraConDescripcion(int idPalabra, string idioma)
+        public PalabraDTO ObtenerPalabraConDescripcion(int idPalabra)
         {
             using (var db = new AhorcadoContext())
             {
-                var palabra = db.Palabras.FirstOrDefault(p => p.IDPalabra == idPalabra);
-                if (palabra == null) return null;
+                var palabra = db.Palabras
+                    .Where(p => p.IDPalabra == idPalabra)
+                    .Select(p => new PalabraDTO
+                    {
+                        IDPalabra = p.IDPalabra,
+                        Texto = p.PalabraTexto,
+                        Definicion = p.Definicion
+                    })
+                    .FirstOrDefault();
 
-                return new PalabraDTO
-                {
-                    IDPalabra = palabra.IDPalabra,
-                    Texto = palabra.PalabraTexto,
-                    Definicion = palabra.Definicion,
-                    Dificultad = palabra.Dificultad,
-                    IDCategoria = palabra.Categoria.Nombre
-                };
+                return palabra;
             }
         }
-
-        private string ObtenerNombreIdioma(int codigoIdioma)
-        {
-            return codigoIdioma == 1 ? "Español" : "English";
-        }
-
 
         public List<PalabraDTO> ObtenerPalabrasPorCategoria(int idCategoria, string idioma)
         {
             using (var db = new AhorcadoContext())
             {
                 return db.Palabras
-                    .Where(p => p.IDCategoria == idCategoria)
+                    .Where(p => p.IDCategoria == idCategoria && p.Categoria.Idioma.Nombre == idioma)
                     .Select(p => new PalabraDTO
                     {
                         IDPalabra = p.IDPalabra,
                         Texto = p.PalabraTexto,
                         Definicion = p.Definicion,
                         Dificultad = p.Dificultad,
-                        IDCategoria = p.Categoria.Nombre
+                        IDCategoria = p.IDCategoria,
+                        CodigoIdioma = p.Categoria.CodigoIdioma
                     }).ToList();
             }
         }
-
-        /*public List<CategoriaDTO> ObtenerCategoriasPorIdioma(int idiomaId)
-        {
-            using (var db = new AhorcadoContext())
-            {
-                return db.Categorias
-                         .Where(c => c.CodigoIdioma == idiomaId)
-                         .Select(c => new CategoriaDTO
-                         {
-                             IDCategoria = c.IDCategoria,
-                             Nombre = c.Nombre
-                         }).ToList();
-            }
-        }*/
 
         // --- PARTIDAS Y JUEGO ---
 
@@ -342,47 +280,40 @@ namespace ServidorAhorcadoService
                 {
                     IDJugadorCreador = idCreador,
                     IDPalabra = idPalabra,
-                    IDEstado = 1, 
+                    IDEstado = 1,
                     Fecha = DateTime.Now,
                     Puntaje = 0,
-                    IntentosRestantes = 6 
+                    IntentosRestantes = 6
                 };
 
                 db.Partidas.Add(nueva);
                 db.SaveChanges();
-                return nueva.IDPartida; 
+                return nueva.IDPartida;
             }
         }
 
-
-        public List<PartidaDTO> ObtenerPartidasDisponibles()
+        public List<PartidaCategoriaDTO> ObtenerPartidasDisponibles()
         {
             using (var db = new AhorcadoContext())
             {
-                return db.Partidas
+                var partidas = db.Partidas
                     .Where(p => p.IDEstado == 1)
-                    .Select(p => new
-                    {
-                        p.IDPartida,
-                        IDIdioma = p.Palabra.Categoria.CodigoIdioma,
-                        CreadorNombre = p.Creador.Nombre,
-                        RetadorNombre = p.Retador != null ? p.Retador.Nombre : null,
-                        Estado = p.Estado.Nombre,
-                        Fecha = p.Fecha,
-                        PalabraTexto = p.Palabra.PalabraTexto
-                    })
-                    .AsEnumerable()
-                    .Select(p => new PartidaDTO
+                    .Select(p => new PartidaCategoriaDTO
                     {
                         IDPartida = p.IDPartida,
-                        IDIdioma = p.IDIdioma,
-                        CreadorNombre = p.CreadorNombre,
-                        RetadorNombre = p.RetadorNombre,
-                        Estado = p.Estado,
-                        Fecha = p.Fecha.ToString("yyyy-MM-dd HH:mm:ss"),
-                        PalabraTexto = p.PalabraTexto
+                        CategoriaNombre = p.Palabra.Categoria.Nombre,
+                        IDPalabra = p.IDPalabra,
                     })
                     .ToList();
+
+                Console.WriteLine($">> [ObtenerPartidasDisponibles] Partidas encontradas: {partidas.Count}");
+
+                foreach (var partida in partidas)
+                {
+                    Console.WriteLine($"IDPartida: {partida.IDPartida}, Categoria: {partida.CategoriaNombre}");
+                }
+
+                return partidas;
             }
         }
 
@@ -394,12 +325,11 @@ namespace ServidorAhorcadoService
                 if (partida == null) return false;
 
                 partida.IDJugadorRetador = idJugador;
-                partida.IDEstado = 2;
+                partida.IDEstado = 3; // Cambiar a "En curso"
                 db.SaveChanges();
                 return true;
             }
         }
-
 
         public bool AbandonarPartida(int idPartida, int idJugador)
         {
@@ -415,49 +345,10 @@ namespace ServidorAhorcadoService
             }
         }
 
-
-
-        public PartidaEstadoDTO ObtenerEstadoPartida(int idPartida)
-        {
-            using (var db = new AhorcadoContext())
-            {
-                var partida = db.Partidas.FirstOrDefault(p => p.IDPartida == idPartida);
-                if (partida == null) return null;
-
-                return new PartidaEstadoDTO
-                {
-                    PalabraConGuiones = "____", // Simulación
-                    IntentosRestantes = 6,
-                    LetrasUsadas = new List<char>(),
-                    TurnoActual = partida.IDJugadorRetador != null ? db.Jugadores.Find(partida.IDJugadorRetador)?.Nombre : "Esperando"
-                };
-            }
-        }
-
-
-        // --- JUGABILIDAD ---
-
-        private bool TodasLetrasAdivinadas(string palabra, List<string> letrasUsadas)
-        {
-            var letrasPalabra = palabra.ToLower().Distinct().Where(c => Char.IsLetter(c)).Select(c => c.ToString());
-            return letrasPalabra.All(l => letrasUsadas.Contains(l));
-        }
-        private string ObtenerPalabraConGuiones(string palabra, List<string> letrasUsadas)
-        {
-            return string.Join(" ", palabra.Select(c => letrasUsadas.Contains(c.ToString().ToLower()) ? c : '_'));
-        }
-
-
-        private string GenerarPalabraConGuiones(string palabra, List<string> letrasUsadas)
-        {
-            return string.Join("", palabra.Select(c =>
-                letrasUsadas.Contains(c.ToString().ToLower()) ? c.ToString() : "_"));
-        }
-
-
-
         public bool EnviarLetra(int idPartida, int idJugador, char letra)
         {
+            Console.WriteLine($"Entrando al método EnviarLetra");
+
             using (var db = new AhorcadoContext())
             {
                 var partida = db.Partidas.FirstOrDefault(p => p.IDPartida == idPartida);
@@ -484,17 +375,7 @@ namespace ServidorAhorcadoService
                 if (!palabra.PalabraTexto.ToLower().Contains(letraStr))
                     partida.IntentosRestantes--;
 
-                if (partida.IntentosRestantes <= 0)
-                {
-                    partida.IDEstado = 4;
-                    partida.Ganador = partida.IDJugadorCreador == idJugador ? partida.IDJugadorRetador : partida.IDJugadorCreador;
-                }
-                else if (TodasLetrasAdivinadas(palabra.PalabraTexto, letrasUsadas))
-                {
-                    partida.IDEstado = 5;
-                    partida.Ganador = idJugador;
-                }
-
+                // <--- AQUI VA TU NUEVO BLOQUE
                 var estadoDTO = new PartidaEstadoDTO
                 {
                     PalabraConGuiones = GenerarPalabraConGuiones(palabra.PalabraTexto, letrasUsadas),
@@ -502,44 +383,134 @@ namespace ServidorAhorcadoService
                     LetrasUsadas = letrasUsadas.Select(s => s[0]).ToList(),
                     TurnoActual = db.Jugadores.Find(partida.IDJugadorRetador)?.Nombre
                 };
+                // <--- FIN DEL BLOQUE
 
-                if (clientesConectados.TryGetValue(partida.IDJugadorCreador, out var callbackCreador))
+                NotificarEstadoPartida(partida.IDJugadorCreador, partida.IDJugadorRetador, estadoDTO);
+
+                Console.WriteLine($"Actualizando estado para: Creador={partida.IDJugadorCreador}, Retador={partida.IDJugadorRetador}");
+                Console.WriteLine($"Callbacks registrados: {string.Join(", ", clientesConectados.Keys)}");
+
+                if (partida.IntentosRestantes <= 0)
                 {
-                    callbackCreador.ActualizarEstadoPartida(estadoDTO);
+                    partida.IDEstado = 4;
+                    partida.Ganador = partida.IDJugadorCreador == idJugador ? partida.IDJugadorRetador : partida.IDJugadorCreador;
+                    db.SaveChanges();
+                    NotificarFinPartida(partida.IDJugadorCreador, partida.IDJugadorRetador, "¡Juego terminado!", palabra.PalabraTexto);
                 }
-
-                if (partida.IDJugadorRetador != null &&
-                    clientesConectados.TryGetValue(partida.IDJugadorRetador.Value, out var callbackRetador))
+                else if (TodasLetrasAdivinadas(palabra.PalabraTexto, letrasUsadas))
                 {
-                    callbackRetador.ActualizarEstadoPartida(estadoDTO);
+                    partida.IDEstado = 5;
+                    partida.Ganador = idJugador;
+                    db.SaveChanges();
+                    NotificarFinPartida(partida.IDJugadorCreador, partida.IDJugadorRetador, "¡Juego terminado!", palabra.PalabraTexto);
                 }
-
-                db.SaveChanges();
+                else
+                {
+                    db.SaveChanges();
+                }
                 return true;
             }
         }
 
+        public PartidaEstadoDTO ObtenerEstadoPartida(int idPartida)
+        {
+            using (var db = new AhorcadoContext())
+            {
+                var partida = db.Partidas.FirstOrDefault(p => p.IDPartida == idPartida);
+                if (partida == null) return null;
 
-        // --- CHAT ---
+                return new PartidaEstadoDTO
+                {
+                    PalabraConGuiones = "____",
+                    IntentosRestantes = 6,
+                    LetrasUsadas = new List<char>(),
+                    TurnoActual = partida.IDJugadorRetador != null ? db.Jugadores.Find(partida.IDJugadorRetador)?.Nombre : "Esperando"
+                };
+            }
+        }
 
-        public void EnviarMensajeChat(int idPartida, string nombreJugador, string mensaje)
+        private void NotificarEstadoPartida(int idCreador, int? idRetador, PartidaEstadoDTO estado)
+        {
+            if (clientesConectados.TryGetValue(idCreador, out var callbackCreador))
+            {
+                try { 
+                    callbackCreador.ActualizarEstadoPartida(estado); 
+                } 
+                catch {
+                    clientesConectados.TryRemove(idCreador, out _);
+                }
+            }
+
+            if (idRetador != null && clientesConectados.TryGetValue(idRetador.Value, out var callbackRetador))
+            {
+                try
+                {
+                    callbackRetador.ActualizarEstadoPartida(estado);
+                }
+                catch
+                {
+                    clientesConectados.TryRemove(idRetador.Value, out _);
+                }
+            }
+        }
+
+        private void NotificarFinPartida(int idCreador, int? idRetador, string resultado, string palabra)
+        {
+            if (clientesConectados.TryGetValue(idCreador, out var callbackCreador))
+            {
+                try { 
+                    callbackCreador.NotificarFinPartida(resultado, palabra); 
+                } 
+                catch {
+                    clientesConectados.TryRemove(idCreador, out _);
+                }
+            }
+
+            if (idRetador != null && clientesConectados.TryGetValue(idRetador.Value, out var callbackRetador))
+            {
+                try { 
+                    callbackRetador.NotificarFinPartida(resultado, palabra); 
+                } 
+                catch {
+                    clientesConectados.TryRemove(idRetador.Value, out _);
+                }
+            }
+        }
+
+
+
+      /*  public void EnviarMensajeChat(int idPartida, string nombreJugador, string mensaje)
         {
             foreach (var callback in clientesConectados.Values)
             {
                 callback.RecibirMensajeChat(nombreJugador, mensaje);
             }
+        }*/
+
+        private bool TodasLetrasAdivinadas(string palabra, List<string> letrasUsadas)
+        {
+            var letrasPalabra = palabra.ToLower().Distinct().Where(c => Char.IsLetter(c)).Select(c => c.ToString());
+            return letrasPalabra.All(l => letrasUsadas.Contains(l));
         }
 
-
-
-        // -- ESTADO PARTIDA --
-        /*public enum EstadoPartida
+        private string GenerarPalabraConGuiones(string palabra, List<string> letrasUsadas)
         {
-            Esperando = 1,
-            EnJuego = 2,
-            Terminada = 3,
-            Abandonada = 4
-        }*/
-        // para aplicarla hay que corregir todos los sitios en los que se mande un int como estado partida, dejarlo al final si hay tiempo
+            return string.Join("", palabra.Select(c => letrasUsadas.Contains(c.ToString().ToLower()) ? c.ToString() : "_"));
+        }
+
+        public void ActualizarCallback(int idJugador)
+        {
+            if (clientesConectados.TryGetValue(idJugador, out var callback))
+            {
+                // Logic to update the callback for the specified player
+                Console.WriteLine($"Callback updated for player with ID: {idJugador}");
+            }
+            else
+            {
+                Console.WriteLine($"No callback found for player with ID: {idJugador}");
+            }
+        }
+
+        public string Ping() => "pong";
     }
 }
