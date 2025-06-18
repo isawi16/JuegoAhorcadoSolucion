@@ -90,6 +90,8 @@ namespace ClienteAhorcado
 
         public void NotificarFinPartida(string resultado, string palabra)
         {
+
+
             Dispatcher.Invoke(() =>
             {
                 MessageBox.Show($"{resultado}. La palabra era: {palabra}", "Fin de la partida");
