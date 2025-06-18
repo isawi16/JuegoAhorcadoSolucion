@@ -124,16 +124,6 @@ namespace ClienteAhorcado.Vistas
             imgAhorcado.Source = new BitmapImage(new Uri($"/Images/{intentosRestantes}.png", UriKind.Relative));
         }
 
-        private bool VerificarVictoria()
-        {
-            for (int i = 0; i < palabraSecreta.Length; i++)
-            {
-                if (palabraSecreta[i] != ' ' && (stackPalabra.Children[i] as TextBlock)?.Text == "_")
-                    return false;
-            }
-            return true;
-        }
-
         private void BtnVolverMenu_Click(object sender, RoutedEventArgs e)
         {
             
@@ -195,17 +185,6 @@ namespace ClienteAhorcado.Vistas
         }
 
 
-        private void FinDeJuego(bool gano)
-        {
-            foreach (Button btn in wrapLetras.Children)
-                btn.IsEnabled = false;
-
-            string msg = gano ? "¡Felicidades, ganaste!" : $"Perdiste, la palabra era: {palabraSecreta}";
-            MessageBox.Show(msg, "Juego terminado");
-
-            btnVolverMenu.Visibility = Visibility.Visible;
-           
-        }
 
         // Método para el botón "Enviar" del chat (aunque no haga nada)
         private void BtnEnviar_Click(object sender, RoutedEventArgs e)
@@ -216,7 +195,24 @@ namespace ClienteAhorcado.Vistas
         // Método para el botón "Cancelar Partida" (aunque no haga nada)
         private void BtnCancelarPartida_Click(object sender, RoutedEventArgs e)
         {
-            // No hace nada por ahora
+            // Deshabilita los botones de letras inmediatamente
+            foreach (Button btn in wrapLetras.Children)
+                btn.IsEnabled = false;
+
+            try
+            {
+                // Llama al servidor para cancelar la partida
+                proxy.AbandonarPartida(idPartida, jugador.IDJugador);
+                // Espera el callback NotificarFinPartida para mostrar el mensaje y regresar al menú
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al cancelar la partida: " + ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                // Habilita los botones de letras de nuevo si lo deseas
+                foreach (Button btn in wrapLetras.Children)
+                    btn.IsEnabled = !esCreador;
+            }
         }
+
     }
 }

@@ -28,7 +28,7 @@ namespace ClienteAhorcado
             try
             {
                 var respuesta = proxy.Ping();
-                MessageBox.Show(respuesta); // Debería mostrar "pong"
+                MessageBox.Show(respuesta);
             }
             catch (Exception ex)
             {

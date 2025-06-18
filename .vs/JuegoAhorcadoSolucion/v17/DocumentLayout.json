@@ -3,31 +3,7 @@
   "WorkspaceRootPath": "C:\\Users\\seren\\Desktop\\JuegoAhorcadoUO\\Code\\HangThemHigh\\JuegoAhorcadoSolucion\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{9CB630A0-0828-472E-9E89-2EC1EAC39DD1}|ServidorAhorcadoService\\ServidorAhorcadoService.csproj|c:\\users\\seren\\desktop\\juegoahorcadouo\\code\\hangthemhigh\\juegoahorcadosolucion\\servidorahorcadoservice\\ahorcadoservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{9CB630A0-0828-472E-9E89-2EC1EAC39DD1}|ServidorAhorcadoService\\ServidorAhorcadoService.csproj|solutionrelative:servidorahorcadoservice\\ahorcadoservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{156E841F-D495-44F9-922F-1A18DE83D694}|ClienteAhorcado\\ClienteAhorcado.csproj|c:\\users\\seren\\desktop\\juegoahorcadouo\\code\\hangthemhigh\\juegoahorcadosolucion\\clienteahorcado\\mainwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{156E841F-D495-44F9-922F-1A18DE83D694}|ClienteAhorcado\\ClienteAhorcado.csproj|solutionrelative:clienteahorcado\\mainwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{74C67D35-D803-4880-8569-E2FB3FF80372}|..\\..\\Librer\u00EDadeClasesServicios\\BibliotecaClasesNetFramework\\BibliotecaClasesNetFramework\\BibliotecaClasesNetFramework.csproj|c:\\users\\seren\\desktop\\juegoahorcadouo\\code\\librer\u00EDadeclasesservicios\\bibliotecaclasesnetframework\\bibliotecaclasesnetframework\\contratos\\iahorcadocallback.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{74C67D35-D803-4880-8569-E2FB3FF80372}|..\\..\\Librer\u00EDadeClasesServicios\\BibliotecaClasesNetFramework\\BibliotecaClasesNetFramework\\BibliotecaClasesNetFramework.csproj|c:\\users\\seren\\desktop\\juegoahorcadouo\\code\\librer\u00EDadeclasesservicios\\bibliotecaclasesnetframework\\bibliotecaclasesnetframework\\contratos\\iahorcadoservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{74C67D35-D803-4880-8569-E2FB3FF80372}|..\\..\\Librer\u00EDadeClasesServicios\\BibliotecaClasesNetFramework\\BibliotecaClasesNetFramework\\BibliotecaClasesNetFramework.csproj|c:\\users\\seren\\desktop\\juegoahorcadouo\\code\\librer\u00EDadeclasesservicios\\bibliotecaclasesnetframework\\bibliotecaclasesnetframework\\dto\\partidaestadodto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{74C67D35-D803-4880-8569-E2FB3FF80372}|..\\..\\Librer\u00EDadeClasesServicios\\BibliotecaClasesNetFramework\\BibliotecaClasesNetFramework\\BibliotecaClasesNetFramework.csproj|c:\\users\\seren\\desktop\\juegoahorcadouo\\code\\librer\u00EDadeclasesservicios\\bibliotecaclasesnetframework\\bibliotecaclasesnetframework\\dto\\partidadto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{156E841F-D495-44F9-922F-1A18DE83D694}|ClienteAhorcado\\ClienteAhorcado.csproj|c:\\users\\seren\\desktop\\juegoahorcadouo\\code\\hangthemhigh\\juegoahorcadosolucion\\clienteahorcado\\vistas\\iniciarsesionusercontrol.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{156E841F-D495-44F9-922F-1A18DE83D694}|ClienteAhorcado\\ClienteAhorcado.csproj|solutionrelative:clienteahorcado\\vistas\\iniciarsesionusercontrol.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{156E841F-D495-44F9-922F-1A18DE83D694}|ClienteAhorcado\\ClienteAhorcado.csproj|c:\\users\\seren\\desktop\\juegoahorcadouo\\code\\hangthemhigh\\juegoahorcadosolucion\\clienteahorcado\\vistas\\juegoahorcadousercontrol1.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{156E841F-D495-44F9-922F-1A18DE83D694}|ClienteAhorcado\\ClienteAhorcado.csproj|C:\\Users\\seren\\Desktop\\JuegoAhorcadoUO\\Code\\HangThemHigh\\JuegoAhorcadoSolucion\\clienteahorcado\\vistas\\juegoahorcadousercontrol1.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{156E841F-D495-44F9-922F-1A18DE83D694}|ClienteAhorcado\\ClienteAhorcado.csproj|solutionrelative:clienteahorcado\\vistas\\juegoahorcadousercontrol1.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
@@ -35,8 +11,8 @@
       "RelativeMoniker": "D:0:0:{156E841F-D495-44F9-922F-1A18DE83D694}|ClienteAhorcado\\ClienteAhorcado.csproj|solutionrelative:clienteahorcado\\utilidades\\ahorcadocallbackcliente.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{156E841F-D495-44F9-922F-1A18DE83D694}|ClienteAhorcado\\ClienteAhorcado.csproj|c:\\users\\seren\\desktop\\juegoahorcadouo\\code\\hangthemhigh\\juegoahorcadosolucion\\clienteahorcado\\vistas\\juegoahorcadousercontrol1.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
-      "RelativeMoniker": "D:0:0:{156E841F-D495-44F9-922F-1A18DE83D694}|ClienteAhorcado\\ClienteAhorcado.csproj|solutionrelative:clienteahorcado\\vistas\\juegoahorcadousercontrol1.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+      "AbsoluteMoniker": "D:0:0:{9CB630A0-0828-472E-9E89-2EC1EAC39DD1}|ServidorAhorcadoService\\ServidorAhorcadoService.csproj|C:\\Users\\seren\\Desktop\\JuegoAhorcadoUO\\Code\\HangThemHigh\\JuegoAhorcadoSolucion\\servidorahorcadoservice\\ahorcadoservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9CB630A0-0828-472E-9E89-2EC1EAC39DD1}|ServidorAhorcadoService\\ServidorAhorcadoService.csproj|solutionrelative:servidorahorcadoservice\\ahorcadoservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -49,132 +25,50 @@
           "SelectedChildIndex": 4,
           "Children": [
             {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "MainWindow.xaml.cs",
-              "DocumentMoniker": "C:\\Users\\seren\\Desktop\\JuegoAhorcadoUO\\Code\\HangThemHigh\\JuegoAhorcadoSolucion\\ClienteAhorcado\\MainWindow.xaml.cs",
-              "RelativeDocumentMoniker": "ClienteAhorcado\\MainWindow.xaml.cs",
-              "ToolTip": "C:\\Users\\seren\\Desktop\\JuegoAhorcadoUO\\Code\\HangThemHigh\\JuegoAhorcadoSolucion\\ClienteAhorcado\\MainWindow.xaml.cs",
-              "RelativeToolTip": "ClienteAhorcado\\MainWindow.xaml.cs",
-              "ViewState": "AgIAAFMAAAAAAAAAAAAuwGQAAABAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-18T03:32:58.808Z",
-              "EditorCaption": ""
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{1c64b9c2-e352-428e-a56d-0ace190b99a6}"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "IAhorcadoService.cs",
-              "DocumentMoniker": "C:\\Users\\seren\\Desktop\\JuegoAhorcadoUO\\Code\\Librer\u00EDadeClasesServicios\\BibliotecaClasesNetFramework\\BibliotecaClasesNetFramework\\Contratos\\IAhorcadoService.cs",
-              "RelativeDocumentMoniker": "..\\..\\Librer\u00EDadeClasesServicios\\BibliotecaClasesNetFramework\\BibliotecaClasesNetFramework\\Contratos\\IAhorcadoService.cs",
-              "ToolTip": "C:\\Users\\seren\\Desktop\\JuegoAhorcadoUO\\Code\\Librer\u00EDadeClasesServicios\\BibliotecaClasesNetFramework\\BibliotecaClasesNetFramework\\Contratos\\IAhorcadoService.cs",
-              "RelativeToolTip": "..\\..\\Librer\u00EDadeClasesServicios\\BibliotecaClasesNetFramework\\BibliotecaClasesNetFramework\\Contratos\\IAhorcadoService.cs",
-              "ViewState": "AgIAADsAAAAAAAAAAAAmwEUAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-18T03:32:32.636Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "PartidaEstadoDTO.cs",
-              "DocumentMoniker": "C:\\Users\\seren\\Desktop\\JuegoAhorcadoUO\\Code\\Librer\u00EDadeClasesServicios\\BibliotecaClasesNetFramework\\BibliotecaClasesNetFramework\\DTO\\PartidaEstadoDTO.cs",
-              "RelativeDocumentMoniker": "..\\..\\Librer\u00EDadeClasesServicios\\BibliotecaClasesNetFramework\\BibliotecaClasesNetFramework\\DTO\\PartidaEstadoDTO.cs",
-              "ToolTip": "C:\\Users\\seren\\Desktop\\JuegoAhorcadoUO\\Code\\Librer\u00EDadeClasesServicios\\BibliotecaClasesNetFramework\\BibliotecaClasesNetFramework\\DTO\\PartidaEstadoDTO.cs",
-              "RelativeToolTip": "..\\..\\Librer\u00EDadeClasesServicios\\BibliotecaClasesNetFramework\\BibliotecaClasesNetFramework\\DTO\\PartidaEstadoDTO.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-18T03:28:10.819Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "PartidaDTO.cs",
-              "DocumentMoniker": "C:\\Users\\seren\\Desktop\\JuegoAhorcadoUO\\Code\\Librer\u00EDadeClasesServicios\\BibliotecaClasesNetFramework\\BibliotecaClasesNetFramework\\DTO\\PartidaDTO.cs",
-              "RelativeDocumentMoniker": "..\\..\\Librer\u00EDadeClasesServicios\\BibliotecaClasesNetFramework\\BibliotecaClasesNetFramework\\DTO\\PartidaDTO.cs",
-              "ToolTip": "C:\\Users\\seren\\Desktop\\JuegoAhorcadoUO\\Code\\Librer\u00EDadeClasesServicios\\BibliotecaClasesNetFramework\\BibliotecaClasesNetFramework\\DTO\\PartidaDTO.cs",
-              "RelativeToolTip": "..\\..\\Librer\u00EDadeClasesServicios\\BibliotecaClasesNetFramework\\BibliotecaClasesNetFramework\\DTO\\PartidaDTO.cs",
-              "ViewState": "AgIAACEAAAAAAAAAAAAiwCMAAAAFAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-18T03:27:49.308Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 2,
               "Title": "AhorcadoService.cs",
               "DocumentMoniker": "C:\\Users\\seren\\Desktop\\JuegoAhorcadoUO\\Code\\HangThemHigh\\JuegoAhorcadoSolucion\\ServidorAhorcadoService\\AhorcadoService.cs",
               "RelativeDocumentMoniker": "ServidorAhorcadoService\\AhorcadoService.cs",
               "ToolTip": "C:\\Users\\seren\\Desktop\\JuegoAhorcadoUO\\Code\\HangThemHigh\\JuegoAhorcadoSolucion\\ServidorAhorcadoService\\AhorcadoService.cs",
               "RelativeToolTip": "ServidorAhorcadoService\\AhorcadoService.cs",
-              "ViewState": "AgIAABIBAAAAAAAAAAAAACIBAAAnAAAAAAAAAA==",
+              "ViewState": "AgIAAA8CAAAAAAAAAAAowC8CAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-18T02:37:34.56Z",
+              "WhenOpened": "2025-06-18T05:30:54.315Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "IAhorcadoCallback.cs",
-              "DocumentMoniker": "C:\\Users\\seren\\Desktop\\JuegoAhorcadoUO\\Code\\Librer\u00EDadeClasesServicios\\BibliotecaClasesNetFramework\\BibliotecaClasesNetFramework\\Contratos\\IAhorcadoCallback.cs",
-              "RelativeDocumentMoniker": "..\\..\\Librer\u00EDadeClasesServicios\\BibliotecaClasesNetFramework\\BibliotecaClasesNetFramework\\Contratos\\IAhorcadoCallback.cs",
-              "ToolTip": "C:\\Users\\seren\\Desktop\\JuegoAhorcadoUO\\Code\\Librer\u00EDadeClasesServicios\\BibliotecaClasesNetFramework\\BibliotecaClasesNetFramework\\Contratos\\IAhorcadoCallback.cs",
-              "RelativeToolTip": "..\\..\\Librer\u00EDadeClasesServicios\\BibliotecaClasesNetFramework\\BibliotecaClasesNetFramework\\Contratos\\IAhorcadoCallback.cs",
-              "ViewState": "AgIAABAAAAAAAAAAAAAuwCAAAAABAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-18T03:32:53.072Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 8,
+              "DocumentIndex": 1,
               "Title": "AhorcadoCallbackCliente.cs",
               "DocumentMoniker": "C:\\Users\\seren\\Desktop\\JuegoAhorcadoUO\\Code\\HangThemHigh\\JuegoAhorcadoSolucion\\ClienteAhorcado\\Utilidades\\AhorcadoCallbackCliente.cs",
               "RelativeDocumentMoniker": "ClienteAhorcado\\Utilidades\\AhorcadoCallbackCliente.cs",
               "ToolTip": "C:\\Users\\seren\\Desktop\\JuegoAhorcadoUO\\Code\\HangThemHigh\\JuegoAhorcadoSolucion\\ClienteAhorcado\\Utilidades\\AhorcadoCallbackCliente.cs",
               "RelativeToolTip": "ClienteAhorcado\\Utilidades\\AhorcadoCallbackCliente.cs",
-              "ViewState": "AgIAAAgAAAAAAAAAAAAAwBUAAAA4AAAAAAAAAA==",
+              "ViewState": "AgIAABMAAAAAAAAAAAAwwDUAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-18T02:43:55.066Z",
+              "WhenOpened": "2025-06-18T05:08:13.493Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "IniciarSesionUserControl.xaml.cs",
-              "DocumentMoniker": "C:\\Users\\seren\\Desktop\\JuegoAhorcadoUO\\Code\\HangThemHigh\\JuegoAhorcadoSolucion\\ClienteAhorcado\\Vistas\\IniciarSesionUserControl.xaml.cs",
-              "RelativeDocumentMoniker": "ClienteAhorcado\\Vistas\\IniciarSesionUserControl.xaml.cs",
-              "ToolTip": "C:\\Users\\seren\\Desktop\\JuegoAhorcadoUO\\Code\\HangThemHigh\\JuegoAhorcadoSolucion\\ClienteAhorcado\\Vistas\\IniciarSesionUserControl.xaml.cs",
-              "RelativeToolTip": "ClienteAhorcado\\Vistas\\IniciarSesionUserControl.xaml.cs",
-              "ViewState": "AgIAADMAAAAAAAAAAAAYwEMAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-18T02:36:08.374Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 0,
               "Title": "JuegoAhorcadoUserControl1.xaml.cs",
               "DocumentMoniker": "C:\\Users\\seren\\Desktop\\JuegoAhorcadoUO\\Code\\HangThemHigh\\JuegoAhorcadoSolucion\\ClienteAhorcado\\Vistas\\JuegoAhorcadoUserControl1.xaml.cs",
               "RelativeDocumentMoniker": "ClienteAhorcado\\Vistas\\JuegoAhorcadoUserControl1.xaml.cs",
               "ToolTip": "C:\\Users\\seren\\Desktop\\JuegoAhorcadoUO\\Code\\HangThemHigh\\JuegoAhorcadoSolucion\\ClienteAhorcado\\Vistas\\JuegoAhorcadoUserControl1.xaml.cs",
               "RelativeToolTip": "ClienteAhorcado\\Vistas\\JuegoAhorcadoUserControl1.xaml.cs",
-              "ViewState": "AgIAAKIAAAAAAAAAAAAYwL8AAAAJAAAAAAAAAA==",
+              "ViewState": "AgIAALkAAAAAAAAAAAAswNoAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-06-18T02:09:54.49Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 9,
-              "Title": "JuegoAhorcadoUserControl1.xaml",
-              "DocumentMoniker": "C:\\Users\\seren\\Desktop\\JuegoAhorcadoUO\\Code\\HangThemHigh\\JuegoAhorcadoSolucion\\ClienteAhorcado\\Vistas\\JuegoAhorcadoUserControl1.xaml",
-              "RelativeDocumentMoniker": "ClienteAhorcado\\Vistas\\JuegoAhorcadoUserControl1.xaml",
-              "ToolTip": "C:\\Users\\seren\\Desktop\\JuegoAhorcadoUO\\Code\\HangThemHigh\\JuegoAhorcadoSolucion\\ClienteAhorcado\\Vistas\\JuegoAhorcadoUserControl1.xaml",
-              "RelativeToolTip": "ClienteAhorcado\\Vistas\\JuegoAhorcadoUserControl1.xaml",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2025-06-18T02:35:45.578Z",
               "EditorCaption": ""
             }
           ]
