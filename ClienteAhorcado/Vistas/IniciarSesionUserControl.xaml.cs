@@ -1,43 +1,29 @@
 ﻿using ClienteAhorcado.Utilidades;
-using ClienteAhorcado;
-using ServidorAhorcadoService;
-using ServidorAhorcadoService.DTO;
+using BibliotecaClasesNetFramework.DTO;
 using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.ServiceModel;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
+using BibliotecaClasesNetFramework.Contratos;
 
 namespace ClienteAhorcado.Vistas
 {
-    public partial class IniciarSesionUserControl : UserControl, IAhorcadoCallback
+    public partial class IniciarSesionUserControl : UserControl
     {
-        //si jalo 
-
         private MainWindow _mainWindow;
         private bool mostrandoPassword = false;
-
         IAhorcadoService proxy;
         JugadorDTO usuarioActual;
-        
-        public IniciarSesionUserControl(MainWindow mainWindow)
+
+        public IniciarSesionUserControl(MainWindow mainWindow, IAhorcadoService proxy)
         {
             try
             {
                 InitializeComponent();
                 _mainWindow = mainWindow;
-                var contexto = new InstanceContext(this);
-                var factory = new DuplexChannelFactory<IAhorcadoService>(contexto, "AhorcadoEndpoint");
-                proxy = factory.CreateChannel();
+                this.proxy = proxy;
+
             }
             catch (Exception ex)
             {
@@ -59,16 +45,23 @@ namespace ClienteAhorcado.Vistas
 
                 pass = RegistrarJugadorUserControl.EncriptarContraseña(pass.Trim());
 
-                usuarioActual = proxy.IniciarSesion(correo, pass);
+                try
+                {
+                    usuarioActual = proxy.IniciarSesion(correo, pass);
 
-                if (usuarioActual != null)
-                {
-                    MessageBox.Show($"Bienvenido, {usuarioActual.Nombre}");
-                    MostrarMenuPrincipal(usuarioActual);
+                    if (usuarioActual != null)
+                    {
+                        MessageBox.Show($"Bienvenido, {usuarioActual.Nombre}");
+                        MostrarMenuPrincipal(usuarioActual);
+                    }
+                    else
+                    {
+                        MessageBox.Show("Usuario o contraseña incorrectos.");
+                    }
                 }
-                else
+                catch (Exception ex)
                 {
-                    MessageBox.Show("Usuario o contraseña incorrectos.");
+                    MessageBox.Show($"Error al iniciar sesión: {ex.Message}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                 }
             }
         }
@@ -88,14 +81,15 @@ namespace ClienteAhorcado.Vistas
             return valido;
         }
 
+        // ¡IMPORTANTE! Aquí pasas el proxy a la siguiente ventana
         private void MostrarMenuPrincipal(JugadorDTO jugador)
         {
-            _mainWindow.CambiarVista(new MenuPrincipalUserControl(_mainWindow, jugador));
+            _mainWindow.CambiarVista(new MenuPrincipalUserControl(_mainWindow, jugador, proxy));
         }
 
         private void BtnRegistrarse_Click(object sender, RoutedEventArgs e)
         {
-            _mainWindow.CambiarVista(new RegistrarJugadorUserControl(_mainWindow)); 
+            _mainWindow.CambiarVista(new RegistrarJugadorUserControl(_mainWindow, proxy));
         }
 
         private void BtnVerPassword_Click(object sender, RoutedEventArgs e)
@@ -106,7 +100,7 @@ namespace ClienteAhorcado.Vistas
                 tbPasswordVisible.Text = pbPassword.Password;
                 tbPasswordVisible.Visibility = Visibility.Visible;
                 pbPassword.Visibility = Visibility.Collapsed;
-                btnVerPassword.Content = "🙈"; 
+                btnVerPassword.Content = "🙈";
             }
             else
             {
@@ -129,18 +123,5 @@ namespace ClienteAhorcado.Vistas
                 pbPassword.Password = tbPasswordVisible.Text;
         }
 
-
-        public void ActualizarEstadoPartida(PartidaEstadoDTO estadoActual)
-        {
-            throw new NotImplementedException();
-        }
-        public void NotificarFinPartida(string resultado, string palabra)
-        {
-            throw new NotImplementedException();
-        }
-        public void RecibirMensajeChat(string nombreJugador, string mensaje)
-        {
-            throw new NotImplementedException();
-        }
     }
 }

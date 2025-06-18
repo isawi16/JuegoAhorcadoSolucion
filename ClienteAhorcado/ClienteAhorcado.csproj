@@ -75,7 +75,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="AhorcadoCallbackCliente.cs" />
+    <Compile Include="Utilidades\AhorcadoCallbackCliente.cs" />
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
@@ -87,12 +87,10 @@
     </Compile>
     <Compile Include="Utilidades\Animaciones.cs" />
     <Compile Include="Utilidades\Constantes.cs" />
+    <Compile Include="Utilidades\IdiomaHelper.cs" />
     <Compile Include="Utilidades\ValidacionesEntrada.cs" />
     <Compile Include="Vistas\CargaUserControl.xaml.cs">
       <DependentUpon>CargaUserControl.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Vistas\ChatUserControl.xaml.cs">
-      <DependentUpon>ChatUserControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="Vistas\ConsultarHistorialPartidasUserControl.xaml.cs">
       <DependentUpon>ConsultarHistorialPartidasUserControl.xaml</DependentUpon>
@@ -187,10 +185,6 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Vistas\ChatUserControl.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="Vistas\ConsultarHistorialPartidasUserControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -233,9 +227,6 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <WCFMetadata Include="Connected Services\" />
-  </ItemGroup>
-  <ItemGroup>
     <Resource Include="Images\6.png" />
     <Resource Include="Images\5.png" />
     <Resource Include="Images\4.png" />
@@ -250,13 +241,22 @@
     </Resource>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\ServidorAhorcadoService\ServidorAhorcadoService.csproj">
-      <Project>{9cb630a0-0828-472e-9e89-2ec1eac39dd1}</Project>
-      <Name>ServidorAhorcadoService</Name>
+    <Resource Include="Images\cerrarSesion.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\LibreríadeClasesServicios\BibliotecaClasesNetFramework\BibliotecaClasesNetFramework\BibliotecaClasesNetFramework.csproj">
+      <Project>{74c67d35-d803-4880-8569-e2fb3ff80372}</Project>
+      <Name>BibliotecaClasesNetFramework</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Images\cerrarSesion.png" />
+    <Resource Include="Images\pinzarron.jpeg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\logo ahorcado.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\salon.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
