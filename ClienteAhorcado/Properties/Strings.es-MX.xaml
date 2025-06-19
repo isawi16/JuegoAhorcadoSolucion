@@ -5,6 +5,11 @@
     <sys:String x:Key="Mensaje_Validacion_NombreVacio">El nombre no puede estar vacío</sys:String>
     <sys:String x:Key="Mensaje_Validacion_CorreoVacio">El correo no puede estar vacío</sys:String>
     
+    
+    
+    
+    
+    
 
     <sys:String x:Key="Dificultad_Facil">Facil</sys:String>
     <sys:String x:Key="Dificultad_Media">Media</sys:String>
