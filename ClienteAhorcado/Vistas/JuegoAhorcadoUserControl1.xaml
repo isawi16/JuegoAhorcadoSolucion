@@ -83,7 +83,7 @@
         </Grid.RowDefinitions>
 
         <!-- Título -->
-        <TextBlock Grid.Row="0" Text="🎯 Juego del Ahorcado 🎯" 
+        <TextBlock x:Name="tblockTitulo" Grid.Row="0" Text="🎯 Juego del Ahorcado 🎯" 
            FontSize="42" FontWeight="Bold" HorizontalAlignment="Center" Margin="0,10"
            FontFamily="Segoe UI Black" Foreground="White">
             <TextBlock.Effect>
@@ -115,7 +115,7 @@
             <!-- Chat -->
             <Border Grid.Column="1" BorderBrush="#FF44475A" BorderThickness="2" Padding="10" Margin="10" CornerRadius="8" Background="#FF2C2F48">
                 <StackPanel>
-                    <TextBlock Text="💬 Chat privado" FontWeight="Bold" FontSize="16" Margin="0,0,0,5" Foreground="White"/>
+                    <TextBlock x:Name="tblockChat" Text="💬 Chat privado" FontWeight="Bold" FontSize="16" Margin="0,0,0,5" Foreground="White"/>
                     <ScrollViewer Height="200">
                         <TextBox x:Name="txtChat" TextWrapping="Wrap" IsReadOnly="True" VerticalScrollBarVisibility="Auto"
                                  Background="#FF2C2F48" Foreground="White" BorderThickness="0"/>

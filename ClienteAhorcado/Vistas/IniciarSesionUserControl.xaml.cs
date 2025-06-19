@@ -123,5 +123,13 @@ namespace ClienteAhorcado.Vistas
                 pbPassword.Password = tbPasswordVisible.Text;
         }
 
+        private void cmbIdioma_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (cmbIdioma.SelectedItem is ComboBoxItem item && item.Tag is string idioma)
+            {
+                /*localizer.SetIdioma(idioma);
+                RefrescarUI();*/
+            }
+        }
     }
 }
