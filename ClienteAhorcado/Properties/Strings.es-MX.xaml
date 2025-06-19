@@ -3,7 +3,16 @@
                     xmlns:sys="clr-namespace:System;assembly=mscorlib">
 
     <sys:String x:Key="Mensaje_Validacion_NombreVacio">El nombre no puede estar vacío</sys:String>
+    <sys:String x:Key="Mensaje_Validacion_NombreCorto">El nombre debe tener al menos 2 caracteres</sys:String>
+    <sys:String x:Key="Mensaje_Validacion_TelefonoVacio">El teléfono no puede estar vacío</sys:String>
+    <sys:String x:Key="Mensaje_Validacion_TelefonoFormatoInvalido">El teléfono debe contener solo números y tener al menos 8 dígitos</sys:String>
+    <sys:String x:Key="Mensaje_Validacion_PasswordVacio">La contraseña no puede estar vacía</sys:String>
+    <sys:String x:Key="Mensaje_Validacion_PasswordCorto">La contraseña debe tener al menos 5 caracteres</sys:String>
     <sys:String x:Key="Mensaje_Validacion_CorreoVacio">El correo no puede estar vacío</sys:String>
+    <sys:String x:Key="Mensaje_Validacion_CorreoFormatoInvalido">El correo debe contener '@' y el dominio</sys:String>
+    <sys:String x:Key="Mensaje_Validacion_FechaSinSeleccionar">Debes seleccionar una fecha de nacimiento</sys:String>
+    <sys:String x:Key="Mensaje_Validacion_FechaFutura">La fecha de nacimiento no puede ser en el futuro</sys:String>
+    <sys:String x:Key="Mensaje_Validacion_FechaInvalida">La fecha de nacimiento no es válida</sys:String>
 
 
 

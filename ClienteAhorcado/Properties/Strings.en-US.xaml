@@ -4,7 +4,17 @@
 
 
     <sys:String x:Key="Mensaje_Validacion_NombreVacio">The name cannot be empty</sys:String>
+    <sys:String x:Key="Mensaje_Validacion_NombreCorto">The name must have at least 2 characters</sys:String>
+    <sys:String x:Key="Mensaje_Validacion_TelefonoVacio">The number phone cannot be empty</sys:String>
+    <sys:String x:Key="Mensaje_Validacion_TelefonoFormatoInvalido">The phone number must contain only numbers and have at least 8 digits.</sys:String>
+    <sys:String x:Key="Mensaje_Validacion_PasswordVacio">The password cannot be empty</sys:String>
+    <sys:String x:Key="Mensaje_Validacion_PasswordCorto">The password must have at least 5 characters</sys:String>
     <sys:String x:Key="Mensaje_Validacion_CorreoVacio">The email cannot be empty</sys:String>
+    <sys:String x:Key="Mensaje_Validacion_CorreoFormatoInvalido">The email must contain '@' and the domain</sys:String>
+    <sys:String x:Key="Mensaje_Validacion_FechaSinSeleccionar">You must select a date of birth</sys:String>
+    <sys:String x:Key="Mensaje_Validacion_FechaFutura">The date of birth cannot be in the future</sys:String>
+    <sys:String x:Key="Mensaje_Validacion_FechaInvalida">The date of birth is not valid</sys:String>
+
 
 
 

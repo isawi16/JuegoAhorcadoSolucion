@@ -81,8 +81,11 @@ namespace ClienteAhorcado.Vistas
             string ErrorCorreo = !string.IsNullOrEmpty(correo)
                 ? Application.Current.TryFindResource(correo) as string : null;
 
+            string ErrorPassword = !string.IsNullOrEmpty(pass)
+                ? Application.Current.TryFindResource(pass) as string : null;
+
             tblockErrorCorreo.Text = ErrorCorreo ?? "";
-            tblockErrorPassword.Text = pass ?? "";
+            tblockErrorPassword.Text = ErrorPassword ?? "";
 
             if (correo != null || pass != null)
                 valido = false;
