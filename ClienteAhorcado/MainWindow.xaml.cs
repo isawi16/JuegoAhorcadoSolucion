@@ -90,17 +90,14 @@ namespace ClienteAhorcado
 
         public void NotificarFinPartida(string resultado, string palabra)
         {
+
+
             Dispatcher.Invoke(() =>
             {
                 MessageBox.Show($"{resultado}. La palabra era: {palabra}", "Fin de la partida");
             });
         }
 
-        // Si tienes métodos opcionales del callback, puedes implementarlos aquí...
-        // public void JugadorSeUnio(string nombreJugador) { }
-        // public void JugadorAbandono(string nombreJugador) { }
-        // public void ActualizarCantidadJugadores(int cantidadConectados) { }
-
-        // --- Puedes agregar métodos extra y lógica aquí según lo que necesites ---
+      
     }
 }

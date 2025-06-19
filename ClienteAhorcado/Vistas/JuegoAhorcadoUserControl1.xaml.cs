@@ -6,7 +6,10 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Media;
+using System.Windows.Media.Animation;
 using System.Windows.Media.Imaging;
+using System.Windows.Shapes;
 
 namespace ClienteAhorcado.Vistas
 {
@@ -16,7 +19,7 @@ namespace ClienteAhorcado.Vistas
         private int intentosRestantes;
         private List<char> letrasUsadas = new List<char>();
         private bool esCreador;
-        private MainWindow mainWindow;
+        private MainWindow mainWindow;      
         private JugadorDTO jugador;
         private IAhorcadoService proxy;
         private int idPartida;
@@ -25,6 +28,9 @@ namespace ClienteAhorcado.Vistas
         public JuegoAhorcadoUserControl1(JugadorDTO jugador, PalabraDTO palabra, int idPartida, bool esCreador, IAhorcadoService proxy)
         {
             InitializeComponent();
+            txtIntentosRestantes.Foreground = new System.Windows.Media.SolidColorBrush(System.Windows.Media.Colors.White);
+            txtLetrasUsadas.Foreground = new System.Windows.Media.SolidColorBrush(System.Windows.Media.Colors.White);
+
             this.proxy = proxy;
             this.jugador = jugador;
             this.palabraSecreta = palabra.Texto.ToUpper();
@@ -72,45 +78,66 @@ namespace ClienteAhorcado.Vistas
                 {
                     Text = mostrar,
                     FontSize = 24,
-                    Margin = new Thickness(5)
+                    Margin = new Thickness(5),
+                    Foreground = new System.Windows.Media.SolidColorBrush(System.Windows.Media.Colors.White) 
                 };
                 stackPalabra.Children.Add(letra);
             }
         }
 
+
         private void GenerarBotonesLetras()
         {
             wrapLetras.Children.Clear();
+
             for (char c = 'A'; c <= 'Z'; c++)
             {
-                Button btn = new Button
+                var btn = new Button
                 {
                     Content = c.ToString(),
                     Width = 30,
                     Height = 30,
                     Margin = new Thickness(2)
                 };
-                btn.Click += BtnLetra_Click;
+
+                if (esCreador)
+                {
+                    btn.IsEnabled = false;
+                    btn.Background = new SolidColorBrush(Colors.LightGray);
+                    btn.Foreground = new SolidColorBrush(Colors.Black); 
+                }
+                else
+                {
+                    btn.IsEnabled = true;
+                    btn.Background = new SolidColorBrush(Colors.SteelBlue);
+                    btn.Foreground = new SolidColorBrush(Colors.White);
+
+                    btn.Click += BtnLetra_Click;
+                }
+
                 wrapLetras.Children.Add(btn);
             }
         }
 
+
+
         private async void BtnLetra_Click(object sender, RoutedEventArgs e)
         {
             if (!(sender is Button btn)) return;
+
             btn.IsEnabled = false;
 
             char letra = btn.Content.ToString()[0];
             try
             {
                 await Task.Run(() => proxy.EnviarLetra(idPartida, jugador.IDJugador, letra));
-                // Espera el callback para actualizar la UI.
             }
             catch (Exception ex)
             {
                 MessageBox.Show("Error al llamar EnviarLetra: " + ex.Message);
             }
         }
+
 
 
         private void ActualizarEstado()
@@ -121,8 +148,66 @@ namespace ClienteAhorcado.Vistas
 
         private void ActualizarImagenAhorcado()
         {
-            imgAhorcado.Source = new BitmapImage(new Uri($"/Images/{intentosRestantes}.png", UriKind.Relative));
+            var fadeOut = new DoubleAnimation(1, 0, TimeSpan.FromMilliseconds(200));
+            fadeOut.Completed += (s, e) =>
+            {
+                imgAhorcado.Source = new BitmapImage(new Uri($"/Images/{intentosRestantes}.png", UriKind.Relative));
+
+                var fadeIn = new DoubleAnimation(0, 1, TimeSpan.FromMilliseconds(200));
+                imgAhorcado.BeginAnimation(UIElement.OpacityProperty, fadeIn);
+            };
+
+            imgAhorcado.BeginAnimation(UIElement.OpacityProperty, fadeOut);
         }
+
+        private void LanzarConfeti()
+        {
+            var rand = new Random();
+            for (int i = 0; i < 30; i++)
+            {
+                double size = rand.Next(20, 31);
+
+                var estrella = new Ellipse
+                {
+                    Width = size,
+                    Height = size,
+                    Fill = new SolidColorBrush(Color.FromRgb(
+                        (byte)rand.Next(100, 256),
+                        (byte)rand.Next(100, 256),
+                        (byte)rand.Next(100, 256))),
+                    Opacity = 0.85
+                };
+
+                Canvas.SetLeft(estrella, rand.Next((int)this.ActualWidth));
+                Canvas.SetTop(estrella, -size);
+                canvasEfectos.Children.Add(estrella);
+
+                var animacionY = new DoubleAnimation
+                {
+                    From = -size,
+                    To = this.ActualHeight + size,
+                    Duration = TimeSpan.FromSeconds(rand.NextDouble() * 2 + 1),
+                    AccelerationRatio = 0.2,
+                    DecelerationRatio = 0.2
+                };
+
+                var animacionRotacion = new DoubleAnimation
+                {
+                    From = 0,
+                    To = 360,
+                    Duration = TimeSpan.FromSeconds(2),
+                    RepeatBehavior = RepeatBehavior.Forever
+                };
+
+                estrella.RenderTransform = new RotateTransform();
+                estrella.RenderTransformOrigin = new Point(0.5, 0.5);
+                estrella.RenderTransform.BeginAnimation(RotateTransform.AngleProperty, animacionRotacion);
+
+                estrella.BeginAnimation(Canvas.TopProperty, animacionY);
+            }
+        }
+
+
 
         private void BtnVolverMenu_Click(object sender, RoutedEventArgs e)
         {
@@ -134,27 +219,25 @@ namespace ClienteAhorcado.Vistas
 
         public void ActualizarDesdeCallback(PartidaEstadoDTO estado)
         {
-            // Actualiza los datos internos
             this.intentosRestantes = estado.IntentosRestantes;
             this.letrasUsadas = estado.LetrasUsadas ?? new List<char>();
 
-            // Refresca letras usadas e intentos restantes
             txtLetrasUsadas.Text = string.Join(", ", letrasUsadas);
             txtIntentosRestantes.Text = intentosRestantes.ToString();
 
-            // Refresca la palabra parcial (con guiones)
             for (int i = 0; i < estado.PalabraConGuiones.Length && i < stackPalabra.Children.Count; i++)
             {
                 if (stackPalabra.Children[i] is TextBlock tb)
                 {
                     tb.Text = estado.PalabraConGuiones[i].ToString();
+                    tb.Opacity = 0;
+                    var fadeIn = new DoubleAnimation(0, 1, TimeSpan.FromMilliseconds(300));
+                    tb.BeginAnimation(UIElement.OpacityProperty, fadeIn);
                 }
             }
 
-            // Actualiza imagen ahorcado
             ActualizarImagenAhorcado();
 
-            // Deshabilita controles si eres creador
             if (esCreador)
             {
                 foreach (Button btn in wrapLetras.Children)
@@ -162,12 +245,10 @@ namespace ClienteAhorcado.Vistas
             }
             else
             {
-                // Solo habilita letras no usadas y si la partida sigue
                 foreach (Button btn in wrapLetras.Children)
                 {
                     if (btn.Content is string letra)
                     {
-                        // Comparación case-insensitive
                         char letraBtn = letra.ToUpper()[0];
                         bool usada = letrasUsadas.Any(l => char.ToUpper(l) == letraBtn);
                         btn.IsEnabled = !usada && intentosRestantes > 0 && estado.PalabraConGuiones.Contains('_');
@@ -175,9 +256,9 @@ namespace ClienteAhorcado.Vistas
                 }
             }
 
-            // Detecta fin de partida y muestra botón de volver
             if (intentosRestantes <= 0 || !estado.PalabraConGuiones.Contains('_'))
             {
+                LanzarConfeti();
                 foreach (Button btn in wrapLetras.Children)
                     btn.IsEnabled = false;
                 btnVolverMenu.Visibility = Visibility.Visible;
@@ -186,29 +267,23 @@ namespace ClienteAhorcado.Vistas
 
 
 
-        // Método para el botón "Enviar" del chat (aunque no haga nada)
         private void BtnEnviar_Click(object sender, RoutedEventArgs e)
         {
             // No hace nada por ahora
         }
 
-        // Método para el botón "Cancelar Partida" (aunque no haga nada)
         private void BtnCancelarPartida_Click(object sender, RoutedEventArgs e)
         {
-            // Deshabilita los botones de letras inmediatamente
             foreach (Button btn in wrapLetras.Children)
                 btn.IsEnabled = false;
 
             try
             {
-                // Llama al servidor para cancelar la partida
                 proxy.AbandonarPartida(idPartida, jugador.IDJugador);
-                // Espera el callback NotificarFinPartida para mostrar el mensaje y regresar al menú
             }
             catch (Exception ex)
             {
                 MessageBox.Show("Error al cancelar la partida: " + ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
-                // Habilita los botones de letras de nuevo si lo deseas
                 foreach (Button btn in wrapLetras.Children)
                     btn.IsEnabled = !esCreador;
             }
