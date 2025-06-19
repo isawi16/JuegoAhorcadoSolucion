@@ -15,18 +15,18 @@
 
             <!-- Encabezado -->
             <StackPanel Grid.Row="0" Margin="0,10,0,20" HorizontalAlignment="Center">
-                <TextBlock Text="Bienvenido" FontSize="24" FontWeight="Bold" Foreground="#2C3E50" TextAlignment="Center"/>
-                <TextBlock Text="Inicia sesión para continuar" FontSize="14" Foreground="Gray" TextAlignment="Center"/>
+                <TextBlock x:Name="tblockTitulo" Text="Bienvenido" FontSize="24" FontWeight="Bold" Foreground="#2C3E50" TextAlignment="Center"/>
+                <TextBlock x:Name="tblockSubtitulo" Text="Inicia sesión para continuar" FontSize="14" Foreground="Gray" TextAlignment="Center"/>
             </StackPanel>
 
             <!-- Contenido -->
             <StackPanel Grid.Row="1" VerticalAlignment="Top" HorizontalAlignment="Center" Width="280">
-                <TextBlock Text="Correo electrónico" FontWeight="SemiBold" Margin="0,0,0,5"/>
+                <TextBlock x:Name="tblockCorreo" Text="Correo electrónico" FontWeight="SemiBold" Margin="0,0,0,5"/>
                 <TextBox x:Name="tbCorreo" Height="35" Padding="10,5,10,10" 
                          Tag="Correo electrónico" Margin="0,0,0,5" />
                 <TextBlock x:Name="tblockErrorCorreo" Text="" Margin="0,0,0,5" Foreground="Red"/>
 
-                <TextBlock Text="Contraseña" FontWeight="SemiBold" Margin="0,0,0,5"/>
+                <TextBlock x:Name="tblockContrasena" Text="Contraseña" FontWeight="SemiBold" Margin="0,0,0,5"/>
                 <Grid>
                     <PasswordBox x:Name="pbPassword" Height="35" Padding="10" 
                              Tag="Contraseña" Margin="0,0,40,5" Visibility="Visible" PasswordChanged="PbPassword_PasswordChanged"/>
@@ -37,15 +37,25 @@
                 </Grid>
 
                 <TextBlock x:Name="tblockErrorPassword" Text="" Margin="0,0,0,5" Foreground="Red" VerticalAlignment="Bottom"/>
-                <Button Content="Iniciar Sesión"
+                <Button x:Name="btnIniciarSesion" Content="Iniciar Sesión"
                         Click="BtnIniciarSesion_Click"
                         Style="{StaticResource EstiloBotonPrincipalSinIcono}"
                         Height="40" Margin="0,0,0,10"/>
 
-                <Button Content="¿No tienes cuenta? Regístrate"
+                <Button  x:Name="btnRegistrarse" Content="¿No tienes cuenta? Regístrate"
                         Click="BtnRegistrarse_Click"
                         Style="{StaticResource EstiloBotonSecundarioSinIcono}"
-                        Height="40" Background="Transparent" BorderBrush="#3498db" Foreground="#3498db"/>
+                        Height="40" Background="Transparent" BorderBrush="#3498db" Foreground="#3498db" Margin="0,0,0,10"/>
+
+                <ComboBox x:Name="cmbIdioma" 
+                          SelectionChanged="cmbIdioma_SelectionChanged"
+                         Width="100"
+                         Height="30" Background="Transparent" BorderBrush="#3498db" Foreground="#3498db">
+                    
+                    <ComboBoxItem Tag="es">Español</ComboBoxItem>
+                    <ComboBoxItem Tag="en">English</ComboBoxItem>
+
+                </ComboBox>
             </StackPanel>
         </Grid>
     </Border>

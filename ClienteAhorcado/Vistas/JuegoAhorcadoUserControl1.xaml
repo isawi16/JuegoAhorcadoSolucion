@@ -4,34 +4,95 @@
              xmlns:local="clr-namespace:ClienteAhorcado.Vistas"
              Width="800" Height="600">
 
-    <Grid Margin="10" Background="#FF02210D">
+    <UserControl.Resources>
+        <!-- Estilo para botones de letras -->
+        <Style x:Key="LetraButtonStyle" TargetType="Button">
+            <Setter Property="Background" Value="SteelBlue"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="Width" Value="35"/>
+            <Setter Property="Height" Value="35"/>
+            <Setter Property="Margin" Value="3"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="{TemplateBinding Background}"
+                                CornerRadius="8"
+                                BorderThickness="0"
+                                SnapsToDevicePixels="True">
+                            <ContentPresenter HorizontalAlignment="Center"
+                                              VerticalAlignment="Center"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" Value="#FF3A7BD5"/>
+                            </Trigger>
+                            <Trigger Property="IsPressed" Value="True">
+                                <Setter Property="Background" Value="Gray"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <!-- Estilo para botones generales -->
+        <Style x:Key="FancyButton" TargetType="Button">
+            <Setter Property="Background" Value="#FF007ACC"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="FontSize" Value="16"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="Padding" Value="10,5"/>
+            <Setter Property="Margin" Value="5"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="{TemplateBinding Background}"
+                                CornerRadius="10"
+                                SnapsToDevicePixels="True"
+                                >
+                            <ContentPresenter HorizontalAlignment="Center"
+                                              VerticalAlignment="Center"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" Value="#FF005B9A"/>
+                            </Trigger>
+                            <Trigger Property="IsPressed" Value="True">
+                                <Setter Property="Background" Value="#FF003C66"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </UserControl.Resources>
+
+    <Grid Margin="10" Background="#FF1B1B2F">
+
+
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
-            <!-- Título -->
             <RowDefinition Height="Auto"/>
-            <!-- Imagen -->
             <RowDefinition Height="Auto"/>
-            <!-- Palabra oculta -->
             <RowDefinition Height="*"/>
-            <!-- Botones letras + chat -->
             <RowDefinition Height="Auto"/>
-            <!-- Estado del juego -->
         </Grid.RowDefinitions>
 
-        <Button x:Name="btnVolverMenu"
-        Content="Volver al Menú"
-        Width="180"
-        Height="40"
-        Visibility="Collapsed"
-        HorizontalAlignment="Left"
-        VerticalAlignment="Bottom"
-        Margin="290,0,0,42"
-        
-        Click="BtnVolverMenu_Click" Grid.Row="3"/>
-
         <!-- Título -->
-        <TextBlock Grid.Row="0" Text="Juego del Ahorcado" 
-                   FontSize="48" FontWeight="Bold" HorizontalAlignment="Center" Margin="0,10" FontFamily="Showcard Gothic" Foreground="White"/>
+        <TextBlock x:Name="tblockTitulo" Grid.Row="0" Text="🎯 Juego del Ahorcado 🎯" 
+           FontSize="42" FontWeight="Bold" HorizontalAlignment="Center" Margin="0,10"
+           FontFamily="Segoe UI Black" Foreground="White">
+            <TextBlock.Effect>
+                <DropShadowEffect BlurRadius="10" ShadowDepth="4" Color="Black" Opacity="0.5"/>
+            </TextBlock.Effect>
+        </TextBlock>
+        <Canvas x:Name="canvasEfectos" IsHitTestVisible="False" />
+
+
 
         <!-- Imagen del ahorcado -->
         <Image x:Name="imgAhorcado" Grid.Row="1" Height="200" Width="200" 
@@ -49,32 +110,56 @@
             </Grid.ColumnDefinitions>
 
             <!-- Botones de letras -->
-            <WrapPanel x:Name="wrapLetras" Grid.Column="0" Margin="10" VerticalAlignment="Top">
-                <!-- Se agregan dinámicamente los botones con código -->
-            </WrapPanel>
+            <WrapPanel x:Name="wrapLetras" Grid.Column="0" Margin="10" VerticalAlignment="Top"/>
 
             <!-- Chat -->
-            <Border Grid.Column="1" BorderBrush="Gray" BorderThickness="1" Padding="8" Margin="10">
+            <Border Grid.Column="1" BorderBrush="#FF44475A" BorderThickness="2" Padding="10" Margin="10" CornerRadius="8" Background="#FF2C2F48">
                 <StackPanel>
-                    <TextBlock x:Name="Chat" Text="Chat privado" FontWeight="Bold" Margin="0,0,0,5" Foreground="#FFFBF5F5"/>
+                    <TextBlock x:Name="tblockChat" Text="💬 Chat privado" FontWeight="Bold" FontSize="16" Margin="0,0,0,5" Foreground="White"/>
                     <ScrollViewer Height="200">
-                        <!-- Cambié TextBlock por TextBox para poder usar ScrollToEnd -->
-                        <TextBox x:Name="txtChat" TextWrapping="Wrap" IsReadOnly="True" VerticalScrollBarVisibility="Auto"/>
+                        <TextBox x:Name="txtChat" TextWrapping="Wrap" IsReadOnly="True" VerticalScrollBarVisibility="Auto"
+                                 Background="#FF2C2F48" Foreground="White" BorderThickness="0"/>
                     </ScrollViewer>
-                    <DockPanel Margin="0,5,0,0">
-                        <TextBox x:Name="txtMensaje" Width="150" Height="25" DockPanel.Dock="Left"/>
-                        <Button Content="Enviar" Click="BtnEnviar_Click" Width="60" Height="25" Margin="5,0,0,0"/>
+                    <DockPanel Margin="0,10,0,0">
+                        <TextBox x:Name="txtMensaje" Width="150" Height="28" DockPanel.Dock="Left" 
+                                 Background="White" BorderThickness="1"/>
+                        <Button Content="Enviar" Click="BtnEnviar_Click" Width="60" Height="28" Margin="5,0,0,0" Style="{StaticResource FancyButton}"/>
                     </DockPanel>
                 </StackPanel>
             </Border>
         </Grid>
-        <Button Name="btnCancelarPartida" Content="Cancelar Partida" Click="BtnCancelarPartida_Click" Margin="40,168,619,27" Grid.Row="3" Background="#FFD81111"/>
+
+        <!-- Botón Volver -->
+        <Button x:Name="btnVolverMenu"
+                Content="⏪ Volver al Menú"
+                Width="180"
+                Height="40"
+                Visibility="Collapsed"
+                HorizontalAlignment="Left"
+                VerticalAlignment="Bottom"
+                Margin="290,0,0,42"
+                Click="BtnVolverMenu_Click"
+                Grid.Row="3"
+                Style="{StaticResource FancyButton}"/>
+
         <!-- Estado del juego -->
         <StackPanel Grid.Row="4" Orientation="Horizontal" HorizontalAlignment="Center" Margin="10">
-            <TextBlock x:Name="lblIntentosRestantes" Text="Intentos restantes: " FontWeight="Bold" Foreground="#FFF9F7F7"/>
-            <TextBlock x:Name="txtIntentosRestantes" Margin="5,0"/>
-            <TextBlock x:Name="lblLetrasUsadas" Text=" | Letras usadas: " FontWeight="Bold" Margin="15,0,0,0" Foreground="#FFF3F0F0"/>
-            <TextBlock x:Name="txtLetrasUsadas" Margin="5,0"/>
+            <TextBlock Text="Intentos restantes:" FontWeight="Bold" Foreground="White" Margin="0,0,5,0"/>
+            <TextBlock x:Name="txtIntentosRestantes" Foreground="White" FontWeight="Bold" Margin="5,0"/>
+            <TextBlock Text="| Letras usadas:" FontWeight="Bold" Foreground="White" Margin="15,0,5,0"/>
+            <TextBlock x:Name="txtLetrasUsadas" Foreground="White"/>
         </StackPanel>
+
+        <!-- Botón Cancelar -->
+        <Button x:Name="btnCancelarPartida"
+                Visibility="Collapsed"
+                Content="❌ Cancelar Partida"
+                Click="BtnCancelarPartida_Click"
+                Grid.Row="3"
+                VerticalAlignment="Bottom"
+                HorizontalAlignment="Right"
+                Margin="0,0,40,40"
+                Style="{StaticResource FancyButton}"
+                Background="#FFD81111"/>
     </Grid>
 </UserControl>

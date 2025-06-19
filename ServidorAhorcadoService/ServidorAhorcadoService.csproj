@@ -115,7 +115,7 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\LibreríadeClasesServicios\BibliotecaClasesNetFramework\BibliotecaClasesNetFramework\BibliotecaClasesNetFramework.csproj">
+    <ProjectReference Include="..\..\LibreríadeClasesServicios\LibreríadeClasesServicios\BibliotecaClasesNetFramework\BibliotecaClasesNetFramework\BibliotecaClasesNetFramework.csproj">
       <Project>{74c67d35-d803-4880-8569-e2fb3ff80372}</Project>
       <Name>BibliotecaClasesNetFramework</Name>
     </ProjectReference>

@@ -167,5 +167,10 @@ namespace ClienteAhorcado.Vistas
         }
 
         #endregion
+
+        private void btnRegresar_Click(object sender, RoutedEventArgs e)
+        {
+            _mainwindow.CambiarVista(new MenuPrincipalUserControl(_mainwindow, jugadorCreador, proxy));
+        }
     }
 }
