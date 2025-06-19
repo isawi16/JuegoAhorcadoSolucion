@@ -171,13 +171,27 @@ namespace ClienteAhorcado.Vistas
             string errorNombre = ValidacionesEntrada.ValidarNombre(tbNombre);
             string errorTelefono = ValidacionesEntrada.ValidarTelefono(tbTelefono);
             string errorFechaNacimiento = ValidacionesEntrada.ValidarFechaNacimiento(dpFechaNacimiento);
+            string errorPass = ValidacionesEntrada.ValidarPassword(pbPassword);
 
-            
-            tblockErrorNombre.Text = errorNombre ?? "";
-            tblockErrorTelefono.Text = errorTelefono ?? "";
-            tblockErrorFecha.Text = errorFechaNacimiento ?? "";
 
-            if ( errorNombre != null || errorTelefono != null || errorFechaNacimiento != null)
+            string mensajePass = !string.IsNullOrEmpty(errorPass)
+                ? Application.Current.TryFindResource(errorPass) as string : null;
+
+            string mensajeNombre = !string.IsNullOrEmpty(errorNombre)
+                ? Application.Current.TryFindResource(errorNombre) as string : null;
+
+            string mensajeTelefono = !string.IsNullOrEmpty(errorTelefono)
+                ? Application.Current.TryFindResource(errorTelefono) as string : null;
+
+            string mensajeFecha = !string.IsNullOrEmpty(errorFechaNacimiento)
+                ? Application.Current.TryFindResource(errorFechaNacimiento) as string : null;
+
+            tblockErrorPassword.Text = mensajePass ?? "";
+            tblockErrorNombre.Text = mensajeNombre ?? "";
+            tblockErrorTelefono.Text = mensajeTelefono ?? "";
+            tblockErrorFecha.Text = mensajeFecha ?? "";
+
+            if ( errorNombre != null || errorTelefono != null || errorFechaNacimiento != null || errorPass != null)
                 valido = false;
 
             return valido;

@@ -141,11 +141,27 @@ namespace ClienteAhorcado.Vistas
             string errorFechaNacimiento = ValidacionesEntrada.ValidarFechaNacimiento(dpFechaNacimiento);
 
 
-            tblockErrorCorreo.Text = errorCorreo ?? "";
-            tblockErrorPassword.Text = errorPass ?? "";
-            tblockErrorNombre.Text = errorNombre ?? "";
-            tblockErrorTelefono.Text = errorTelefono ?? "";
-            tblockErrorFecha.Text = errorFechaNacimiento ?? "";
+            string mensajeCorreo = !string.IsNullOrEmpty(errorCorreo)
+                ? Application.Current.TryFindResource(errorCorreo) as string : null;
+
+            string mensajePass = !string.IsNullOrEmpty(errorPass)
+                ? Application.Current.TryFindResource(errorPass) as string : null;
+
+            string mensajeNombre = !string.IsNullOrEmpty(errorNombre)
+                ? Application.Current.TryFindResource(errorNombre) as string : null;
+
+            string mensajeTelefono = !string.IsNullOrEmpty(errorTelefono)
+                ? Application.Current.TryFindResource(errorTelefono) as string : null;
+
+            string mensajeFecha = !string.IsNullOrEmpty(errorFechaNacimiento)
+                ? Application.Current.TryFindResource(errorFechaNacimiento) as string : null;
+
+
+            tblockErrorCorreo.Text = mensajeCorreo ?? "";
+            tblockErrorPassword.Text = mensajePass ?? "";
+            tblockErrorNombre.Text = mensajeNombre ?? "";
+            tblockErrorTelefono.Text = mensajeTelefono ?? "";
+            tblockErrorFecha.Text = mensajeFecha ?? "";
 
             if (errorCorreo != null || errorPass != null || errorNombre != null || errorTelefono != null || errorFechaNacimiento != null)
                 valido = false;

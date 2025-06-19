@@ -18,7 +18,7 @@ namespace ClienteAhorcado.Utilidades
             }
             if (nombre.Length < 2) {
                 Animaciones.SacudirTextBox(textBox);
-                return "El nombre debe tener al menos 2 caracteres.";
+                return "Mensaje_Validacion_NombreCorto";
             }
             return null;
         }
@@ -29,11 +29,11 @@ namespace ClienteAhorcado.Utilidades
 
             if (string.IsNullOrWhiteSpace(telefono)) {
                 Animaciones.SacudirTextBox(textBox);
-                return "El teléfono no puede estar vacío.";
+                return "Mensaje_Validacion_TelefonoVacio";
             }
             if (!System.Text.RegularExpressions.Regex.IsMatch(telefono, @"^\+?\d{8,13}$")) {
                 Animaciones.SacudirTextBox(textBox);
-                return "El teléfono debe contener solo números y tener al menos 8 dígitos.";
+                return "Mensaje_Validacion_TelefonoFormatoInvalido";
             }
             return null;
         }
@@ -44,11 +44,11 @@ namespace ClienteAhorcado.Utilidades
 
             if (string.IsNullOrWhiteSpace(pass)) {
                 Animaciones.SacudirPasswordBox(passwordBox);
-                return "La contraseña no puede estar vacía.";
+                return "Mensaje_Validacion_PasswordVacio";
             }
             if (pass.Length < 5) {
                 Animaciones.SacudirPasswordBox(passwordBox);
-                return "La contraseña debe tener al menos 5 caracteres.";
+                return "Mensaje_Validacion_PasswordCorto";
             }
             return null;
         }
@@ -60,12 +60,12 @@ namespace ClienteAhorcado.Utilidades
             if (string.IsNullOrWhiteSpace(pass))
             {
                 Animaciones.SacudirTextBox(textBox);
-                return "La contraseña no puede estar vacía.";
+                return "Mensaje_Validacion_PasswordVacio";
             }
             if (pass.Length < 5)
             {
                 Animaciones.SacudirTextBox(textBox);
-                return "La contraseña debe tener al menos 5 caracteres.";
+                return "Mensaje_Validacion_PasswordCorto";
             }
             return null;
         }
@@ -76,15 +76,15 @@ namespace ClienteAhorcado.Utilidades
 
             if (fecha == null) {
                 Animaciones.SacudirDatePicker(datePicker);
-                return "Debes seleccionar una fecha de nacimiento.";
+                return "Mensaje_Validacion_FechaSinSeleccionar";
             }
             if (fecha.Value > DateTime.Now) {
                 Animaciones.SacudirDatePicker(datePicker);
-                return "La fecha de nacimiento no puede ser en el futuro.";
+                return "Mensaje_Validacion_FechaFutura";
             }
             if (fecha.Value.Year < 1900) {
                 Animaciones.SacudirDatePicker(datePicker);
-                return "La fecha de nacimiento no es válida.";
+                return "Mensaje_Validacion_FechaInvalida";
             }
             return null;
         }
@@ -103,7 +103,7 @@ namespace ClienteAhorcado.Utilidades
             if (!Regex.IsMatch(correo, patron))
             {
                 Animaciones.SacudirTextBox(textBox);
-                return "El correo debe contener '@' y el dominio";
+                return "Mensaje_Validacion_CorreoFormatoInvalido";
             }
             return null;
         }
