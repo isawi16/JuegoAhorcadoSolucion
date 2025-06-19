@@ -7,6 +7,24 @@
     <sys:String x:Key="Mensaje_Validacion_CorreoVacio">The email cannot be empty</sys:String>
 
 
+
+    <sys:String x:Key="Msg_HistorialVacio">No games found in history</sys:String>
+    <sys:String x:Key="Msg_NoPartidasDisponibles">No available games found, please try again later</sys:String>
+    <sys:String x:Key="Msg_NoPudoUnirsePartida">Could not join the game (another player may have joined first or the game may have already started).</sys:String>
+    <sys:String x:Key="Msg_NoObtenerPalabra">Could not get the word for the game</sys:String>
+    <sys:String x:Key="Msg_SeleccionaPartida">Select a game to join</sys:String>
+    <sys:String x:Key="Msg_ModificacionPerfilExitosa">The information was modified successfully</sys:String>
+    <sys:String x:Key="Msg_ErrorModificacionPerfil">The information could not be modified, please try again later.</sys:String>
+    <sys:String x:Key="Msg_registroExitoso">Registration was successful</sys:String>
+    <sys:String x:Key="Msg_ErrorRegistro">Could not register, please try again later.</sys:String>
+    <sys:String x:Key="Msg_ErrorCrearPartida">The game could not be created. Please try again.</sys:String>
+
+
+
+    <sys:String x:Key="ElegirFoto_Titulo">Select your profile picture</sys:String>
+
+
+
     <sys:String x:Key="Dificultad_Facil">Easy</sys:String>
     <sys:String x:Key="Dificultad_Media">Intermediate</sys:String>
     <sys:String x:Key="Dificultad_Dificil">Hard</sys:String>

@@ -60,7 +60,9 @@ namespace ClienteAhorcado.Vistas
                     }
                     else
                     {
-                        MessageBox.Show("Usuario o contraseña incorrectos.");
+                        string mensajeErrorSesion = Application.Current.TryFindResource("Msg_Error_InicioSesion") as string;
+
+                        MessageBox.Show(mensajeErrorSesion);
                     }
                 }
                 catch (Exception ex)

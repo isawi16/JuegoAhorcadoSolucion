@@ -151,12 +151,14 @@ namespace ClienteAhorcado.Vistas
 
                 if (modificadoExitoso)
                 {
-                    MessageBox.Show("Se modifico la informacion exitosamente");
+                    string mensajeModificacionExitosa = Application.Current.TryFindResource("Msg_ModificacionPerfilExitosa") as string;
+                    MessageBox.Show(mensajeModificacionExitosa);
                     _mainWindow.CambiarVista(new MenuPrincipalUserControl(_mainWindow, jugadorModificado, proxy));
                 }
                 else
                 {
-                    MessageBox.Show("No se pudo modificar la informacion, intentelo mas tarde");
+                    string mensajeErrorModificar = Application.Current.TryFindResource("Msg_ErrorModificacionPerfil") as string;
+                    MessageBox.Show(mensajeErrorModificar);
                 }
             }
         }
@@ -183,9 +185,10 @@ namespace ClienteAhorcado.Vistas
 
         private void BtnSeleccionarFoto_Click(object sender, RoutedEventArgs e)
         {
+            string tituloEligeFoto = Application.Current.TryFindResource("ElegirFoto_Titulo") as string;
             var openFileDialog = new OpenFileDialog
             {
-                Title = "Selecciona tu foto de perfil",
+                Title = tituloEligeFoto,
                 Filter = "Archivos de imagen|*.jpg;*.jpeg;*.png;*.bmp"
             };
 

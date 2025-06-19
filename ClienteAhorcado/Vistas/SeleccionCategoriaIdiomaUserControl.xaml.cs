@@ -162,7 +162,8 @@ namespace ClienteAhorcado.Vistas
             }
             else
             {
-                MessageBox.Show("No se pudo crear la partida. Intenta de nuevo.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                string mensajeErrorCrearPartida = Application.Current.TryFindResource("Msg_ErrorCrearPartida") as string;
+                MessageBox.Show(mensajeErrorCrearPartida, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
 

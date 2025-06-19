@@ -4,12 +4,24 @@
 
     <sys:String x:Key="Mensaje_Validacion_NombreVacio">El nombre no puede estar vacío</sys:String>
     <sys:String x:Key="Mensaje_Validacion_CorreoVacio">El correo no puede estar vacío</sys:String>
-    
-    
-    
-    
-    
-    
+
+
+
+    <sys:String x:Key="Msg_HistorialVacio">No se encontraron partidas en el historial</sys:String>
+    <sys:String x:Key="Msg_NoPartidasDisponibles">No se encontraron partidas disponibles, intente de nuevo más tarde</sys:String>
+    <sys:String x:Key="Msg_NoPudoUnirsePartida">No se pudo unir a la partida (puede que otro jugador se haya unido antes o la partida ya haya iniciado)</sys:String>
+    <sys:String x:Key="Msg_NoObtenerPalabra">No se pudo obtener la palabra para la partida</sys:String>
+    <sys:String x:Key="Msg_SeleccionaPartida">Selecciona una partida para unirte</sys:String>
+    <sys:String x:Key="Msg_ModificacionPerfilExitosa">Se modifico la informacion exitosamente</sys:String>
+    <sys:String x:Key="Msg_ErrorModificacionPerfil">No se pudo modificar la informacion, intentelo mas tarde</sys:String>
+    <sys:String x:Key="Msg_registroExitoso">El registro fue exitoso</sys:String>
+    <sys:String x:Key="Msg_ErrorRegistro">No se pudo registrar, intentelo mas tarde</sys:String>
+    <sys:String x:Key="Msg_ErrorCrearPartida">No se pudo crear la partida. Intenta de nuevo</sys:String>
+
+
+
+    <sys:String x:Key="ElegirFoto_Titulo">Selecciona tu foto de perfil</sys:String>
+
 
     <sys:String x:Key="Dificultad_Facil">Facil</sys:String>
     <sys:String x:Key="Dificultad_Media">Media</sys:String>
