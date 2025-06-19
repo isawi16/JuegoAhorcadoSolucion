@@ -1,7 +1,9 @@
 ﻿<UserControl x:Class="ClienteAhorcado.Vistas.ConsultarHistorialPartidasUserControl"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" Height="394" Width="609"
-             >
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:lex="http://wpflocalizeextension.codeplex.com"
+             xmlns:Recursos="clr-namespace:ClienteAhorcado.Recursos"
+             Height="394" Width="609">
     <Border Background="White" CornerRadius="12" Margin="10,10,0,0">
         <Grid Margin="20">
             <Grid.RowDefinitions>
@@ -9,19 +11,19 @@
                 <RowDefinition Height="*"/>
                 <RowDefinition Height="Auto"/>
             </Grid.RowDefinitions>
-            <TextBlock x:Name="tblockTitulo" Text="Historial de Partidas" FontSize="15" FontWeight="Bold"  HorizontalAlignment="Center"/>
+            <TextBlock x:Name="tblockTitulo" 
+                       Text="{lex:Loc Recursos:Resources.historial_partidas}" FontSize="15" FontWeight="Bold"  HorizontalAlignment="Center"/>
             <DataGrid Name="dgHistorial" Margin="2" AutoGenerateColumns="False" Grid.Row="1" HorizontalAlignment="Stretch"
                 VerticalAlignment="Stretch"
                 MaxHeight="280"
                 ScrollViewer.CanContentScroll="True"
                 ScrollViewer.VerticalScrollBarVisibility="Auto">
-                                
                 <DataGrid.Columns>
-                    <DataGridTextColumn x:Name="colFecha" Header="Fecha" Binding="{Binding Fecha}" Width="*" />
-                    <DataGridTextColumn x:Name="colPalabra" Header="Palabra Jugada" Binding="{Binding PalabraTexto}"  Width="*" />
-                    <DataGridTextColumn x:Name="colGanador" Header="Ganador" Binding="{Binding GanadorNombre}"  Width="*" />
-                    <DataGridTextColumn x:Name="colRival" Header="Rival" Binding="{Binding RivalNombre}"  Width="*" />
-                    <DataGridTextColumn x:Name="colPuntaje" Header="Puntaje" Binding="{Binding Puntaje}"  Width="*" />
+                    <DataGridTextColumn x:Name="colFecha" Header="{lex:Loc Recursos:Resources.fecha}" Binding="{Binding Fecha}" Width="*" />
+                    <DataGridTextColumn x:Name="colPalabra" Header="{lex:Loc Recursos:Resources.palabra_jugada}" Binding="{Binding PalabraTexto}"  Width="*" />
+                    <DataGridTextColumn x:Name="colGanador" Header="{lex:Loc Recursos:Resources.ganador}" Binding="{Binding GanadorNombre}"  Width="*" />
+                    <DataGridTextColumn x:Name="colRival" Header="{lex:Loc Recursos:Resources.rival}" Binding="{Binding RivalNombre}"  Width="*" />
+                    <DataGridTextColumn x:Name="colPuntaje" Header="{lex:Loc Recursos:Resources.puntaje}" Binding="{Binding Puntaje}"  Width="*" />
                 </DataGrid.Columns>
             </DataGrid>
             <Button x:Name="btnVolver" Width="40" Height="25" HorizontalAlignment="Left" Click="BtnVolver_Click" >
@@ -30,4 +32,3 @@
         </Grid>
     </Border>
 </UserControl>
-

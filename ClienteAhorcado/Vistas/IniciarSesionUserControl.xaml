@@ -1,6 +1,7 @@
 ﻿<UserControl x:Class="ClienteAhorcado.Vistas.IniciarSesionUserControl"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:lex="http://wpflocalizeextension.codeplex.com"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         mc:Ignorable="d"
@@ -12,49 +13,40 @@
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
-
             <!-- Encabezado -->
             <StackPanel Grid.Row="0" Margin="0,10,0,20" HorizontalAlignment="Center">
-                <TextBlock x:Name="tblockTitulo" Text="Bienvenido" FontSize="24" FontWeight="Bold" Foreground="#2C3E50" TextAlignment="Center"/>
-                <TextBlock x:Name="tblockSubtitulo" Text="Inicia sesión para continuar" FontSize="14" Foreground="Gray" TextAlignment="Center"/>
+                <TextBlock x:Name="tblockTitulo" Text="{lex:Loc Resources.bienvenido}" FontSize="24" FontWeight="Bold" Foreground="#2C3E50" TextAlignment="Center"/>
+                <TextBlock x:Name="tblockSubtitulo" Text="{lex:Loc Resources.inicia_sesion_subtitulo}" FontSize="14" Foreground="Gray" TextAlignment="Center"/>
             </StackPanel>
-
             <!-- Contenido -->
             <StackPanel Grid.Row="1" VerticalAlignment="Top" HorizontalAlignment="Center" Width="280">
-                <TextBlock x:Name="tblockCorreo" Text="Correo electrónico" FontWeight="SemiBold" Margin="0,0,0,5"/>
+                <TextBlock x:Name="tblockCorreo" Text="{lex:Loc Resources.correo_electronico}" FontWeight="SemiBold" Margin="0,0,0,5"/>
                 <TextBox x:Name="tbCorreo" Height="35" Padding="10,5,10,10" 
-                         Tag="Correo electrónico" Margin="0,0,0,5" />
+                         Tag="{lex:Loc Resources.correo_electronico}" Margin="0,0,0,5" />
                 <TextBlock x:Name="tblockErrorCorreo" Text="" Margin="0,0,0,5" Foreground="Red"/>
-
-                <TextBlock x:Name="tblockContrasena" Text="Contraseña" FontWeight="SemiBold" Margin="0,0,0,5"/>
+                <TextBlock x:Name="tblockContrasena" Text="{lex:Loc Resources.contrasena}" FontWeight="SemiBold" Margin="0,0,0,5"/>
                 <Grid>
                     <PasswordBox x:Name="pbPassword" Height="35" Padding="10" 
-                             Tag="Contraseña" Margin="0,0,40,5" Visibility="Visible" PasswordChanged="PbPassword_PasswordChanged"/>
+                             Tag="{lex:Loc Resources.contrasena}" Margin="0,0,40,5" Visibility="Visible" PasswordChanged="PbPassword_PasswordChanged"/>
                     <TextBox x:Name="tbPasswordVisible" Height="35" Margin="0,0,40,5" Padding="10,5,10,10"
-                             Tag="Contraseña" VerticalAlignment="Center" Visibility="Collapsed" TextChanged="TbPasswordVisible_TextChanged"/>
-
+                             Tag="{lex:Loc Resources.contrasena}" VerticalAlignment="Center" Visibility="Collapsed" TextChanged="TbPasswordVisible_TextChanged"/>
                     <Button x:Name="btnVerPassword" Width="30" Height="30" HorizontalAlignment="Right" VerticalAlignment="Center" Click="BtnVerPassword_Click" Content="👁"/>
                 </Grid>
-
                 <TextBlock x:Name="tblockErrorPassword" Text="" Margin="0,0,0,5" Foreground="Red" VerticalAlignment="Bottom"/>
-                <Button x:Name="btnIniciarSesion" Content="Iniciar Sesión"
+                <Button x:Name="btnIniciarSesion" Content="{lex:Loc Resources.iniciar_sesion}"
                         Click="BtnIniciarSesion_Click"
                         Style="{StaticResource EstiloBotonPrincipalSinIcono}"
                         Height="40" Margin="0,0,0,10"/>
-
-                <Button  x:Name="btnRegistrarse" Content="¿No tienes cuenta? Regístrate"
+                <Button  x:Name="btnRegistrarse" Content="{lex:Loc Resources.no_tienes_cuenta_registrate}"
                         Click="BtnRegistrarse_Click"
                         Style="{StaticResource EstiloBotonSecundarioSinIcono}"
                         Height="40" Background="Transparent" BorderBrush="#3498db" Foreground="#3498db" Margin="0,0,0,10"/>
-
                 <ComboBox x:Name="cmbIdioma" 
                           SelectionChanged="cmbIdioma_SelectionChanged"
                          Width="100"
                          Height="30" Background="Transparent" BorderBrush="#3498db" Foreground="#3498db">
-                    
                     <ComboBoxItem Tag="es">Español</ComboBoxItem>
                     <ComboBoxItem Tag="en">English</ComboBoxItem>
-
                 </ComboBox>
             </StackPanel>
         </Grid>

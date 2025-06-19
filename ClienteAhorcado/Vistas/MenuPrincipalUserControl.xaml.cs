@@ -5,6 +5,7 @@ using System.Windows.Controls;
 using System.Windows.Media.Imaging;
 using ClienteAhorcado.Utilidades;
 using BibliotecaClasesNetFramework.Contratos;
+using WPFLocalizeExtension.Engine;
 
 namespace ClienteAhorcado.Vistas
 {

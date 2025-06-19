@@ -1,12 +1,10 @@
 ﻿<UserControl x:Class="ClienteAhorcado.Vistas.SeleccionCategoriaIdiomaUserControl"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:lex="http://wpflocalizeextension.codeplex.com"
              MinWidth="500" MinHeight="500" Background="#FFF">
-
     <Border CornerRadius="12" Padding="20" Background="#FAFAFA">
         <Grid>
-            
-            
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>
@@ -14,16 +12,13 @@
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>
             </Grid.RowDefinitions>
-
-
-            <TextBlock x:Name="tblockTitulo" Text="Selecciona idioma y categoría"
+            <TextBlock x:Name="tblockTitulo" Text="{lex:Loc Resources.selecciona_idioma_categoria}"
                        FontSize="22"
                        FontWeight="Bold"
                        Foreground="#333"
                        Margin="0,0,0,20"
                        HorizontalAlignment="Center"
                        Grid.Row="0" />
-
             <!-- Idioma -->
             <ComboBox x:Name="cbIdioma"
                       Grid.Row="1"
@@ -35,7 +30,6 @@
                       BorderBrush="#70A1FF"
                       Background="White"
                       Foreground="#333"/>
-
             <!-- Categorías -->
             <ListBox x:Name="lstCategorias"
                      Grid.Row="1"
@@ -47,7 +41,6 @@
                      Foreground="#333"
                      FontSize="14"
                      Height="100" Grid.RowSpan="2"/>
-
             <!-- Palabras -->
             <ListView x:Name="lstPalabras"
                       Grid.Row="2"
@@ -60,15 +53,14 @@
                       Height="150">
                 <ListView.View>
                     <GridView>
-                        <GridViewColumn x:Name="colPalabra" Header="Palabra" DisplayMemberBinding="{Binding Texto}" Width="200"/>
-                        <GridViewColumn Header="colDificultad" DisplayMemberBinding="{Binding Dificultad}" Width="120"/>
+                        <GridViewColumn x:Name="colPalabra" Header="{lex:Loc Resources.palabra}" DisplayMemberBinding="{Binding Texto}" Width="200"/>
+                        <GridViewColumn Header="{lex:Loc Resources.dificultad}" DisplayMemberBinding="{Binding Dificultad}" Width="120"/>
                     </GridView>
                 </ListView.View>
             </ListView>
-
             <!-- Botón Crear -->
             <Button x:Name="btnCrearPartida"
-                    Content="Crear Partida"
+                    Content="{lex:Loc Resources.crear_partida}"
                     Grid.Row="3"
                     Height="40"
                     FontWeight="Bold"
@@ -77,10 +69,9 @@
                     BorderThickness="0"
                     IsEnabled="False"
                     Click="btnCrearPartida_Click"/>
-
             <!-- Botón Regresar -->
             <Button x:Name="btnRegresar"
-                    Content="Regresar"
+                    Content="{lex:Loc Resources.regresar}"
                     Grid.Row="4"
                     Margin="0,10,0,0"
                     Height="35"
