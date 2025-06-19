@@ -19,7 +19,7 @@ namespace ClienteAhorcado.Recursos
 
         public override object ProvideValue(IServiceProvider serviceProvider)
         {
-            return Properties.Resources.ResourceManager.GetString(Key, CultureInfo.CurrentUICulture) ?? $"!{Key}!";
+            return Recursos.Resources.ResourceManager.GetString(Key, CultureInfo.CurrentUICulture) ?? $"!{Key}!";
         }
     }
 }

@@ -1,4 +1,5 @@
 ﻿<UserControl x:Class="ClienteAhorcado.Vistas.MenuPrincipalUserControl"
+    xmlns:Recursos="clr-namespace:ClienteAhorcado.Recursos"
     xmlns:lex="http://wpflocalizeextension.codeplex.com"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
@@ -14,21 +15,21 @@
             <Button HorizontalAlignment="Left" Margin="35,29,0,0" VerticalAlignment="Top" Height="60" Width="60" Click="BtnPerfil_Click">
                 <Image x:Name="imagenPerfil" Stretch="Uniform" />
             </Button>
-            <Button Content="{lex:Loc Resources.iniciar_partida}" HorizontalAlignment="Left" Margin="190,226,0,0" VerticalAlignment="Top" Height="50" Width="150"  Click="BtnCrearPartida_Click" Style="{StaticResource EstiloBotonPrincipalSinIcono}"/>
-            <Button Content="{lex:Loc Resources.unirse_partida}" HorizontalAlignment="Left" Margin="527,226,0,0" VerticalAlignment="Top" Height="50" Width="150" Click="BtnUnirsePartida_Click" Style="{StaticResource EstiloBotonPrincipalSinIcono}"/>
-            <Button Content="{lex:Loc Resources.marcadores}" HorizontalAlignment="Center" Margin="0,348,0,0" VerticalAlignment="Top" Height="29" Width="130" Click="BtnMarcadores_Click" Style="{StaticResource EstiloBotonSecundarioSinIcono}"/>
-            <Button Content="{lex:Loc Resources.historial_partidas}" HorizontalAlignment="Left" Margin="663,38,0,0" VerticalAlignment="Top" Height="33" Width="140" Click="BtnHistorialPartidas_Click" Style="{StaticResource EstiloBotonSecundarioSinIcono}"/>
+            <Button Content="{lex:Loc Recursos:Resources.iniciar_partida}" HorizontalAlignment="Left" Margin="190,226,0,0" VerticalAlignment="Top" Height="50" Width="150"  Click="BtnCrearPartida_Click" Style="{StaticResource EstiloBotonPrincipalSinIcono}"/>
+            <Button Content="{lex:Loc Recursos:Resources.unirse_partida}" HorizontalAlignment="Left" Margin="527,226,0,0" VerticalAlignment="Top" Height="50" Width="150" Click="BtnUnirsePartida_Click" Style="{StaticResource EstiloBotonPrincipalSinIcono}"/>
+            <Button Content="{lex:Loc Recursos:Resources.marcadores}" HorizontalAlignment="Center" Margin="0,348,0,0" VerticalAlignment="Top" Height="29" Width="130" Click="BtnMarcadores_Click" Style="{StaticResource EstiloBotonSecundarioSinIcono}"/>
+            <Button Content="{lex:Loc Recursos:Resources.historial_partidas}" HorizontalAlignment="Left" Margin="663,38,0,0" VerticalAlignment="Top" Height="33" Width="140" Click="BtnHistorialPartidas_Click" Style="{StaticResource EstiloBotonSecundarioSinIcono}"/>
             <TextBlock x:Name="tblNombre" HorizontalAlignment="Left" Margin="116,31,0,0" TextWrapping="Wrap" Text="{lex:Loc Resources.nombre}" VerticalAlignment="Top" FontSize="18" />
             <TextBlock x:Name="tblCorreo" HorizontalAlignment="Left" Margin="116,65,0,0" TextWrapping="Wrap" Text="{lex:Loc Resources.correo}" VerticalAlignment="Top" FontSize="18"/>
             <TextBlock HorizontalAlignment="Center" Margin="0,109,0,0" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="55" Height="79" Width="252" FontWeight="Bold" Foreground="White">
-                <Run Language="es-mx" Text="{lex:Loc Resources.titulo_ahorcado}"/>
+                <Run Language="es-mx" Text="{lex:Loc Recursos:Resources.titulo_ahorcado}"/>
             </TextBlock>
             <TextBlock HorizontalAlignment="Left" Margin="190,77,0,0" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="30" Width="235">
-                <Run Language="es-mx" Text="{lex:Loc Resources.vamos_a_jugar}" Foreground="White"/>
+                <Run Language="es-mx" Text="{lex:Loc Recursos.Resources.vamos_a_jugar}" Foreground="White"/>
             </TextBlock>
             <Image Source="/Images/logo ahorcado.png" Stretch="UniformToFill" Margin="375,193,375,182"/>
             <TextBlock HorizontalAlignment="Left" Margin="507,168,0,0" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="30">
-                <Run Language="es-mx" Text="{lex:Loc Resources.adivinas}" Foreground="White"/>
+                <Run Language="es-mx" Text="{lex:Loc Recursos.Resources.adivinas}" Foreground="White"/>
             </TextBlock>
             <Button HorizontalAlignment="Left" Margin="35,386,0,0" VerticalAlignment="Top" Height="50" Width="50" Click="BtnCerrarSesion_Click" Background="Transparent" BorderThickness="0">
                 <Image x:Name="cerrarSesion" Stretch="Uniform" Source="/Images/cerrarSesion.png"/>

@@ -59,5 +59,968 @@ namespace ClienteAhorcado.Recursos {
                 resourceCulture = value;
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Crear Juego.
+        /// </summary>
+        internal static string btnCreateGame {
+            get {
+                return ResourceManager.GetString("btnCreateGame", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Editar Perfil.
+        /// </summary>
+        internal static string btnEditProfile {
+            get {
+                return ResourceManager.GetString("btnEditProfile", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Salir del Juego.
+        /// </summary>
+        internal static string btnExitGame {
+            get {
+                return ResourceManager.GetString("btnExitGame", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Unirte a Partida.
+        /// </summary>
+        internal static string btnJoinGame {
+            get {
+                return ResourceManager.GetString("btnJoinGame", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Inicia Sesión.
+        /// </summary>
+        internal static string btnLogin {
+            get {
+                return ResourceManager.GetString("btnLogin", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Cerrar Sesión.
+        /// </summary>
+        internal static string btnLogout {
+            get {
+                return ResourceManager.GetString("btnLogout", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Regístrate.
+        /// </summary>
+        internal static string btnRegister {
+            get {
+                return ResourceManager.GetString("btnRegister", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Iniciar Juego.
+        /// </summary>
+        internal static string btnStartGame {
+            get {
+                return ResourceManager.GetString("btnStartGame", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Enviar Letra.
+        /// </summary>
+        internal static string btnSubmitLetter {
+            get {
+                return ResourceManager.GetString("btnSubmitLetter", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Enviar Registro.
+        /// </summary>
+        internal static string btnSubmitRegistration {
+            get {
+                return ResourceManager.GetString("btnSubmitRegistration", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Cancelar Juego.
+        /// </summary>
+        internal static string cancelar_partida {
+            get {
+                return ResourceManager.GetString("cancelar_partida", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Chat Privado.
+        /// </summary>
+        internal static string chat_privado {
+            get {
+                return ResourceManager.GetString("chat_privado", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Enviar.
+        /// </summary>
+        internal static string enviar {
+            get {
+                return ResourceManager.GetString("enviar", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Volver.
+        /// </summary>
+        internal static string historial_btnVolver {
+            get {
+                return ResourceManager.GetString("historial_btnVolver", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Fecha.
+        /// </summary>
+        internal static string historial_colFecha {
+            get {
+                return ResourceManager.GetString("historial_colFecha", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Ganador.
+        /// </summary>
+        internal static string historial_colGanador {
+            get {
+                return ResourceManager.GetString("historial_colGanador", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Palabra Jugada.
+        /// </summary>
+        internal static string historial_colPalabra {
+            get {
+                return ResourceManager.GetString("historial_colPalabra", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Marcador.
+        /// </summary>
+        internal static string historial_colPuntaje {
+            get {
+                return ResourceManager.GetString("historial_colPuntaje", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Oponente.
+        /// </summary>
+        internal static string historial_colRival {
+            get {
+                return ResourceManager.GetString("historial_colRival", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Historial de Partidas.
+        /// </summary>
+        internal static string historial_tituloVentana {
+            get {
+                return ResourceManager.GetString("historial_tituloVentana", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Intentos Restantes:.
+        /// </summary>
+        internal static string intentos_restantes {
+            get {
+                return ResourceManager.GetString("intentos_restantes", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to JuegoDel Ahorcado.
+        /// </summary>
+        internal static string juego_del_ahorcado_titulo {
+            get {
+                return ResourceManager.GetString("juego_del_ahorcado_titulo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Partidas Disponibles.
+        /// </summary>
+        internal static string lblAvailableGames {
+            get {
+                return ResourceManager.GetString("lblAvailableGames", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Fecha de Nacimiento.
+        /// </summary>
+        internal static string lblBirthdate {
+            get {
+                return ResourceManager.GetString("lblBirthdate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Categoría.
+        /// </summary>
+        internal static string lblCategory {
+            get {
+                return ResourceManager.GetString("lblCategory", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Correo Electrónico.
+        /// </summary>
+        internal static string lblEmail {
+            get {
+                return ResourceManager.GetString("lblEmail", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Enviar Letra.
+        /// </summary>
+        internal static string lblEnterLetter {
+            get {
+                return ResourceManager.GetString("lblEnterLetter", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Nombre.
+        /// </summary>
+        internal static string lblFullName {
+            get {
+                return ResourceManager.GetString("lblFullName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Juegos Perdidos.
+        /// </summary>
+        internal static string lblLosses {
+            get {
+                return ResourceManager.GetString("lblLosses", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Contraseña.
+        /// </summary>
+        internal static string lblPassword {
+            get {
+                return ResourceManager.GetString("lblPassword", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Penalizaciones.
+        /// </summary>
+        internal static string lblPenalties {
+            get {
+                return ResourceManager.GetString("lblPenalties", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Teléfono.
+        /// </summary>
+        internal static string lblPhone {
+            get {
+                return ResourceManager.GetString("lblPhone", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Perfil.
+        /// </summary>
+        internal static string lblProfile {
+            get {
+                return ResourceManager.GetString("lblProfile", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Selecciona una palabra.
+        /// </summary>
+        internal static string lblSelectWord {
+            get {
+                return ResourceManager.GetString("lblSelectWord", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Bienvenido.
+        /// </summary>
+        internal static string lblWelcome {
+            get {
+                return ResourceManager.GetString("lblWelcome", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Juegos ganados.
+        /// </summary>
+        internal static string lblWins {
+            get {
+                return ResourceManager.GetString("lblWins", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Pista:.
+        /// </summary>
+        internal static string lblWordDescription {
+            get {
+                return ResourceManager.GetString("lblWordDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Tus Resultados:.
+        /// </summary>
+        internal static string lblYourScore {
+            get {
+                return ResourceManager.GetString("lblYourScore", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Letras Usadas.
+        /// </summary>
+        internal static string letras_usadas {
+            get {
+                return ResourceManager.GetString("letras_usadas", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ¿No tienes cuenta? ¡Regístrate!.
+        /// </summary>
+        internal static string login_btn_register {
+            get {
+                return ResourceManager.GetString("login_btn_register", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Inicia Sesión.
+        /// </summary>
+        internal static string login_btn_submit {
+            get {
+                return ResourceManager.GetString("login_btn_submit", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Correo Electrónico.
+        /// </summary>
+        internal static string login_email_label {
+            get {
+                return ResourceManager.GetString("login_email_label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Contraseña.
+        /// </summary>
+        internal static string login_password_label {
+            get {
+                return ResourceManager.GetString("login_password_label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Inicia Sesión para Continuar.
+        /// </summary>
+        internal static string login_subtitle {
+            get {
+                return ResourceManager.GetString("login_subtitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Bienvenido.
+        /// </summary>
+        internal static string login_title {
+            get {
+                return ResourceManager.GetString("login_title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Volver.
+        /// </summary>
+        internal static string marcadores_btnRegresar {
+            get {
+                return ResourceManager.GetString("marcadores_btnRegresar", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Nombre.
+        /// </summary>
+        internal static string marcadores_colNombre {
+            get {
+                return ResourceManager.GetString("marcadores_colNombre", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Marcador.
+        /// </summary>
+        internal static string marcadores_colPuesto {
+            get {
+                return ResourceManager.GetString("marcadores_colPuesto", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Puntaje.
+        /// </summary>
+        internal static string marcadores_colPuntaje {
+            get {
+                return ResourceManager.GetString("marcadores_colPuntaje", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Puntajes más altos.
+        /// </summary>
+        internal static string marcadores_tblockTitulo {
+            get {
+                return ResourceManager.GetString("marcadores_tblockTitulo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Historial de Juegos.
+        /// </summary>
+        internal static string menu_btnHistorialPartidas {
+            get {
+                return ResourceManager.GetString("menu_btnHistorialPartidas", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Iniciar Juego.
+        /// </summary>
+        internal static string menu_btnIniciarPartida {
+            get {
+                return ResourceManager.GetString("menu_btnIniciarPartida", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Marcador.
+        /// </summary>
+        internal static string menu_btnMarcadores {
+            get {
+                return ResourceManager.GetString("menu_btnMarcadores", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Unirse a partida.
+        /// </summary>
+        internal static string menu_btnUnirsePartida {
+            get {
+                return ResourceManager.GetString("menu_btnUnirsePartida", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ¡Juguemos.
+        /// </summary>
+        internal static string menu_tituloParte1 {
+            get {
+                return ResourceManager.GetString("menu_tituloParte1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Ahorcado!.
+        /// </summary>
+        internal static string menu_tituloParte2 {
+            get {
+                return ResourceManager.GetString("menu_tituloParte2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ¿Adivinas?.
+        /// </summary>
+        internal static string menu_tituloParte3 {
+            get {
+                return ResourceManager.GetString("menu_tituloParte3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Corregir letra.
+        /// </summary>
+        internal static string msgCorrectLetter {
+            get {
+                return ResourceManager.GetString("msgCorrectLetter", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Perfil Actualizado.
+        /// </summary>
+        internal static string msgEditSuccess {
+            get {
+                return ResourceManager.GetString("msgEditSuccess", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Este correo ya está registrado.
+        /// </summary>
+        internal static string msgEmailExists {
+            get {
+                return ResourceManager.GetString("msgEmailExists", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ¡Perdiste!.
+        /// </summary>
+        internal static string msgGameLost {
+            get {
+                return ResourceManager.GetString("msgGameLost", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ¡Ganaste!.
+        /// </summary>
+        internal static string msgGameWon {
+            get {
+                return ResourceManager.GetString("msgGameWon", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to El correo o contraseña son incorrectos.
+        /// </summary>
+        internal static string msgInvalidUser {
+            get {
+                return ResourceManager.GetString("msgInvalidUser", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Registro exitoso.
+        /// </summary>
+        internal static string msgRegistrationSuccess {
+            get {
+                return ResourceManager.GetString("msgRegistrationSuccess", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Letra Incorrecta.
+        /// </summary>
+        internal static string msgWrongLetter {
+            get {
+                return ResourceManager.GetString("msgWrongLetter", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Actualizar Lista.
+        /// </summary>
+        internal static string partidas_btnActualizarLista {
+            get {
+                return ResourceManager.GetString("partidas_btnActualizarLista", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Volver.
+        /// </summary>
+        internal static string partidas_btnRegresar {
+            get {
+                return ResourceManager.GetString("partidas_btnRegresar", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Unirse al juego.
+        /// </summary>
+        internal static string partidas_btnUnirsePartida {
+            get {
+                return ResourceManager.GetString("partidas_btnUnirsePartida", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Categoría.
+        /// </summary>
+        internal static string partidas_colCategoria {
+            get {
+                return ResourceManager.GetString("partidas_colCategoria", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ID Juego.
+        /// </summary>
+        internal static string partidas_colIDPartida {
+            get {
+                return ResourceManager.GetString("partidas_colIDPartida", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Partidas Disponibles.
+        /// </summary>
+        internal static string partidas_tblockTitulo {
+            get {
+                return ResourceManager.GetString("partidas_tblockTitulo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Guardar.
+        /// </summary>
+        internal static string perfil_btnGuardar {
+            get {
+                return ResourceManager.GetString("perfil_btnGuardar", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Editar Perfil.
+        /// </summary>
+        internal static string perfil_btnModificarPerfil {
+            get {
+                return ResourceManager.GetString("perfil_btnModificarPerfil", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Volver.
+        /// </summary>
+        internal static string perfil_btnRegresar {
+            get {
+                return ResourceManager.GetString("perfil_btnRegresar", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Escoger foto.
+        /// </summary>
+        internal static string perfil_btnSeleccionarFoto {
+            get {
+                return ResourceManager.GetString("perfil_btnSeleccionarFoto", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Correo Electrónico.
+        /// </summary>
+        internal static string perfil_correo {
+            get {
+                return ResourceManager.GetString("perfil_correo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Fecha de Nacimiento.
+        /// </summary>
+        internal static string perfil_fechaNacimiento {
+            get {
+                return ResourceManager.GetString("perfil_fechaNacimiento", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Nombre.
+        /// </summary>
+        internal static string perfil_nombre {
+            get {
+                return ResourceManager.GetString("perfil_nombre", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Teléfono.
+        /// </summary>
+        internal static string perfil_telefono {
+            get {
+                return ResourceManager.GetString("perfil_telefono", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Perfil de Usuario.
+        /// </summary>
+        internal static string perfil_tituloPerfil {
+            get {
+                return ResourceManager.GetString("perfil_tituloPerfil", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Cancelar.
+        /// </summary>
+        internal static string registro_btnCancelar {
+            get {
+                return ResourceManager.GetString("registro_btnCancelar", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Escoger Foto.
+        /// </summary>
+        internal static string registro_btnElegirFoto {
+            get {
+                return ResourceManager.GetString("registro_btnElegirFoto", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Registrarte.
+        /// </summary>
+        internal static string registro_btnRegistrarme {
+            get {
+                return ResourceManager.GetString("registro_btnRegistrarme", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Correo Electrónico.
+        /// </summary>
+        internal static string registro_lblCorreo {
+            get {
+                return ResourceManager.GetString("registro_lblCorreo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Fecha de Nacimiento.
+        /// </summary>
+        internal static string registro_lblFechaNacimiento {
+            get {
+                return ResourceManager.GetString("registro_lblFechaNacimiento", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Nombre.
+        /// </summary>
+        internal static string registro_lblNombre {
+            get {
+                return ResourceManager.GetString("registro_lblNombre", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Contraseña.
+        /// </summary>
+        internal static string registro_lblPassword {
+            get {
+                return ResourceManager.GetString("registro_lblPassword", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Teléfono.
+        /// </summary>
+        internal static string registro_lblTelefono {
+            get {
+                return ResourceManager.GetString("registro_lblTelefono", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Ingresa tu información para crear tu cuenta.
+        /// </summary>
+        internal static string registro_subtituloRegistro {
+            get {
+                return ResourceManager.GetString("registro_subtituloRegistro", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Crear cuenta.
+        /// </summary>
+        internal static string registro_tituloRegistro {
+            get {
+                return ResourceManager.GetString("registro_tituloRegistro", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Crear Partida.
+        /// </summary>
+        internal static string seleccion_btnCrearPartida {
+            get {
+                return ResourceManager.GetString("seleccion_btnCrearPartida", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Volver.
+        /// </summary>
+        internal static string seleccion_btnRegresar {
+            get {
+                return ResourceManager.GetString("seleccion_btnRegresar", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Dificultad.
+        /// </summary>
+        internal static string seleccion_colDificultad {
+            get {
+                return ResourceManager.GetString("seleccion_colDificultad", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Palabra.
+        /// </summary>
+        internal static string seleccion_colPalabra {
+            get {
+                return ResourceManager.GetString("seleccion_colPalabra", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Nombre.
+        /// </summary>
+        internal static string txtbxNombre {
+            get {
+                return ResourceManager.GetString("txtbxNombre", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Debe contener &apos;@dominio&apos;.
+        /// </summary>
+        internal static string validacion_correo_formato {
+            get {
+                return ResourceManager.GetString("validacion_correo_formato", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to El correo no puede estar vacío.
+        /// </summary>
+        internal static string validacion_correo_vacio {
+            get {
+                return ResourceManager.GetString("validacion_correo_vacio", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to La fecha de nacimiento no es válida.
+        /// </summary>
+        internal static string validacion_fecha_antigua {
+            get {
+                return ResourceManager.GetString("validacion_fecha_antigua", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to La fecha de nacimiento no puede ser en el futuro.
+        /// </summary>
+        internal static string validacion_fecha_futura {
+            get {
+                return ResourceManager.GetString("validacion_fecha_futura", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Debes seleccionar tu fecha de nacimiento.
+        /// </summary>
+        internal static string validacion_fecha_vacia {
+            get {
+                return ResourceManager.GetString("validacion_fecha_vacia", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Tu nombre debe tener al menos dos caracteres.
+        /// </summary>
+        internal static string validacion_nombre_corto {
+            get {
+                return ResourceManager.GetString("validacion_nombre_corto", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to El nombre no puede estar vacío.
+        /// </summary>
+        internal static string validacion_nombre_vacio {
+            get {
+                return ResourceManager.GetString("validacion_nombre_vacio", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to La contraseña debe tener al menos 5 caracteres.
+        /// </summary>
+        internal static string validacion_password_corta {
+            get {
+                return ResourceManager.GetString("validacion_password_corta", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to La contraseña no puede estar vacía.
+        /// </summary>
+        internal static string validacion_password_vacio {
+            get {
+                return ResourceManager.GetString("validacion_password_vacio", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to El teléfono debe tener al menos 8 dígitos.
+        /// </summary>
+        internal static string validacion_telefono_invalido {
+            get {
+                return ResourceManager.GetString("validacion_telefono_invalido", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to El teléfono no puede estar vacío.
+        /// </summary>
+        internal static string validacion_telefono_vacio {
+            get {
+                return ResourceManager.GetString("validacion_telefono_vacio", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Volver al menú.
+        /// </summary>
+        internal static string volver_menu {
+            get {
+                return ResourceManager.GetString("volver_menu", resourceCulture);
+            }
+        }
     }
 }

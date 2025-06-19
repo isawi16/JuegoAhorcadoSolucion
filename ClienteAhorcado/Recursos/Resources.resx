@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <root>
   <!-- 
     Microsoft ResX Schema 
@@ -118,70 +118,70 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="validacion_nombre_vacio" xml:space="preserve">
-    <value>El nombre no puede estar vacío.</value>
+    <value>El nombre no puede estar vacío</value>
   </data>
   <data name="validacion_nombre_corto" xml:space="preserve">
-    <value>El nombre debe tener al menos 2 caracteres.</value>
+    <value>Tu nombre debe tener al menos dos caracteres</value>
   </data>
   <data name="validacion_telefono_vacio" xml:space="preserve">
-    <value>El teléfono no puede estar vacío.</value>
+    <value>El teléfono no puede estar vacío</value>
   </data>
   <data name="validacion_telefono_invalido" xml:space="preserve">
-    <value>El teléfono debe contener solo números y tener al menos 8 dígitos.</value>
+    <value>El teléfono debe tener al menos 8 dígitos</value>
   </data>
   <data name="validacion_password_vacio" xml:space="preserve">
-    <value>La contraseña no puede estar vacía.</value>
+    <value>La contraseña no puede estar vacía</value>
   </data>
   <data name="validacion_password_corta" xml:space="preserve">
-    <value>La contraseña debe tener al menos 5 caracteres.</value>
+    <value>La contraseña debe tener al menos 5 caracteres</value>
   </data>
   <data name="validacion_fecha_vacia" xml:space="preserve">
-    <value>Debes seleccionar una fecha de nacimiento.</value>
+    <value>Debes seleccionar tu fecha de nacimiento</value>
   </data>
   <data name="validacion_fecha_futura" xml:space="preserve">
-    <value>La fecha de nacimiento no puede ser en el futuro.</value>
+    <value>La fecha de nacimiento no puede ser en el futuro</value>
   </data>
   <data name="validacion_fecha_antigua" xml:space="preserve">
-    <value>La fecha de nacimiento no es válida.</value>
+    <value>La fecha de nacimiento no es válida</value>
   </data>
   <data name="validacion_correo_vacio" xml:space="preserve">
-    <value>El correo no puede estar vacío.</value>
+    <value>El correo no puede estar vacío</value>
   </data>
   <data name="validacion_correo_formato" xml:space="preserve">
-    <value>El correo debe contener '@' y el dominio</value>
+    <value>Debe contener '@dominio'</value>
   </data>
   <data name="login_title" xml:space="preserve">
     <value>Bienvenido</value>
   </data>
   <data name="login_subtitle" xml:space="preserve">
-    <value>Inicia sesión para continuar</value>
+    <value>Inicia Sesión para Continuar</value>
   </data>
   <data name="login_email_label" xml:space="preserve">
-    <value>Correo electrónico</value>
+    <value>Correo Electrónico</value>
   </data>
   <data name="login_password_label" xml:space="preserve">
     <value>Contraseña</value>
   </data>
   <data name="login_btn_submit" xml:space="preserve">
-    <value>Iniciar Sesión</value>
+    <value>Inicia Sesión</value>
   </data>
   <data name="login_btn_register" xml:space="preserve">
-    <value>¿No tienes cuenta?  Regístrate</value>
+    <value>¿No tienes cuenta? ¡Regístrate!</value>
   </data>
   <data name="registro_tituloRegistro" xml:space="preserve">
-    <value>Crea tu cuenta</value>
+    <value>Crear cuenta</value>
   </data>
   <data name="registro_subtituloRegistro" xml:space="preserve">
-    <value>Ingresa los datos para crear tu cuenta</value>
+    <value>Ingresa tu información para crear tu cuenta</value>
   </data>
   <data name="registro_lblNombre" xml:space="preserve">
     <value>Nombre</value>
   </data>
   <data name="registro_lblCorreo" xml:space="preserve">
-    <value>Correo</value>
+    <value>Correo Electrónico</value>
   </data>
   <data name="registro_lblFechaNacimiento" xml:space="preserve">
-    <value>Fecha de nacimiento</value>
+    <value>Fecha de Nacimiento</value>
   </data>
   <data name="registro_lblTelefono" xml:space="preserve">
     <value>Teléfono</value>
@@ -190,67 +190,67 @@
     <value>Contraseña</value>
   </data>
   <data name="registro_btnElegirFoto" xml:space="preserve">
-    <value>Elegir Foto</value>
+    <value>Escoger Foto</value>
   </data>
   <data name="registro_btnRegistrarme" xml:space="preserve">
-    <value>Registrarme</value>
+    <value>Registrarte</value>
   </data>
   <data name="registro_btnCancelar" xml:space="preserve">
     <value>Cancelar</value>
   </data>
   <data name="menu_btnIniciarPartida" xml:space="preserve">
-    <value>Iniciar Partida</value>
+    <value>Iniciar Juego</value>
   </data>
   <data name="menu_btnUnirsePartida" xml:space="preserve">
     <value>Unirse a partida</value>
   </data>
   <data name="menu_btnMarcadores" xml:space="preserve">
-    <value>Marcadores</value>
+    <value>Marcador</value>
   </data>
   <data name="menu_btnHistorialPartidas" xml:space="preserve">
-    <value>Historial de partidas</value>
+    <value>Historial de Juegos</value>
   </data>
   <data name="menu_tituloParte1" xml:space="preserve">
-    <value>Vamos a jugar</value>
+    <value>¡Juguemos</value>
   </data>
   <data name="menu_tituloParte2" xml:space="preserve">
-    <value>Ahorcado</value>
+    <value>Ahorcado!</value>
   </data>
   <data name="menu_tituloParte3" xml:space="preserve">
     <value>¿Adivinas?</value>
   </data>
   <data name="perfil_tituloPerfil" xml:space="preserve">
-    <value>Perfil de usuario</value>
+    <value>Perfil de Usuario</value>
   </data>
   <data name="perfil_btnModificarPerfil" xml:space="preserve">
-    <value>Modificar Perfil</value>
+    <value>Editar Perfil</value>
   </data>
   <data name="perfil_nombre" xml:space="preserve">
     <value>Nombre</value>
   </data>
   <data name="perfil_correo" xml:space="preserve">
-    <value>Correo</value>
+    <value>Correo Electrónico</value>
   </data>
   <data name="perfil_fechaNacimiento" xml:space="preserve">
-    <value>Fecha de nacimiento</value>
+    <value>Fecha de Nacimiento</value>
   </data>
   <data name="perfil_telefono" xml:space="preserve">
-    <value>Telefono</value>
+    <value>Teléfono</value>
   </data>
   <data name="perfil_contraseÃ±a" xml:space="preserve">
     <value>Contraseña</value>
   </data>
   <data name="perfil_btnSeleccionarFoto" xml:space="preserve">
-    <value>SeleccionarFoto</value>
+    <value>Escoger foto</value>
   </data>
   <data name="perfil_btnGuardar" xml:space="preserve">
     <value>Guardar</value>
   </data>
   <data name="perfil_btnRegresar" xml:space="preserve">
-    <value>Regresar</value>
+    <value>Volver</value>
   </data>
   <data name="historial_tituloVentana" xml:space="preserve">
-    <value>Historial de partidas</value>
+    <value>Historial de Partidas</value>
   </data>
   <data name="historial_colFecha" xml:space="preserve">
     <value>Fecha</value>
@@ -262,10 +262,10 @@
     <value>Ganador</value>
   </data>
   <data name="historial_colRival" xml:space="preserve">
-    <value>Rival</value>
+    <value>Oponente</value>
   </data>
   <data name="historial_colPuntaje" xml:space="preserve">
-    <value>Puntaje</value>
+    <value>Marcador</value>
   </data>
   <data name="historial_btnVolver" xml:space="preserve">
     <value>Volver</value>
@@ -280,31 +280,31 @@
     <value>Crear Partida</value>
   </data>
   <data name="seleccion_btnRegresar" xml:space="preserve">
-    <value>Regresar</value>
+    <value>Volver</value>
   </data>
   <data name="partidas_tblockTitulo" xml:space="preserve">
     <value>Partidas Disponibles</value>
   </data>
   <data name="partidas_colIDPartida" xml:space="preserve">
-    <value>ID Partida</value>
+    <value>ID Juego</value>
   </data>
   <data name="partidas_colCategoria" xml:space="preserve">
     <value>Categoría</value>
   </data>
   <data name="partidas_btnUnirsePartida" xml:space="preserve">
-    <value>Unirse a Partida</value>
+    <value>Unirse al juego</value>
   </data>
   <data name="partidas_btnActualizarLista" xml:space="preserve">
-    <value>Actualizar lista</value>
+    <value>Actualizar Lista</value>
   </data>
   <data name="partidas_btnRegresar" xml:space="preserve">
-    <value>Regresar</value>
+    <value>Volver</value>
   </data>
   <data name="marcadores_tblockTitulo" xml:space="preserve">
-    <value>Marcadores</value>
+    <value>Puntajes más altos</value>
   </data>
   <data name="marcadores_colPuesto" xml:space="preserve">
-    <value>Puesto</value>
+    <value>Marcador</value>
   </data>
   <data name="marcadores_colNombre" xml:space="preserve">
     <value>Nombre</value>
@@ -313,28 +313,28 @@
     <value>Puntaje</value>
   </data>
   <data name="marcadores_btnRegresar" xml:space="preserve">
-    <value>Regresar</value>
+    <value>Volver</value>
   </data>
   <data name="lblEmail" xml:space="preserve">
-    <value>Correo electrónico</value>
+    <value>Correo Electrónico</value>
   </data>
   <data name="lblPassword" xml:space="preserve">
     <value>Contraseña</value>
   </data>
   <data name="btnLogin" xml:space="preserve">
-    <value>Iniciar sesión</value>
+    <value>Inicia Sesión</value>
   </data>
   <data name="btnRegister" xml:space="preserve">
-    <value>Registrarse</value>
+    <value>Regístrate</value>
   </data>
   <data name="msgInvalidUser" xml:space="preserve">
-    <value>Usuario o contraseña incorrectos</value>
+    <value>El correo o contraseña son incorrectos</value>
   </data>
   <data name="lblFullName" xml:space="preserve">
-    <value>Nombre completo</value>
+    <value>Nombre</value>
   </data>
   <data name="lblBirthdate" xml:space="preserve">
-    <value>Fecha de nacimiento</value>
+    <value>Fecha de Nacimiento</value>
   </data>
   <data name="lblPhone" xml:space="preserve">
     <value>Teléfono</value>
@@ -343,28 +343,28 @@
     <value>Nombre</value>
   </data>
   <data name="btnSubmitRegistration" xml:space="preserve">
-    <value>Enviar registro</value>
+    <value>Enviar Registro</value>
   </data>
   <data name="msgRegistrationSuccess" xml:space="preserve">
     <value>Registro exitoso</value>
   </data>
   <data name="msgEmailExists" xml:space="preserve">
-    <value>El correo ya está registrado</value>
+    <value>Este correo ya está registrado</value>
   </data>
   <data name="lblWelcome" xml:space="preserve">
     <value>Bienvenido</value>
   </data>
   <data name="lblAvailableGames" xml:space="preserve">
-    <value>Partidas disponibles</value>
+    <value>Partidas Disponibles</value>
   </data>
   <data name="btnCreateGame" xml:space="preserve">
-    <value>Crear partida</value>
+    <value>Crear Juego</value>
   </data>
   <data name="btnJoinGame" xml:space="preserve">
-    <value>Unirse a partida</value>
+    <value>Unirte a Partida</value>
   </data>
   <data name="btnLogout" xml:space="preserve">
-    <value>Cerrar sesión</value>
+    <value>Cerrar Sesión</value>
   </data>
   <data name="lblSelectWord" xml:space="preserve">
     <value>Selecciona una palabra</value>
@@ -373,19 +373,19 @@
     <value>Categoría</value>
   </data>
   <data name="btnStartGame" xml:space="preserve">
-    <value>Iniciar juego</value>
+    <value>Iniciar Juego</value>
   </data>
   <data name="lblEnterLetter" xml:space="preserve">
-    <value>Teclea una letra</value>
+    <value>Enviar Letra</value>
   </data>
   <data name="btnSubmitLetter" xml:space="preserve">
-    <value>Enviar letra</value>
+    <value>Enviar Letra</value>
   </data>
   <data name="msgCorrectLetter" xml:space="preserve">
-    <value>¡Letra correcta!</value>
+    <value>Corregir letra</value>
   </data>
   <data name="msgWrongLetter" xml:space="preserve">
-    <value>Letra incorrecta</value>
+    <value>Letra Incorrecta</value>
   </data>
   <data name="msgGameWon" xml:space="preserve">
     <value>¡Ganaste!</value>
@@ -394,51 +394,51 @@
     <value>¡Perdiste!</value>
   </data>
   <data name="btnExitGame" xml:space="preserve">
-    <value>Salir del juego</value>
+    <value>Salir del Juego</value>
   </data>
   <data name="lblWordDescription" xml:space="preserve">
-    <value>Pista</value>
+    <value>Pista:</value>
   </data>
   <data name="lblProfile" xml:space="preserve">
-    <value>Perfil de usuario</value>
+    <value>Perfil</value>
   </data>
   <data name="btnEditProfile" xml:space="preserve">
-    <value>Editar perfil</value>
+    <value>Editar Perfil</value>
   </data>
   <data name="msgEditSuccess" xml:space="preserve">
-    <value>Perfil actualizado</value>
+    <value>Perfil Actualizado</value>
   </data>
   <data name="lblYourScore" xml:space="preserve">
-    <value>Tu puntaje</value>
+    <value>Tus Resultados:</value>
   </data>
   <data name="lblWins" xml:space="preserve">
-    <value>Partidas ganadas</value>
+    <value>Juegos ganados</value>
   </data>
   <data name="lblLosses" xml:space="preserve">
-    <value>Partidas perdidas</value>
+    <value>Juegos Perdidos</value>
   </data>
   <data name="lblPenalties" xml:space="preserve">
     <value>Penalizaciones</value>
   </data>
   <data name="juego_del_ahorcado_titulo" xml:space="preserve">
-    <value>🎯 Juego del Ahorcado 🎯</value>
+    <value>JuegoDel Ahorcado</value>
   </data>
   <data name="chat_privado" xml:space="preserve">
-    <value>💬 Chat privado</value>
+    <value>Chat Privado</value>
   </data>
   <data name="enviar" xml:space="preserve">
     <value>Enviar</value>
   </data>
   <data name="volver_menu" xml:space="preserve">
-    <value>Volver al Menú</value>
+    <value>Volver al menú</value>
   </data>
   <data name="intentos_restantes" xml:space="preserve">
-    <value>Intentos restantes</value>
+    <value>Intentos Restantes:</value>
   </data>
   <data name="letras_usadas" xml:space="preserve">
-    <value>Letras usadas:</value>
+    <value>Letras Usadas</value>
   </data>
   <data name="cancelar_partida" xml:space="preserve">
-    <value>Cancelar Partida</value>
+    <value>Cancelar Juego</value>
   </data>
 </root>

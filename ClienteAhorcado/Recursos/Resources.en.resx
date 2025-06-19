@@ -325,7 +325,7 @@
     <value>Log In</value>
   </data>
   <data name="btnRegister" xml:space="preserve">
-    <value>Register</value>
+    <value>Sign in</value>
   </data>
   <data name="msgInvalidUser" xml:space="preserve">
     <value>Invalid username or password</value>
