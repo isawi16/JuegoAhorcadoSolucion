@@ -55,8 +55,7 @@ namespace ClienteAhorcado.Vistas
                 foreach (Button btn in wrapLetras.Children)
                     btn.IsEnabled = false;
                 this.Background = new System.Windows.Media.SolidColorBrush(System.Windows.Media.Colors.DarkSlateGray);
-                btnVolverMenu.Visibility = Visibility.Visible;
-
+                
             }
             else
             {
@@ -272,14 +271,14 @@ namespace ClienteAhorcado.Vistas
             // No hace nada por ahora
         }
 
-        private void BtnCancelarPartida_Click(object sender, RoutedEventArgs e)
+        private async void BtnCancelarPartida_Click(object sender, RoutedEventArgs e)
         {
             foreach (Button btn in wrapLetras.Children)
                 btn.IsEnabled = false;
 
             try
             {
-                proxy.AbandonarPartida(idPartida, jugador.IDJugador);
+                await Task.Run(() => proxy.AbandonarPartida(idPartida, jugador.IDJugador));
             }
             catch (Exception ex)
             {

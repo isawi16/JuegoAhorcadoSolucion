@@ -90,14 +90,16 @@ namespace ClienteAhorcado
 
         public void NotificarFinPartida(string resultado, string palabra)
         {
-
-
             Dispatcher.Invoke(() =>
             {
                 MessageBox.Show($"{resultado}. La palabra era: {palabra}", "Fin de la partida");
+
+                // Si la vista actual es el juego, habilita el botón "Volver menú principal"
+                if (MainContent.Content is JuegoAhorcadoUserControl1 juegoControl)
+                {
+                    juegoControl.btnVolverMenu.Visibility = Visibility.Visible;
+                }
             });
         }
-
-      
     }
 }

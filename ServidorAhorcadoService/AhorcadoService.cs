@@ -376,21 +376,17 @@ namespace ServidorAhorcadoService
                     .Where(s => !string.IsNullOrWhiteSpace(s))
                     .ToList();
 
-                // No permitir repetir letra
                 if (letrasUsadas.Contains(letraStr))
                     return false;
 
                 letrasUsadas.Add(letraStr);
                 partida.LetrasUsadas = string.Join(",", letrasUsadas);
 
-                // Si la letra no está en la palabra, resta intentos
                 if (!palabra.PalabraTexto.ToLower().Contains(letraStr))
                     partida.IntentosRestantes--;
 
-                // Generar palabra con guiones
                 string palabraConGuiones = GenerarPalabraConGuiones(palabra.PalabraTexto, letrasUsadas);
 
-                // Crear DTO de estado
                 var estadoDTO = new PartidaEstadoDTO
                 {
                     PalabraConGuiones = palabraConGuiones,
@@ -402,7 +398,6 @@ namespace ServidorAhorcadoService
                 NotificarEstadoPartida(partida.IDJugadorCreador, partida.IDJugadorRetador, estadoDTO);
                 Console.WriteLine("después de NotificarEstadoPartida");
 
-                // Verificar si la partida terminó
                 bool adivinada = TodasLetrasAdivinadas(palabra.PalabraTexto, letrasUsadas);
                 bool sinIntentos = partida.IntentosRestantes <= 0;
 
