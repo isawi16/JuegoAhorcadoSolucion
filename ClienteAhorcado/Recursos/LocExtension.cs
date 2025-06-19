@@ -8,7 +8,7 @@ using System.Windows.Markup;
 
 namespace ClienteAhorcado.Recursos
 {
-    public class LocExtension : MarkupExtension
+    public class LocExtension 
     {
         public string Key { get; set; }
 
@@ -17,9 +17,9 @@ namespace ClienteAhorcado.Recursos
             Key = key;
         }
 
-        public override object ProvideValue(IServiceProvider serviceProvider)
+        /*public override object ProvideValue(IServiceProvider serviceProvider)
         {
             return Properties.Resources.ResourceManager.GetString(Key, CultureInfo.CurrentUICulture) ?? $"!{Key}!";
-        }
+        }*/
     }
 }

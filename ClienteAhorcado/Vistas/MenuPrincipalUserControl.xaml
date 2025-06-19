@@ -5,34 +5,73 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
     xmlns:local="clr-namespace:ClienteAhorcado.Vistas"
-    mc:Ignorable="d" Height="496" Width="871">
-    <Border Background="White" CornerRadius="12" Margin="10">
+    mc:Ignorable="d" Height="596" Width="871">
+    <UserControl.Resources>
+        <DropShadowEffect x:Key="DropShadowEffect" Color="Black" Opacity="0.3" BlurRadius="10" Direction="270" ShadowDepth="3" />
+    </UserControl.Resources>
+
+    <Border Background="Transparent" CornerRadius="15" Padding="20">
         <Grid>
             <Grid.Background>
-                <ImageBrush ImageSource="/Images/pinzarron.jpeg" Stretch="UniformToFill"/>
+                <ImageBrush ImageSource="/Images/pinzarron.jpeg" Stretch="UniformToFill" />
             </Grid.Background>
-            <Button HorizontalAlignment="Left" Margin="35,29,0,0" VerticalAlignment="Top" Height="60" Width="60" Click="BtnPerfil_Click">
-                <Image x:Name="imagenPerfil" Stretch="Uniform" />
-            </Button>
-            <Button Content="{lex:Loc Resources.iniciar_partida}" HorizontalAlignment="Left" Margin="190,226,0,0" VerticalAlignment="Top" Height="50" Width="150"  Click="BtnCrearPartida_Click" Style="{StaticResource EstiloBotonPrincipalSinIcono}"/>
-            <Button Content="{lex:Loc Resources.unirse_partida}" HorizontalAlignment="Left" Margin="527,226,0,0" VerticalAlignment="Top" Height="50" Width="150" Click="BtnUnirsePartida_Click" Style="{StaticResource EstiloBotonPrincipalSinIcono}"/>
-            <Button Content="{lex:Loc Resources.marcadores}" HorizontalAlignment="Center" Margin="0,348,0,0" VerticalAlignment="Top" Height="29" Width="130" Click="BtnMarcadores_Click" Style="{StaticResource EstiloBotonSecundarioSinIcono}"/>
-            <Button Content="{lex:Loc Resources.historial_partidas}" HorizontalAlignment="Left" Margin="663,38,0,0" VerticalAlignment="Top" Height="33" Width="140" Click="BtnHistorialPartidas_Click" Style="{StaticResource EstiloBotonSecundarioSinIcono}"/>
-            <TextBlock x:Name="tblNombre" HorizontalAlignment="Left" Margin="116,31,0,0" TextWrapping="Wrap" Text="{lex:Loc Resources.nombre}" VerticalAlignment="Top" FontSize="18" />
-            <TextBlock x:Name="tblCorreo" HorizontalAlignment="Left" Margin="116,65,0,0" TextWrapping="Wrap" Text="{lex:Loc Resources.correo}" VerticalAlignment="Top" FontSize="18"/>
-            <TextBlock HorizontalAlignment="Center" Margin="0,109,0,0" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="55" Height="79" Width="252" FontWeight="Bold" Foreground="White">
-                <Run Language="es-mx" Text="{lex:Loc Resources.titulo_ahorcado}"/>
-            </TextBlock>
-            <TextBlock HorizontalAlignment="Left" Margin="190,77,0,0" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="30" Width="235">
-                <Run Language="es-mx" Text="{lex:Loc Resources.vamos_a_jugar}" Foreground="White"/>
-            </TextBlock>
-            <Image Source="/Images/logo ahorcado.png" Stretch="UniformToFill" Margin="375,193,375,182"/>
-            <TextBlock HorizontalAlignment="Left" Margin="507,168,0,0" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="30">
-                <Run Language="es-mx" Text="{lex:Loc Resources.adivinas}" Foreground="White"/>
-            </TextBlock>
-            <Button HorizontalAlignment="Left" Margin="35,386,0,0" VerticalAlignment="Top" Height="50" Width="50" Click="BtnCerrarSesion_Click" Background="Transparent" BorderThickness="0">
-                <Image x:Name="cerrarSesion" Stretch="Uniform" Source="/Images/cerrarSesion.png"/>
-            </Button>
+            <Rectangle Fill="#AA000000" />
+
+            <Grid Margin="20">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="250" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+
+                <StackPanel Grid.Column="0" VerticalAlignment="Top" HorizontalAlignment="Center" >
+                    <Border Width="140" Height="140" CornerRadius="12" Margin="0,20"
+                        BorderBrush="#FF70A1FF" BorderThickness="3" 
+                        Effect="{StaticResource DropShadowEffect}" ClipToBounds="True">
+                        <Button x:Name="btnPerfil" Click="BtnPerfil_Click" Width="130" Height="130" Background="Transparent" HorizontalAlignment="Center">
+                            <Image x:Name="imagenPerfil" Stretch="UniformToFill" />
+                        </Button>
+                    </Border>
+
+
+
+                    <TextBlock x:Name="tblNombre" Foreground="White" FontWeight="Bold" FontSize="18" TextAlignment="Center" Margin="0,10,0,0" TextWrapping="Wrap"/>
+                    <TextBlock x:Name="tblCorreo" Foreground="White" FontSize="14" Opacity="0.8" TextAlignment="Center" TextWrapping="Wrap" />
+
+                    <Button x:Name="btnCerrarSesion" Click="BtnCerrarSesion_Click" Background="Transparent" BorderThickness="0" Margin="0,40,0,100" Cursor="Hand" HorizontalAlignment="Center">
+                        <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
+                            <Image Source="/Images/cerrarSesion.png" Width="24" Height="24" Margin="0,0,10,0" />
+                            <TextBlock x:Name="tblockCerrarSesion" Text="{DynamicResource Msg_Titulo_CerrarSesion}" Foreground="#FF70A1FF" FontWeight="Bold" FontSize="16" VerticalAlignment="Center"/>
+                        </StackPanel>
+                    </Button>
+
+                    <TextBlock x:Name="tblockSelectIdioma" Text="{DynamicResource Glb_Idioma}" FontWeight="SemiBold" HorizontalAlignment="Center" FontSize="20" Foreground="White"/>
+                    <ComboBox x:Name="cmbIdioma" 
+                            SelectionChanged="cmbIdioma_SelectionChanged"
+                            Tag="{DynamicResource Glb_Idioma}"
+                            Width="100"
+                            Height="30" Background="Transparent" BorderBrush="#3498db" Foreground="#3498db">
+                            <ComboBoxItem Content="{DynamicResource Glb_Espanol}" Tag="es"/>
+                            <ComboBoxItem Content="{DynamicResource Glb_Ingles}" Tag="en"/>
+                    </ComboBox>
+                </StackPanel>
+
+                <StackPanel Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Center" Width="520" >
+                    <TextBlock x:Name="tblockVamosJugar" Text="{DynamicResource MenuPrincipal_Frase}" FontSize="42" FontWeight="Bold" Foreground="White" Margin="0,0,0,10" FontFamily="Segoe UI Semibold" TextAlignment="Center" />
+                    <TextBlock x:Name="tblockTitulo" Text="{DynamicResource MenuPrincipal_Titulo}" FontSize="45" FontWeight="ExtraBold" Foreground="#FF70A1FF" Margin="0,0,0,30" TextAlignment="Center" />
+
+                    <Image Source="/Images/logo ahorcado.png" Height="140" Width="140" HorizontalAlignment="Center" Margin="0,0,0,30"/>
+
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" >
+                        <Button x:Name="btnCrearPartida" Content="{DynamicResource MenuPrincipal_CrearPartida}" Width="150" Height="50" Click="BtnCrearPartida_Click" Style="{StaticResource EstiloBotonPrincipalSinIcono}" Margin="0,0,40,0"/>
+                        <Button x:Name="btnUnirsePartida" Content="{DynamicResource MenuPrincipal_BuscarPartida}" Width="150" Height="50" Click="BtnUnirsePartida_Click" Style="{StaticResource EstiloBotonPrincipalSinIcono}"/>
+                    </StackPanel>
+
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,40,0,0">
+                        <Button x:Name="btnMarcadores" Content="{DynamicResource MenuPrincipal_Marcadores}" Width="130" Height="40" Click="BtnMarcadores_Click" Style="{StaticResource EstiloBotonSecundarioSinIcono}" Margin="0,0,40,0"/>
+                        <Button x:Name="btnHistorialPartidas" Content="{DynamicResource MenuPrincipal_Historial}" Width="160" Height="40" Click="BtnHistorialPartidas_Click" Style="{StaticResource EstiloBotonSecundarioSinIcono}"/>
+                    </StackPanel>
+                </StackPanel>
+            </Grid>
         </Grid>
     </Border>
 </UserControl>

@@ -20,27 +20,34 @@
             </Grid.RowDefinitions>
             <!-- Encabezado -->
             <StackPanel Grid.Row="0" Grid.ColumnSpan="2" Margin="0,10,0,20" HorizontalAlignment="Center" Width="639" Orientation="Horizontal">
-                <TextBlock Text="{lex:Loc Resources.perfil_usuario}" FontSize="24" FontWeight="Bold" Foreground="#2C3E50" TextAlignment="Center"/>
+                <TextBlock Text="{DynamicResource EditarPerfil_Titulo}" FontSize="24" FontWeight="Bold" Foreground="#2C3E50" TextAlignment="Center"/>
                 <Border HorizontalAlignment="Right">
-                    <Button x:Name="btnModificarPerfil" Content="{lex:Loc Resources.modificar_perfil}" HorizontalAlignment="Left" Margin="276,0,0,0" VerticalAlignment="Center" Height="25" Width="120" Style="{StaticResource EstiloBotonPrincipalSinIcono}" Click="BtnModificarPerfil_Click"/>
+                    <Button x:Name="btnModificarPerfil" Content="{DynamicResource EditarPerfil_Btn_EditarPerfil}" HorizontalAlignment="Left" Margin="276,0,0,0" VerticalAlignment="Center" Height="25" Width="120" Style="{StaticResource EstiloBotonPrincipalSinIcono}" Click="BtnModificarPerfil_Click"/>
                 </Border>
             </StackPanel>
             <!-- Columna izquierda -->
             <StackPanel Grid.Row="1" Grid.Column="0" Margin="10">
-                <TextBlock x:Name="tblockNombre" Text="{lex:Loc Resources.nombre}" FontWeight="SemiBold" Margin="0,0,0,5" FontSize="18"/>
-                <TextBox x:Name="tbNombre" Padding="10,5,10,10" Tag="{lex:Loc Resources.nombre}" />
+                <TextBlock x:Name="tblockNombre" Text="{DynamicResource EditarPerfil_Nombre}" FontWeight="SemiBold" FontSize="18"/>
+                <TextBlock x:Name="tblockNombreContenido" Text="" FontWeight="SemiBold" FontSize="15"/>
+                <TextBox x:Name="tbNombre" Padding="10,5,10,10" Tag="{DynamicResource EditarPerfil_Nombre}" />
                 <TextBlock x:Name="tblockErrorNombre" Text="" FontWeight="SemiBold" Margin="0,0,0,15" FontSize="12" Foreground="Red"/>
-                <TextBlock x:Name="tblockCorreo" Text="{lex:Loc Resources.correo}" FontWeight="SemiBold" Margin="0,0,0,25" FontSize="18"/>
-                <TextBlock x:Name="tblockFechaNacimiento" Text="{lex:Loc Resources.fecha_nacimiento}" FontWeight="SemiBold" FontSize="18"/>
+                
+                <TextBlock x:Name="tblockCorreo" Text="{DynamicResource EditarPerfil_Correo}" FontWeight="SemiBold" FontSize="18"/>
+                <TextBlock x:Name="tblockCorreoContenido" Text="" FontWeight="SemiBold" FontSize="15" Margin="0,0,0,25"/>
+                
+                <TextBlock x:Name="tblockFechaNacimiento" Text="{DynamicResource EditarPerfil_FechaNacimiento}" FontWeight="SemiBold" FontSize="18"/>
+                <TextBlock x:Name="tblockFechaContenido" Text="" FontWeight="SemiBold" FontSize="15"/>
                 <TextBlock x:Name="tblockErrorFecha" Text="" FontWeight="SemiBold" Margin="0,0,0,5" FontSize="12" Foreground="Red"/>
                 <DatePicker x:Name="dpFechaNacimiento" FontWeight="SemiBold" />
             </StackPanel>
             <!-- Columna derecha -->
-            <StackPanel Grid.Row="1" Grid.Column="1" Margin="10">
-                <TextBlock x:Name="tblockTelefono" Text="{lex:Loc Resources.telefono}" FontWeight="SemiBold" Margin="0,0,0,5" FontSize="18"/>
-                <TextBox x:Name="tbTelefono" Padding="10,5,10,10" Tag="{lex:Loc Resources.numero_telefono}" />
+            <StackPanel Grid.Row="1" Grid.Column="1" Margin="10,10,10,50" Grid.RowSpan="2">
+                <TextBlock x:Name="tblockTelefono" Text="{DynamicResource EditarPerfil_Telefono}" FontWeight="SemiBold" FontSize="18"/>
+                <TextBlock x:Name="tblockTelefonoContenido" Text="" FontWeight="SemiBold" FontSize="15"/>
+                <TextBox x:Name="tbTelefono" Padding="10,5,10,10" Tag="{DynamicResource EditarPerfil_Telefono}" />
                 <TextBlock x:Name="tblockErrorTelefono" Text="" FontWeight="SemiBold" Margin="0,0,0,0" FontSize="12" Foreground="Red"/>
-                <TextBlock x:Name="tblockPassword" Text="{lex:Loc Resources.contrasena}" FontWeight="SemiBold" Margin="0,0,0,5" FontSize="18"/>
+                
+                <TextBlock x:Name="tblockPassword" Text="{DynamicResource EditarPerfil_Contrasenia}" FontWeight="SemiBold" Margin="0,0,0,5" FontSize="18"/>
                 <Grid>
                     <PasswordBox x:Name="pbPassword" Height="35" Padding="10" Margin="0,0,40,5" Visibility="Visible"
                         PasswordChanged="PbPassword_PasswordChanged"/>
@@ -49,12 +56,12 @@
                 </Grid>
                 <TextBlock x:Name="tblockErrorPassword" Text="" FontWeight="SemiBold" FontSize="12" Foreground="Red"/>
                 <Image x:Name="imgPerfil" Width="80" Height="80"/>
-                <Button x:Name="btnSeleccionarFoto" Content="{lex:Loc Resources.seleccionar_foto}" Width="151" Margin="0,5" Style="{StaticResource EstiloBotonPrincipalSinIcono}" Click="BtnSeleccionarFoto_Click"/>
+                <Button x:Name="btnSeleccionarFoto" Content="{DynamicResource EditarPerfil_Btn_ElegirFoto}" Width="151" Margin="0,5" Style="{StaticResource EstiloBotonPrincipalSinIcono}" Click="BtnSeleccionarFoto_Click"/>
             </StackPanel>
             <!-- Botones -->
             <StackPanel Grid.Row="2" Grid.ColumnSpan="2" Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,20,0,10">
-                <Button x:Name="btnGuardar" Content="{lex:Loc Resources.guardar}" Width="151" Margin="10,0" Style="{StaticResource EstiloBotonPrincipalSinIcono}" Click="BtnGuardar_Click"/>
-                <Button Content="{lex:Loc Resources.regresar}" Width="151" Margin="10,0" Style="{StaticResource EstiloBotonSecundarioSinIcono}" Click="BtnRegresar_Click"/>
+                <Button x:Name="btnGuardar" Content="{DynamicResource EditarPerfil_Guardar}" Width="151" Margin="10,0" Style="{StaticResource EstiloBotonPrincipalSinIcono}" Click="BtnGuardar_Click"/>
+                <Button Content="{DynamicResource EditarPerfil_Btn_Regresar}" Width="151" Margin="10,0" Style="{StaticResource EstiloBotonSecundarioSinIcono}" Click="BtnRegresar_Click"/>
             </StackPanel>
         </Grid>
     </Border>

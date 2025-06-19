@@ -40,10 +40,10 @@ namespace ClienteAhorcado.Vistas
                 jugadorPerfil = jugador;   
                 this.proxy = proxy;
 
-                tblockNombre.Text = $"Nombre: {jugador.Nombre}";
-                tblockCorreo.Text = $"Correo: {jugador.Correo}";
-                tblockTelefono.Text = $"Teléfono: {jugador.Telefono}";
-                tblockFechaNacimiento.Text = $"Fecha de Nacimiento: {jugador.FechaNacimiento.ToShortDateString()}";
+                tblockNombreContenido.Text = jugador.Nombre;
+                tblockCorreoContenido.Text = jugador.Correo;
+                tblockTelefonoContenido.Text = jugador.Telefono;
+                tblockFechaContenido.Text = jugador.FechaNacimiento.ToShortDateString();
                 tblockPassword.Visibility = Visibility.Collapsed;
 
                 tbNombre.Visibility = Visibility.Collapsed;

@@ -441,4 +441,7 @@
   <data name="cancelar_partida" xml:space="preserve">
     <value>Cancelar Partida</value>
   </data>
+  <data name="bienvenido" xml:space="preserve">
+    <value>Bienvenido</value>
+  </data>
 </root>

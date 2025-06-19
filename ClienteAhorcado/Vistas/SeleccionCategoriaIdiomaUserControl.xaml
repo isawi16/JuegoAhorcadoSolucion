@@ -12,7 +12,7 @@
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>
             </Grid.RowDefinitions>
-            <TextBlock x:Name="tblockTitulo" Text="{lex:Loc Resources.selecciona_idioma_categoria}"
+            <TextBlock x:Name="tblockTitulo" Text="{DynamicResource CrearPartida_Titulo}"
                        FontSize="22"
                        FontWeight="Bold"
                        Foreground="#333"
@@ -53,14 +53,14 @@
                       Height="150">
                 <ListView.View>
                     <GridView>
-                        <GridViewColumn x:Name="colPalabra" Header="{lex:Loc Resources.palabra}" DisplayMemberBinding="{Binding Texto}" Width="200"/>
-                        <GridViewColumn Header="{lex:Loc Resources.dificultad}" DisplayMemberBinding="{Binding Dificultad}" Width="120"/>
+                        <GridViewColumn x:Name="colPalabra" Header="{DynamicResource CrearPartida_Palabra}" DisplayMemberBinding="{Binding Texto}" Width="200"/>
+                        <GridViewColumn Header="{DynamicResource CrearPartida_Dificultad}" DisplayMemberBinding="{Binding Dificultad}" Width="120"/>
                     </GridView>
                 </ListView.View>
             </ListView>
             <!-- Botón Crear -->
             <Button x:Name="btnCrearPartida"
-                    Content="{lex:Loc Resources.crear_partida}"
+                    Content="{DynamicResource CrearPartida_Boton_Crear}"
                     Grid.Row="3"
                     Height="40"
                     FontWeight="Bold"
@@ -71,7 +71,7 @@
                     Click="btnCrearPartida_Click"/>
             <!-- Botón Regresar -->
             <Button x:Name="btnRegresar"
-                    Content="{lex:Loc Resources.regresar}"
+                    Content="{DynamicResource CrearPartida_Boton_Regresar}"
                     Grid.Row="4"
                     Margin="0,10,0,0"
                     Height="35"

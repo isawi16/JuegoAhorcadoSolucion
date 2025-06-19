@@ -1,0 +1,155 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:sys="clr-namespace:System;assembly=mscorlib">
+
+
+    <sys:String x:Key="Mensaje_Validacion_NombreVacio">The name cannot be empty</sys:String>
+    <sys:String x:Key="Mensaje_Validacion_CorreoVacio">The email cannot be empty</sys:String>
+
+
+    <sys:String x:Key="Dificultad_Facil">Easy</sys:String>
+    <sys:String x:Key="Dificultad_Media">Intermediate</sys:String>
+    <sys:String x:Key="Dificultad_Dificil">Hard</sys:String>
+
+    <sys:String x:Key="InicioSesion_Titulo">Welcome</sys:String>
+    <sys:String x:Key="InicioSesion_Descripcion">Sign in to continue</sys:String>
+
+    <sys:String x:Key="Glb_CorreoUsuario">Email</sys:String>
+    <sys:String x:Key="Glb_Contrasenia">Password</sys:String>
+    <sys:String x:Key="Glb_Idioma">Language</sys:String>
+    <sys:String x:Key="Glb_Espanol">Spanish</sys:String>
+    <sys:String x:Key="Glb_Ingles">English</sys:String>
+    <sys:String x:Key="InicioSesion_Boton_Iniciar">Sign in</sys:String>
+    <sys:String x:Key="InicioSesion_Boton_Registrar">Don't have an account? Sign up</sys:String>
+    <sys:String x:Key="Msg_Error_InicioSesion">Incorrect username or password</sys:String>
+    <sys:String x:Key="Msg_Titulo_ErrorInicioSesion">Login error</sys:String>
+    <sys:String x:Key="Msg_Bienvenida">Welcome!</sys:String>
+    <sys:String x:Key="Msg_Titulo_Bienvenida">Login successful</sys:String>
+    <sys:String x:Key="Msg_Error_ConexionServidor">Server communication error: {0}</sys:String>
+    <sys:String x:Key="Msg_Titulo_ErrorConexion">Connection error</sys:String>
+
+    <sys:String x:Key="MenuPrincipal_Frase">Let's Play!</sys:String>
+    <sys:String x:Key="MenuPrincipal_Titulo">🎯 Hangman Game 🎯</sys:String>
+    <sys:String x:Key="MenuPrincipal_Editar">Edit Profile</sys:String>
+    <sys:String x:Key="MenuPrincipal_Marcadores">Raking</sys:String>
+    <sys:String x:Key="MenuPrincipal_CrearPartida">Create Game</sys:String>
+    <sys:String x:Key="MenuPrincipal_BuscarPartida">Find Game</sys:String>
+    <sys:String x:Key="MenuPrincipal_Historial">Game History</sys:String>
+    <sys:String x:Key="Msg_Titulo_ErrorSesion">Error</sys:String>
+    <sys:String x:Key="Msg_Error_SesionNoEncontrada">Player session not found.</sys:String>
+    <sys:String x:Key="MenuPrincipal_CerrarSesion">Sign Out</sys:String>
+    <sys:String x:Key="Msg_Titulo_CerrarSesion">Sign Out</sys:String>
+    <sys:String x:Key="Msg_Descripcion_ConfirmarCerrarSesion">Do you want to log out?</sys:String>
+
+    <sys:String x:Key="CrearCuenta_Titulo">Create your account</sys:String>
+    <sys:String x:Key="CrearCuenta_Subtitulo">Enter the details to create your account</sys:String>
+    <sys:String x:Key="CrearCuenta_Nombre">Name</sys:String>
+    <sys:String x:Key="CrearCuenta_ApellidoMaterno">Middle Name</sys:String>
+    <sys:String x:Key="CrearCuenta_FechaNacimiento">Date of birth</sys:String>
+    <sys:String x:Key="CrearCuenta_Telefono">Phone</sys:String>
+    <sys:String x:Key="CrearCuenta_Usuario">Username</sys:String>
+    <sys:String x:Key="CrearCuenta_Correo">Email</sys:String>
+    <sys:String x:Key="CrearCuenta_Contrasenia">Password</sys:String>
+    <sys:String x:Key="CrearCuenta_Btn_ElegirFoto">Choose photo</sys:String>
+    <sys:String x:Key="CrearCuenta_Regresar">Back</sys:String>
+    <sys:String x:Key="CrearCuenta_Registrarse">Register</sys:String>
+    <sys:String x:Key="CrearCuenta_Titulo_EditarPerfil">Edit Profile</sys:String>
+    <sys:String x:Key="CrearCuenta_Descripcion_EditarPerfil">Update your personal information</sys:String>
+    <sys:String x:Key="CrearCuenta_Btn_GuardarCambios">Save changes</sys:String>
+    <sys:String x:Key="Msg_Titulo_CorreoInvalido">Invalid Email</sys:String>
+    <sys:String x:Key="Msg_Descripcion_CorreoInvalido">The email format is not valid. Please check it's like example@domain.com.</sys:String>
+    <sys:String x:Key="Msg_Titulo_RegistroExitoso">Success</sys:String>
+    <sys:String x:Key="Msg_Descripcion_RegistroExitoso">Registration successful!</sys:String>
+    <sys:String x:Key="Msg_Descripcion_PerfilActualizado">Profile updated successfully.</sys:String>
+    <sys:String x:Key="Msg_Titulo_Duplicado">Duplicate</sys:String>
+    <sys:String x:Key="Msg_Descripcion_Duplicado">A user with this email or username already exists.</sys:String>
+    <sys:String x:Key="Msg_Titulo_ErrorRegistro">Error</sys:String>
+    <sys:String x:Key="Msg_Descripcion_ErrorRegistro">An error occurred while processing the request.</sys:String>
+    <sys:String x:Key="Msg_Descripcion_ErrorInesperado">Unexpected error: {0}</sys:String>
+    <sys:String x:Key="Msg_Titulo_ConfirmarEliminacion">Confirm Deletion</sys:String>
+    <sys:String x:Key="Msg_Descripcion_ConfirmarEliminacion">Are you sure you want to delete your profile? This action is permanent.</sys:String>
+    <sys:String x:Key="Msg_Titulo_PerfilEliminado">Success</sys:String>
+    <sys:String x:Key="Msg_Descripcion_PerfilEliminado">Profile deleted successfully.</sys:String>
+    <sys:String x:Key="Msg_Titulo_NoEncontrado">Not Found</sys:String>
+    <sys:String x:Key="Msg_Descripcion_NoEncontrado">The player was not found in the database.</sys:String>
+    <sys:String x:Key="Msg_Titulo_ErrorEliminar">Error</sys:String>
+    <sys:String x:Key="Msg_Descripcion_ErrorEliminar">An error occurred while trying to delete the profile.</sys:String>
+
+
+    <sys:String x:Key="EditarPerfil_Titulo">User Profile</sys:String>
+    <sys:String x:Key="EditarPerfil_Nombre">Name</sys:String>
+    <sys:String x:Key="EditarPerfil_FechaNacimiento">Date of birth</sys:String>
+    <sys:String x:Key="EditarPerfil_Telefono">Phone</sys:String>
+    <sys:String x:Key="EditarPerfil_Correo">Email</sys:String>
+    <sys:String x:Key="EditarPerfil_Contrasenia">Password</sys:String>
+    <sys:String x:Key="EditarPerfil_Btn_ElegirFoto">Choose photo</sys:String>
+    <sys:String x:Key="EditarPerfil_Btn_Regresar">Back</sys:String>
+    <sys:String x:Key="EditarPerfil_Guardar">Save</sys:String>
+    <sys:String x:Key="EditarPerfil_Btn_EditarPerfil">Edit profile</sys:String>
+
+
+    <sys:String x:Key="Ranking_Titulo">Ranking</sys:String>
+    <sys:String x:Key="Ranking_Columna_Puesto">Rank</sys:String>
+    <sys:String x:Key="Ranking_Columna_Nombre">Name</sys:String>
+    <sys:String x:Key="Ranking_Columna_Puntaje">Score</sys:String>
+    <sys:String x:Key="Ranking_Boton_Regresar">Back</sys:String>
+    <sys:String x:Key="Msg_Descripcion_ErrorCargarRanking">Error loading ranking: {0}</sys:String>
+    
+
+    <sys:String x:Key="Historial_Titulo">Match History</sys:String>
+    <sys:String x:Key="Historial_Columna_Fecha">Date</sys:String>
+    <sys:String x:Key="Historial_Columna_Palabra">Word</sys:String>
+    <sys:String x:Key="Historial_Columna_Ganador">Winner</sys:String>
+    <sys:String x:Key="Historial_Columna_Rival">Opponent</sys:String>
+    <sys:String x:Key="Historial_Columna_Dificultad">Difficulty</sys:String>
+    <sys:String x:Key="Historial_Columna_Puntaje">Score</sys:String>
+    <sys:String x:Key="Historial_Boton_Regresar">Back</sys:String>
+    <sys:String x:Key="Msg_Descripcion_ErrorSesion">Player session not found.</sys:String>
+    <sys:String x:Key="Msg_Titulo_Error">Error</sys:String>
+    <sys:String x:Key="Msg_Descripcion_ErrorHistorial">Error loading match history: {0}</sys:String>
+    <sys:String x:Key="Historial_Resultado_Ganaste">You won</sys:String>
+    <sys:String x:Key="Historial_Resultado_Perdiste">You lost</sys:String>
+
+    <sys:String x:Key="CrearPartida_Titulo">Select the language of the category</sys:String>
+    <sys:String x:Key="CrearPartida_Descripcion">Fill in all fields to continue</sys:String>
+    <sys:String x:Key="CrearPartida_Dificultad">Difficulty</sys:String>
+    <sys:String x:Key="CrearPartida_Categoria">Category</sys:String>
+    <sys:String x:Key="CrearPartida_Palabra">Word</sys:String>
+    <sys:String x:Key="CrearPartida_Boton_Regresar">Back</sys:String>
+    <sys:String x:Key="CrearPartida_Boton_Crear">Create game</sys:String>
+
+    <sys:String x:Key="Msg_Descripcion_ErrorCategoriasDificultades">Failed to load categories or difficulties.</sys:String>
+    <sys:String x:Key="Msg_Descripcion_ErrorPalabras">Failed to load words.</sys:String>
+    <sys:String x:Key="Msg_Titulo_CampoObligatorio">Required field</sys:String>
+    <sys:String x:Key="Msg_Descripcion_SeleccionarPalabra">Please select a word to create the game.</sys:String>
+    <sys:String x:Key="Msg_Titulo_CreacionPartida">Game created</sys:String>
+    <sys:String x:Key="Msg_Descripcion_CreacionPartida">Game successfully created. Waiting for another player to join...</sys:String>
+    <sys:String x:Key="Msg_Titulo_EstadoNoExiste">State not found</sys:String>
+    <sys:String x:Key="Msg_Descripcion_EstadoNoExiste">The 'Waiting' state does not exist in the system.</sys:String>
+    <sys:String x:Key="Msg_Descripcion_ErrorCrearPartida">An error occurred while creating the game.</sys:String>
+
+    
+    <sys:String x:Key="UnirsePartida_Columna_Categoria">Category</sys:String>
+    <sys:String x:Key="UnirsePartida_Boton_Regresar">Back</sys:String>
+    <sys:String x:Key="UnirsePartida_Boton_Unirse">Join</sys:String>
+    <sys:String x:Key="UnirsePartida_Boton_ActualizarLista">Update list</sys:String>
+    <sys:String x:Key="Msg_Titulo_SinSeleccion">Warning</sys:String>
+    <sys:String x:Key="Msg_Titulo_UnirseExitoso">Joined Successfully</sys:String>
+    <sys:String x:Key="Msg_Titulo_UnirseFallido">Join Failed</sys:String>
+    <sys:String x:Key="Msg_Descripcion_SinSeleccion">Please select a game to join.</sys:String>
+    <sys:String x:Key="Msg_Descripcion_UnirseExitoso">You successfully joined the game.</sys:String>
+    <sys:String x:Key="Msg_Descripcion_UnirseFallido">Unable to join the selected game. Please try another one.</sys:String>
+    <sys:String x:Key="Msg_Descripcion_ErrorUnirse">Error while joining the game: {0}</sys:String>
+    <sys:String x:Key="Msg_Descripcion_ErrorCargarPartidas">Error retrieving available games: {0}</sys:String>
+
+    <sys:String x:Key="JuegoAhorcado_Titulo">🎯Hangman Game 🎯</sys:String>
+    <sys:String x:Key="JuegoAhorcado_ChatPrivado">💬Private chat</sys:String>
+    <sys:String x:Key="JuegoAhorcado_BtnVolverMenu">Return to menu</sys:String>
+    <sys:String x:Key="JuegoAhorcado_IntentosRestantes">Remaining attempts:</sys:String>
+    <sys:String x:Key="JuegoAhorcado_LetrasUsadas">Letters used:</sys:String>
+    <sys:String x:Key="JuegoAhorcado_Abandonar">Leave game</sys:String>
+    
+    <sys:String x:Key="JugarPartida_Pista">Clue</sys:String>
+    <sys:String x:Key="Msg_Titulo_Pista">Clue</sys:String>
+    <sys:String x:Key="Msg_Descripcion_SinPista">No clue available for this word.</sys:String>
+</ResourceDictionary>
