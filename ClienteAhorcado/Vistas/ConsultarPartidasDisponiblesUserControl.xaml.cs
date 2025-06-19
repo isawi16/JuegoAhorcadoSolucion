@@ -62,9 +62,11 @@ namespace ClienteAhorcado.Vistas
             }
             else
             {
+                string mensajeSinPartidas = Application.Current.TryFindResource("Msg_NoPartidasDisponibles") as string;
                 MessageBox.Show(
-                    "No se encontraron partidas disponibles, intente de nuevo más tarde.",
-                    "Información",
+
+                    mensajeSinPartidas,
+                    "Info",
                     MessageBoxButton.OK,
                     MessageBoxImage.Information
                 );
@@ -81,7 +83,8 @@ namespace ClienteAhorcado.Vistas
                 bool unido = proxy.UnirseAPartida(partidaSeleccionada.IDPartida, jugadorSesion.IDJugador);
                 if (!unido)
                 {
-                    MessageBox.Show("No se pudo unir a la partida (puede que otro jugador se haya unido antes o la partida ya haya iniciado).", "Error", MessageBoxButton.OK, MessageBoxImage.Warning);
+                    string mensajeNoUnirse = Application.Current.TryFindResource("Msg_NoPudoUnirsePartida") as string;
+                    MessageBox.Show(mensajeNoUnirse, "Error", MessageBoxButton.OK, MessageBoxImage.Warning);
                     LlenarTablaPartidas();
                     return;
                 }
@@ -90,7 +93,8 @@ namespace ClienteAhorcado.Vistas
                 var palabra = proxy.ObtenerPalabraConDescripcion(partidaSeleccionada.IDPalabra);
                 if (palabra == null)
                 {
-                    MessageBox.Show("No se pudo obtener la palabra para la partida.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                    string mensajeNoObtuvoPalabra = Application.Current.TryFindResource("Msg_NoObtenerPalabra") as string;
+                    MessageBox.Show(mensajeNoObtuvoPalabra, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                     return;
                 }
 
@@ -99,7 +103,8 @@ namespace ClienteAhorcado.Vistas
             }
             else
             {
-                MessageBox.Show("Selecciona una partida para unirte.", "Información", MessageBoxButton.OK, MessageBoxImage.Information);
+                string mensajeSeleccionaPartida = Application.Current.TryFindResource("Msg_SeleccionaPartida") as string;
+                MessageBox.Show(mensajeSeleccionaPartida, "Info", MessageBoxButton.OK, MessageBoxImage.Information);
             }
         }
 

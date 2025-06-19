@@ -50,7 +50,8 @@ namespace ClienteAhorcado.Vistas
             }
             else
             {
-                MessageBox.Show("No se encontraron partidas en el historial.", "Información", MessageBoxButton.OK, MessageBoxImage.Information);
+                string mensajeHistorialVacio = Application.Current.TryFindResource("Msg_HistorialVacio") as string;
+                MessageBox.Show(mensajeHistorialVacio, "Info", MessageBoxButton.OK, MessageBoxImage.Information);
             }
         }
 

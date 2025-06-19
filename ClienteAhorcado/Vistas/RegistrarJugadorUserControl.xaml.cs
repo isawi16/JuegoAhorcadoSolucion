@@ -119,11 +119,13 @@ namespace ClienteAhorcado.Vistas
 
                 if (registroExitoso)
                 {
-                    MessageBox.Show("El registro fue exitoso");
+                    string mensajeRegistroExito = Application.Current.TryFindResource("Msg_registroExitoso") as string;
+                    MessageBox.Show(mensajeRegistroExito);
                 }
                 else
                 {
-                    MessageBox.Show("No se pudo registrar, intentelo mas tarde");
+                    string mensajeErrorRegistro = Application.Current.TryFindResource("Msg_ErrorRegistro") as string;
+                    MessageBox.Show(mensajeErrorRegistro);
                 }
             }
         }
@@ -192,9 +194,10 @@ namespace ClienteAhorcado.Vistas
 
         private void BtnElegirFoto_Click(object sender, RoutedEventArgs e)
         {
+            string tituloEligeFoto = Application.Current.TryFindResource("ElegirFoto_Titulo") as string;
             var openFileDialog = new OpenFileDialog
             {
-                Title = "Selecciona tu foto de perfil",
+                Title = tituloEligeFoto,
                 Filter = "Archivos de imagen|*.jpg;*.jpeg;*.png;*.bmp"
             };
 
