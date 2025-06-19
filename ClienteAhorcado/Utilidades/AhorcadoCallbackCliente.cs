@@ -41,12 +41,12 @@ namespace ClienteAhorcado.Utilidades
         }
         */
 
-        public void NotificarFinPartida(string resultado, string palabra)
+        public void NotificarFinPartida(string resultado, string palabra, int IDPartida)
         {
             mainWindow.Dispatcher.Invoke(() =>
             {
                 Console.WriteLine("Recibido Callback notificar fin partida: ");
-                mainWindow.NotificarFinPartida(resultado, palabra);
+                mainWindow.NotificarFinPartida(resultado, palabra, IDPartida);
             });
         }
     }

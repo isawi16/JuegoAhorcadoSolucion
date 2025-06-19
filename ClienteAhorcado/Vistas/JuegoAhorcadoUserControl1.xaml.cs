@@ -218,6 +218,8 @@ namespace ClienteAhorcado.Vistas
 
         public void ActualizarDesdeCallback(PartidaEstadoDTO estado)
         {
+            if (estado.IDPartida != this.idPartida)
+                return;
             this.intentosRestantes = estado.IntentosRestantes;
             this.letrasUsadas = estado.LetrasUsadas ?? new List<char>();
 

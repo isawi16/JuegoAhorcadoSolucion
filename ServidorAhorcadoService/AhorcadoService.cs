@@ -15,6 +15,7 @@ namespace ServidorAhorcadoService
     public class AhorcadoService : IAhorcadoService
     {
         private static readonly ConcurrentDictionary<int, IAhorcadoCallback> clientesConectados = new ConcurrentDictionary<int, IAhorcadoCallback>();
+        private static readonly ConcurrentDictionary<int, int> jugadorAPartida = new ConcurrentDictionary<int, int>();
 
         // --- AUTENTICACIÓN Y USUARIO ---
 
@@ -288,6 +289,10 @@ namespace ServidorAhorcadoService
 
                 db.Partidas.Add(nueva);
                 db.SaveChanges();
+
+                // Asociar creador a la partida
+                jugadorAPartida[idCreador] = nueva.IDPartida;
+
                 return nueva.IDPartida;
             }
         }
@@ -327,6 +332,10 @@ namespace ServidorAhorcadoService
                 partida.IDJugadorRetador = idJugador;
                 partida.IDEstado = 3; // Cambiar a "En curso"
                 db.SaveChanges();
+
+                // Asociar retador a la partida
+                jugadorAPartida[idJugador] = idPartida;
+
                 return true;
             }
         }
@@ -347,10 +356,16 @@ namespace ServidorAhorcadoService
 
                 db.SaveChanges();
 
+                // Eliminar la asociación del jugador con la partida para evitar errores en callback
+                jugadorAPartida.TryRemove(partida.IDJugadorCreador, out _);
+                if (partida.IDJugadorRetador.HasValue)
+                    jugadorAPartida.TryRemove(partida.IDJugadorRetador.Value, out _);
+
+
                 // Notificar a ambos jugadores
                 string mensaje = "¡Partida cancelada!";
                 string palabra = partida.Palabra.PalabraTexto;
-                NotificarFinPartida(partida.IDJugadorCreador, partida.IDJugadorRetador, mensaje, palabra);
+                NotificarFinPartida(partida.IDJugadorCreador, partida.IDJugadorRetador, mensaje, palabra, idPartida);
                 return true;
             }
         }
@@ -391,11 +406,12 @@ namespace ServidorAhorcadoService
                 {
                     PalabraConGuiones = palabraConGuiones,
                     IntentosRestantes = partida.IntentosRestantes,
-                    LetrasUsadas = letrasUsadas.Select(s => s[0]).ToList(), // Mejor: s => s[0]
+                    LetrasUsadas = letrasUsadas.Select(s => s[0]).ToList(),
+                    IDPartida = partida.IDPartida,
                 };
 
                 Console.WriteLine("Antes de NotificarEstadoPartida");
-                NotificarEstadoPartida(partida.IDJugadorCreador, partida.IDJugadorRetador, estadoDTO);
+                NotificarEstadoPartida(partida.IDJugadorCreador, partida.IDJugadorRetador, estadoDTO, partida.IDPartida);
                 Console.WriteLine("después de NotificarEstadoPartida");
 
                 bool adivinada = TodasLetrasAdivinadas(palabra.PalabraTexto, letrasUsadas);
@@ -421,7 +437,14 @@ namespace ServidorAhorcadoService
                     }
 
                     db.SaveChanges();
-                    NotificarFinPartida(partida.IDJugadorCreador, partida.IDJugadorRetador, "¡Juego terminado!", palabra.PalabraTexto);
+
+                    // Eliminar asociación de ambos jugadores a la partida
+                    jugadorAPartida.TryRemove(partida.IDJugadorCreador, out _);
+                    if (partida.IDJugadorRetador.HasValue)
+                        jugadorAPartida.TryRemove(partida.IDJugadorRetador.Value, out _);
+
+
+                    NotificarFinPartida(partida.IDJugadorCreador, partida.IDJugadorRetador, "¡Juego terminado!", palabra.PalabraTexto, idPartida);
                 }
                 else
                 {
@@ -449,65 +472,77 @@ namespace ServidorAhorcadoService
                     PalabraConGuiones = GenerarPalabraConGuiones(palabra.PalabraTexto, letrasUsadas),
                     IntentosRestantes = partida.IntentosRestantes,
                     LetrasUsadas = letrasUsadas.Select(s => s[0]).ToList(),
-                    
+                    IDPartida = partida.IDPartida,
                 };
             }
         }
 
-        private void NotificarEstadoPartida(int idCreador, int? idRetador, PartidaEstadoDTO estado)
+        private void NotificarEstadoPartida(int idCreador, int? idRetador, PartidaEstadoDTO estado, int idPartida)
         {
-            if (clientesConectados.TryGetValue(idCreador, out var callbackCreador))
+            if (jugadorAPartida.TryGetValue(idCreador, out int partidaCreador) && partidaCreador == idPartida)
             {
-                try {
-
-                    Console.WriteLine($"Notificando a creador {idCreador} - callback hash: {callbackCreador.GetHashCode()}");
-
-                    callbackCreador.ActualizarEstadoPartida(estado); 
-                } 
-                catch (Exception ex) {
-                    Console.WriteLine($"Error al notificar estado a creador {idCreador}: {ex.Message}");
-                    clientesConectados.TryRemove(idCreador, out _);
+                if (clientesConectados.TryGetValue(idCreador, out var callbackCreador))
+                {
+                    try
+                    {
+                        callbackCreador.ActualizarEstadoPartida(estado);
+                    }
+                    catch
+                    {
+                        clientesConectados.TryRemove(idCreador, out _);
+                    }
                 }
             }
 
-            if (idRetador != null && clientesConectados.TryGetValue(idRetador.Value, out var callbackRetador))
+            if (idRetador != null && jugadorAPartida.TryGetValue(idRetador.Value, out int partidaRetador) && partidaRetador == idPartida)
             {
-                try
+                if (clientesConectados.TryGetValue(idRetador.Value, out var callbackRetador))
                 {
-                    Console.WriteLine($"Notificando a retador {idRetador} - callback hash: {callbackRetador.GetHashCode()}");
-
-                    callbackRetador.ActualizarEstadoPartida(estado);
-                }
-                catch (Exception ex)
-                {
-                    Console.WriteLine($"Error al notificar estado a retador {idRetador}: {ex.Message}");
-                    clientesConectados.TryRemove(idRetador.Value, out _);
+                    try
+                    {
+                        callbackRetador.ActualizarEstadoPartida(estado);
+                    }
+                    catch
+                    {
+                        clientesConectados.TryRemove(idRetador.Value, out _);
+                    }
                 }
             }
         }
 
-        private void NotificarFinPartida(int idCreador, int? idRetador, string resultado, string palabra)
+        private void NotificarFinPartida(int idCreador, int? idRetador, string resultado, string palabra, int idPartida)
         {
-            if (clientesConectados.TryGetValue(idCreador, out var callbackCreador))
+            if (jugadorAPartida.TryGetValue(idCreador, out int partidaCreador) && partidaCreador == idPartida)
             {
-                try { 
-                    callbackCreador.NotificarFinPartida(resultado, palabra); 
-                } 
-                catch {
-                    clientesConectados.TryRemove(idCreador, out _);
+                if (clientesConectados.TryGetValue(idCreador, out var callbackCreador))
+                {
+                    try
+                    {
+                        callbackCreador.NotificarFinPartida(resultado, palabra, idPartida);
+                    }
+                    catch
+                    {
+                        clientesConectados.TryRemove(idCreador, out _);
+                    }
                 }
-            }
 
-            if (idRetador != null && clientesConectados.TryGetValue(idRetador.Value, out var callbackRetador))
-            {
-                try { 
-                    callbackRetador.NotificarFinPartida(resultado, palabra); 
-                } 
-                catch {
-                    clientesConectados.TryRemove(idRetador.Value, out _);
+                if (idRetador != null && jugadorAPartida.TryGetValue(idRetador.Value, out int partidaRetador) && partidaRetador == idPartida)
+                {
+                    if (clientesConectados.TryGetValue(idRetador.Value, out var callbackRetador))
+                    {
+                        try
+                        {
+                            callbackRetador.NotificarFinPartida(resultado, palabra, idPartida);
+                        }
+                        catch
+                        {
+                            clientesConectados.TryRemove(idRetador.Value, out _);
+                        }
+                    }
                 }
             }
         }
+        
 
 
 

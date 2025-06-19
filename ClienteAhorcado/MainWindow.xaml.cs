@@ -68,6 +68,10 @@ namespace ClienteAhorcado
         // --- Métodos de Callback ---
         public void ActualizarEstadoPartida(PartidaEstadoDTO estadoActual)
         {
+            
+            if (estadoActual.IDPartida != this.idPartida)
+                return;
+
             Dispatcher.Invoke(() =>
             {
                 if (MainContent.Content is JuegoAhorcadoUserControl1 juegoControl)
@@ -76,6 +80,7 @@ namespace ClienteAhorcado
                 }
             });
         }
+
 
         public void RecibirMensajeChat(string nombreJugador, string mensaje)
         {
@@ -88,8 +93,12 @@ namespace ClienteAhorcado
             });
         }
 
-        public void NotificarFinPartida(string resultado, string palabra)
+        public void NotificarFinPartida(string resultado, string palabra, int IDPartida)
         {
+            // Ignora el callback si el ID de la partida no corresponde al actual
+            if (IDPartida != this.idPartida)
+                return;
+
             Dispatcher.Invoke(() =>
             {
                 MessageBox.Show($"{resultado}. La palabra era: {palabra}", "Fin de la partida");
@@ -101,5 +110,6 @@ namespace ClienteAhorcado
                 }
             });
         }
+
     }
 }
