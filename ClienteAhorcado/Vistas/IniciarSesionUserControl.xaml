@@ -45,7 +45,17 @@
                 <Button  x:Name="btnRegistrarse" Content="¿No tienes cuenta? Regístrate"
                         Click="BtnRegistrarse_Click"
                         Style="{StaticResource EstiloBotonSecundarioSinIcono}"
-                        Height="40" Background="Transparent" BorderBrush="#3498db" Foreground="#3498db"/>
+                        Height="40" Background="Transparent" BorderBrush="#3498db" Foreground="#3498db" Margin="0,0,0,10"/>
+
+                <ComboBox x:Name="cmbIdioma" 
+                          SelectionChanged="cmbIdioma_SelectionChanged"
+                         Width="100"
+                         Height="30" Background="Transparent" BorderBrush="#3498db" Foreground="#3498db">
+                    
+                    <ComboBoxItem Tag="es">Español</ComboBoxItem>
+                    <ComboBoxItem Tag="en">English</ComboBoxItem>
+
+                </ComboBox>
             </StackPanel>
         </Grid>
     </Border>

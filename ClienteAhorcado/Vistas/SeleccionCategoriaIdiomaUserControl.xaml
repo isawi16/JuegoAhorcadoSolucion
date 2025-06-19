@@ -14,9 +14,9 @@
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>
             </Grid.RowDefinitions>
-            
 
-            <TextBlock Text="Selecciona idioma y categoría"
+
+            <TextBlock x:Name="tblockTitulo" Text="Selecciona idioma y categoría"
                        FontSize="22"
                        FontWeight="Bold"
                        Foreground="#333"
@@ -60,8 +60,8 @@
                       Height="150">
                 <ListView.View>
                     <GridView>
-                        <GridViewColumn Header="Palabra" DisplayMemberBinding="{Binding Texto}" Width="200"/>
-                        <GridViewColumn Header="Dificultad" DisplayMemberBinding="{Binding Dificultad}" Width="120"/>
+                        <GridViewColumn x:Name="colPalabra" Header="Palabra" DisplayMemberBinding="{Binding Texto}" Width="200"/>
+                        <GridViewColumn Header="colDificultad" DisplayMemberBinding="{Binding Dificultad}" Width="120"/>
                     </GridView>
                 </ListView.View>
             </ListView>

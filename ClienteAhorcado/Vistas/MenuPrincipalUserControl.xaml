@@ -24,8 +24,12 @@
                     <Border Width="140" Height="140" CornerRadius="12" Margin="0,20"
                         BorderBrush="#FF70A1FF" BorderThickness="3" 
                         Effect="{StaticResource DropShadowEffect}" ClipToBounds="True">
-                        <Image x:Name="imagenPerfil" Stretch="UniformToFill" />
+                        <Button x:Name="btnPerfil" Click="BtnPerfil_Click" Width="130" Height="130" Background="Transparent" HorizontalAlignment="Center">
+                            <Image x:Name="imagenPerfil" Stretch="UniformToFill" />
+                        </Button>
                     </Border>
+
+                    
 
                     <TextBlock x:Name="tblNombre" Foreground="White" FontWeight="Bold" FontSize="18" TextAlignment="Center" Margin="0,10,0,0" TextWrapping="Wrap"/>
                     <TextBlock x:Name="tblCorreo" Foreground="White" FontSize="14" Opacity="0.8" TextAlignment="Center" TextWrapping="Wrap" />
@@ -33,14 +37,14 @@
                     <Button x:Name="btnCerrarSesion" Click="BtnCerrarSesion_Click" Background="Transparent" BorderThickness="0" Margin="0,40,0,0" Cursor="Hand" HorizontalAlignment="Center">
                         <StackPanel Orientation="Horizontal" VerticalAlignment="Center" >
                             <Image Source="/Images/cerrarSesion.png" Width="24" Height="24" Margin="0,0,10,0" />
-                            <TextBlock Text="Cerrar sesión" Foreground="#FF70A1FF" FontWeight="Bold" FontSize="16" VerticalAlignment="Center"/>
+                            <TextBlock x:Name="tblockCerrarSesion" Text="Cerrar sesión" Foreground="#FF70A1FF" FontWeight="Bold" FontSize="16" VerticalAlignment="Center"/>
                         </StackPanel>
                     </Button>
                 </StackPanel>
 
                 <StackPanel Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Center" Width="520" >
-                    <TextBlock Text="¡Vamos a jugar!" FontSize="42" FontWeight="Bold" Foreground="White" Margin="0,0,0,10" FontFamily="Segoe UI Semibold" TextAlignment="Center" />
-                    <TextBlock Text="Ahorcado" FontSize="70" FontWeight="ExtraBold" Foreground="#FF70A1FF" Margin="0,0,0,30" TextAlignment="Center" />
+                    <TextBlock x:Name="tblockVamosJugar" Text="¡Vamos a jugar!" FontSize="42" FontWeight="Bold" Foreground="White" Margin="0,0,0,10" FontFamily="Segoe UI Semibold" TextAlignment="Center" />
+                    <TextBlock x:Name="tblockTitulo" Text="Ahorcado" FontSize="70" FontWeight="ExtraBold" Foreground="#FF70A1FF" Margin="0,0,0,30" TextAlignment="Center" />
 
                     <Image Source="/Images/logo ahorcado.png" Height="140" Width="140" HorizontalAlignment="Center" Margin="0,0,0,30"/>
 

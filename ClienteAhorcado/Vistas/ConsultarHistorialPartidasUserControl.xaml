@@ -3,9 +3,19 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" Height="394" Width="609"
              >
     <Border Background="White" CornerRadius="12" Margin="10,10,0,0">
-        <StackPanel Margin="20">
-            <TextBlock x:Name="tblockTitulo" Text="Historial de Partidas" FontSize="15" FontWeight="Bold" Margin="0,0,0,1" HorizontalAlignment="Center"/>
-            <DataGrid Name="dgHistorial" Margin="5" AutoGenerateColumns="False">
+        <Grid Margin="20">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <TextBlock x:Name="tblockTitulo" Text="Historial de Partidas" FontSize="15" FontWeight="Bold"  HorizontalAlignment="Center"/>
+            <DataGrid Name="dgHistorial" Margin="2" AutoGenerateColumns="False" Grid.Row="1" HorizontalAlignment="Stretch"
+                VerticalAlignment="Stretch"
+                MaxHeight="280"
+                ScrollViewer.CanContentScroll="True"
+                ScrollViewer.VerticalScrollBarVisibility="Auto">
+                                
                 <DataGrid.Columns>
                     <DataGridTextColumn x:Name="colFecha" Header="Fecha" Binding="{Binding Fecha}" Width="*" />
                     <DataGridTextColumn x:Name="colPalabra" Header="Palabra Jugada" Binding="{Binding PalabraTexto}"  Width="*" />
@@ -14,8 +24,10 @@
                     <DataGridTextColumn x:Name="colPuntaje" Header="Puntaje" Binding="{Binding Puntaje}"  Width="*" />
                 </DataGrid.Columns>
             </DataGrid>
-            <Button x:Name="btnVolver" Content="Volver" Width="100" Margin="5" HorizontalAlignment="Right" Click="BtnVolver_Click"/>
-        </StackPanel>
+            <Button x:Name="btnVolver" Width="40" Height="25" HorizontalAlignment="Left" Click="BtnVolver_Click" >
+                <TextBlock Text="←" FontSize="24" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+            </Button>
+        </Grid>
     </Border>
 </UserControl>
 
