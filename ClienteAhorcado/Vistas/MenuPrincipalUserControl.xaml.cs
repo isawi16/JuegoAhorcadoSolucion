@@ -5,6 +5,7 @@ using System.Windows.Controls;
 using System.Windows.Media.Imaging;
 using ClienteAhorcado.Utilidades;
 using BibliotecaClasesNetFramework.Contratos;
+using WPFLocalizeExtension.Engine;
 
 namespace ClienteAhorcado.Vistas
 {
@@ -13,6 +14,7 @@ namespace ClienteAhorcado.Vistas
         private MainWindow _mainWindow;
         private IAhorcadoService proxy;
         private JugadorDTO jugadorSesion;
+        String idiomaSesionMenu;
 
         public MenuPrincipalUserControl(MainWindow mainWindow, JugadorDTO jugador, IAhorcadoService proxy)
         {
@@ -22,9 +24,10 @@ namespace ClienteAhorcado.Vistas
                 _mainWindow = mainWindow;
                 jugadorSesion = jugador;
                 this.proxy = proxy;
+                //idiomaSesionMenu = idiomaSesion;
 
-                tblNombre.Text = $"Nombre: {jugador.Nombre}";
-                tblCorreo.Text = $"Correo: {jugador.Correo}";
+                tblNombre.Text = $"{jugador.Nombre}";
+                tblCorreo.Text = $"{jugador.Correo}";
 
                 if (jugador.FotoPerfil != null && jugador.FotoPerfil.Length > 0)
                 {
@@ -81,6 +84,20 @@ namespace ClienteAhorcado.Vistas
         private void BtnCerrarSesion_Click(object sender, RoutedEventArgs e)
         {
             _mainWindow.CambiarVista(new IniciarSesionUserControl(_mainWindow, proxy));
+        }
+
+        private void cmbIdioma_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (cmbIdioma.SelectedItem is ComboBoxItem itemSeleccionado)
+            {
+                string codigoCultura = itemSeleccionado.Tag.ToString();
+
+                var app = (App)Application.Current;
+                app.CambiarIdioma(codigoCultura);
+
+                string idiomaBase = codigoCultura.Split('-')[0];
+                idiomaSesionMenu = idiomaBase;
+            }
         }
     }
 }

@@ -14,7 +14,7 @@ namespace ClienteAhorcado.Utilidades
 
             if (string.IsNullOrWhiteSpace(nombre)) {
                 Animaciones.SacudirTextBox(textBox);
-                return "El nombre no puede estar vacío.";
+                return "Mensaje_Validacion_NombreVacio";
             }
             if (nombre.Length < 2) {
                 Animaciones.SacudirTextBox(textBox);
@@ -96,7 +96,7 @@ namespace ClienteAhorcado.Utilidades
             if (string.IsNullOrWhiteSpace(correo))
             {
                 Animaciones.SacudirTextBox(textBox);
-                return "El correo no puede estar vacío.";
+                return "Mensaje_Validacion_CorreoVacio";
             }
 
             string patron = @"^[^@\s]+@[^@\s]+\.[^@\s]+$";

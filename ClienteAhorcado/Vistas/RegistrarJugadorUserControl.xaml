@@ -1,13 +1,13 @@
 ﻿<UserControl x:Class="ClienteAhorcado.Vistas.RegistrarJugadorUserControl"
-        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:ClienteAhorcado.Vistas"
-        mc:Ignorable="d" Width="870" Height="476">
+    xmlns:lex="http://wpflocalizeextension.codeplex.com"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:local="clr-namespace:ClienteAhorcado.Vistas"
+    mc:Ignorable="d" Width="870" Height="476">
     <Border Background="White" CornerRadius="12" Margin="10">
         <Grid>
-
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*" />
                 <ColumnDefinition Width="*" />
@@ -17,47 +17,39 @@
                 <RowDefinition Height="*"/>
                 <RowDefinition Height="Auto"/>
             </Grid.RowDefinitions>
-
             <Image Source="/Images/pinzarron.jpeg" Stretch="UniformToFill" Panel.ZIndex="0" Margin="0,0,-18,0" Grid.ColumnSpan="2" Grid.RowSpan="3"/>
-
             <!-- Encabezado -->
             <StackPanel Grid.Row="0" Grid.ColumnSpan="2" Margin="0,10,0,20" HorizontalAlignment="Center">
-                <TextBlock x:Name="tblockTitulo" Foreground="White" Text="Crea tu cuenta" FontSize="24" FontWeight="Bold"  TextAlignment="Center"/>
-                <TextBlock x:Name="tblockSubtitulo" Text="Ingresa los datos para crear tu cuenta" FontSize="16" Foreground="Salmon" TextAlignment="Center"/>
+                <TextBlock Foreground="White" Text="{DynamicResource CrearCuenta_Titulo}" FontSize="24" FontWeight="Bold"  TextAlignment="Center"/>
+                <TextBlock Text="{DynamicResource CrearCuenta_Subtitulo}" FontSize="16" Foreground="Salmon" TextAlignment="Center"/>
             </StackPanel>
-
             <!-- Columna izquierda -->
             <StackPanel Grid.Row="1" Grid.Column="0" Margin="10,10,10,44" Grid.RowSpan="2">
-                <TextBlock x:Name="tblockNombre" Text="Nombre" FontWeight="SemiBold" Margin="0,0,0,5" FontSize="18"/>
-                <TextBox x:Name="tbNombre" Padding="10,5,10,10" Tag="Nombre" />
+                <TextBlock Text="{DynamicResource CrearCuenta_Nombre}" FontWeight="SemiBold" Margin="0,0,0,5" FontSize="18"/>
+                <TextBox x:Name="tbNombre" Padding="10,5,10,10" Tag="{DynamicResource CrearCuenta_Nombre}" />
                 <TextBlock x:Name="tblockErrorNombre" Text="" FontWeight="SemiBold" Margin="0,0,0,10" FontSize="12" Foreground="Red"/>
-
-                <TextBlock x:Name="tblockCorreo" Text="Correo" FontWeight="SemiBold" Margin="0,0,0,5" FontSize="18"/>
-                <TextBox x:Name="tbCorreo" Padding="10" Tag="Correo electronico" />
+                <TextBlock Text="{DynamicResource CrearCuenta_Correo}" FontWeight="SemiBold" Margin="0,0,0,5" FontSize="18"/>
+                <TextBox x:Name="tbCorreo" Padding="10" Tag="{DynamicResource CrearCuenta_Correo}" />
                 <TextBlock x:Name="tblockErrorCorreo" Text="" FontWeight="SemiBold" Margin="0,0,0,5" FontSize="12" Foreground="Red"/>
-
-                <TextBlock x:Name="tblockFechaNacimiento" Text="Fecha de nacimiento" FontWeight="SemiBold" FontSize="18"/>
+                <TextBlock Text="{DynamicResource CrearCuenta_FechaNacimiento}" FontWeight="SemiBold" FontSize="18"/>
                 <TextBlock x:Name="tblockErrorFecha" Text="" FontWeight="SemiBold"  FontSize="12" Foreground="Red"/>
                 <DatePicker x:Name="dpFechaNacimiento" FontWeight="SemiBold" />
             </StackPanel>
-
             <!-- Columna derecha -->
             <StackPanel Grid.Row="1" Grid.Column="1" Margin="10">
-                <TextBlock x:Name="tblockTelefono" Text="Telefono" FontWeight="SemiBold" Margin="0,0,0,5" FontSize="18"/>
-                <TextBox x:Name="tbTelefono" Padding="10,5,10,10" Tag="Numero de telefono" />
+                <TextBlock Text="{DynamicResource CrearCuenta_Telefono}" FontWeight="SemiBold" Margin="0,0,0,5" FontSize="18"/>
+                <TextBox x:Name="tbTelefono" Padding="10,5,10,10" Tag="{DynamicResource CrearCuenta_Telefono}" />
                 <TextBlock x:Name="tblockErrorTelefono" Text="" FontWeight="SemiBold" Margin="0,0,0,10" FontSize="12" Foreground="Red"/>
-
-                <TextBlock x:Name="tblockContraseña" Text="Contraseña" FontWeight="SemiBold" FontSize="18"/>
-                <TextBox x:Name="tbPassword" Padding="10" Tag="Contraseña" />
+                <TextBlock Text="{DynamicResource CrearCuenta_Contrasenia}" FontWeight="SemiBold" FontSize="18"/>
+                <TextBox x:Name="tbPassword" Padding="10" Tag="{DynamicResource CrearCuenta_Contrasenia}" />
                 <TextBlock x:Name="tblockErrorPassword" Text="" FontWeight="SemiBold" FontSize="12" Foreground="Red"/>
                 <Image x:Name="imgPerfil" Width="80" Height="80"/>
-                <Button x:Name="btnElegirFoto" Content="Elegir Foto" Width="150" Margin="0,5,0,0" Style="{StaticResource EstiloBotonPrincipalSinIcono}" Click="BtnElegirFoto_Click"/> 
+                <Button Content="{DynamicResource CrearCuenta_Btn_ElegirFoto}" Width="150" Margin="0,5,0,0" Style="{StaticResource EstiloBotonPrincipalSinIcono}" Click="BtnElegirFoto_Click"/>
             </StackPanel>
-
             <!-- Botones -->
             <StackPanel Grid.Row="2" Grid.ColumnSpan="2" Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,20,0,10">
-                <Button x:Name="btnRegistrarme" Content="Registrarme" Width="151" Margin="10,0" Style="{StaticResource EstiloBotonPrincipalSinIcono}" Click="BtnRegistrarme_Click"/>
-                <Button x:Name="btnCancelar" Content="Cancelar" Width="151" Margin="10,0" Style="{StaticResource EstiloBotonSecundarioSinIcono}" Click="BtnCancelar_Click"/>
+                <Button Content="{DynamicResource CrearCuenta_Registrarse}" Width="151" Margin="10,0" Style="{StaticResource EstiloBotonPrincipalSinIcono}" Click="BtnRegistrarme_Click"/>
+                <Button Content="{DynamicResource CrearCuenta_Regresar}" Width="151" Margin="10,0" Style="{StaticResource EstiloBotonSecundarioSinIcono}" Click="BtnCancelar_Click"/>
             </StackPanel>
         </Grid>
     </Border>

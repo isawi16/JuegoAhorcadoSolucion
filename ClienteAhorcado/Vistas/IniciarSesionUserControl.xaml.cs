@@ -16,6 +16,8 @@ namespace ClienteAhorcado.Vistas
         IAhorcadoService proxy;
         JugadorDTO usuarioActual;
 
+        String idiomaSesion;
+
         public IniciarSesionUserControl(MainWindow mainWindow, IAhorcadoService proxy)
         {
             try
@@ -51,7 +53,9 @@ namespace ClienteAhorcado.Vistas
 
                     if (usuarioActual != null)
                     {
-                        MessageBox.Show($"Bienvenido, {usuarioActual.Nombre}");
+                        string mensajeBienvenida = Application.Current.TryFindResource("Msg_Titulo_Bienvenida") as string ?? "¡Bienvenido!";
+
+                        MessageBox.Show(mensajeBienvenida);
                         MostrarMenuPrincipal(usuarioActual);
                     }
                     else
@@ -72,7 +76,9 @@ namespace ClienteAhorcado.Vistas
             string correo = ValidacionesEntrada.ValidarCorreo(tbCorreo);
             string pass = ValidacionesEntrada.ValidarPassword(pbPassword);
 
-            tblockErrorCorreo.Text = correo ?? "";
+            string ErrorCorreo = Application.Current.TryFindResource(correo) as string;
+
+            tblockErrorCorreo.Text = ErrorCorreo ?? "";
             tblockErrorPassword.Text = pass ?? "";
 
             if (correo != null || pass != null)
@@ -125,10 +131,16 @@ namespace ClienteAhorcado.Vistas
 
         private void cmbIdioma_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            if (cmbIdioma.SelectedItem is ComboBoxItem item && item.Tag is string idioma)
+            
+            if (cmbIdioma.SelectedItem is ComboBoxItem itemSeleccionado)
             {
-                /*localizer.SetIdioma(idioma);
-                RefrescarUI();*/
+                string codigoCultura = itemSeleccionado.Tag.ToString();
+
+                var app = (App)Application.Current;
+                app.CambiarIdioma(codigoCultura);
+
+                string idiomaBase = codigoCultura.Split('-')[0];
+                idiomaSesion = idiomaBase;
             }
         }
     }
