@@ -76,7 +76,8 @@ namespace ClienteAhorcado.Vistas
             string correo = ValidacionesEntrada.ValidarCorreo(tbCorreo);
             string pass = ValidacionesEntrada.ValidarPassword(pbPassword);
 
-            string ErrorCorreo = Application.Current.TryFindResource(correo) as string;
+            string ErrorCorreo = !string.IsNullOrEmpty(correo)
+                ? Application.Current.TryFindResource(correo) as string : null;
 
             tblockErrorCorreo.Text = ErrorCorreo ?? "";
             tblockErrorPassword.Text = pass ?? "";
