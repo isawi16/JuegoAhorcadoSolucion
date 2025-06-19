@@ -98,11 +98,6 @@ namespace ClienteAhorcado
             });
         }
 
-        // Si tienes métodos opcionales del callback, puedes implementarlos aquí...
-        // public void JugadorSeUnio(string nombreJugador) { }
-        // public void JugadorAbandono(string nombreJugador) { }
-        // public void ActualizarCantidadJugadores(int cantidadConectados) { }
-
-        // --- Puedes agregar métodos extra y lógica aquí según lo que necesites ---
+      
     }
 }

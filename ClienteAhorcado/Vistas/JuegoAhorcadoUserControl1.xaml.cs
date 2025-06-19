@@ -19,7 +19,7 @@ namespace ClienteAhorcado.Vistas
         private int intentosRestantes;
         private List<char> letrasUsadas = new List<char>();
         private bool esCreador;
-        private MainWindow mainWindow;
+        private MainWindow mainWindow;      
         private JugadorDTO jugador;
         private IAhorcadoService proxy;
         private int idPartida;
