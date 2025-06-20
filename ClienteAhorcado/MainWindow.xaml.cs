@@ -136,7 +136,7 @@ namespace ClienteAhorcado
             mensaje = "¡Felicidades, ganaste la partida! La palabra era: " + palabra;
         else if (resultado == "¡Perdiste!")
             mensaje = "¡Perdiste!... Pero te apoyamos c: La palabra era: " + palabra;
-        else // "¡Juego terminado!" (abandono/cancelación)
+        else if (resultado== "¡Juego terminado!")
             mensaje = "La partida ha sido cancelada. La palabra era: " + palabra;
 
         MessageBox.Show(mensaje, "Fin de la partida", MessageBoxButton.OK, MessageBoxImage.Information);
