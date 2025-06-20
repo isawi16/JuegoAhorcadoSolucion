@@ -15,7 +15,7 @@
             <Grid.Background>
                 <ImageBrush ImageSource="/Images/pinzarron.jpeg" Stretch="UniformToFill" />
             </Grid.Background>
-            <Rectangle Fill="#AA000000" />
+
 
             <Grid Margin="20">
                 <Grid.ColumnDefinitions>
@@ -44,15 +44,6 @@
                         </StackPanel>
                     </Button>
 
-                    <TextBlock x:Name="tblockSelectIdioma" Text="{DynamicResource Glb_Idioma}" FontWeight="SemiBold" HorizontalAlignment="Center" FontSize="20" Foreground="White"/>
-                    <ComboBox x:Name="cmbIdioma" 
-                            SelectionChanged="cmbIdioma_SelectionChanged"
-                            Tag="{DynamicResource Glb_Idioma}"
-                            Width="100"
-                            Height="30" Background="Transparent" BorderBrush="#3498db" Foreground="#3498db">
-                            <ComboBoxItem Content="{DynamicResource Glb_Espanol}" Tag="es"/>
-                            <ComboBoxItem Content="{DynamicResource Glb_Ingles}" Tag="en"/>
-                    </ComboBox>
                 </StackPanel>
 
                 <StackPanel Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Center" Width="520" >

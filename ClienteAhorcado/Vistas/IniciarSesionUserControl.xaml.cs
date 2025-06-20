@@ -6,6 +6,8 @@ using System.ServiceModel;
 using System.Windows;
 using System.Windows.Controls;
 using BibliotecaClasesNetFramework.Contratos;
+using System.Windows.Media.Animation;
+using System.Windows.Input;
 
 namespace ClienteAhorcado.Vistas
 {
@@ -15,8 +17,9 @@ namespace ClienteAhorcado.Vistas
         private bool mostrandoPassword = false;
         IAhorcadoService proxy;
         JugadorDTO usuarioActual;
+        private string idiomaSesion = "es"; // Por defecto español
 
-        String idiomaSesion;
+        
 
         public IniciarSesionUserControl(MainWindow mainWindow, IAhorcadoService proxy)
         {
@@ -25,6 +28,8 @@ namespace ClienteAhorcado.Vistas
                 InitializeComponent();
                 _mainWindow = mainWindow;
                 this.proxy = proxy;
+                imgEnglish.Visibility = Visibility.Visible;
+                imgEspanol.Visibility = Visibility.Collapsed;
 
             }
             catch (Exception ex)
@@ -135,18 +140,42 @@ namespace ClienteAhorcado.Vistas
                 pbPassword.Password = tbPasswordVisible.Text;
         }
 
-        private void cmbIdioma_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void imgEnglish_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
         {
-            
-            if (cmbIdioma.SelectedItem is ComboBoxItem itemSeleccionado)
+            CambiarIdioma("en");
+        }
+
+        // Evento cuando se pulsa el icono de Español (pone español)
+        private void imgEspanol_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
+        {
+            CambiarIdioma("es");
+        }
+
+        private void CambiarIdioma(string idioma)
+        {
+            // Aquí asume que tienes un método en tu App para cambiar el idioma
+            var app = (App)Application.Current;
+            app.CambiarIdioma(idioma);
+
+            idiomaSesion = idioma;
+
+            // Animación de fade para el cambio de iconos
+            var fadeOut = new DoubleAnimation(1, 0, TimeSpan.FromMilliseconds(180));
+            var fadeIn = new DoubleAnimation(0, 1, TimeSpan.FromMilliseconds(180));
+
+            if (idioma == "en")
             {
-                string codigoCultura = itemSeleccionado.Tag.ToString();
-
-                var app = (App)Application.Current;
-                app.CambiarIdioma(codigoCultura);
-
-                string idiomaBase = codigoCultura.Split('-')[0];
-                idiomaSesion = idiomaBase;
+                imgEnglish.BeginAnimation(OpacityProperty, fadeOut);
+                imgEspanol.Visibility = Visibility.Visible;
+                imgEspanol.BeginAnimation(OpacityProperty, fadeIn);
+                imgEnglish.Visibility = Visibility.Collapsed;
+            }
+            else
+            {
+                imgEspanol.BeginAnimation(OpacityProperty, fadeOut);
+                imgEnglish.Visibility = Visibility.Visible;
+                imgEnglish.BeginAnimation(OpacityProperty, fadeIn);
+                imgEspanol.Visibility = Visibility.Collapsed;
             }
         }
     }

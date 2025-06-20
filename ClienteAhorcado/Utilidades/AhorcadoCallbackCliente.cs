@@ -22,13 +22,13 @@ namespace ClienteAhorcado.Utilidades
             Debug.WriteLine("Entrando a actualizar estado partida");
             try
             {
-                
+
                 if (mainWindow.MainContent.Content is JuegoAhorcadoUserControl1 juegoControl)
                     juegoControl.ActualizarDesdeCallback(estadoActual);
             }
             catch (Exception ex)
             {
-               Console.WriteLine($"Error en ActualizarEstadoPartida: {ex.Message}");
+                Console.WriteLine($"Error en ActualizarEstadoPartida: {ex.Message}");
             }
         }
 
