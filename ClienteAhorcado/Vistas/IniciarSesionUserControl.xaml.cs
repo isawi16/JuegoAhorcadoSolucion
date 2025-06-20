@@ -98,7 +98,7 @@ namespace ClienteAhorcado.Vistas
             return valido;
         }
 
-        // ¡IMPORTANTE! Aquí pasas el proxy a la siguiente ventana
+       
         private void MostrarMenuPrincipal(JugadorDTO jugador)
         {
             _mainWindow.CambiarVista(new MenuPrincipalUserControl(_mainWindow, jugador, proxy));
@@ -145,7 +145,7 @@ namespace ClienteAhorcado.Vistas
             CambiarIdioma("en");
         }
 
-        // Evento cuando se pulsa el icono de Español (pone español)
+        
         private void imgEspanol_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
         {
             CambiarIdioma("es");
@@ -153,13 +153,13 @@ namespace ClienteAhorcado.Vistas
 
         private void CambiarIdioma(string idioma)
         {
-            // Aquí asume que tienes un método en tu App para cambiar el idioma
+            
             var app = (App)Application.Current;
             app.CambiarIdioma(idioma);
 
             idiomaSesion = idioma;
 
-            // Animación de fade para el cambio de iconos
+         
             var fadeOut = new DoubleAnimation(1, 0, TimeSpan.FromMilliseconds(180));
             var fadeIn = new DoubleAnimation(0, 1, TimeSpan.FromMilliseconds(180));
 

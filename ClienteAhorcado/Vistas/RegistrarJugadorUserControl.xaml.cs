@@ -222,7 +222,6 @@ namespace ClienteAhorcado.Vistas
 
             if (openFileDialog.ShowDialog() == true)
             {
-                // Mostrar la imagen en el control Image
                 BitmapImage bitmap = new BitmapImage();
                 bitmap.BeginInit();
                 bitmap.UriSource = new Uri(openFileDialog.FileName);

@@ -196,7 +196,7 @@ namespace ClienteAhorcado.Vistas
                 };
                 Canvas.SetLeft(estrella, rand.Next((int)this.ActualWidth));
                 Canvas.SetTop(estrella, -size);
-                // Asegúrate de tener canvasEfectos en tu XAML si usas esto
+          
             }
         }
 
@@ -255,7 +255,7 @@ namespace ClienteAhorcado.Vistas
 
             if (intentosRestantes <= 0 || !estado.PalabraConGuiones.Contains('_'))
             {
-                //LanzarConfeti();
+               
                 foreach (Button btn in wrapLetras.Children)
                     btn.IsEnabled = false;
                 btnVolverMenu.Visibility = Visibility.Visible;
@@ -269,17 +269,16 @@ namespace ClienteAhorcado.Vistas
             {
                 try
                 {
-                    // Logging en archivo
+                   
                     LogCliente($"[NotificarFinPartida] IDPartida local={this.idPartida} | IDPartida callback={idPartida} | mensaje='{mensaje}' | palabra='{palabra}'");
 
-                    // Ignora si el IDPartida no corresponde a la partida actual
+                  
                     if (idPartida != this.idPartida)
                     {
                         LogCliente("[NotificarFinPartida] Se ignoró notificación por IDPartida distinto");
                         return;
                     }
                     LanzarConfeti();
-                    // Muestra la notificación de fin de partida
                     txtFinPartidaNotificacion.Text = $"{mensaje}. La palabra era: {palabra}";
                     txtFinPartidaNotificacion.Visibility = Visibility.Visible;
                     btnVolverMenu.Visibility = Visibility.Visible;
@@ -296,7 +295,7 @@ namespace ClienteAhorcado.Vistas
 
         private void BtnEnviar_Click(object sender, RoutedEventArgs e)
         {
-            // Implementa el chat si lo necesitas
+            // chat pendiente
         }
 
         private async void BtnCancelarPartida_Click(object sender, RoutedEventArgs e)
