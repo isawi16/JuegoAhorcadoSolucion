@@ -491,20 +491,23 @@ namespace ServidorAhorcadoService
                         if (ganador != null)
                             ganador.PuntajeGlobal += 10;
                         LogServidor($"EnviarLetra: Partida {idPartida} adivinada. Ganador: {idJugador}");
+
+                        db.SaveChanges();
+
+                        NotificarFinPartida(partida.IDJugadorCreador, partida.IDJugadorRetador, partida.Palabra.PalabraTexto, idPartida, idJugador);
                     }
-                    else
+                    else // sinIntentos
                     {
                         partida.Ganador = partida.IDJugadorCreador;
                         var creador = db.Jugadores.FirstOrDefault(j => j.IDJugador == partida.IDJugadorCreador);
                         if (creador != null)
                             creador.PuntajeGlobal += 5;
                         LogServidor($"EnviarLetra: Partida {idPartida} sin intentos. Ganador: {partida.IDJugadorCreador}");
+
+                        db.SaveChanges();
+
+                        NotificarFinPartida(partida.IDJugadorCreador, partida.IDJugadorRetador, partida.Palabra.PalabraTexto, idPartida, partida.IDJugadorCreador);
                     }
-
-                    db.SaveChanges();
-
-                    LogServidor($"Llamando a NotificarFinPartida con idCreador={partida.IDJugadorCreador}, idRetador={partida.IDJugadorRetador}, palabra={partida.Palabra.PalabraTexto}, idPartida={idPartida}, ganador=null");
-                    NotificarFinPartida(partida.IDJugadorCreador, partida.IDJugadorRetador, partida.Palabra.PalabraTexto, idPartida, null);
 
                     jugadorAPartida.TryRemove(partida.IDJugadorCreador, out _);
                     if (partida.IDJugadorRetador.HasValue)
@@ -517,6 +520,7 @@ namespace ServidorAhorcadoService
                 return true;
             }
         }
+
 
         public PartidaEstadoDTO ObtenerEstadoPartida(int idPartida)
         {
