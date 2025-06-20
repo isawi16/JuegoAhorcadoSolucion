@@ -2,6 +2,7 @@
 using BibliotecaClasesNetFramework.DTO;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
@@ -19,17 +20,33 @@ namespace ClienteAhorcado.Vistas
         private int intentosRestantes;
         private List<char> letrasUsadas = new List<char>();
         private bool esCreador;
-        private MainWindow mainWindow;      
+        private MainWindow mainWindow;
         private JugadorDTO jugador;
         private IAhorcadoService proxy;
         private int idPartida;
         private PalabraDTO palabra;
 
+        // Para activar/desactivar logs de debug en archivo
+        private bool debugLogs = true;
+        private string rutaLog = "logCliente.txt";
+        private void LogCliente(string mensaje)
+        {
+            if (!debugLogs) return;
+            try
+            {
+                File.AppendAllText(rutaLog, $"{DateTime.Now:yyyy-MM-dd HH:mm:ss} | {mensaje}{Environment.NewLine}");
+            }
+            catch
+            {
+                // Ignora errores de logging para no afectar UX
+            }
+        }
+
         public JuegoAhorcadoUserControl1(JugadorDTO jugador, PalabraDTO palabra, int idPartida, bool esCreador, IAhorcadoService proxy)
         {
             InitializeComponent();
-            txtIntentosRestantes.Foreground = new System.Windows.Media.SolidColorBrush(System.Windows.Media.Colors.White);
-            txtLetrasUsadas.Foreground = new System.Windows.Media.SolidColorBrush(System.Windows.Media.Colors.White);
+            txtIntentosRestantes.Foreground = new SolidColorBrush(Colors.White);
+            txtLetrasUsadas.Foreground = new SolidColorBrush(Colors.White);
 
             this.proxy = proxy;
             this.jugador = jugador;
@@ -40,12 +57,13 @@ namespace ClienteAhorcado.Vistas
             this.idPartida = idPartida;
             this.mainWindow = Application.Current.Windows.OfType<MainWindow>().FirstOrDefault();
 
+            LogCliente($"INICIO JuegoAhorcadoUserControl1 | Jugador {jugador.IDJugador} | Partida {idPartida} | {(esCreador ? "Creador" : "Retador")}");
+
             InicializarPalabra();
             GenerarBotonesLetras();
             ActualizarEstado();
             ConfigurarRol();
         }
-
 
         private void ConfigurarRol()
         {
@@ -54,15 +72,14 @@ namespace ClienteAhorcado.Vistas
                 wrapLetras.IsEnabled = false;
                 foreach (Button btn in wrapLetras.Children)
                     btn.IsEnabled = false;
-                this.Background = new System.Windows.Media.SolidColorBrush(System.Windows.Media.Colors.DarkSlateGray);
-                
+                this.Background = new SolidColorBrush(Colors.DarkSlateGray);
             }
             else
             {
                 wrapLetras.IsEnabled = true;
                 foreach (Button btn in wrapLetras.Children)
                     btn.IsEnabled = true;
-                this.Background = new System.Windows.Media.SolidColorBrush(System.Windows.Media.Colors.White);
+                this.Background = new SolidColorBrush(Colors.White);
             }
         }
 
@@ -78,12 +95,11 @@ namespace ClienteAhorcado.Vistas
                     Text = mostrar,
                     FontSize = 24,
                     Margin = new Thickness(5),
-                    Foreground = new System.Windows.Media.SolidColorBrush(System.Windows.Media.Colors.White) 
+                    Foreground = new SolidColorBrush(Colors.White)
                 };
                 stackPalabra.Children.Add(letra);
             }
         }
-
 
         private void GenerarBotonesLetras()
         {
@@ -103,7 +119,7 @@ namespace ClienteAhorcado.Vistas
                 {
                     btn.IsEnabled = false;
                     btn.Background = new SolidColorBrush(Colors.LightGray);
-                    btn.Foreground = new SolidColorBrush(Colors.Black); 
+                    btn.Foreground = new SolidColorBrush(Colors.Black);
                 }
                 else
                 {
@@ -118,8 +134,6 @@ namespace ClienteAhorcado.Vistas
             }
         }
 
-
-
         private async void BtnLetra_Click(object sender, RoutedEventArgs e)
         {
             if (!(sender is Button btn)) return;
@@ -129,15 +143,15 @@ namespace ClienteAhorcado.Vistas
             char letra = btn.Content.ToString()[0];
             try
             {
+                LogCliente($"BtnLetra_Click | Jugador {jugador.IDJugador} | Partida {idPartida} | Letra '{letra}' enviada");
                 await Task.Run(() => proxy.EnviarLetra(idPartida, jugador.IDJugador, letra));
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error al llamar EnviarLetra: " + ex.Message);
+                LogCliente($"ERROR BtnLetra_Click | Jugador {jugador.IDJugador} | Partida {idPartida} | {ex.Message}");
+                // Opcional: mostrar mensaje no intrusivo (barra de estado, etc.)
             }
         }
-
-
 
         private void ActualizarEstado()
         {
@@ -206,20 +220,22 @@ namespace ClienteAhorcado.Vistas
             }
         }
 
-
-
         private void BtnVolverMenu_Click(object sender, RoutedEventArgs e)
         {
-            
-            
-                mainWindow.CambiarVista(new MenuPrincipalUserControl(mainWindow, jugador, proxy));
-            
+            LogCliente($"BtnVolverMenu_Click | Jugador {jugador.IDJugador} | Partida {idPartida} | Volver al menú");
+            mainWindow.CambiarVista(new MenuPrincipalUserControl(mainWindow, jugador, proxy));
         }
 
         public void ActualizarDesdeCallback(PartidaEstadoDTO estado)
         {
+            LogCliente($"ActualizarDesdeCallback | Jugador {jugador.IDJugador} | Partida local {idPartida} | Callback con IDPartida {estado.IDPartida}");
+
             if (estado.IDPartida != this.idPartida)
+            {
+                LogCliente($"ActualizarDesdeCallback | Jugador {jugador.IDJugador} | Se ignoró callback por IDPartida distinto");
                 return;
+            }
+
             this.intentosRestantes = estado.IntentosRestantes;
             this.letrasUsadas = estado.LetrasUsadas ?? new List<char>();
 
@@ -263,10 +279,9 @@ namespace ClienteAhorcado.Vistas
                 foreach (Button btn in wrapLetras.Children)
                     btn.IsEnabled = false;
                 btnVolverMenu.Visibility = Visibility.Visible;
+                LogCliente($"ActualizarDesdeCallback | Jugador {jugador.IDJugador} | Partida {idPartida} terminada");
             }
         }
-
-
 
         private void BtnEnviar_Click(object sender, RoutedEventArgs e)
         {
@@ -280,15 +295,15 @@ namespace ClienteAhorcado.Vistas
 
             try
             {
+                LogCliente($"BtnCancelarPartida_Click | Jugador {jugador.IDJugador} | Partida {idPartida} | Cancelando partida");
                 await Task.Run(() => proxy.AbandonarPartida(idPartida, jugador.IDJugador));
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error al cancelar la partida: " + ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                LogCliente($"ERROR BtnCancelarPartida_Click | Jugador {jugador.IDJugador} | Partida {idPartida} | {ex.Message}");
                 foreach (Button btn in wrapLetras.Children)
                     btn.IsEnabled = !esCreador;
             }
         }
-
     }
 }

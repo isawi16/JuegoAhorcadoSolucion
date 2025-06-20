@@ -2,6 +2,7 @@
 using BibliotecaClasesNetFramework.DTO;
 using ClienteAhorcado.Vistas;
 using System;
+using System.Diagnostics;
 using System.Windows;
 
 namespace ClienteAhorcado.Utilidades
@@ -18,6 +19,7 @@ namespace ClienteAhorcado.Utilidades
 
         public void ActualizarEstadoPartida(PartidaEstadoDTO estadoActual)
         {
+            Debug.WriteLine("Entrando a actualizar estado partida");
             try
             {
                 
@@ -43,6 +45,7 @@ namespace ClienteAhorcado.Utilidades
 
         public void NotificarFinPartida(string resultado, string palabra, int IDPartida)
         {
+            Debug.WriteLine("Entrando a actualizar estado partida");
             mainWindow.Dispatcher.Invoke(() =>
             {
                 Console.WriteLine("Recibido Callback notificar fin partida: ");

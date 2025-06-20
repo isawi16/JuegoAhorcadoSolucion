@@ -18,7 +18,7 @@
 
     <sys:String x:Key="Msg_HistorialVacio">No se encontraron partidas en el historial</sys:String>
     <sys:String x:Key="Msg_NoPartidasDisponibles">No se encontraron partidas disponibles, intente de nuevo más tarde</sys:String>
-    <sys:String x:Key="Msg_NoPudoUnirsePartida">No se pudo unir a la partida (puede que otro jugador se haya unido antes o la partida ya haya iniciado)</sys:String>
+    <sys:String x:Key="Msg_NoPudoUnirsePartida">Oops! Esa partida ya no está disponible. Por favor selecciona otra c:</sys:String>
     <sys:String x:Key="Msg_NoObtenerPalabra">No se pudo obtener la palabra para la partida</sys:String>
     <sys:String x:Key="Msg_SeleccionaPartida">Selecciona una partida para unirte</sys:String>
     <sys:String x:Key="Msg_ModificacionPerfilExitosa">Se modifico la informacion exitosamente</sys:String>
@@ -97,6 +97,7 @@
     <sys:String x:Key="Msg_Descripcion_NoEncontrado">No se encontró el jugador en la base de datos.</sys:String>
     <sys:String x:Key="Msg_Titulo_ErrorEliminar">Error</sys:String>
     <sys:String x:Key="Msg_Descripcion_ErrorEliminar">Ocurrió un error al intentar eliminar el perfil.</sys:String>
+    <sys:String x:Key="MensajeNoUnirse"> Oops! La partida no está disponible. Por favor escoge otra.</sys:String>
 
 
     <sys:String x:Key="EditarPerfil_Titulo">Perfil de Usuario</sys:String>

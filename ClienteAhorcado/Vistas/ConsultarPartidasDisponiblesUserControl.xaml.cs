@@ -83,7 +83,8 @@ namespace ClienteAhorcado.Vistas
                 bool unido = proxy.UnirseAPartida(partidaSeleccionada.IDPartida, jugadorSesion.IDJugador);
                 if (!unido)
                 {
-                    string mensajeNoUnirse = Application.Current.TryFindResource("Msg_NoPudoUnirsePartida") as string;
+                    string mensajeNoUnirse = Application.Current.TryFindResource("Msg_NoPudoUnirsePartida") as string
+                        ?? "Oops! Ya no está disponible, por favor selecciona otra";
                     MessageBox.Show(mensajeNoUnirse, "Error", MessageBoxButton.OK, MessageBoxImage.Warning);
                     LlenarTablaPartidas();
                     return;
@@ -93,7 +94,8 @@ namespace ClienteAhorcado.Vistas
                 var palabra = proxy.ObtenerPalabraConDescripcion(partidaSeleccionada.IDPalabra);
                 if (palabra == null)
                 {
-                    string mensajeNoObtuvoPalabra = Application.Current.TryFindResource("Msg_NoObtenerPalabra") as string;
+                    string mensajeNoObtuvoPalabra = Application.Current.TryFindResource("Msg_NoObtenerPalabra") as string
+                        ?? "No se pudo obtener la palabra de la partida.";
                     MessageBox.Show(mensajeNoObtuvoPalabra, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                     return;
                 }
@@ -103,7 +105,8 @@ namespace ClienteAhorcado.Vistas
             }
             else
             {
-                string mensajeSeleccionaPartida = Application.Current.TryFindResource("Msg_SeleccionaPartida") as string;
+                string mensajeSeleccionaPartida = Application.Current.TryFindResource("Msg_SeleccionaPartida") as string
+                    ?? "Selecciona una partida de la lista.";
                 MessageBox.Show(mensajeSeleccionaPartida, "Info", MessageBoxButton.OK, MessageBoxImage.Information);
             }
         }

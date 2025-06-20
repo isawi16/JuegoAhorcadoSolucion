@@ -8,7 +8,6 @@ using BibliotecaClasesNetFramework.DTO;
 using ServidorAhorcadoService.Model;
 using System.IO;
 
-
 namespace ServidorAhorcadoService
 {
     [ServiceBehavior(InstanceContextMode = InstanceContextMode.Single)]
@@ -16,6 +15,19 @@ namespace ServidorAhorcadoService
     {
         private static readonly ConcurrentDictionary<int, IAhorcadoCallback> clientesConectados = new ConcurrentDictionary<int, IAhorcadoCallback>();
         private static readonly ConcurrentDictionary<int, int> jugadorAPartida = new ConcurrentDictionary<int, int>();
+
+        // MÉTODO DE LOG
+        private void LogServidor(string mensaje)
+        {
+            try
+            {
+                File.AppendAllText("logServidor.txt", DateTime.Now + " | " + mensaje + Environment.NewLine);
+            }
+            catch
+            {
+                // Ignora error de log para nunca interrumpir el servidor
+            }
+        }
 
         // --- AUTENTICACIÓN Y USUARIO ---
 
@@ -30,6 +42,8 @@ namespace ServidorAhorcadoService
 
                     var callback = OperationContext.Current.GetCallbackChannel<IAhorcadoCallback>();
                     clientesConectados[jugador.IDJugador] = callback;
+
+                    LogServidor($"IniciarSesion: Registrado callback para IDJugador {jugador.IDJugador}, hash {callback.GetHashCode()}");
 
                     return new JugadorDTO
                     {
@@ -46,11 +60,9 @@ namespace ServidorAhorcadoService
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"Error al iniciar sesión: {ex.Message}");
-                //return null;
+                LogServidor($"Error al iniciar sesión: {ex.Message}");
                 throw;
             }
-            
         }
 
         public bool RegistrarJugador(JugadorDTO jugador)
@@ -74,11 +86,12 @@ namespace ServidorAhorcadoService
                     });
 
                     db.SaveChanges();
+                    LogServidor($"RegistrarJugador: Se registró nuevo jugador {jugador.Correo}");
                     return true;
                 }
                 catch (Exception ex)
                 {
-                    Console.WriteLine($"Error al registrar jugador: {ex.Message}");
+                    LogServidor($"Error al registrar jugador: {ex.Message}");
                     return false;
                 }
             }
@@ -118,6 +131,7 @@ namespace ServidorAhorcadoService
                 jugador.Contraseña = jugadorModificado.Contraseña;
 
                 db.SaveChanges();
+                LogServidor($"ModificarPerfil: Se modificó el perfil de {jugadorModificado.IDJugador}");
                 return true;
             }
         }
@@ -213,7 +227,6 @@ namespace ServidorAhorcadoService
             }
         }
 
-
         public List<PalabraDTO> ObtenerPalabrasPorIdiomaYCategoria(int codigoIdioma, int idCategoria)
         {
             using (var contexto = new AhorcadoContext())
@@ -290,8 +303,9 @@ namespace ServidorAhorcadoService
                 db.Partidas.Add(nueva);
                 db.SaveChanges();
 
-                // Asociar creador a la partida
                 jugadorAPartida[idCreador] = nueva.IDPartida;
+
+                LogServidor($"CrearPartida: IDPartida {nueva.IDPartida} creada por jugador {idCreador}");
 
                 return nueva.IDPartida;
             }
@@ -303,22 +317,49 @@ namespace ServidorAhorcadoService
             {
                 var partidas = db.Partidas
                     .Where(p => p.IDEstado == 1)
-                    .Select(p => new PartidaCategoriaDTO
+                    .Select(p => new
                     {
-                        IDPartida = p.IDPartida,
-                        CategoriaNombre = p.Palabra.Categoria.Nombre,
-                        IDPalabra = p.IDPalabra,
+                        p.IDPartida,
+                        p.IDJugadorCreador,
+                        p.IDPalabra,
+                        CategoriaNombre = p.Palabra.Categoria.Nombre
                     })
                     .ToList();
 
-                Console.WriteLine($">> [ObtenerPartidasDisponibles] Partidas encontradas: {partidas.Count}");
+                var partidasDisponibles = new List<PartidaCategoriaDTO>();
 
-                foreach (var partida in partidas)
+                foreach (var p in partidas)
                 {
-                    Console.WriteLine($"IDPartida: {partida.IDPartida}, Categoria: {partida.CategoriaNombre}");
+                    try
+                    {
+                        if (clientesConectados.ContainsKey(p.IDJugadorCreador))
+                        {
+                            var callback = clientesConectados[p.IDJugadorCreador];
+                            var commObj = callback as ICommunicationObject;
+                            if (commObj != null && commObj.State == CommunicationState.Opened)
+                            {
+                                partidasDisponibles.Add(new PartidaCategoriaDTO
+                                {
+                                    IDPartida = p.IDPartida,
+                                    CategoriaNombre = p.CategoriaNombre,
+                                    IDPalabra = p.IDPalabra
+                                });
+                            }
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        LogServidor($"Error verificando callback para jugador {p.IDJugadorCreador}: {ex.Message}");
+                    }
                 }
 
-                return partidas;
+                LogServidor($">> [ObtenerPartidasDisponibles] Partidas encontradas: {partidasDisponibles.Count}");
+                foreach (var partida in partidasDisponibles)
+                {
+                    LogServidor($"IDPartida: {partida.IDPartida}, Categoria: {partida.CategoriaNombre}");
+                }
+
+                return partidasDisponibles;
             }
         }
 
@@ -329,12 +370,23 @@ namespace ServidorAhorcadoService
                 var partida = db.Partidas.FirstOrDefault(p => p.IDPartida == idPartida && p.IDEstado == 1);
                 if (partida == null) return false;
 
+                if (!clientesConectados.TryGetValue(partida.IDJugadorCreador, out var callbackCreador) ||
+                    ((ICommunicationObject)callbackCreador).State != CommunicationState.Opened)
+                {
+                    partida.IDEstado = 4; // "Concluida"
+                    db.SaveChanges();
+                    clientesConectados.TryRemove(partida.IDJugadorCreador, out _); // Limpia callback muerto
+                    LogServidor($"UnirseAPartida: callback de creador no válido o cerrado para partida {idPartida}");
+                    return false;
+                }
+
                 partida.IDJugadorRetador = idJugador;
-                partida.IDEstado = 3; // Cambiar a "En curso"
+                partida.IDEstado = 3; // "En curso"
                 db.SaveChanges();
 
-                // Asociar retador a la partida
                 jugadorAPartida[idJugador] = idPartida;
+
+                LogServidor($"UnirseAPartida: Jugador {idJugador} se unió a partida {idPartida}");
 
                 return true;
             }
@@ -345,7 +397,11 @@ namespace ServidorAhorcadoService
             using (var db = new AhorcadoContext())
             {
                 var partida = db.Partidas.Find(idPartida);
-                if (partida == null) return false;
+                if (partida == null)
+                {
+                    LogServidor($"[AbandonarPartida] Partida {idPartida} no encontrada, NO SE NOTIFICA FIN PARTIDA");
+                    return false;
+                }
 
                 partida.IDEstado = 2; // Cancelada
                 partida.IDCancelador = idJugador;
@@ -356,33 +412,37 @@ namespace ServidorAhorcadoService
 
                 db.SaveChanges();
 
-                // Eliminar la asociación del jugador con la partida para evitar errores en callback
                 jugadorAPartida.TryRemove(partida.IDJugadorCreador, out _);
                 if (partida.IDJugadorRetador.HasValue)
                     jugadorAPartida.TryRemove(partida.IDJugadorRetador.Value, out _);
 
-
-                // Notificar a ambos jugadores
-                string mensaje = "¡Partida cancelada!";
-                string palabra = partida.Palabra.PalabraTexto;
-                NotificarFinPartida(partida.IDJugadorCreador, partida.IDJugadorRetador, mensaje, palabra, idPartida);
+                LogServidor($"[AbandonarPartida] Llamando NotificarFinPartida: creador={partida.IDJugadorCreador}, retador={partida.IDJugadorRetador}, palabra={(partida.Palabra != null ? partida.Palabra.PalabraTexto : "(NULL)")}, idPartida={idPartida}, ganador=null");
+                NotificarFinPartida(partida.IDJugadorCreador, partida.IDJugadorRetador, partida.Palabra.PalabraTexto, idPartida, null);
                 return true;
             }
         }
 
+
         public bool EnviarLetra(int idPartida, int idJugador, char letra)
         {
-            Console.WriteLine($"Entrando al método EnviarLetra");
+            LogServidor($"Entrando al método EnviarLetra para partida {idPartida}, jugador {idJugador}, letra '{letra}'");
 
             using (var db = new AhorcadoContext())
             {
                 var partida = db.Partidas.FirstOrDefault(p => p.IDPartida == idPartida);
                 if (partida == null || partida.IDEstado != 3)
+                {
+                    LogServidor($"EnviarLetra: Partida {idPartida} no encontrada o no en curso");
                     return false;
+                }
 
                 string letraStr = letra.ToString().ToLower();
                 var palabra = db.Palabras.FirstOrDefault(p => p.IDPalabra == partida.IDPalabra);
-                if (palabra == null) return false;
+                if (palabra == null)
+                {
+                    LogServidor($"EnviarLetra: Palabra no encontrada para partida {idPartida}");
+                    return false;
+                }
 
                 if (partida.LetrasUsadas == null)
                     partida.LetrasUsadas = "";
@@ -392,7 +452,10 @@ namespace ServidorAhorcadoService
                     .ToList();
 
                 if (letrasUsadas.Contains(letraStr))
+                {
+                    LogServidor($"EnviarLetra: Letra '{letraStr}' ya usada en partida {idPartida}");
                     return false;
+                }
 
                 letrasUsadas.Add(letraStr);
                 partida.LetrasUsadas = string.Join(",", letrasUsadas);
@@ -410,9 +473,9 @@ namespace ServidorAhorcadoService
                     IDPartida = partida.IDPartida,
                 };
 
-                Console.WriteLine("Antes de NotificarEstadoPartida");
+                LogServidor("Antes de NotificarEstadoPartida");
                 NotificarEstadoPartida(partida.IDJugadorCreador, partida.IDJugadorRetador, estadoDTO, partida.IDPartida);
-                Console.WriteLine("después de NotificarEstadoPartida");
+                LogServidor("Después de NotificarEstadoPartida");
 
                 bool adivinada = TodasLetrasAdivinadas(palabra.PalabraTexto, letrasUsadas);
                 bool sinIntentos = partida.IntentosRestantes <= 0;
@@ -427,24 +490,25 @@ namespace ServidorAhorcadoService
                         var ganador = db.Jugadores.FirstOrDefault(j => j.IDJugador == idJugador);
                         if (ganador != null)
                             ganador.PuntajeGlobal += 10;
+                        LogServidor($"EnviarLetra: Partida {idPartida} adivinada. Ganador: {idJugador}");
                     }
-                    else // sinIntentos
+                    else
                     {
                         partida.Ganador = partida.IDJugadorCreador;
                         var creador = db.Jugadores.FirstOrDefault(j => j.IDJugador == partida.IDJugadorCreador);
                         if (creador != null)
                             creador.PuntajeGlobal += 5;
+                        LogServidor($"EnviarLetra: Partida {idPartida} sin intentos. Ganador: {partida.IDJugadorCreador}");
                     }
 
                     db.SaveChanges();
 
-                    // Eliminar asociación de ambos jugadores a la partida
+                    LogServidor($"Llamando a NotificarFinPartida con idCreador={partida.IDJugadorCreador}, idRetador={partida.IDJugadorRetador}, palabra={partida.Palabra.PalabraTexto}, idPartida={idPartida}, ganador=null");
+                    NotificarFinPartida(partida.IDJugadorCreador, partida.IDJugadorRetador, partida.Palabra.PalabraTexto, idPartida, null);
+
                     jugadorAPartida.TryRemove(partida.IDJugadorCreador, out _);
                     if (partida.IDJugadorRetador.HasValue)
                         jugadorAPartida.TryRemove(partida.IDJugadorRetador.Value, out _);
-
-
-                    NotificarFinPartida(partida.IDJugadorCreador, partida.IDJugadorRetador, "¡Juego terminado!", palabra.PalabraTexto, idPartida);
                 }
                 else
                 {
@@ -479,80 +543,106 @@ namespace ServidorAhorcadoService
 
         private void NotificarEstadoPartida(int idCreador, int? idRetador, PartidaEstadoDTO estado, int idPartida)
         {
-            if (jugadorAPartida.TryGetValue(idCreador, out int partidaCreador) && partidaCreador == idPartida)
+            void Notificar(int idJugador)
             {
-                if (clientesConectados.TryGetValue(idCreador, out var callbackCreador))
+                if (jugadorAPartida.TryGetValue(idJugador, out int partidaJugador) && partidaJugador == idPartida)
                 {
-                    try
+                    if (clientesConectados.TryGetValue(idJugador, out var callback))
                     {
-                        callbackCreador.ActualizarEstadoPartida(estado);
+                        var commObj = (ICommunicationObject)callback;
+                        LogServidor($"NotificarEstadoPartida: A jugador {idJugador} partida {idPartida}, canal: {commObj.State}");
+
+                        if (commObj.State == CommunicationState.Opened)
+                        {
+                            try
+                            {
+                                callback.ActualizarEstadoPartida(estado);
+                                LogServidor($"NotificarEstadoPartida: Éxito para jugador {idJugador}");
+                            }
+                            catch (Exception ex)
+                            {
+                                LogServidor($"Error enviando ActualizarEstadoPartida a {idJugador}: {ex.Message}");
+                                clientesConectados.TryRemove(idJugador, out _);
+                                jugadorAPartida.TryRemove(idJugador, out _);
+                            }
+                        }
+                        else
+                        {
+                            LogServidor($"NotificarEstadoPartida: Canal cerrado para jugador {idJugador}, removiendo callback");
+                            clientesConectados.TryRemove(idJugador, out _);
+                            jugadorAPartida.TryRemove(idJugador, out _);
+                        }
                     }
-                    catch
+                    else
                     {
-                        clientesConectados.TryRemove(idCreador, out _);
+                        LogServidor($"NotificarEstadoPartida: No se encontró callback para jugador {idJugador}");
                     }
+                }
+                else
+                {
+                    LogServidor($"NotificarEstadoPartida: Jugador {idJugador} no está asociado a partida {idPartida}");
                 }
             }
 
-            if (idRetador != null && jugadorAPartida.TryGetValue(idRetador.Value, out int partidaRetador) && partidaRetador == idPartida)
-            {
-                if (clientesConectados.TryGetValue(idRetador.Value, out var callbackRetador))
-                {
-                    try
-                    {
-                        callbackRetador.ActualizarEstadoPartida(estado);
-                    }
-                    catch
-                    {
-                        clientesConectados.TryRemove(idRetador.Value, out _);
-                    }
-                }
-            }
+            Notificar(idCreador);
+            if (idRetador.HasValue)
+                Notificar(idRetador.Value);
         }
 
-        private void NotificarFinPartida(int idCreador, int? idRetador, string resultado, string palabra, int idPartida)
+        private void NotificarFinPartida(int idCreador, int? idRetador, string palabra, int idPartida, int? idGanador)
         {
-            if (jugadorAPartida.TryGetValue(idCreador, out int partidaCreador) && partidaCreador == idPartida)
-            {
-                if (clientesConectados.TryGetValue(idCreador, out var callbackCreador))
-                {
-                    try
-                    {
-                        callbackCreador.NotificarFinPartida(resultado, palabra, idPartida);
-                    }
-                    catch
-                    {
-                        clientesConectados.TryRemove(idCreador, out _);
-                    }
-                }
+            LogServidor($"[NotificarFinPartida] Entrando. idCreador={idCreador}, idRetador={idRetador}, palabra={palabra}, idPartida={idPartida}, idGanador={idGanador}");
 
-                if (idRetador != null && jugadorAPartida.TryGetValue(idRetador.Value, out int partidaRetador) && partidaRetador == idPartida)
+            void Notificar(int idJugador)
+            {
+                if (clientesConectados.TryGetValue(idJugador, out var callback))
                 {
-                    if (clientesConectados.TryGetValue(idRetador.Value, out var callbackRetador))
+                    var commObj = (ICommunicationObject)callback;
+                    LogServidor($"NotificarFinPartida: A jugador {idJugador} partida {idPartida}, canal: {commObj.State}");
+
+                    if (commObj.State == CommunicationState.Opened)
                     {
+                        string resultado;
+                        if (idGanador.HasValue)
+                        {
+                            if (idJugador == idGanador.Value)
+                                resultado = "¡Ganaste!";
+                            else
+                                resultado = "¡Perdiste!";
+                        }
+                        else
+                        {
+                            resultado = "¡Juego terminado!";
+                        }
                         try
                         {
-                            callbackRetador.NotificarFinPartida(resultado, palabra, idPartida);
+                            callback.NotificarFinPartida(resultado, palabra, idPartida);
+                            LogServidor($"NotificarFinPartida: Éxito para jugador {idJugador} - {resultado}");
                         }
-                        catch
+                        catch (Exception ex)
                         {
-                            clientesConectados.TryRemove(idRetador.Value, out _);
+                            LogServidor($"Error enviando NotificarFinPartida a {idJugador}: {ex.Message}");
+                            clientesConectados.TryRemove(idJugador, out _);
+                            jugadorAPartida.TryRemove(idJugador, out _);
                         }
                     }
+                    else
+                    {
+                        LogServidor($"NotificarFinPartida: Canal cerrado para jugador {idJugador}, removiendo callback");
+                        clientesConectados.TryRemove(idJugador, out _);
+                        jugadorAPartida.TryRemove(idJugador, out _);
+                    }
+                }
+                else
+                {
+                    LogServidor($"NotificarFinPartida: No se encontró callback para jugador {idJugador}");
                 }
             }
+
+            Notificar(idCreador);
+            if (idRetador.HasValue)
+                Notificar(idRetador.Value);
         }
-        
-
-
-
-      /*  public void EnviarMensajeChat(int idPartida, string nombreJugador, string mensaje)
-        {
-            foreach (var callback in clientesConectados.Values)
-            {
-                callback.RecibirMensajeChat(nombreJugador, mensaje);
-            }
-        }*/
 
         private bool TodasLetrasAdivinadas(string palabra, List<string> letrasUsadas)
         {
@@ -560,7 +650,6 @@ namespace ServidorAhorcadoService
             return letrasPalabra.All(l => letrasUsadas.Contains(l));
         }
 
-       
         private string GenerarPalabraConGuiones(string palabra, List<string> letrasUsadas)
         {
             return string.Join("", palabra.Select(c =>
@@ -569,19 +658,16 @@ namespace ServidorAhorcadoService
             ));
         }
 
-     
         public void ActualizarCallback(int idJugador)
         {
             if (clientesConectados.TryGetValue(idJugador, out var callback))
             {
-                // Logic to update the callback for the specified player
-                Console.WriteLine($"Notificando a creador {idJugador} - callback hash: {callback.GetHashCode()}");
-                Console.WriteLine($"Callback updated for player with ID: {idJugador}");
+                LogServidor($"Notificando a creador {idJugador} - callback hash: {callback.GetHashCode()}");
+                LogServidor($"Callback updated for player with ID: {idJugador}");
             }
             else
             {
-                Console.WriteLine($"Notificando a creador {idJugador} - callback hash: {callback.GetHashCode()}");
-                Console.WriteLine($"No callback found for player with ID: {idJugador}");
+                LogServidor($"No callback found for player with ID: {idJugador}");
             }
         }
 
