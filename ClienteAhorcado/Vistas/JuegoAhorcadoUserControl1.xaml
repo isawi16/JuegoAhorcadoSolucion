@@ -99,5 +99,9 @@
                 Margin="6,0,0,0"
                 Style="{StaticResource EstiloBotonPrincipal}"
                 Background="#FFD81111" Height="20" Width="142"/>
+        <Button Width="64" Height="64" BorderThickness="0" Background="Transparent">
+            <Image Source="Resources/idea.png" Stretch="Uniform"/>
+        </Button>
+
     </Grid>
 </UserControl>
