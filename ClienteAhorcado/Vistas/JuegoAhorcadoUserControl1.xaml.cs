@@ -255,7 +255,7 @@ namespace ClienteAhorcado.Vistas
 
             if (intentosRestantes <= 0 || !estado.PalabraConGuiones.Contains('_'))
             {
-                LanzarConfeti();
+                //LanzarConfeti();
                 foreach (Button btn in wrapLetras.Children)
                     btn.IsEnabled = false;
                 btnVolverMenu.Visibility = Visibility.Visible;
@@ -278,7 +278,7 @@ namespace ClienteAhorcado.Vistas
                         LogCliente("[NotificarFinPartida] Se ignoró notificación por IDPartida distinto");
                         return;
                     }
-
+                    LanzarConfeti();
                     // Muestra la notificación de fin de partida
                     txtFinPartidaNotificacion.Text = $"{mensaje}. La palabra era: {palabra}";
                     txtFinPartidaNotificacion.Visibility = Visibility.Visible;
