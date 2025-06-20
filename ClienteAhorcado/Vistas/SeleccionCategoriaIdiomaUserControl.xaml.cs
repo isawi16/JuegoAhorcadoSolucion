@@ -135,7 +135,7 @@ namespace ClienteAhorcado.Vistas
         {
             if (lstPalabras.SelectedItem is PalabraDTO palabra)
             {
-                palabraSeleccionada = proxy.ObtenerPalabraConDescripcion(palabra.IDPalabra);
+                palabraSeleccionada = proxy.ObtenerPalabraPorId(palabra.IDPalabra);
                 btnCrearPartida.IsEnabled = palabraSeleccionada != null;
             }
             else
@@ -157,8 +157,18 @@ namespace ClienteAhorcado.Vistas
 
             if (idPartida > 0)
             {
+                // Obtiene la palabra desde el servidor por si acaso (puedes validar que el DTO esté actualizado)
+                var palabra = proxy.ObtenerPalabraPorId(palabraSeleccionada.IDPalabra);
+                if (palabra == null)
+                {
+                    string mensajeErrorObtenerPalabra = Application.Current.TryFindResource("Msg_NoObtenerPalabra") as string
+                        ?? "No se pudo obtener la palabra de la partida.";
+                    MessageBox.Show(mensajeErrorObtenerPalabra, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                    return;
+                }
+
                 // Cambia a la pantalla de juego como creador
-                _mainwindow.CargarPantallaJuego(jugadorCreador, palabraSeleccionada, idPartida, true);
+                _mainwindow.CargarPantallaJuego(jugadorCreador, palabra, idPartida, true);
             }
             else
             {
@@ -166,6 +176,7 @@ namespace ClienteAhorcado.Vistas
                 MessageBox.Show(mensajeErrorCrearPartida, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
+
 
         #endregion
 

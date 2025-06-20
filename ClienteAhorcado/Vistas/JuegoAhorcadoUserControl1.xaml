@@ -5,38 +5,81 @@
              xmlns:local="clr-namespace:ClienteAhorcado.Vistas"
              Width="800" Height="600">
 
-    <!-- ... tus estilos igual ... -->
+    <UserControl.Resources>
+        <!-- Estilo para animar el botón idea.png al hacer hover -->
+        <Style x:Key="IdeaButtonStyle" TargetType="Button">
+            <Setter Property="RenderTransform">
+                <Setter.Value>
+                    <ScaleTransform ScaleX="1" ScaleY="1"/>
+                </Setter.Value>
+            </Setter>
+            <Setter Property="RenderTransformOrigin" Value="0.5,0.5"/>
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Trigger.EnterActions>
+                        <BeginStoryboard>
+                            <Storyboard>
+                                <DoubleAnimation Storyboard.TargetProperty="RenderTransform.(ScaleTransform.ScaleX)"
+                                                 To="1.2" Duration="0:0:0.2"/>
+                                <DoubleAnimation Storyboard.TargetProperty="RenderTransform.(ScaleTransform.ScaleY)"
+                                                 To="1.2" Duration="0:0:0.2"/>
+                            </Storyboard>
+                        </BeginStoryboard>
+                    </Trigger.EnterActions>
+                    <Trigger.ExitActions>
+                        <BeginStoryboard>
+                            <Storyboard>
+                                <DoubleAnimation Storyboard.TargetProperty="RenderTransform.(ScaleTransform.ScaleX)"
+                                                 To="1" Duration="0:0:0.2"/>
+                                <DoubleAnimation Storyboard.TargetProperty="RenderTransform.(ScaleTransform.ScaleY)"
+                                                 To="1" Duration="0:0:0.2"/>
+                            </Storyboard>
+                        </BeginStoryboard>
+                    </Trigger.ExitActions>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+    </UserControl.Resources>
 
     <Grid Margin="10" Background="#FF1B1B2F">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto" MinHeight="104"/>
+            <RowDefinition/>
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
 
         <!-- Título -->
         <TextBlock x:Name="tblockTitulo" Grid.Row="0"
            Text="{DynamicResource JuegoAhorcado_Titulo}" 
-           FontSize="42" FontWeight="Bold" HorizontalAlignment="Center" Margin="0,10"
-           FontFamily="Segoe UI Black" Foreground="White">
+           FontSize="42" FontWeight="Bold" HorizontalAlignment="Center" Margin="0,10,0,10"
+           FontFamily="Segoe UI Black" Foreground="White" Width="458">
             <TextBlock.Effect>
                 <DropShadowEffect BlurRadius="10" ShadowDepth="4" Color="Black" Opacity="0.5"/>
             </TextBlock.Effect>
         </TextBlock>
-        <Canvas x:Name="canvasEfectos" IsHitTestVisible="False" />
+        <Canvas x:Name="canvasEfectos" IsHitTestVisible="False" Margin="0,0,0,298" Grid.RowSpan="2" />
 
-        <!-- Imagen del ahorcado -->
-        <Image x:Name="imgAhorcado" Grid.Row="1" Height="200" Width="200" 
-               Source="/Images/6.png" HorizontalAlignment="Center" Margin="0,10"/>
+        <!-- Imagen del ahorcado + Botón idea -->
+        <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,10,0,10" Width="336">
+            <Image x:Name="imgAhorcado" Height="278" Width="252" Source="/Images/6.png"/>
+            <Button x:Name="btnIdea"
+                    Width="64" Height="64" Margin="20,0,0,0"
+                    Style="{StaticResource IdeaButtonStyle}"
+                    Click="BtnObtenerIdea_Click">
+                <Image x:Name="btn_idea" Source="/Images/idea.png" Stretch="Uniform" RenderTransformOrigin="-5.911,0.544"/>
+            </Button>
+        </StackPanel>
 
         <!-- Palabra oculta -->
         <StackPanel x:Name="stackPalabra" Grid.Row="2" Orientation="Horizontal" 
-                    HorizontalAlignment="Center" Margin="10" />
+                    HorizontalAlignment="Center" Margin="0,10,0,10" Width="0" />
 
         <!-- Letras y Chat -->
-        <Grid Grid.Row="3" Margin="10">
+        <Grid Grid.Row="3" Margin="10,48,10,10">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="2*" />
                 <ColumnDefinition Width="*" />
@@ -76,11 +119,11 @@
                 VerticalAlignment="Bottom"
                 Margin="290,0,0,42"
                 Click="BtnVolverMenu_Click"
-                Grid.Row="3"
-                Style="{StaticResource EstiloBotonPrincipal}"/>
+                Grid.Row="2"
+                Style="{StaticResource EstiloBotonPrincipal}" Grid.RowSpan="2"/>
 
         <!-- Estado del juego -->
-        <StackPanel Grid.Row="4" Orientation="Horizontal" HorizontalAlignment="Center" Margin="10">
+        <StackPanel Grid.Row="4" Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,10,0,10" Width="236">
             <TextBlock Text="{DynamicResource JuegoAhorcado_IntentosRestantes}" FontWeight="Bold" Foreground="White" Margin="0,0,5,0"/>
             <TextBlock x:Name="txtIntentosRestantes" Foreground="White" FontWeight="Bold" Margin="5,0"/>
             <TextBlock Text="| " FontWeight="Bold" Foreground="White" Margin="15,0,5,0"/>
@@ -99,9 +142,6 @@
                 Margin="6,0,0,0"
                 Style="{StaticResource EstiloBotonPrincipal}"
                 Background="#FFD81111" Height="20" Width="142"/>
-        <Button Width="64" Height="64" BorderThickness="0" Background="Transparent">
-            <Image Source="Resources/idea.png" Stretch="Uniform"/>
-        </Button>
-
+        <TextBlock x:Name="tbHint" HorizontalAlignment="Left" Height="100" Margin="563,0,0,0" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Center" Width="168" Foreground="#FFF4F0F0"/>
     </Grid>
 </UserControl>

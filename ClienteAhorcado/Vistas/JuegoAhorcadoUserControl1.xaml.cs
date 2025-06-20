@@ -153,6 +153,30 @@ namespace ClienteAhorcado.Vistas
             }
         }
 
+
+        private async void BtnObtenerIdea_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                int idPalabra = this.palabra.IDPalabra;
+
+                // Llama al servidor (usa Task.Run si tu proxy es síncrono)
+                string definicion = await Task.Run(() => proxy.ObtenerDefinicionPorIdPalabra(idPalabra));
+
+                tbHint.Text = !string.IsNullOrWhiteSpace(definicion)
+                    ? definicion
+                    : "No hay pista disponible para esta palabra :c";
+            }
+            catch (Exception ex)
+            {
+                tbHint.Text = $"Error al obtener la pista: {ex.Message}";
+            }
+        }
+
+
+
+
+
         private void ActualizarEstado()
         {
             txtIntentosRestantes.Text = intentosRestantes.ToString();

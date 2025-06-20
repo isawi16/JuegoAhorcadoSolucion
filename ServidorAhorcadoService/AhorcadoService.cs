@@ -198,6 +198,25 @@ namespace ServidorAhorcadoService
 
         // --- PALABRAS Y CATEGORÍAS ---
 
+        public PalabraDTO ObtenerPalabraPorId(int idPalabra)
+        {
+            using (var db = new AhorcadoContext())
+            {
+                var palabra = db.Palabras.FirstOrDefault(p => p.IDPalabra == idPalabra);
+                if (palabra == null) return null;
+                return new PalabraDTO
+                {
+                    IDPalabra = palabra.IDPalabra,
+                    Texto = palabra.PalabraTexto,
+                    Definicion = palabra.Definicion,
+                    Dificultad = palabra.Dificultad,
+                    IDCategoria = palabra.IDCategoria,
+                    CodigoIdioma = palabra.Categoria.CodigoIdioma
+                };
+            }
+        }
+
+
         public List<CategoriaDTO> ObtenerCategoriasPorIdioma(int idiomaId)
         {
             using (var db = new AhorcadoContext())
@@ -247,23 +266,15 @@ namespace ServidorAhorcadoService
             }
         }
 
-        public PalabraDTO ObtenerPalabraConDescripcion(int idPalabra)
+        public string ObtenerDefinicionPorIdPalabra(int idPalabra)
         {
             using (var db = new AhorcadoContext())
             {
-                var palabra = db.Palabras
-                    .Where(p => p.IDPalabra == idPalabra)
-                    .Select(p => new PalabraDTO
-                    {
-                        IDPalabra = p.IDPalabra,
-                        Texto = p.PalabraTexto,
-                        Definicion = p.Definicion
-                    })
-                    .FirstOrDefault();
-
-                return palabra;
+                var palabra = db.Palabras.FirstOrDefault(p => p.IDPalabra == idPalabra);
+                return palabra?.Definicion ?? "No hay pista disponible para esta palabra :c";
             }
         }
+
 
         public List<PalabraDTO> ObtenerPalabrasPorCategoria(int idCategoria, string idioma)
         {
