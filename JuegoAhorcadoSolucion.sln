@@ -7,7 +7,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClienteAhorcado", "ClienteA
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ServidorAhorcadoService", "ServidorAhorcadoService\ServidorAhorcadoService.csproj", "{9CB630A0-0828-472E-9E89-2EC1EAC39DD1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BibliotecaClasesNetFramework", "..\LibreríadeClasesServicios\LibreríadeClasesServicios\BibliotecaClasesNetFramework\BibliotecaClasesNetFramework\BibliotecaClasesNetFramework.csproj", "{74C67D35-D803-4880-8569-E2FB3FF80372}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BibliotecaClasesNetFramework", "..\..\LibreríadeClasesServicios\BibliotecaClasesNetFramework\BibliotecaClasesNetFramework\BibliotecaClasesNetFramework.csproj", "{74C67D35-D803-4880-8569-E2FB3FF80372}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

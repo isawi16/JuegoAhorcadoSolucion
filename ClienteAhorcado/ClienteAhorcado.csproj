@@ -272,12 +272,6 @@
     <Resource Include="Images\salon.jpg" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\LibreríadeClasesServicios\BibliotecaClasesNetFramework\BibliotecaClasesNetFramework\BibliotecaClasesNetFramework.csproj">
-      <Project>{74c67d35-d803-4880-8569-e2fb3ff80372}</Project>
-      <Name>BibliotecaClasesNetFramework</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
     <Resource Include="Images\idea.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
@@ -285,6 +279,12 @@
   <ItemGroup>
     <Resource Include="Images\english.png" />
     <Resource Include="Images\espanol.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\LibreríadeClasesServicios\BibliotecaClasesNetFramework\BibliotecaClasesNetFramework\BibliotecaClasesNetFramework.csproj">
+      <Project>{74c67d35-d803-4880-8569-e2fb3ff80372}</Project>
+      <Name>BibliotecaClasesNetFramework</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

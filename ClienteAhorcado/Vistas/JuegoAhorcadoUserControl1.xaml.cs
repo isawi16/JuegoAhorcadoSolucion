@@ -26,20 +26,14 @@ namespace ClienteAhorcado.Vistas
         private int idPartida;
         private PalabraDTO palabra;
 
-        // Para activar/desactivar logs de debug en archivo
+        // Para logs
         private bool debugLogs = true;
         private string rutaLog = "logCliente.txt";
         private void LogCliente(string mensaje)
         {
             if (!debugLogs) return;
-            try
-            {
-                File.AppendAllText(rutaLog, $"{DateTime.Now:yyyy-MM-dd HH:mm:ss} | {mensaje}{Environment.NewLine}");
-            }
-            catch
-            {
-                // Ignora errores de logging para no afectar UX
-            }
+            try { File.AppendAllText(rutaLog, $"{DateTime.Now:yyyy-MM-dd HH:mm:ss} | {mensaje}{Environment.NewLine}"); }
+            catch { }
         }
 
         public JuegoAhorcadoUserControl1(JugadorDTO jugador, PalabraDTO palabra, int idPartida, bool esCreador, IAhorcadoService proxy)
@@ -63,6 +57,8 @@ namespace ClienteAhorcado.Vistas
             GenerarBotonesLetras();
             ActualizarEstado();
             ConfigurarRol();
+            txtFinPartidaNotificacion.Visibility = Visibility.Collapsed;
+            btnVolverMenu.Visibility = Visibility.Collapsed;
         }
 
         private void ConfigurarRol()
@@ -86,7 +82,6 @@ namespace ClienteAhorcado.Vistas
         private void InicializarPalabra()
         {
             stackPalabra.Children.Clear();
-
             foreach (char c in palabraSecreta)
             {
                 string mostrar = c == ' ' ? " " : "_";
@@ -104,7 +99,6 @@ namespace ClienteAhorcado.Vistas
         private void GenerarBotonesLetras()
         {
             wrapLetras.Children.Clear();
-
             for (char c = 'A'; c <= 'Z'; c++)
             {
                 var btn = new Button
@@ -137,9 +131,7 @@ namespace ClienteAhorcado.Vistas
         private async void BtnLetra_Click(object sender, RoutedEventArgs e)
         {
             if (!(sender is Button btn)) return;
-
             btn.IsEnabled = false;
-
             char letra = btn.Content.ToString()[0];
             try
             {
@@ -149,20 +141,15 @@ namespace ClienteAhorcado.Vistas
             catch (Exception ex)
             {
                 LogCliente($"ERROR BtnLetra_Click | Jugador {jugador.IDJugador} | Partida {idPartida} | {ex.Message}");
-                // Opcional: mostrar mensaje no intrusivo (barra de estado, etc.)
             }
         }
-
 
         private async void BtnObtenerIdea_Click(object sender, RoutedEventArgs e)
         {
             try
             {
                 int idPalabra = this.palabra.IDPalabra;
-
-                // Llama al servidor (usa Task.Run si tu proxy es síncrono)
                 string definicion = await Task.Run(() => proxy.ObtenerDefinicionPorIdPalabra(idPalabra));
-
                 tbIdea.Text = !string.IsNullOrWhiteSpace(definicion)
                     ? definicion
                     : "No hay pista disponible para esta palabra :c";
@@ -172,10 +159,6 @@ namespace ClienteAhorcado.Vistas
                 tbIdea.Text = $"Error al obtener la pista: {ex.Message}";
             }
         }
-
-
-
-
 
         private void ActualizarEstado()
         {
@@ -189,11 +172,9 @@ namespace ClienteAhorcado.Vistas
             fadeOut.Completed += (s, e) =>
             {
                 imgAhorcado.Source = new BitmapImage(new Uri($"/Images/{intentosRestantes}.png", UriKind.Relative));
-
                 var fadeIn = new DoubleAnimation(0, 1, TimeSpan.FromMilliseconds(200));
                 imgAhorcado.BeginAnimation(UIElement.OpacityProperty, fadeIn);
             };
-
             imgAhorcado.BeginAnimation(UIElement.OpacityProperty, fadeOut);
         }
 
@@ -203,7 +184,6 @@ namespace ClienteAhorcado.Vistas
             for (int i = 0; i < 30; i++)
             {
                 double size = rand.Next(20, 31);
-
                 var estrella = new Ellipse
                 {
                     Width = size,
@@ -214,33 +194,9 @@ namespace ClienteAhorcado.Vistas
                         (byte)rand.Next(100, 256))),
                     Opacity = 0.85
                 };
-
                 Canvas.SetLeft(estrella, rand.Next((int)this.ActualWidth));
                 Canvas.SetTop(estrella, -size);
-                canvasEfectos.Children.Add(estrella);
-
-                var animacionY = new DoubleAnimation
-                {
-                    From = -size,
-                    To = this.ActualHeight + size,
-                    Duration = TimeSpan.FromSeconds(rand.NextDouble() * 2 + 1),
-                    AccelerationRatio = 0.2,
-                    DecelerationRatio = 0.2
-                };
-
-                var animacionRotacion = new DoubleAnimation
-                {
-                    From = 0,
-                    To = 360,
-                    Duration = TimeSpan.FromSeconds(2),
-                    RepeatBehavior = RepeatBehavior.Forever
-                };
-
-                estrella.RenderTransform = new RotateTransform();
-                estrella.RenderTransformOrigin = new Point(0.5, 0.5);
-                estrella.RenderTransform.BeginAnimation(RotateTransform.AngleProperty, animacionRotacion);
-
-                estrella.BeginAnimation(Canvas.TopProperty, animacionY);
+                // Asegúrate de tener canvasEfectos en tu XAML si usas esto
             }
         }
 
@@ -307,9 +263,40 @@ namespace ClienteAhorcado.Vistas
             }
         }
 
+        public void NotificarFinPartida(string mensaje, string palabra, int idPartida)
+        {
+            Dispatcher.Invoke(() =>
+            {
+                try
+                {
+                    // Logging en archivo
+                    LogCliente($"[NotificarFinPartida] IDPartida local={this.idPartida} | IDPartida callback={idPartida} | mensaje='{mensaje}' | palabra='{palabra}'");
+
+                    // Ignora si el IDPartida no corresponde a la partida actual
+                    if (idPartida != this.idPartida)
+                    {
+                        LogCliente("[NotificarFinPartida] Se ignoró notificación por IDPartida distinto");
+                        return;
+                    }
+
+                    // Muestra la notificación de fin de partida
+                    txtFinPartidaNotificacion.Text = $"{mensaje}. La palabra era: {palabra}";
+                    txtFinPartidaNotificacion.Visibility = Visibility.Visible;
+                    btnVolverMenu.Visibility = Visibility.Visible;
+
+                    LogCliente("[NotificarFinPartida] Notificación mostrada al usuario y botón volver visible.");
+                }
+                catch (Exception ex)
+                {
+                    LogCliente($"[NotificarFinPartida] ERROR: {ex.Message}");
+                }
+            });
+        }
+
+
         private void BtnEnviar_Click(object sender, RoutedEventArgs e)
         {
-            // No hace nada por ahora
+            // Implementa el chat si lo necesitas
         }
 
         private async void BtnCancelarPartida_Click(object sender, RoutedEventArgs e)
