@@ -16,7 +16,6 @@ namespace ServidorAhorcadoService
         private static readonly ConcurrentDictionary<int, IAhorcadoCallback> clientesConectados = new ConcurrentDictionary<int, IAhorcadoCallback>();
         private static readonly ConcurrentDictionary<int, int> jugadorAPartida = new ConcurrentDictionary<int, int>();
 
-        // MÉTODO DE LOG
         private void LogServidor(string mensaje)
         {
             try
@@ -25,7 +24,7 @@ namespace ServidorAhorcadoService
             }
             catch
             {
-                // Ignora error de log para nunca interrumpir el servidor
+                
             }
         }
 
@@ -606,17 +605,29 @@ namespace ServidorAhorcadoService
                         if (idGanador.HasValue)
                         {
                             if (idJugador == idGanador.Value)
+                            {
                                 resultado = "¡Ganaste!";
-                            else
+                            }
+                            else if (idRetador.HasValue && idJugador == idRetador.Value)
+                            {
                                 resultado = "¡Perdiste!";
+                            }
+                            else if (idJugador == idCreador)
+                            {
+                                resultado = "La palabra ha sido adivinada";
+                            }
+                            else
+                            {
+                                resultado = "¡Juego terminado!"; // respaldo
+                            }
                         }
                         else
                         {
-                            resultado = "¡Juego terminado!";
+                            resultado = "¡Juego terminado!"; // cancelada/abandonada
                         }
                         try
                         {
-                            callback.NotificarFinPartida(resultado, palabra, idPartida);
+                            callback.NotificarFinPartida(resultado, palabra, idPartida, idJugador);
                             LogServidor($"NotificarFinPartida: Éxito para jugador {idJugador} - {resultado}");
                         }
                         catch (Exception ex)
@@ -638,6 +649,7 @@ namespace ServidorAhorcadoService
                     LogServidor($"NotificarFinPartida: No se encontró callback para jugador {idJugador}");
                 }
             }
+
 
             Notificar(idCreador);
             if (idRetador.HasValue)
@@ -671,6 +683,6 @@ namespace ServidorAhorcadoService
             }
         }
 
-        public string Ping() => "Holi <3";
+
     }
 }

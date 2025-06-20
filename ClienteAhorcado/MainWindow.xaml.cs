@@ -20,9 +20,9 @@ namespace ClienteAhorcado
         public int idPartida;
         public bool esCreador;
         public int codigoIdioma;
-
-        private bool debugLogs = true;
         private string rutaLog = "logCliente.txt";
+
+
         private void LogCliente(string mensaje)
         {
             try
@@ -41,15 +41,7 @@ namespace ClienteAhorcado
             InitializeComponent();
             InicializarProxy();
             MainContent.Content = new IniciarSesionUserControl(this, proxy);
-            try
-            {
-                var respuesta = proxy.Ping();
-                MessageBox.Show(respuesta);
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Error al llamar Ping: " + ex.Message);
-            }
+            
         }
         
 
@@ -119,35 +111,42 @@ namespace ClienteAhorcado
             });
         }
 
-        public void NotificarFinPartida(string resultado, string palabra, int IDPartida)
-{
-    LogCliente($"MainWindow.NotificarFinPartida | Jugador {jugadorActual?.IDJugador} | idPartida local {idPartida} | callback con IDPartida {IDPartida} | resultado: {resultado}");
-
-    if (IDPartida != this.idPartida)
-    {
-        LogCliente($"MainWindow.NotificarFinPartida | Jugador {jugadorActual?.IDJugador} | IDPartida distinta, se ignora callback.");
-        return;
-    }
-
-    Dispatcher.Invoke(() =>
-    {
-        string mensaje = "";
-        if (resultado == "¡Ganaste!")
-            mensaje = "¡Felicidades, ganaste la partida! La palabra era: " + palabra;
-        else if (resultado == "¡Perdiste!")
-            mensaje = "¡Perdiste!... Pero te apoyamos c: La palabra era: " + palabra;
-        else if (resultado== "¡Juego terminado!")
-            mensaje = "La partida ha sido cancelada. La palabra era: " + palabra;
-
-        MessageBox.Show(mensaje, "Fin de la partida", MessageBoxButton.OK, MessageBoxImage.Information);
-
-        // Si la vista actual es el juego, habilita el botón "Volver menú principal"
-        if (MainContent.Content is JuegoAhorcadoUserControl1 juegoControl)
+        public void NotificarFinPartida(string resultado, string palabra, int IDPartida, int idJugadorDestino)
         {
-            juegoControl.btnVolverMenu.Visibility = Visibility.Visible;
+            if (jugadorActual?.IDJugador != idJugadorDestino)
+                return; // Solo muestro mensaje si es para este jugador
+
+            LogCliente($"MainWindow.NotificarFinPartida | Jugador {jugadorActual?.IDJugador} | idPartida local {idPartida} | callback con IDPartida {IDPartida} | resultado: {resultado}");
+
+            if (IDPartida != this.idPartida)
+            {
+                LogCliente($"MainWindow.NotificarFinPartida | Jugador {jugadorActual?.IDJugador} | IDPartida distinta, se ignora callback.");
+                return;
+            }
+
+            Dispatcher.Invoke(() =>
+            {
+                string mensaje = "";
+                if (resultado == "¡Ganaste!")
+                    mensaje = "¡Felicidades, ganaste la partida! La palabra era: " + palabra;
+                else if (resultado == "¡Perdiste!")
+                    mensaje = "¡Perdiste!... Pero te apoyamos c: La palabra era: " + palabra;
+                else if (resultado == "La palabra ha sido adivinada")
+                    mensaje = "¡La palabra ha sido adivinada! Tu labor como creador ha terminado. La palabra era: " + palabra;
+                else // "¡Juego terminado!" (abandono/cancelación)
+                    mensaje = "La partida ha sido cancelada. La palabra era: " + palabra;
+
+
+                MessageBox.Show(mensaje, "Fin de la partida", MessageBoxButton.OK, MessageBoxImage.Information);
+
+                // Si la vista actual es el juego, habilita el botón "Volver menú principal"
+                if (MainContent.Content is JuegoAhorcadoUserControl1 juegoControl)
+                {
+                    juegoControl.btnVolverMenu.Visibility = Visibility.Visible;
+                }
+            });
         }
-    });
-}
+
 
 
     }
