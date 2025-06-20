@@ -24,7 +24,7 @@ namespace ClienteAhorcado.Vistas
                 _mainWindow = mainWindow;
                 jugadorSesion = jugador;
                 this.proxy = proxy;
-                //idiomaSesionMenu = idiomaSesion;
+              
 
                 tblNombre.Text = $"{jugador.Nombre}";
                 tblCorreo.Text = $"{jugador.Correo}";
@@ -86,18 +86,6 @@ namespace ClienteAhorcado.Vistas
             _mainWindow.CambiarVista(new IniciarSesionUserControl(_mainWindow, proxy));
         }
 
-        private void cmbIdioma_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            if (cmbIdioma.SelectedItem is ComboBoxItem itemSeleccionado)
-            {
-                string codigoCultura = itemSeleccionado.Tag.ToString();
-
-                var app = (App)Application.Current;
-                app.CambiarIdioma(codigoCultura);
-
-                string idiomaBase = codigoCultura.Split('-')[0];
-                idiomaSesionMenu = idiomaBase;
-            }
-        }
+       
     }
 }

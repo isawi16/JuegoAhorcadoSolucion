@@ -7,6 +7,7 @@ using BibliotecaClasesNetFramework.Contratos;
 using BibliotecaClasesNetFramework.DTO;
 using ServidorAhorcadoService.Model;
 using System.IO;
+using System.Data.Entity; 
 
 namespace ServidorAhorcadoService
 {
@@ -16,7 +17,6 @@ namespace ServidorAhorcadoService
         private static readonly ConcurrentDictionary<int, IAhorcadoCallback> clientesConectados = new ConcurrentDictionary<int, IAhorcadoCallback>();
         private static readonly ConcurrentDictionary<int, int> jugadorAPartida = new ConcurrentDictionary<int, int>();
 
-        // MÉTODO DE LOG
         private void LogServidor(string mensaje)
         {
             try
@@ -25,7 +25,7 @@ namespace ServidorAhorcadoService
             }
             catch
             {
-                // Ignora error de log para nunca interrumpir el servidor
+                
             }
         }
 
@@ -199,6 +199,30 @@ namespace ServidorAhorcadoService
 
         // --- PALABRAS Y CATEGORÍAS ---
 
+
+
+        public PalabraDTO ObtenerPalabraPorId(int idPalabra)
+        {
+            using (var db = new AhorcadoContext())
+            {
+                var palabra = db.Palabras.FirstOrDefault(p => p.IDPalabra == idPalabra);
+                if (palabra == null) return null;
+
+                return new PalabraDTO
+                {
+                    IDPalabra = palabra.IDPalabra,
+                    Texto = palabra.PalabraTexto,
+                    Definicion = palabra.Definicion,
+                    Dificultad = palabra.Dificultad,
+                    IDCategoria = palabra.IDCategoria
+                };
+            }
+        }
+
+
+
+
+
         public List<CategoriaDTO> ObtenerCategoriasPorIdioma(int idiomaId)
         {
             using (var db = new AhorcadoContext())
@@ -248,23 +272,15 @@ namespace ServidorAhorcadoService
             }
         }
 
-        public PalabraDTO ObtenerPalabraConDescripcion(int idPalabra)
+        public string ObtenerDefinicionPorIdPalabra(int idPalabra)
         {
             using (var db = new AhorcadoContext())
             {
-                var palabra = db.Palabras
-                    .Where(p => p.IDPalabra == idPalabra)
-                    .Select(p => new PalabraDTO
-                    {
-                        IDPalabra = p.IDPalabra,
-                        Texto = p.PalabraTexto,
-                        Definicion = p.Definicion
-                    })
-                    .FirstOrDefault();
-
-                return palabra;
+                var palabra = db.Palabras.FirstOrDefault(p => p.IDPalabra == idPalabra);
+                return palabra?.Definicion ?? "No hay pista disponible para esta palabra :c";
             }
         }
+
 
         public List<PalabraDTO> ObtenerPalabrasPorCategoria(int idCategoria, string idioma)
         {
@@ -610,17 +626,29 @@ namespace ServidorAhorcadoService
                         if (idGanador.HasValue)
                         {
                             if (idJugador == idGanador.Value)
+                            {
                                 resultado = "¡Ganaste!";
-                            else
+                            }
+                            else if (idRetador.HasValue && idJugador == idRetador.Value)
+                            {
                                 resultado = "¡Perdiste!";
+                            }
+                            else if (idJugador == idCreador)
+                            {
+                                resultado = "La palabra ha sido adivinada";
+                            }
+                            else
+                            {
+                                resultado = "¡Juego terminado!"; // respaldo
+                            }
                         }
                         else
                         {
-                            resultado = "¡Juego terminado!";
+                            resultado = "¡Juego terminado!"; // cancelada/abandonada
                         }
                         try
                         {
-                            callback.NotificarFinPartida(resultado, palabra, idPartida);
+                            callback.NotificarFinPartida(resultado, palabra, idPartida, idJugador);
                             LogServidor($"NotificarFinPartida: Éxito para jugador {idJugador} - {resultado}");
                         }
                         catch (Exception ex)
@@ -642,6 +670,7 @@ namespace ServidorAhorcadoService
                     LogServidor($"NotificarFinPartida: No se encontró callback para jugador {idJugador}");
                 }
             }
+
 
             Notificar(idCreador);
             if (idRetador.HasValue)
@@ -675,6 +704,6 @@ namespace ServidorAhorcadoService
             }
         }
 
-        public string Ping() => "Holi <3";
+
     }
 }

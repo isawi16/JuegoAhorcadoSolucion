@@ -4,52 +4,99 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         mc:Ignorable="d"
-        Height="461" Width="380"
-        Background="#f0f2f5">
-    <Border Background="White" CornerRadius="12" Margin="20" >
-        <Grid Margin="20">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="*"/>
-            </Grid.RowDefinitions>
-            <!-- Encabezado -->
-            <StackPanel Grid.Row="0" Margin="0,10,0,20" HorizontalAlignment="Center">
-                <TextBlock x:Name="tblockTitulo" Text="{DynamicResource InicioSesion_Titulo}" FontSize="24" FontWeight="Bold" Foreground="#2C3E50" TextAlignment="Center"/>
-                <TextBlock x:Name="tblockSubtitulo" Text="{DynamicResource InicioSesion_Descripcion}" FontSize="14" Foreground="Gray" TextAlignment="Center"/>
-            </StackPanel>
-            <!-- Contenido -->
-            <StackPanel Grid.Row="1" VerticalAlignment="Top" HorizontalAlignment="Center" Width="280">
-                <TextBlock x:Name="tblockCorreo" Text="{DynamicResource Glb_CorreoUsuario}" FontWeight="SemiBold" Margin="0,0,0,5"/>
-                <TextBox x:Name="tbCorreo" Height="35" Padding="10,5,10,10" 
-                         Tag="" />
-                <TextBlock x:Name="tblockErrorCorreo" Text="" Foreground="Red"/>
-                <TextBlock x:Name="tblockContrasena" Text="{DynamicResource Glb_Contrasenia}" FontWeight="SemiBold" Margin="0,0,0,5"/>
-                <Grid>
-                    <PasswordBox x:Name="pbPassword" Height="35" Padding="10" 
-                             Tag="*" Margin="0,0,40,5" Visibility="Visible" PasswordChanged="PbPassword_PasswordChanged"/>
-                    <TextBox x:Name="tbPasswordVisible" Height="35" Margin="0,0,40,5" Padding="10,5,10,10"
-                             Tag="" VerticalAlignment="Center" Visibility="Collapsed" TextChanged="TbPasswordVisible_TextChanged"/>
-                    <Button x:Name="btnVerPassword" Width="30" Height="30" HorizontalAlignment="Right" VerticalAlignment="Center" Click="BtnVerPassword_Click" Content="👁"/>
+        Height="461" Width="380">
+
+    <Grid>
+        <!-- Imagen de fondo, estirada para cubrir todo -->
+        <Image Source="/Images/pinzarron.jpeg"
+               Stretch="UniformToFill"
+               Opacity="0.93"
+               Panel.ZIndex="0"/>
+
+        <Border CornerRadius="18" Margin="16" Panel.ZIndex="1" >
+            <Border.Background>
+        <SolidColorBrush Color="#CCFFFFFF"/>
+    </Border.Background>    
+            <Grid Margin="24">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+
+                <!-- Encabezado -->
+                <StackPanel Grid.Row="0" Margin="0,20,0,28" HorizontalAlignment="Center">
+                    <TextBlock x:Name="tblockTitulo" 
+                               Text="{DynamicResource InicioSesion_Titulo}" 
+                               FontSize="30" 
+                               FontWeight="Bold" 
+                               Foreground="#23272F" 
+                               TextAlignment="Center" />
+                    <TextBlock x:Name="tblockSubtitulo" 
+                               Text="{DynamicResource InicioSesion_Descripcion}" 
+                               FontSize="15" 
+                               Foreground="#8b97a2" 
+                               Margin="0,6,0,0"
+                               TextAlignment="Center"/>
+                </StackPanel>
+
+                <!-- Contenido -->
+                <StackPanel Grid.Row="1" VerticalAlignment="Top" HorizontalAlignment="Center" Width="280">
+                    <TextBlock x:Name="tblockCorreo" Text="{DynamicResource Glb_CorreoUsuario}" FontWeight="SemiBold" Margin="0,0,0,6"/>
+                    <TextBox x:Name="tbCorreo" Height="37" Padding="10,5" 
+                             BorderBrush="#cad1e1" BorderThickness="1"
+                             Background="#f6f8fa" Margin="0,0,0,2"/>
+                    <TextBlock x:Name="tblockErrorCorreo" Text="" Foreground="Red" FontSize="12"/>
+
+                    <TextBlock x:Name="tblockContrasena" Text="{DynamicResource Glb_Contrasenia}" FontWeight="SemiBold" Margin="0,10,0,6"/>
+                    <Grid>
+                        <PasswordBox x:Name="pbPassword" Height="37" Padding="10" 
+                                 BorderBrush="#cad1e1" BorderThickness="1" 
+                                 Background="#f6f8fa" Margin="0,0,40,0"
+                                 Visibility="Visible" PasswordChanged="PbPassword_PasswordChanged"/>
+                        <TextBox x:Name="tbPasswordVisible" Height="37" Margin="0,0,40,0" Padding="10,5,10,10"
+                                 BorderBrush="#cad1e1" BorderThickness="1" 
+                                 Background="#f6f8fa" 
+                                 VerticalAlignment="Center" Visibility="Collapsed" TextChanged="TbPasswordVisible_TextChanged"/>
+                        <Button x:Name="btnVerPassword" Width="30" Height="30" HorizontalAlignment="Right" VerticalAlignment="Center" 
+                                Click="BtnVerPassword_Click"
+                                Content="👁"
+                                Background="Transparent"
+                                BorderBrush="{x:Null}"/>
+                    </Grid>
+                    <TextBlock x:Name="tblockErrorPassword" Text="" Margin="0,2,0,8" Foreground="Red" FontSize="12" VerticalAlignment="Bottom"/>
+                    <Button x:Name="btnIniciarSesion" Content="{DynamicResource InicioSesion_Boton_Iniciar}"
+                            Click="BtnIniciarSesion_Click"
+                            Style="{StaticResource EstiloBotonPrincipalSinIcono}"
+                            Height="42" Margin="0,10,0,8"/>
+                    <Button  x:Name="btnRegistrarse" Content="{DynamicResource InicioSesion_Boton_Registrar}"
+                            Click="BtnRegistrarse_Click"
+                            Style="{StaticResource EstiloBotonSecundarioSinIcono}"
+                            Height="40" Background="Transparent" BorderBrush="#3498db" Foreground="#3498db"/>
+                </StackPanel>
+
+                <Grid x:Name="IdiomaToggleContainer"
+                      VerticalAlignment="Bottom" HorizontalAlignment="Right"
+                      Margin="0,0,-38,-39" Width="40" Height="40" Grid.Row="1">
+                    <Image x:Name="imgEnglish"
+                           Source="/Images/english.png"
+                           Width="30" Height="30"
+                           Cursor="Hand"
+                           HorizontalAlignment="Right" VerticalAlignment="Bottom"
+                           Visibility="Visible"
+                           Opacity="1"
+                           MouseLeftButtonUp="imgEnglish_MouseLeftButtonUp"
+                           Margin="0"/>
+                    <Image x:Name="imgEspanol"
+                           Source="/Images/espanol.png"
+                           Width="30" Height="30"
+                           Cursor="Hand"
+                           HorizontalAlignment="Right" VerticalAlignment="Bottom"
+                           Visibility="Collapsed"
+                           Opacity="1"
+                           MouseLeftButtonUp="imgEspanol_MouseLeftButtonUp"
+                           Margin="0"/>
                 </Grid>
-                <TextBlock x:Name="tblockErrorPassword" Text="" Margin="0,0,0,5" Foreground="Red" VerticalAlignment="Bottom"/>
-                <Button x:Name="btnIniciarSesion" Content="{DynamicResource InicioSesion_Boton_Iniciar}"
-                        Click="BtnIniciarSesion_Click"
-                        Style="{StaticResource EstiloBotonPrincipalSinIcono}"
-                        Height="40" Margin="0,0,0,10"/>
-                <Button  x:Name="btnRegistrarse" Content="{DynamicResource InicioSesion_Boton_Registrar}"
-                        Click="BtnRegistrarse_Click"
-                        Style="{StaticResource EstiloBotonSecundarioSinIcono}"
-                        Height="40" Background="Transparent" BorderBrush="#3498db" Foreground="#3498db"/>
-                <TextBlock x:Name="tblockSelectIdioma" Text="{DynamicResource Glb_Idioma}" FontWeight="SemiBold" HorizontalAlignment="Center" />
-                <ComboBox x:Name="cmbIdioma" 
-                         SelectionChanged="cmbIdioma_SelectionChanged"
-                         Tag="{DynamicResource Glb_Idioma}"
-                         Width="100"
-                         Height="30" Background="Transparent" BorderBrush="#3498db" Foreground="#3498db">
-                    <ComboBoxItem Content="{DynamicResource Glb_Espanol}" Tag="es"/>
-                    <ComboBoxItem Content="{DynamicResource Glb_Ingles}" Tag="en"/>
-                </ComboBox>
-            </StackPanel>
-        </Grid>
-    </Border>
+            </Grid>
+        </Border>
+    </Grid>
 </UserControl>

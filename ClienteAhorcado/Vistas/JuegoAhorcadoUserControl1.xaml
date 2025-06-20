@@ -5,7 +5,43 @@
              xmlns:local="clr-namespace:ClienteAhorcado.Vistas"
              Width="800" Height="600">
 
-    <!-- ... tus estilos igual ... -->
+    <UserControl.Resources>
+        <!-- Estilo para animar el botón idea.png al hacer hover -->
+        <Style x:Key="IdeaButtonStyle" TargetType="Button">
+            <Setter Property="RenderTransform">
+                <Setter.Value>
+                    <ScaleTransform ScaleX="1" ScaleY="1"/>
+                </Setter.Value>
+            </Setter>
+            <Setter Property="RenderTransformOrigin" Value="0.5,0.5"/>
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Trigger.EnterActions>
+                        <BeginStoryboard>
+                            <Storyboard>
+                                <DoubleAnimation Storyboard.TargetProperty="RenderTransform.(ScaleTransform.ScaleX)"
+                                                 To="1.2" Duration="0:0:0.2"/>
+                                <DoubleAnimation Storyboard.TargetProperty="RenderTransform.(ScaleTransform.ScaleY)"
+                                                 To="1.2" Duration="0:0:0.2"/>
+                            </Storyboard>
+                        </BeginStoryboard>
+                    </Trigger.EnterActions>
+                    <Trigger.ExitActions>
+                        <BeginStoryboard>
+                            <Storyboard>
+                                <DoubleAnimation Storyboard.TargetProperty="RenderTransform.(ScaleTransform.ScaleX)"
+                                                 To="1" Duration="0:0:0.2"/>
+                                <DoubleAnimation Storyboard.TargetProperty="RenderTransform.(ScaleTransform.ScaleY)"
+                                                 To="1" Duration="0:0:0.2"/>
+                            </Storyboard>
+                        </BeginStoryboard>
+                    </Trigger.ExitActions>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+    </UserControl.Resources>
 
     <Grid Margin="10" Background="#FF1B1B2F">
         <Grid.RowDefinitions>
@@ -27,9 +63,13 @@
         </TextBlock>
         <Canvas x:Name="canvasEfectos" IsHitTestVisible="False" />
 
-        <!-- Imagen del ahorcado -->
-        <Image x:Name="imgAhorcado" Grid.Row="1" Height="200" Width="200" 
-               Source="/Images/6.png" HorizontalAlignment="Center" Margin="0,10"/>
+        <!-- Imagen del ahorcado + Botón idea -->
+        <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,10,0,10" Width="201">
+            <Image x:Name="imgAhorcado" Height="200" Width="200" Source="/Images/6.png"/>
+            <Button x:Name="btnIdea"
+                    Width="64" Height="64" Margin="20,0,0,0"
+                    Style="{StaticResource IdeaButtonStyle}"/>
+        </StackPanel>
 
         <!-- Palabra oculta -->
         <StackPanel x:Name="stackPalabra" Grid.Row="2" Orientation="Horizontal" 
@@ -64,6 +104,7 @@
                     </DockPanel>
                 </StackPanel>
             </Border>
+            <Image Source="/Images/idea.png" Stretch="Uniform" Margin="-7,-6,452,152"/>
         </Grid>
 
         <!-- Botón Volver -->
@@ -99,5 +140,6 @@
                 Margin="6,0,0,0"
                 Style="{StaticResource EstiloBotonPrincipal}"
                 Background="#FFD81111" Height="20" Width="142"/>
+        <TextBlock x:Name="tbIdea" HorizontalAlignment="Left" Height="72" Margin="550,77,0,0" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Top" Width="161" Foreground="#FFFBF4F4"/>
     </Grid>
 </UserControl>
