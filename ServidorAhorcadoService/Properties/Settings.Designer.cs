@@ -12,7 +12,7 @@ namespace ServidorAhorcadoService.Properties {
     
     
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Editors.SettingsDesigner.SettingsSingleFileGenerator", "17.14.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Editors.SettingsDesigner.SettingsSingleFileGenerator", "17.8.0.0")]
     internal sealed partial class Settings : global::System.Configuration.ApplicationSettingsBase {
         
         private static Settings defaultInstance = ((Settings)(global::System.Configuration.ApplicationSettingsBase.Synchronized(new Settings())));
@@ -26,8 +26,19 @@ namespace ServidorAhorcadoService.Properties {
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
-        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=JOSUEISAI\\SQLEXPRESS;Initial Catalog=JuegoAhorcado;Integrated Securit" +
-            "y=True;TrustServerCertificate=True")]
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=HONEYBUNNY\\SQLEXPRESS05;Initial Catalog=JuegoAhorcado;Integrated Secu" +
+            "rity=True;Encrypt=True;TrustServerCertificate=True")]
+        public string JuegoAhorcadoConnectionStringLilly {
+            get {
+                return ((string)(this["JuegoAhorcadoConnectionStringLilly"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=HONEYBUNNY\\SQLEXPRESS05;Initial Catalog=JuegoAhorcado;Integrated Secu" +
+            "rity=True;Encrypt=True;Trust Server Certificate=True")]
         public string JuegoAhorcadoConnectionString {
             get {
                 return ((string)(this["JuegoAhorcadoConnectionString"]));
@@ -37,11 +48,11 @@ namespace ServidorAhorcadoService.Properties {
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
-        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=HONEYBUNNY\\SQLEXPRESS05;Initial Catalog=JuegoAhorcado;Integrated Secu" +
-            "rity=True;Encrypt=True;TrustServerCertificate=True")]
-        public string JuegoAhorcadoConnectionStringLilly {
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=KIDA\\SQLEXPRESS;Initial Catalog=JuegoAhorcado;Integrated Security=Tru" +
+            "e;TrustServerCertificate=True")]
+        public string JuegoAhorcadoConnectionString1 {
             get {
-                return ((string)(this["JuegoAhorcadoConnectionStringLilly"]));
+                return ((string)(this["JuegoAhorcadoConnectionString1"]));
             }
         }
     }

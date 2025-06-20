@@ -121,6 +121,9 @@ namespace ClienteAhorcado.Vistas
                 {
                     string mensajeRegistroExito = Application.Current.TryFindResource("Msg_registroExitoso") as string;
                     MessageBox.Show(mensajeRegistroExito);
+                    _mainWindow.CambiarVista(new IniciarSesionUserControl(_mainWindow, proxy));
+
+
                 }
                 else
                 {

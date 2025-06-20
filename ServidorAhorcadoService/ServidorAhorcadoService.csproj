@@ -81,6 +81,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>JuegoAhorcadoDataSet.xsd</DependentUpon>
     </Compile>
+    <Compile Include="JuegoAhorcadoDataSet1.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>JuegoAhorcadoDataSet1.xsd</DependentUpon>
+    </Compile>
     <Compile Include="Model\AhorcadoContext.cs" />
     <Compile Include="Model\Categoria.cs" />
     <Compile Include="Model\Estado.cs" />
@@ -109,6 +114,17 @@
     <None Include="JuegoAhorcadoDataSet.xss">
       <DependentUpon>JuegoAhorcadoDataSet.xsd</DependentUpon>
     </None>
+    <None Include="JuegoAhorcadoDataSet1.xsc">
+      <DependentUpon>JuegoAhorcadoDataSet1.xsd</DependentUpon>
+    </None>
+    <None Include="JuegoAhorcadoDataSet1.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>JuegoAhorcadoDataSet1.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="JuegoAhorcadoDataSet1.xss">
+      <DependentUpon>JuegoAhorcadoDataSet1.xsd</DependentUpon>
+    </None>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -116,7 +132,7 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\LibreríadeClasesServicios\BibliotecaClasesNetFramework\BibliotecaClasesNetFramework\BibliotecaClasesNetFramework.csproj">
+    <ProjectReference Include="..\..\LibreríadeClasesServicios\LibreríadeClasesServicios\BibliotecaClasesNetFramework\BibliotecaClasesNetFramework\BibliotecaClasesNetFramework.csproj">
       <Project>{74c67d35-d803-4880-8569-e2fb3ff80372}</Project>
       <Name>BibliotecaClasesNetFramework</Name>
     </ProjectReference>
