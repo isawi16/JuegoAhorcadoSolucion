@@ -7,6 +7,7 @@ using BibliotecaClasesNetFramework.Contratos;
 using BibliotecaClasesNetFramework.DTO;
 using ServidorAhorcadoService.Model;
 using System.IO;
+using System.Data.Entity; 
 
 namespace ServidorAhorcadoService
 {
@@ -198,23 +199,28 @@ namespace ServidorAhorcadoService
 
         // --- PALABRAS Y CATEGORÍAS ---
 
+
+
         public PalabraDTO ObtenerPalabraPorId(int idPalabra)
         {
             using (var db = new AhorcadoContext())
             {
                 var palabra = db.Palabras.FirstOrDefault(p => p.IDPalabra == idPalabra);
                 if (palabra == null) return null;
+
                 return new PalabraDTO
                 {
                     IDPalabra = palabra.IDPalabra,
                     Texto = palabra.PalabraTexto,
                     Definicion = palabra.Definicion,
                     Dificultad = palabra.Dificultad,
-                    IDCategoria = palabra.IDCategoria,
-                    CodigoIdioma = palabra.Categoria.CodigoIdioma
+                    IDCategoria = palabra.IDCategoria
                 };
             }
         }
+
+
+
 
 
         public List<CategoriaDTO> ObtenerCategoriasPorIdioma(int idiomaId)

@@ -1,35 +1,3 @@
-C:\Users\seren\Desktop\JuegoAhorcadoUO\Code\HangThemHigh\JuegoAhorcadoSolucion\ServidorAhorcadoService\bin\Debug\ServidorAhorcadoService.exe.config
-C:\Users\seren\Desktop\JuegoAhorcadoUO\Code\HangThemHigh\JuegoAhorcadoSolucion\ServidorAhorcadoService\bin\Debug\ServidorAhorcadoService.exe
-C:\Users\seren\Desktop\JuegoAhorcadoUO\Code\HangThemHigh\JuegoAhorcadoSolucion\ServidorAhorcadoService\bin\Debug\ServidorAhorcadoService.pdb
-C:\Users\seren\Desktop\JuegoAhorcadoUO\Code\HangThemHigh\JuegoAhorcadoSolucion\ServidorAhorcadoService\bin\Debug\BibliotecaClasesNetFramework.dll
-C:\Users\seren\Desktop\JuegoAhorcadoUO\Code\HangThemHigh\JuegoAhorcadoSolucion\ServidorAhorcadoService\bin\Debug\EntityFramework.dll
-C:\Users\seren\Desktop\JuegoAhorcadoUO\Code\HangThemHigh\JuegoAhorcadoSolucion\ServidorAhorcadoService\bin\Debug\EntityFramework.SqlServer.dll
-C:\Users\seren\Desktop\JuegoAhorcadoUO\Code\HangThemHigh\JuegoAhorcadoSolucion\ServidorAhorcadoService\bin\Debug\Xceed.Wpf.AvalonDock.dll
-C:\Users\seren\Desktop\JuegoAhorcadoUO\Code\HangThemHigh\JuegoAhorcadoSolucion\ServidorAhorcadoService\bin\Debug\Xceed.Wpf.AvalonDock.Themes.Aero.dll
-C:\Users\seren\Desktop\JuegoAhorcadoUO\Code\HangThemHigh\JuegoAhorcadoSolucion\ServidorAhorcadoService\bin\Debug\Xceed.Wpf.AvalonDock.Themes.Metro.dll
-C:\Users\seren\Desktop\JuegoAhorcadoUO\Code\HangThemHigh\JuegoAhorcadoSolucion\ServidorAhorcadoService\bin\Debug\Xceed.Wpf.AvalonDock.Themes.VS2010.dll
-C:\Users\seren\Desktop\JuegoAhorcadoUO\Code\HangThemHigh\JuegoAhorcadoSolucion\ServidorAhorcadoService\bin\Debug\Xceed.Wpf.Toolkit.dll
-C:\Users\seren\Desktop\JuegoAhorcadoUO\Code\HangThemHigh\JuegoAhorcadoSolucion\ServidorAhorcadoService\bin\Debug\BibliotecaClasesNetFramework.pdb
-C:\Users\seren\Desktop\JuegoAhorcadoUO\Code\HangThemHigh\JuegoAhorcadoSolucion\ServidorAhorcadoService\bin\Debug\EntityFramework.xml
-C:\Users\seren\Desktop\JuegoAhorcadoUO\Code\HangThemHigh\JuegoAhorcadoSolucion\ServidorAhorcadoService\bin\Debug\EntityFramework.SqlServer.xml
-C:\Users\seren\Desktop\JuegoAhorcadoUO\Code\HangThemHigh\JuegoAhorcadoSolucion\ServidorAhorcadoService\bin\Debug\cs-CZ\Xceed.Wpf.AvalonDock.resources.dll
-C:\Users\seren\Desktop\JuegoAhorcadoUO\Code\HangThemHigh\JuegoAhorcadoSolucion\ServidorAhorcadoService\bin\Debug\de\Xceed.Wpf.AvalonDock.resources.dll
-C:\Users\seren\Desktop\JuegoAhorcadoUO\Code\HangThemHigh\JuegoAhorcadoSolucion\ServidorAhorcadoService\bin\Debug\es\Xceed.Wpf.AvalonDock.resources.dll
-C:\Users\seren\Desktop\JuegoAhorcadoUO\Code\HangThemHigh\JuegoAhorcadoSolucion\ServidorAhorcadoService\bin\Debug\fr\Xceed.Wpf.AvalonDock.resources.dll
-C:\Users\seren\Desktop\JuegoAhorcadoUO\Code\HangThemHigh\JuegoAhorcadoSolucion\ServidorAhorcadoService\bin\Debug\hu\Xceed.Wpf.AvalonDock.resources.dll
-C:\Users\seren\Desktop\JuegoAhorcadoUO\Code\HangThemHigh\JuegoAhorcadoSolucion\ServidorAhorcadoService\bin\Debug\it\Xceed.Wpf.AvalonDock.resources.dll
-C:\Users\seren\Desktop\JuegoAhorcadoUO\Code\HangThemHigh\JuegoAhorcadoSolucion\ServidorAhorcadoService\bin\Debug\ja-JP\Xceed.Wpf.AvalonDock.resources.dll
-C:\Users\seren\Desktop\JuegoAhorcadoUO\Code\HangThemHigh\JuegoAhorcadoSolucion\ServidorAhorcadoService\bin\Debug\nl-BE\Xceed.Wpf.AvalonDock.resources.dll
-C:\Users\seren\Desktop\JuegoAhorcadoUO\Code\HangThemHigh\JuegoAhorcadoSolucion\ServidorAhorcadoService\bin\Debug\pt-BR\Xceed.Wpf.AvalonDock.resources.dll
-C:\Users\seren\Desktop\JuegoAhorcadoUO\Code\HangThemHigh\JuegoAhorcadoSolucion\ServidorAhorcadoService\bin\Debug\ro\Xceed.Wpf.AvalonDock.resources.dll
-C:\Users\seren\Desktop\JuegoAhorcadoUO\Code\HangThemHigh\JuegoAhorcadoSolucion\ServidorAhorcadoService\bin\Debug\ru\Xceed.Wpf.AvalonDock.resources.dll
-C:\Users\seren\Desktop\JuegoAhorcadoUO\Code\HangThemHigh\JuegoAhorcadoSolucion\ServidorAhorcadoService\bin\Debug\sv\Xceed.Wpf.AvalonDock.resources.dll
-C:\Users\seren\Desktop\JuegoAhorcadoUO\Code\HangThemHigh\JuegoAhorcadoSolucion\ServidorAhorcadoService\bin\Debug\zh-Hans\Xceed.Wpf.AvalonDock.resources.dll
-C:\Users\seren\Desktop\JuegoAhorcadoUO\Code\HangThemHigh\JuegoAhorcadoSolucion\ServidorAhorcadoService\obj\Debug\ServidorAhorcadoService.csproj.AssemblyReference.cache
-C:\Users\seren\Desktop\JuegoAhorcadoUO\Code\HangThemHigh\JuegoAhorcadoSolucion\ServidorAhorcadoService\obj\Debug\ServidorAhorcadoService.csproj.CoreCompileInputs.cache
-C:\Users\seren\Desktop\JuegoAhorcadoUO\Code\HangThemHigh\JuegoAhorcadoSolucion\ServidorAhorcadoService\obj\Debug\Servidor.64F85338.Up2Date
-C:\Users\seren\Desktop\JuegoAhorcadoUO\Code\HangThemHigh\JuegoAhorcadoSolucion\ServidorAhorcadoService\obj\Debug\ServidorAhorcadoService.exe
-C:\Users\seren\Desktop\JuegoAhorcadoUO\Code\HangThemHigh\JuegoAhorcadoSolucion\ServidorAhorcadoService\obj\Debug\ServidorAhorcadoService.pdb
 D:\Codes n Shit\JuegoAhorcadoSolucion\ServidorAhorcadoService\bin\Debug\ServidorAhorcadoService.exe.config
 D:\Codes n Shit\JuegoAhorcadoSolucion\ServidorAhorcadoService\bin\Debug\ServidorAhorcadoService.exe
 D:\Codes n Shit\JuegoAhorcadoSolucion\ServidorAhorcadoService\bin\Debug\ServidorAhorcadoService.pdb
@@ -63,3 +31,35 @@ D:\Codes n Shit\JuegoAhorcadoSolucion\ServidorAhorcadoService\obj\Debug\Servidor
 D:\Codes n Shit\JuegoAhorcadoSolucion\ServidorAhorcadoService\obj\Debug\ServidorAhorcadoService.csproj.CopyComplete
 D:\Codes n Shit\JuegoAhorcadoSolucion\ServidorAhorcadoService\obj\Debug\ServidorAhorcadoService.exe
 D:\Codes n Shit\JuegoAhorcadoSolucion\ServidorAhorcadoService\obj\Debug\ServidorAhorcadoService.pdb
+C:\Users\seren\Desktop\JuegoAhorcadoUO\Code\HangThemHigh\JuegoAhorcadoSolucion\ServidorAhorcadoService\bin\Debug\ServidorAhorcadoService.exe.config
+C:\Users\seren\Desktop\JuegoAhorcadoUO\Code\HangThemHigh\JuegoAhorcadoSolucion\ServidorAhorcadoService\bin\Debug\ServidorAhorcadoService.exe
+C:\Users\seren\Desktop\JuegoAhorcadoUO\Code\HangThemHigh\JuegoAhorcadoSolucion\ServidorAhorcadoService\bin\Debug\ServidorAhorcadoService.pdb
+C:\Users\seren\Desktop\JuegoAhorcadoUO\Code\HangThemHigh\JuegoAhorcadoSolucion\ServidorAhorcadoService\bin\Debug\BibliotecaClasesNetFramework.dll
+C:\Users\seren\Desktop\JuegoAhorcadoUO\Code\HangThemHigh\JuegoAhorcadoSolucion\ServidorAhorcadoService\bin\Debug\EntityFramework.dll
+C:\Users\seren\Desktop\JuegoAhorcadoUO\Code\HangThemHigh\JuegoAhorcadoSolucion\ServidorAhorcadoService\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\seren\Desktop\JuegoAhorcadoUO\Code\HangThemHigh\JuegoAhorcadoSolucion\ServidorAhorcadoService\bin\Debug\Xceed.Wpf.AvalonDock.dll
+C:\Users\seren\Desktop\JuegoAhorcadoUO\Code\HangThemHigh\JuegoAhorcadoSolucion\ServidorAhorcadoService\bin\Debug\Xceed.Wpf.AvalonDock.Themes.Aero.dll
+C:\Users\seren\Desktop\JuegoAhorcadoUO\Code\HangThemHigh\JuegoAhorcadoSolucion\ServidorAhorcadoService\bin\Debug\Xceed.Wpf.AvalonDock.Themes.Metro.dll
+C:\Users\seren\Desktop\JuegoAhorcadoUO\Code\HangThemHigh\JuegoAhorcadoSolucion\ServidorAhorcadoService\bin\Debug\Xceed.Wpf.AvalonDock.Themes.VS2010.dll
+C:\Users\seren\Desktop\JuegoAhorcadoUO\Code\HangThemHigh\JuegoAhorcadoSolucion\ServidorAhorcadoService\bin\Debug\Xceed.Wpf.Toolkit.dll
+C:\Users\seren\Desktop\JuegoAhorcadoUO\Code\HangThemHigh\JuegoAhorcadoSolucion\ServidorAhorcadoService\bin\Debug\BibliotecaClasesNetFramework.pdb
+C:\Users\seren\Desktop\JuegoAhorcadoUO\Code\HangThemHigh\JuegoAhorcadoSolucion\ServidorAhorcadoService\bin\Debug\EntityFramework.xml
+C:\Users\seren\Desktop\JuegoAhorcadoUO\Code\HangThemHigh\JuegoAhorcadoSolucion\ServidorAhorcadoService\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\seren\Desktop\JuegoAhorcadoUO\Code\HangThemHigh\JuegoAhorcadoSolucion\ServidorAhorcadoService\bin\Debug\cs-CZ\Xceed.Wpf.AvalonDock.resources.dll
+C:\Users\seren\Desktop\JuegoAhorcadoUO\Code\HangThemHigh\JuegoAhorcadoSolucion\ServidorAhorcadoService\bin\Debug\de\Xceed.Wpf.AvalonDock.resources.dll
+C:\Users\seren\Desktop\JuegoAhorcadoUO\Code\HangThemHigh\JuegoAhorcadoSolucion\ServidorAhorcadoService\bin\Debug\es\Xceed.Wpf.AvalonDock.resources.dll
+C:\Users\seren\Desktop\JuegoAhorcadoUO\Code\HangThemHigh\JuegoAhorcadoSolucion\ServidorAhorcadoService\bin\Debug\fr\Xceed.Wpf.AvalonDock.resources.dll
+C:\Users\seren\Desktop\JuegoAhorcadoUO\Code\HangThemHigh\JuegoAhorcadoSolucion\ServidorAhorcadoService\bin\Debug\hu\Xceed.Wpf.AvalonDock.resources.dll
+C:\Users\seren\Desktop\JuegoAhorcadoUO\Code\HangThemHigh\JuegoAhorcadoSolucion\ServidorAhorcadoService\bin\Debug\it\Xceed.Wpf.AvalonDock.resources.dll
+C:\Users\seren\Desktop\JuegoAhorcadoUO\Code\HangThemHigh\JuegoAhorcadoSolucion\ServidorAhorcadoService\bin\Debug\ja-JP\Xceed.Wpf.AvalonDock.resources.dll
+C:\Users\seren\Desktop\JuegoAhorcadoUO\Code\HangThemHigh\JuegoAhorcadoSolucion\ServidorAhorcadoService\bin\Debug\nl-BE\Xceed.Wpf.AvalonDock.resources.dll
+C:\Users\seren\Desktop\JuegoAhorcadoUO\Code\HangThemHigh\JuegoAhorcadoSolucion\ServidorAhorcadoService\bin\Debug\pt-BR\Xceed.Wpf.AvalonDock.resources.dll
+C:\Users\seren\Desktop\JuegoAhorcadoUO\Code\HangThemHigh\JuegoAhorcadoSolucion\ServidorAhorcadoService\bin\Debug\ro\Xceed.Wpf.AvalonDock.resources.dll
+C:\Users\seren\Desktop\JuegoAhorcadoUO\Code\HangThemHigh\JuegoAhorcadoSolucion\ServidorAhorcadoService\bin\Debug\ru\Xceed.Wpf.AvalonDock.resources.dll
+C:\Users\seren\Desktop\JuegoAhorcadoUO\Code\HangThemHigh\JuegoAhorcadoSolucion\ServidorAhorcadoService\bin\Debug\sv\Xceed.Wpf.AvalonDock.resources.dll
+C:\Users\seren\Desktop\JuegoAhorcadoUO\Code\HangThemHigh\JuegoAhorcadoSolucion\ServidorAhorcadoService\bin\Debug\zh-Hans\Xceed.Wpf.AvalonDock.resources.dll
+C:\Users\seren\Desktop\JuegoAhorcadoUO\Code\HangThemHigh\JuegoAhorcadoSolucion\ServidorAhorcadoService\obj\Debug\ServidorAhorcadoService.csproj.AssemblyReference.cache
+C:\Users\seren\Desktop\JuegoAhorcadoUO\Code\HangThemHigh\JuegoAhorcadoSolucion\ServidorAhorcadoService\obj\Debug\ServidorAhorcadoService.csproj.CoreCompileInputs.cache
+C:\Users\seren\Desktop\JuegoAhorcadoUO\Code\HangThemHigh\JuegoAhorcadoSolucion\ServidorAhorcadoService\obj\Debug\Servidor.64F85338.Up2Date
+C:\Users\seren\Desktop\JuegoAhorcadoUO\Code\HangThemHigh\JuegoAhorcadoSolucion\ServidorAhorcadoService\obj\Debug\ServidorAhorcadoService.exe
+C:\Users\seren\Desktop\JuegoAhorcadoUO\Code\HangThemHigh\JuegoAhorcadoSolucion\ServidorAhorcadoService\obj\Debug\ServidorAhorcadoService.pdb

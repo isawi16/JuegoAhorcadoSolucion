@@ -1,11 +1,12 @@
 ﻿using BibliotecaClasesNetFramework.Contratos;
 using BibliotecaClasesNetFramework.DTO;
-using System.ServiceModel;
-using System.Windows;
-using System.Windows.Controls;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.ServiceModel;
+using System.Threading.Tasks;
+using System.Windows;
+using System.Windows.Controls;
 
 namespace ClienteAhorcado.Vistas
 {
@@ -38,14 +39,14 @@ namespace ClienteAhorcado.Vistas
             Loaded += (s, e) => CargarIdiomas(idiomaPorDefecto);
         }
 
-       /* public SeleccionCategoriaIdiomaUserControl(MainWindow mainWindow, JugadorDTO jugadorSesion, int? idiomaDefault, IAhorcadoService proxy)
-        {
-            _mainwindow = mainWindow;
-            this.jugadorSesion = jugadorSesion;
-            this.idiomaDefault = idiomaDefault;
-            this.proxy = proxy;
-        }
-       */
+        /* public SeleccionCategoriaIdiomaUserControl(MainWindow mainWindow, JugadorDTO jugadorSesion, int? idiomaDefault, IAhorcadoService proxy)
+         {
+             _mainwindow = mainWindow;
+             this.jugadorSesion = jugadorSesion;
+             this.idiomaDefault = idiomaDefault;
+             this.proxy = proxy;
+         }
+        */
         #region Carga inicial
 
         private void ReiniciarInterfaz()
@@ -70,7 +71,7 @@ namespace ClienteAhorcado.Vistas
         {
             if (cbIdioma.SelectedItem is IdiomaDTO idioma)
             {
-                idiomaSeleccionadoId = idioma.CodigoIdioma; 
+                idiomaSeleccionadoId = idioma.CodigoIdioma;
                 idiomaSeleccionadoCodigo = idioma.CodigoIdioma == 1 ? "es" : "en";
                 ReiniciarInterfaz();
                 CargarCategoriasPorIdioma(idioma.CodigoIdioma);
@@ -84,7 +85,7 @@ namespace ClienteAhorcado.Vistas
             }
         }
 
-        
+
         private void CargarIdiomas(int? idiomaPorDefecto)
         {
             var idiomas = proxy.ObtenerIdiomas();
@@ -149,26 +150,47 @@ namespace ClienteAhorcado.Vistas
 
         #region Crear partida
 
-        private void btnCrearPartida_Click(object sender, RoutedEventArgs e)
+        private async void btnCrearPartida_Click(object sender, RoutedEventArgs e)
         {
             if (palabraSeleccionada == null) return;
 
-            int idPartida = proxy.CrearPartida(jugadorCreador.IDJugador, palabraSeleccionada.IDPalabra);
+            int idPartida = 0;
+            try
+            {
+                idPartida = await Task.Run(() => proxy.CrearPartida(jugadorCreador.IDJugador, palabraSeleccionada.IDPalabra));
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al crear la partida: " + ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
+            }
 
             if (idPartida > 0)
             {
-                // Obtiene la palabra desde el servidor por si acaso (puedes validar que el DTO esté actualizado)
-                var palabra = proxy.ObtenerPalabraPorId(palabraSeleccionada.IDPalabra);
-                if (palabra == null)
+                PalabraDTO palabra = null;
+                try
                 {
-                    string mensajeErrorObtenerPalabra = Application.Current.TryFindResource("Msg_NoObtenerPalabra") as string
-                        ?? "No se pudo obtener la palabra de la partida.";
-                    MessageBox.Show(mensajeErrorObtenerPalabra, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                    int idPalabra = palabraSeleccionada.IDPalabra;
+                    System.Diagnostics.Debug.WriteLine($"Obteniendo palabra con ID: {idPalabra}");
+
+                    palabra = await Task.Run(() => proxy.ObtenerPalabraPorId(idPalabra));
+
+                    if (palabra == null)
+                    {
+                        MessageBox.Show($"No se encontró la palabra con ID {idPalabra}.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                        return;
+                    }
+                }
+                catch (Exception ex)
+                {
+                    var msg = "Error al obtener la palabra: " + ex.Message;
+                    if (ex.InnerException != null)
+                        msg += "\nDetalle: " + ex.InnerException.Message;
+                    MessageBox.Show(msg, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                     return;
                 }
 
-                // Cambia a la pantalla de juego como creador
-                _mainwindow.CargarPantallaJuego(jugadorCreador, palabra, idPartida, true);
+                 _mainwindow.CargarPantallaJuego(jugadorCreador, palabra, idPartida, true);
             }
             else
             {
@@ -176,7 +198,6 @@ namespace ClienteAhorcado.Vistas
                 MessageBox.Show(mensajeErrorCrearPartida, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
-
 
         #endregion
 

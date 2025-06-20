@@ -163,13 +163,13 @@ namespace ClienteAhorcado.Vistas
                 // Llama al servidor (usa Task.Run si tu proxy es síncrono)
                 string definicion = await Task.Run(() => proxy.ObtenerDefinicionPorIdPalabra(idPalabra));
 
-                tbHint.Text = !string.IsNullOrWhiteSpace(definicion)
+                tbIdea.Text = !string.IsNullOrWhiteSpace(definicion)
                     ? definicion
                     : "No hay pista disponible para esta palabra :c";
             }
             catch (Exception ex)
             {
-                tbHint.Text = $"Error al obtener la pista: {ex.Message}";
+                tbIdea.Text = $"Error al obtener la pista: {ex.Message}";
             }
         }
 
