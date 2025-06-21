@@ -126,9 +126,6 @@
     <Compile Include="Vistas\RegistrarJugadorUserControl.xaml.cs">
       <DependentUpon>RegistrarJugadorUserControl.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Vistas\ResultadosUserControl.xaml.cs">
-      <DependentUpon>ResultadosUserControl.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Vistas\SeleccionCategoriaIdiomaUserControl.xaml.cs">
       <DependentUpon>SeleccionCategoriaIdiomaUserControl.xaml</DependentUpon>
     </Compile>
@@ -233,10 +230,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Vistas\RegistrarJugadorUserControl.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Vistas\ResultadosUserControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

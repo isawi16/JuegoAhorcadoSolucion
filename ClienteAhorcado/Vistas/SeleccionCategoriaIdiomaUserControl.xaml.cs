@@ -39,19 +39,12 @@ namespace ClienteAhorcado.Vistas
             Loaded += (s, e) => CargarIdiomas(idiomaPorDefecto);
         }
 
-        /* public SeleccionCategoriaIdiomaUserControl(MainWindow mainWindow, JugadorDTO jugadorSesion, int? idiomaDefault, IAhorcadoService proxy)
-         {
-             _mainwindow = mainWindow;
-             this.jugadorSesion = jugadorSesion;
-             this.idiomaDefault = idiomaDefault;
-             this.proxy = proxy;
-         }
-        */
+        
         #region Carga inicial
 
         private void ReiniciarInterfaz()
         {
-            //cbIdioma.SelectedIndex = -1;
+            
             lstCategorias.ItemsSource = null;
             lstCategorias.IsEnabled = false;
             categoriaSeleccionada = null;

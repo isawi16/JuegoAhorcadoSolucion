@@ -391,7 +391,7 @@ namespace ServidorAhorcadoService
                 {
                     partida.IDEstado = 4; // "Concluida"
                     db.SaveChanges();
-                    clientesConectados.TryRemove(partida.IDJugadorCreador, out _); // Limpia callback muerto
+                    clientesConectados.TryRemove(partida.IDJugadorCreador, out _); // Limpia callback
                     LogServidor($"UnirseAPartida: callback de creador no válido o cerrado para partida {idPartida}");
                     return false;
                 }
@@ -639,12 +639,12 @@ namespace ServidorAhorcadoService
                             }
                             else
                             {
-                                resultado = "¡Juego terminado!"; // respaldo
+                                resultado = "¡Juego terminado!"; 
                             }
                         }
                         else
                         {
-                            resultado = "¡Juego terminado!"; // cancelada/abandonada
+                            resultado = "¡Juego terminado!"; // cancelada
                         }
                         try
                         {

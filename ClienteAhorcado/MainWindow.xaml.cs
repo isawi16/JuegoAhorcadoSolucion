@@ -32,7 +32,7 @@ namespace ClienteAhorcado
             catch (Exception ex)
             {
                 Console.WriteLine("Error al escribir en logServidor.txt: " + ex.Message);
-                throw; // Solo mientras depuras
+                throw; 
             }
         }
 
@@ -47,7 +47,7 @@ namespace ClienteAhorcado
 
         private void InicializarProxy()
         {
-            var callbackInstance = new InstanceContext(new AhorcadoCallbackCliente(this)); // Si usas tu propia clase de callback
+            var callbackInstance = new InstanceContext(new AhorcadoCallbackCliente(this)); 
             factory = new DuplexChannelFactory<IAhorcadoService>(callbackInstance, "AhorcadoServiceEndpoint");
             proxy = factory.CreateChannel();
         }
@@ -69,7 +69,7 @@ namespace ClienteAhorcado
 
         public void CargarPantallaJuego(JugadorDTO jugador, PalabraDTO palabra, int idPartida, bool esCreador)
         {
-            this.idPartida = idPartida; // Evita que los callbacks no se descarten por IDPartida
+            this.idPartida = idPartida; 
             var controlJuego = new JuegoAhorcadoUserControl1(jugador, palabra, idPartida, esCreador, proxy);
             MainContent.Content = controlJuego;
         }
@@ -106,7 +106,7 @@ namespace ClienteAhorcado
             {
                 if (MainContent.Content is JuegoAhorcadoUserControl1 juegoControl)
                 {
-                    // juegoControl.MostrarMensajeChat(mensaje);
+                    // Implementación pendiente
                 }
             });
         }

@@ -58,7 +58,7 @@ namespace ClienteAhorcado.Vistas
 
         public void LlenarTablaMarcadores()
         {
-            dgMarcadores.ItemsSource = null; // Limpiar la fuente de datos antes de cargar nuevos datos
+            dgMarcadores.ItemsSource = null; 
             jugadoresMarcadores = proxy.ObtenerJugadoresMarcadores();
 
             if (jugadoresMarcadores != null && jugadoresMarcadores.Count > 0)

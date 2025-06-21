@@ -4,17 +4,10 @@ using System;
 using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Controls;
-using System.Globalization;
-using System.Windows;
-using System.Windows.Controls;
-using WPFLocalizeExtension.Engine;
 
 namespace ClienteAhorcado.Vistas
 {
-    /// <summary>
-    /// Interaction logic for ConsultarHistorialPartidasUserControl.xaml
-    /// </summary>
-    public partial class ConsultarHistorialPartidasUserControl : UserControl
+       public partial class ConsultarHistorialPartidasUserControl : UserControl
     {
 
         private MainWindow _mainWindow;
@@ -42,7 +35,7 @@ namespace ClienteAhorcado.Vistas
 
         private void LlenarTablaHistorialPartidas()
         {
-            dgHistorial.ItemsSource = null; // Limpiar la fuente de datos antes de cargar nuevos datos
+            dgHistorial.ItemsSource = null; 
             historialPartidas = proxy.ConsultarPartidasJugadas (jugadorSesion.IDJugador);
             if (historialPartidas != null && historialPartidas.Count > 0)
             {
